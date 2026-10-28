@@ -1,0 +1,28 @@
+services:
+  web:
+    image: node:22-alpine
+    working_dir: /app
+    # Bind-mount the source so edits show up immediately: static files are read
+    # from disk per request, --watch restarts the server when server.js changes.
+    command: ["node", "--watch", "server.js"]
+    volumes:
+      - ./:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "require('http').get('http://127.0.0.1:3000/', r => process.exit(r.statusCode < 400 ? 0 : 1)).on('error', () => process.exit(1))"
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: on-failure
+    labels:
+      base44.project: "Nexus Store"
+      base44.kind: web
+      base44.port: "3000"
