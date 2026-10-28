@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Katalog Belanja Lengkap - Alat Kopi Malang. Temukan mesin espresso, manual grinder, dripper V60, biji kopi, dan perlengkapan barista terlengkap.">
+  <title id="pageTitle">Katalog Belanja - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons (Local Bundle) -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=21">
+  <style>
+    /* Critical layout guarantee: Mobile Search Bar beside Logo */
+    .header-search {
+      display: block !important;
+      flex: 1 !important;
+      min-width: 0 !important;
+    }
+    @media (max-width: 768px) {
+      .site-header .header-inner {
+        height: 56px !important;
+        gap: 8px !important;
+        padding: 0 10px !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+      .site-header .header-left-group {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+      }
+      .site-header .store-logo-horizontal {
+        height: 32px !important;
+        max-width: 125px !important;
+        width: auto !important;
+      }
+      .site-header .category-dropdown-btn {
+        display: none !important;
+      }
+      .site-header .header-search {
+        display: block !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+      }
+      .site-header .search-input-wrapper {
+        display: flex !important;
+        align-items: center !important;
+        position: relative !important;
+        width: 100% !important;
+      }
+      .site-header .search-input-wrapper input {
+        height: 38px !important;
+        padding: 0 32px 0 34px !important;
+        font-size: 0.84rem !important;
+        border-radius: 9999px !important;
+        background: var(--bg-secondary) !important;
+        border: 1px solid var(--border-subtle) !important;
+        color: var(--text-primary) !important;
+        width: 100% !important;
+        display: block !important;
+      }
+      .site-header .search-icon-left {
+        position: absolute !important;
+        left: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        align-items: center !important;
+        color: var(--text-muted) !important;
+        pointer-events: none !important;
+      }
+      .site-header .search-clear-btn {
+        position: absolute !important;
+        right: 8px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
+      .site-header .header-actions {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 2px !important;
+      }
+      .site-header .btn-icon {
+        width: 36px !important;
+        height: 36px !important;
+        background: transparent !important;
+        border: none !important;
+      }
+
+      /* Mobile Category Bottom Sheet */
+      .category-mobile-backdrop {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.65) !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        z-index: 99998 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transition: opacity 0.28s ease !important;
+      }
+      .category-mobile-backdrop.open {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+      .category-dropdown-menu {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 22px 22px 0 0 !important;
+        box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.45) !important;
+        background: var(--bg-surface) !important;
+        border: 1px solid var(--border-subtle) !important;
+        border-bottom: none !important;
+        z-index: 99999 !important;
+        padding: 0 0 max(28px, env(safe-area-inset-bottom)) 0 !important;
+        transform: translateY(100%) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+        display: block !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      .category-dropdown-menu.open,
+      .category-dropdown-wrap.open .category-dropdown-menu {
+        transform: translateY(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+      .sheet-drag-handle {
+        width: 44px;
+        height: 5px;
+        border-radius: 9999px;
+        background: var(--text-muted);
+        opacity: 0.35;
+        margin: 8px auto 6px auto;
+      }
+      .category-sheet-header {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 10px 18px 12px 18px !important;
+        border-bottom: 1px solid var(--border-subtle) !important;
+      }
+      .category-sheet-header .sheet-title {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        color: var(--text-primary) !important;
+      }
+      .btn-close-cat-sheet {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        background: var(--bg-secondary) !important;
+        color: var(--text-secondary) !important;
+        border: none !important;
+        display: grid !important;
+        place-items: center !important;
+        cursor: pointer !important;
+      }
+      .category-dropdown-menu .cat-drop-item {
+        padding: 14px 20px !important;
+        font-size: 0.94rem !important;
+        font-weight: 600 !important;
+        border-bottom: 1px solid var(--border-subtle) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        color: var(--text-primary) !important;
+      }
+      .category-dropdown-menu .cat-drop-item:active {
+        background: var(--bg-secondary) !important;
+      }
+    }
+
+    /* Draggable Categories Horizontal Bar */
+    .categories-scroll-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .categories-scroll-wrapper::before,
+    .categories-scroll-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      bottom: 8px;
+      width: 40px;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .categories-scroll-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-body), transparent);
+    }
+    .categories-scroll-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-body), transparent);
+    }
+    .categories-scroll-wrapper.has-scroll-left::before {
+      opacity: 1;
+    }
+    .categories-scroll-wrapper.has-scroll-right::after {
+      opacity: 1;
+    }
+    .cat-scroll-arrow {
+      position: absolute;
+      top: calc(50% - 3px);
+      transform: translateY(-50%);
+      z-index: 6;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .cat-scroll-arrow.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .cat-scroll-arrow:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 18px var(--primary-glow);
+    }
+    .cat-scroll-arrow-left {
+      left: -12px;
+    }
+    .cat-scroll-arrow-right {
+      right: -12px;
+    }
+    .categories-scroll {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px 12px 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-x pan-y;
+      overscroll-behavior-x: contain;
+      width: 100%;
+    }
+    .categories-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .categories-scroll.is-dragging {
+      cursor: grabbing !important;
+      scroll-behavior: auto !important;
+    }
+    .category-pill {
+      white-space: nowrap;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .cat-scroll-arrow {
+        display: none !important;
+      }
+      .categories-scroll-wrapper::before,
+      .categories-scroll-wrapper::after {
+        display: none !important;
+      }
+      .categories-scroll {
+        gap: 6px;
+        padding: 4px 0 8px 0;
+        cursor: default;
+      }
+      .category-pill {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+      }
+      .sort-filter-group {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Belanja Alat Kopi Gak Perlu Ribet, Hanya Dalam Sekali Klik !</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Brand Logo & Shop By Categories Dropdown -->
+      <div class="header-left-group">
+        <a href="index.html" class="brand-logo" id="brandLogo" title="Alat Kopi Malang - Kembali ke Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+
+        <!-- Category Dropdown Trigger & Panel -->
+        <div class="category-dropdown-wrap" id="categoryDropdownWrap">
+          <button type="button" class="category-dropdown-btn" id="btnCategoryDropdown" aria-expanded="false" aria-controls="categoryDropdownMenu" title="Pilihan Kategori">
+            <span class="btn-cat-left">
+              <i data-lucide="layout-grid" size="18"></i>
+              <span>Kategori</span>
+            </span>
+          </button>
+
+          <!-- Dropdown Menu List -->
+          <div class="category-dropdown-menu" id="categoryDropdownMenu">
+            <div class="category-sheet-header hide-desktop">
+              <div class="sheet-drag-handle"></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                <div class="sheet-title">
+                  <i data-lucide="layout-grid" size="18"></i>
+                  <span>Kategori Produk</span>
+                </div>
+                <button type="button" class="btn-close-cat-sheet" id="btnCloseCatSheet" aria-label="Tutup Menu">
+                  <i data-lucide="x" size="18"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Item: Semua Kategori -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="ALL">
+              <span class="cat-drop-left">
+                <i data-lucide="layout-grid" size="16"></i>
+                <span>Semua Kategori</span>
+              </span>
+              <span class="cat-badge-mini">11 Item</span>
+            </a>
+
+            <!-- Item: Mesin Espresso -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Mesin Espresso">
+              <span class="cat-drop-left">
+                <i data-lucide="coffee" size="16"></i>
+                <span>Mesin Espresso</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Manual Grinder -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Manual Grinder">
+              <span class="cat-drop-left">
+                <i data-lucide="rotate-cw" size="16"></i>
+                <span>Manual Grinder</span>
+              </span>
+              <span class="cat-badge-mini">2 Item</span>
+            </a>
+
+            <!-- Item: Grinder Listrik -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Grinder Listrik">
+              <span class="cat-drop-left">
+                <i data-lucide="zap" size="16"></i>
+                <span>Grinder Listrik</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Manual Brew -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Manual Brew">
+              <span class="cat-drop-left">
+                <i data-lucide="filter" size="16"></i>
+                <span>Manual Brew</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Gadget & Elektronik -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Gadget & Elektronik">
+              <span class="cat-drop-left">
+                <i data-lucide="smartphone" size="16"></i>
+                <span>Gadget & Elektronik</span>
+              </span>
+              <span class="cat-badge-mini">3 Item</span>
+            </a>
+
+            <!-- Item: Fashion & Sepatu -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Fashion & Sepatu">
+              <span class="cat-drop-left">
+                <i data-lucide="shirt" size="16"></i>
+                <span>Fashion & Sepatu</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Aksesoris & Tas -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Aksesoris & Tas">
+              <span class="cat-drop-left">
+                <i data-lucide="briefcase" size="16"></i>
+                <span>Aksesoris & Tas</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Lifestyle & Rumah -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Lifestyle & Rumah">
+              <span class="cat-drop-left">
+                <i data-lucide="sparkles" size="16"></i>
+                <span>Lifestyle & Rumah</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Produk Terlaris -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-filter-type="featured">
+              <span class="cat-drop-left">
+                <i data-lucide="flame" size="16" style="color:#ef4444;"></i>
+                <span>Produk Terlaris & Trending</span>
+              </span>
+              <span class="cat-badge-hot">HOT</span>
+            </a>
+
+            <!-- Item: Promo & Diskon Spesial -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-filter-type="promo">
+              <span class="cat-drop-left">
+                <i data-lucide="badge-percent" size="16" style="color:#f59e0b;"></i>
+                <span>Promo & Diskon Spesial</span>
+              </span>
+              <span class="cat-badge-sale">SALE</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon-left"><i data-lucide="search" size="18"></i></span>
+          <input type="text" id="desktopSearchInput" placeholder="Cari Produk di Katalog...">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" title="Hapus pencarian">
+            <i data-lucide="x" size="16"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <button class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Backdrop for mobile sheet -->
+    <div class="category-mobile-backdrop" id="categoryMobileBackdrop"></div>
+  </header>
+
+  <!-- Main Shop Page Content -->
+  <main class="container shop-page-container">
+
+    <!-- Catalog Section with Category Pills & Products -->
+    <section class="catalog-header" id="catalogSection">
+      <!-- Horizontal Scrollable Category Pills Bar -->
+      <div class="categories-scroll-wrapper" id="categoriesScrollWrapper">
+        <button type="button" class="cat-scroll-arrow cat-scroll-arrow-left" id="catScrollLeft" aria-label="Geser ke kiri" title="Geser ke kiri">
+          <i data-lucide="chevron-left" size="18"></i>
+        </button>
+        <div class="categories-scroll" id="categoriesBar" role="tablist" aria-label="Kategori Produk">
+          <button class="category-pill active" data-category="ALL" role="tab">
+            <i data-lucide="layout-grid" size="14"></i>
+            <span>Semua Produk</span>
+          </button>
+          <button class="category-pill" data-category="Mesin Espresso" role="tab">
+            <i data-lucide="coffee" size="14"></i>
+            <span>Mesin Espresso</span>
+          </button>
+          <button class="category-pill" data-category="Manual Grinder" role="tab">
+            <i data-lucide="rotate-cw" size="14"></i>
+            <span>Manual Grinder</span>
+          </button>
+          <button class="category-pill" data-category="Grinder Listrik" role="tab">
+            <i data-lucide="zap" size="14"></i>
+            <span>Grinder Listrik</span>
+          </button>
+          <button class="category-pill" data-category="Manual Brew" role="tab">
+            <i data-lucide="filter" size="14"></i>
+            <span>Manual Brew</span>
+          </button>
+          <button class="category-pill" data-category="Gadget & Elektronik" role="tab">
+            <i data-lucide="smartphone" size="14"></i>
+            <span>Gadget & Elektronik</span>
+          </button>
+          <button class="category-pill" data-category="Fashion & Sepatu" role="tab">
+            <i data-lucide="shirt" size="14"></i>
+            <span>Fashion & Sepatu</span>
+          </button>
+          <button class="category-pill" data-category="Aksesoris & Tas" role="tab">
+            <i data-lucide="briefcase" size="14"></i>
+            <span>Aksesoris & Tas</span>
+          </button>
+          <button class="category-pill" data-category="Lifestyle & Rumah" role="tab">
+            <i data-lucide="sparkles" size="14"></i>
+            <span>Lifestyle & Rumah</span>
+          </button>
+        </div>
+        <button type="button" class="cat-scroll-arrow cat-scroll-arrow-right" id="catScrollRight" aria-label="Geser ke kanan" title="Geser ke kanan">
+          <i data-lucide="chevron-right" size="18"></i>
+        </button>
+      </div>
+      
+      <!-- Active Brand / Special Filter Banner -->
+      <div class="active-filter-banner" id="activeFilterBanner" style="display: none;"></div>
+
+      <!-- Controls Toolbar -->
+      <div class="toolbar-row">
+        <div class="products-count-text">
+          Menampilkan <strong id="productCountNum">0</strong> produk
+        </div>
+        <div class="sort-filter-group">
+          <div class="select-wrapper">
+            <select class="select-input" id="sortSelect">
+              <option value="popular">Urutkan: Terpopuler</option>
+              <option value="newest">Terbaru</option>
+              <option value="price-low">Harga: Termurah</option>
+              <option value="price-high">Harga: Tertinggi</option>
+              <option value="name-az">Nama: A - Z</option>
+            </select>
+            <span class="select-arrow"><i data-lucide="chevron-down" size="14"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Catalog Pagination Container -->
+      <div class="pagination-wrapper" id="paginationWrapper" style="display: none;">
+        <nav class="pagination-nav" id="catalogPagination" aria-label="Navigasi Halaman Produk">
+          <!-- Dynamically generated by JavaScript -->
+        </nav>
+      </div>
+    </section>
+  </main>
+
+
+
+  <!-- Mobile Bottom Navigation (PWA-Like Navigation) -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item" id="navHome" title="Beranda Toko">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
+      <span>Beranda</span>
+    </a>
+    <button type="button" class="bottom-nav-item active" id="navCategory" title="Kategori Produk">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="layout-grid" size="20"></i></div>
+      <span>Kategori</span>
+    </button>
+    <button type="button" class="bottom-nav-item" id="navWishlist" title="Favorit Saya">
+      <div class="bottom-nav-icon-wrap">
+        <i data-lucide="heart" size="20"></i>
+        <span class="badge-count" id="mobileWishlistBadge">0</span>
+      </div>
+      <span>Favorit</span>
+    </button>
+    <a href="checkout.html" class="bottom-nav-item" id="navCart" title="Keranjang Belanja">
+      <div class="bottom-nav-icon-wrap">
+        <i data-lucide="shopping-bag" size="20"></i>
+        <span class="badge-count" id="mobileCartBadge">0</span>
+      </div>
+      <span>Keranjang</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
+      <span>Akun</span>
+    </a>
+  </nav>
+
+  <!-- ==========================================================================
+       CART DRAWER
+       ========================================================================== -->
+  <div class="modal-overlay" id="cartOverlay">
+    <aside class="drawer-box" id="cartDrawer">
+      <div class="modal-header">
+        <h3><i data-lucide="shopping-bag" size="20"></i> Keranjang Belanja</h3>
+        <button class="btn-close-modal" id="btnCloseCart"><i data-lucide="x" size="18"></i></button>
+      </div>
+
+      <div class="modal-body" id="cartBody">
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cartItemsContainer">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Voucher Code Input -->
+        <div class="voucher-box" id="voucherSection">
+          <div style="font-size:0.78rem; font-weight:700; margin-bottom:6px; color:var(--text-secondary);">
+            Punya Kode Promo / Voucher?
+          </div>
+          <div class="voucher-input-row">
+            <input type="text" id="voucherInput" placeholder="Ketik DISKON10">
+            <button type="button" class="btn-apply-voucher" id="btnApplyVoucher">Terapkan</button>
+          </div>
+          <div id="appliedVoucherInfo"></div>
+        </div>
+
+        <!-- Order Notes -->
+        <div style="margin-top: 14px;">
+          <label style="font-size:0.78rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">
+            Catatan Pesanan (Opsional)
+          </label>
+          <input type="text" id="cartOrderNote" class="form-input" style="padding: 8px 12px; font-size:0.82rem;" placeholder="Contoh: Titip ke satpam, packing kardus tebal">
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary" id="cartSummaryContainer">
+          <div class="summary-row">
+            <span>Subtotal Produk</span>
+            <span id="summarySubtotal">Rp 0</span>
+          </div>
+          <div class="summary-row" id="summaryDiscountRow" style="display:none; color:var(--success);">
+            <span>Diskon Voucher</span>
+            <span id="summaryDiscount">- Rp 0</span>
+          </div>
+          <div class="summary-row">
+            <span>Estimasi Ongkir</span>
+            <span id="summaryShipping">Rp 0</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total Pembayaran</span>
+            <span class="price-highlight" id="summaryGrandTotal">Rp 0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a href="checkout.html" class="btn-primary btn-block" id="btnProceedCheckout">
+          <span>Lanjut ke Checkout</span>
+          <i data-lucide="arrow-right" size="18"></i>
+        </a>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==========================================================================
+       WISHLIST DRAWER
+       ========================================================================== -->
+  <div class="modal-overlay" id="wishlistOverlay">
+    <aside class="drawer-box" id="wishlistDrawer">
+      <div class="modal-header">
+        <h3><i data-lucide="heart" size="20"></i> Produk Favorit</h3>
+        <button class="btn-close-modal" id="btnCloseWishlist"><i data-lucide="x" size="18"></i></button>
+      </div>
+      <div class="modal-body" id="wishlistContainer" style="padding:16px;">
+        <!-- Rendered dynamically -->
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==========================================================================
+       QUICK PRODUCT DETAIL MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="productModalOverlay">
+    <div class="modal-box product-modal-box">
+      <div class="modal-header">
+        <h3>Detail Singkat Produk</h3>
+        <button class="btn-close-modal" id="btnCloseProductModal"><i data-lucide="x" size="18"></i></button>
+      </div>
+      <div class="modal-body" id="productModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=18"></script>
+  <script src="js/app.js?v=20"></script>
+</body>
+</html>

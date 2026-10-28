@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Promo Flash Sale Spesial Alat Kopi Malang. Dapatkan diskon terbatas hingga 40% untuk 4 produk pilihan: Otten Vietnam Drip XL, Hario V60 Ceramic Cyan, Fellow Rocky Lowball Tumblers, dan Hario V60 Olive Wood Station.">
+  <title>Promo Flash Sale Spesial - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons (Local Bundle) -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=42">
+
+  <style>
+    /* Flash Sale Dedicated Page Custom Styles */
+    .flash-page-hero-banner {
+      background: linear-gradient(135deg, #3730a3 0%, #4338ca 40%, #4f46e5 70%, #6366f1 100%);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      color: #ffffff;
+      margin-bottom: 28px;
+      box-shadow: 0 16px 36px -8px rgba(79, 70, 229, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="dark"] .flash-page-hero-banner {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+      box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.35);
+    }
+    .flash-page-hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .flash-page-hero-title {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 900;
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .flash-page-hero-title span {
+      background: linear-gradient(180deg, #fef08a 0%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+    .flash-page-timer-card {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .flash-timer-header-text {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .flash-big-countdown {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .flash-big-time-box {
+      background: #ea4335;
+      background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 8px 12px;
+      min-width: 62px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+    }
+    .flash-big-num {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .flash-big-lbl {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.85;
+      margin-top: 3px;
+    }
+    .flash-big-sep {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fde047;
+      margin-top: -12px;
+    }
+    .flash-timer-urgency {
+      font-size: 0.78rem;
+      color: #fde047;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .flash-page-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .flash-page-hero-banner {
+        padding: 24px 18px;
+      }
+      .flash-page-hero-title {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span>⚡ <strong>PROMO SPESIAL FLASH SALE:</strong> Diskon s/d 40% & Garansi Resmi Distributor! Penawaran terbatas hari ini</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+        <div style="line-height:1.2;">
+          <span style="font-size:0.75rem; font-weight:700; color:#ea4335; background:rgba(234,67,53,0.1); padding:3px 8px; border-radius:6px; border:1px solid rgba(234,67,53,0.2);">⚡ Flash Sale</span>
+        </div>
+      </div>
+
+      <!-- Header Search Input -->
+      <div class="header-search">
+        <form class="search-form" action="shop.html" method="GET">
+          <div class="search-input-wrapper">
+            <i data-lucide="search" size="18" class="search-icon"></i>
+            <input type="search" name="q" class="search-input" placeholder="Cari alat kopi atau promo..." autocomplete="off">
+          </div>
+        </form>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <button class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </button>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container" style="min-height:75vh; padding-top:16px;">
+
+    <!-- Hero Flash Sale Banner -->
+    <section class="flash-page-hero-banner" aria-label="Hero Banner Flash Sale">
+      <div class="flash-page-hero-grid">
+        <!-- Left: Promo Info -->
+        <div>
+          <h1 class="flash-page-hero-title">
+            FLASH <span>SALE</span> ALAT KOPI
+          </h1>
+        </div>
+
+        <!-- Right: Countdown Card -->
+        <div class="flash-page-timer-card">
+          <div class="flash-timer-header-text">
+            <i data-lucide="clock" size="18" style="color:#fde047;"></i>
+            <span>PROMO BERAKHIR DALAM:</span>
+          </div>
+          <div class="flash-big-countdown" aria-label="Hitung Mundur Flash Sale">
+            <div class="flash-big-time-box">
+              <span class="flash-big-num" id="flashHours">04</span>
+              <span class="flash-big-lbl">Jam</span>
+            </div>
+            <span class="flash-big-sep">:</span>
+            <div class="flash-big-time-box">
+              <span class="flash-big-num" id="flashMinutes">11</span>
+              <span class="flash-big-lbl">Menit</span>
+            </div>
+            <span class="flash-big-sep">:</span>
+            <div class="flash-big-time-box">
+              <span class="flash-big-num" id="flashSeconds">21</span>
+              <span class="flash-big-lbl">Detik</span>
+            </div>
+          </div>
+          <p class="flash-timer-urgency">
+            ⚡ Harga kembali normal saat timer mencapai 00:00:00!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Promo Products Grid (Tampilan Standar Seperti Halaman Lain) -->
+    <div class="products-grid" id="flashPromoGrid">
+      
+      <!-- Product 1: Otten - Vietnam Drip XL -->
+      <article class="product-card" data-id="prod-012" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-012'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-012'">
+          <span class="card-badge">Diskon 24%</span>
+          <button type="button" class="btn-wishlist" 
+            onclick="event.stopPropagation(); window.toggleWishlist('prod-012')" 
+            title="Tambah ke Favorit"
+            aria-label="Favorit Otten - Vietnam Drip XL">
+            <i data-lucide="heart" size="18"></i>
+          </button>
+          <img src="images/vietnam_drip.jpg" alt="Otten - Vietnam Drip XL" class="product-card-img" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <span class="product-category-name">Manual Brew</span>
+          <a href="product.html?id=prod-012" class="product-title" title="Buka detail Otten - Vietnam Drip XL">
+            Otten - Vietnam Drip XL
+          </a>
+          <div class="product-card-bottom-row">
+            <div class="product-price-col">
+              <span class="price-current">Rp 189.000</span>
+              <span class="price-original">Rp 249.000</span>
+              <div class="stock-indicator">
+                <i data-lucide="check" size="11"></i>
+                <span>Tersedia</span>
+              </div>
+            </div>
+            <button type="button" class="btn-card-select-variant" 
+              onclick="event.stopPropagation(); window.location.href='product.html?id=prod-012'" 
+              title="Pilih Varian Otten - Vietnam Drip XL" 
+              aria-label="Pilih Varian Otten - Vietnam Drip XL">
+              <span>Pilih</span>
+              <i data-lucide="chevron-right" size="14"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 2: Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan -->
+      <article class="product-card" data-id="prod-013" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-013'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-013'">
+          <span class="card-badge">Diskon 21%</span>
+          <button type="button" class="btn-wishlist" 
+            onclick="event.stopPropagation(); window.toggleWishlist('prod-013')" 
+            title="Tambah ke Favorit"
+            aria-label="Favorit Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan">
+            <i data-lucide="heart" size="18"></i>
+          </button>
+          <img src="images/v60_dripper.jpg" alt="Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan" class="product-card-img" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <span class="product-category-name">Manual Brew</span>
+          <a href="product.html?id=prod-013" class="product-title" title="Buka detail Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan">
+            Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan
+          </a>
+          <div class="product-card-bottom-row">
+            <div class="product-price-col">
+              <span class="price-current">Rp 159.000</span>
+              <span class="price-original">Rp 200.000</span>
+              <div class="stock-indicator">
+                <i data-lucide="check" size="11"></i>
+                <span>Tersedia</span>
+              </div>
+            </div>
+            <button type="button" class="btn-card-select-variant" 
+              onclick="event.stopPropagation(); window.location.href='product.html?id=prod-013'" 
+              title="Pilih Varian Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan" 
+              aria-label="Pilih Varian Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan">
+              <span>Pilih</span>
+              <i data-lucide="chevron-right" size="14"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 3: Fellow - Rocky Lowball Tumblers (Matte White / Black) -->
+      <article class="product-card" data-id="prod-014" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-014'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-014'">
+          <span class="card-badge">Diskon 20%</span>
+          <button type="button" class="btn-wishlist" 
+            onclick="event.stopPropagation(); window.toggleWishlist('prod-014')" 
+            title="Tambah ke Favorit"
+            aria-label="Favorit Fellow - Rocky Lowball Tumblers (Matte White / Black)">
+            <i data-lucide="heart" size="18"></i>
+          </button>
+          <img src="images/fellow_tumbler.jpg" alt="Fellow - Rocky Lowball Tumblers (Matte White / Black)" class="product-card-img" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <span class="product-category-name">Lifestyle & Rumah</span>
+          <a href="product.html?id=prod-014" class="product-title" title="Buka detail Fellow - Rocky Lowball Tumblers (Matte White / Black)">
+            Fellow - Rocky Lowball Tumblers (Matte White / Black)
+          </a>
+          <div class="product-card-bottom-row">
+            <div class="product-price-col">
+              <span class="price-current">Rp 395.000</span>
+              <span class="price-original">Rp 495.000</span>
+              <div class="stock-indicator">
+                <i data-lucide="check" size="11"></i>
+                <span>Tersedia</span>
+              </div>
+            </div>
+            <button type="button" class="btn-card-select-variant" 
+              onclick="event.stopPropagation(); window.location.href='product.html?id=prod-014'" 
+              title="Pilih Varian Fellow - Rocky Lowball Tumblers" 
+              aria-label="Pilih Varian Fellow - Rocky Lowball Tumblers">
+              <span>Pilih</span>
+              <i data-lucide="chevron-right" size="14"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Product 4: Hario V60 Station VSS-1-OV Olive Wood Drip Stand -->
+      <article class="product-card" data-id="prod-015" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-015'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-015'">
+          <span class="card-badge">Diskon 20%</span>
+          <button type="button" class="btn-wishlist" 
+            onclick="event.stopPropagation(); window.toggleWishlist('prod-015')" 
+            title="Tambah ke Favorit"
+            aria-label="Favorit Hario V60 Station VSS-1-OV Olive Wood Drip Stand">
+            <i data-lucide="heart" size="18"></i>
+          </button>
+          <img src="images/v60_wood_station.jpg" alt="Hario V60 Station VSS-1-OV Olive Wood Drip Stand" class="product-card-img" loading="lazy">
+        </div>
+        <div class="product-card-body">
+          <span class="product-category-name">Manual Brew</span>
+          <a href="product.html?id=prod-015" class="product-title" title="Buka detail Hario V60 Station VSS-1-OV Olive Wood Drip Stand">
+            Hario V60 Station VSS-1-OV Olive Wood Drip Stand
+          </a>
+          <div class="product-card-bottom-row">
+            <div class="product-price-col">
+              <span class="price-current">Rp 1.850.000</span>
+              <span class="price-original">Rp 2.310.000</span>
+              <div class="stock-indicator low">
+                <i data-lucide="alert-triangle" size="11"></i>
+                <span>Sisa 4 unit</span>
+              </div>
+            </div>
+            <button type="button" class="btn-card-cart-icon" 
+              onclick="event.stopPropagation(); window.addToCart('prod-015')" 
+              title="Tambah ke Keranjang" 
+              aria-label="Tambah Hario V60 Station VSS-1-OV Olive Wood Drip Stand ke Keranjang">
+              <i data-lucide="shopping-bag" size="17"></i>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item" id="navHome" title="Beranda Toko">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
+      <span>Beranda</span>
+    </a>
+    <a href="brands.html" class="bottom-nav-item" id="navBrands" title="Koleksi Brand">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="award" size="20"></i></div>
+      <span>Brand</span>
+    </a>
+    <a href="flashsale.html" class="bottom-nav-item active" id="navFlash" title="Promo Flash Sale">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="zap" size="20"></i></div>
+      <span>Flash Sale</span>
+    </a>
+    <a href="shop.html" class="bottom-nav-item" id="navShop" title="Katalog Belanja">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="shopping-bag" size="20"></i></div>
+      <span>Belanja</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
+      <span>Akun</span>
+    </a>
+  </nav>
+
+  <!-- Cart Drawer Overlay -->
+  <div class="modal-overlay" id="cartOverlay">
+    <aside class="drawer-box" id="cartDrawer">
+      <div class="modal-header">
+        <h3><i data-lucide="shopping-bag" size="20"></i> Keranjang Belanja</h3>
+        <button class="btn-close-modal" id="btnCloseCart"><i data-lucide="x" size="18"></i></button>
+      </div>
+      <div class="modal-body" id="cartBody">
+        <div class="cart-items-list" id="cartItemsContainer"></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=42"></script>
+  <script src="js/app.js?v=42"></script>
+
+  <script>
+    function syncFlashWishlistButtons() {
+      try {
+        const savedWishlist = JSON.parse(localStorage.getItem('nexus_wishlist') || '[]');
+        document.querySelectorAll('#flashPromoGrid .product-card').forEach(card => {
+          const id = card.getAttribute('data-id');
+          const btn = card.querySelector('.btn-wishlist');
+          if (btn && id) {
+            const isWishlisted = savedWishlist.includes(id);
+            if (isWishlisted) {
+              btn.classList.add('active');
+              btn.setAttribute('title', 'Hapus dari Favorit');
+              btn.innerHTML = '<i data-lucide="heart" size="18" fill="currentColor"></i>';
+            } else {
+              btn.classList.remove('active');
+              btn.setAttribute('title', 'Tambah ke Favorit');
+              btn.innerHTML = '<i data-lucide="heart" size="18"></i>';
+            }
+          }
+        });
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+          window.lucide.createIcons();
+        }
+      } catch (e) {}
+    }
+    window.refreshLatestProducts = syncFlashWishlistButtons;
+    document.addEventListener('DOMContentLoaded', syncFlashWishlistButtons);
+    setTimeout(syncFlashWishlistButtons, 150);
+  </script>
+</body>
+</html>

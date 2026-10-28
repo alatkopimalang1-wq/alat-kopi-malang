@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Akun Saya & Masuk Pelanggan - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=3">
+  <style>
+    .account-page-container {
+      max-width: 900px;
+      margin: 24px auto 70px auto;
+      padding: 0 16px;
+    }
+    .auth-card-wrapper {
+      max-width: 480px;
+      margin: 20px auto 40px auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-normal);
+    }
+    @media (max-width: 480px) {
+      .auth-card-wrapper {
+        padding: 24px 18px;
+        border-radius: var(--radius-lg);
+      }
+    }
+    .auth-tab-switch {
+      display: flex;
+      background: var(--bg-secondary);
+      padding: 4px;
+      border-radius: var(--radius-full);
+      margin-bottom: 24px;
+      border: 1px solid var(--border-subtle);
+    }
+    .auth-tab-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .auth-tab-btn.active {
+      background: var(--bg-card);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .password-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .password-input-wrap input {
+      padding-right: 42px !important;
+    }
+    .btn-toggle-pwd {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+    }
+    .btn-toggle-pwd:hover {
+      color: var(--text-primary);
+    }
+
+    /* Dashboard View Styles */
+    .profile-hero-card {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.08), rgba(244, 63, 94, 0.05));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .profile-avatar-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), #818cf8);
+      color: #ffffff;
+      font-size: 1.6rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px var(--primary-glow);
+      flex-shrink: 0;
+    }
+    .profile-header-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .profile-name-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin: 0 0 4px 0;
+      color: var(--text-primary);
+    }
+    .profile-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .member-tier-pill {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #b45309;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    [data-theme="dark"] .member-tier-pill {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+    }
+
+    .account-nav-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .account-nav-btn {
+      padding: 10px 18px;
+      border: none;
+      background: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+    .account-nav-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .customer-order-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .order-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .order-status-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--border-subtle);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span>🔒 Area Pelanggan Resmi Alat Kopi Malang • Akses Akun & Riwayat Belanja Aman</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnAccountHeaderBack" title="Kembali ke Beranda">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="account-page-container">
+
+    <!-- ==========================================================================
+         VIEW 1: AUTHENTICATION (MASUK / DAFTAR)
+         ========================================================================== -->
+    <div id="authView" style="display:none;">
+      <div class="auth-card-wrapper">
+        <div style="text-align:center; margin-bottom:20px;">
+          <div class="brand-badge" style="width:48px; height:48px; margin:0 auto 12px auto;">
+            <i data-lucide="user-check" size="24"></i>
+          </div>
+          <h2 style="font-family:var(--font-heading); font-size:1.35rem; font-weight:800; margin-bottom:6px;">
+            Akun Pelanggan
+          </h2>
+          <p style="font-size:0.84rem; color:var(--text-muted); margin:0;">
+            Masuk atau daftar untuk kemudahan berbelanja & lacak pesanan Anda
+          </p>
+        </div>
+
+        <!-- Tab Toggle: Masuk vs Daftar -->
+        <div class="auth-tab-switch">
+          <button type="button" class="auth-tab-btn active" id="tabBtnLogin" onclick="switchAuthTab('login')">
+            <i data-lucide="log-in" size="16"></i>
+            <span>Masuk</span>
+          </button>
+          <button type="button" class="auth-tab-btn" id="tabBtnRegister" onclick="switchAuthTab('register')">
+            <i data-lucide="user-plus" size="16"></i>
+            <span>Daftar Akun</span>
+          </button>
+        </div>
+
+        <!-- FORM LOGIN -->
+        <form id="formLogin" onsubmit="handleLogin(event);" class="checkout-form-grid" style="gap:14px;">
+          <div class="form-group full-width">
+            <label class="form-label" for="loginEmail">Email atau No. WhatsApp *</label>
+            <input type="text" id="loginEmail" class="form-input" placeholder="Contoh: budi@gmail.com atau 08123456789" required>
+          </div>
+
+          <div class="form-group full-width">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <label class="form-label" for="loginPassword" style="margin:0;">Kata Sandi *</label>
+              <a href="#" onclick="showForgotPassword(event)" style="font-size:0.75rem; color:var(--primary); font-weight:600; text-decoration:none;">Lupa Sandi?</a>
+            </div>
+            <div class="password-input-wrap">
+              <input type="password" id="loginPassword" class="form-input" placeholder="Masukkan kata sandi akun" required>
+              <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('loginPassword', this)">
+                <i data-lucide="eye" size="18"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group full-width" style="margin-top:2px;">
+            <label style="display:flex; align-items:center; gap:8px; font-size:0.8rem; cursor:pointer; color:var(--text-secondary);">
+              <input type="checkbox" id="rememberMe" checked>
+              <span>Ingat saya di perangkat ini</span>
+            </label>
+          </div>
+
+          <div class="form-group full-width" style="margin-top:6px;">
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:0.92rem;">
+              <i data-lucide="log-in" size="18"></i>
+              <span>Masuk ke Akun</span>
+            </button>
+          </div>
+
+          <!-- Quick Demo Login Button -->
+          <div class="form-group full-width" style="text-align:center; margin-top:8px;">
+            <button type="button" onclick="loginDemoAccount()" class="btn-secondary" style="width:100%; justify-content:center; padding:10px; font-size:0.82rem; border-color:var(--border-subtle);">
+              <i data-lucide="zap" size="15" style="color:var(--primary);"></i>
+              <span>Masuk Cepat Demo (Budi Pratama)</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- FORM REGISTER -->
+        <form id="formRegister" onsubmit="handleRegister(event);" class="checkout-form-grid" style="display:none; gap:14px;">
+          <div class="form-group full-width">
+            <label class="form-label" for="regName">Nama Lengkap *</label>
+            <input type="text" id="regName" class="form-input" placeholder="Contoh: Budi Pratama" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regPhone">No. WhatsApp Aktif *</label>
+            <input type="tel" id="regPhone" class="form-input" placeholder="Contoh: 08123456789" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regEmail">Alamat Email *</label>
+            <input type="email" id="regEmail" class="form-input" placeholder="nama@email.com" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="regPassword">Kata Sandi *</label>
+            <div class="password-input-wrap">
+              <input type="password" id="regPassword" class="form-input" placeholder="Minimal 6 karakter" required minlength="6">
+              <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('regPassword', this)">
+                <i data-lucide="eye" size="18"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="regConfirmPassword">Konfirmasi Kata Sandi *</label>
+            <div class="password-input-wrap">
+              <input type="password" id="regConfirmPassword" class="form-input" placeholder="Ulangi kata sandi" required minlength="6">
+              <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('regConfirmPassword', this)">
+                <i data-lucide="eye" size="18"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label style="display:flex; align-items:flex-start; gap:8px; font-size:0.78rem; color:var(--text-muted); cursor:pointer;">
+              <input type="checkbox" id="regAgree" required style="margin-top:2px;">
+              <span>Saya menyetujui <a href="terms.html" target="_blank" style="color:var(--primary); text-decoration:underline;">Syarat & Ketentuan</a> serta <a href="privacy-policy.html" target="_blank" style="color:var(--primary); text-decoration:underline;">Kebijakan Privasi</a> Alat Kopi Malang.</span>
+            </label>
+          </div>
+
+          <div class="form-group full-width" style="margin-top:6px;">
+            <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:12px; font-size:0.92rem;">
+              <i data-lucide="user-plus" size="18"></i>
+              <span>Daftar Sekarang</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Security Notice -->
+        <div style="margin-top:24px; padding-top:16px; border-top:1px dashed var(--border-subtle); display:flex; justify-content:center; gap:16px; font-size:0.75rem; color:var(--text-muted);">
+          <span style="display:flex; align-items:center; gap:4px;"><i data-lucide="shield-check" size="14" style="color:var(--success);"></i> 100% Aman</span>
+          <span style="display:flex; align-items:center; gap:4px;"><i data-lucide="lock" size="14"></i> Enkripsi Data</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         VIEW 2: CUSTOMER DASHBOARD (KETIKA SUDAH LOGIN)
+         ========================================================================== -->
+    <div id="dashboardView" style="display:none;">
+      
+      <!-- Profile Header Hero -->
+      <div class="profile-hero-card">
+        <div class="profile-header-info">
+          <div class="profile-avatar-circle" id="userAvatarText">B</div>
+          <div>
+            <h2 class="profile-name-title" id="userNameTitle">Budi Pratama</h2>
+            <div class="profile-badge-row">
+              <span class="member-tier-pill">
+                <i data-lucide="award" size="14"></i> Member VIP Alat Kopi Malang
+              </span>
+              <span style="font-size:0.8rem; color:var(--text-muted);" id="userContactSub">budi@gmail.com • 08123456789</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" onclick="handleLogout()" class="btn-secondary" style="color:var(--danger); border-color:var(--danger); padding:8px 14px; font-size:0.82rem;">
+          <i data-lucide="log-out" size="16"></i>
+          <span>Keluar</span>
+        </button>
+      </div>
+
+      <!-- Dashboard Tabs -->
+      <div class="account-nav-tabs">
+        <button type="button" class="account-nav-btn active" id="tabBtnOrders" onclick="switchDashboardTab('orders')">
+          <i data-lucide="package" size="18"></i>
+          <span>Pesanan Saya (<span id="userOrdersCount">0</span>)</span>
+        </button>
+        <button type="button" class="account-nav-btn" id="tabBtnProfile" onclick="switchDashboardTab('profile')">
+          <i data-lucide="map-pin" size="18"></i>
+          <span>Profil & Alamat Pengiriman</span>
+        </button>
+        <button type="button" class="account-nav-btn" id="tabBtnWishlist" onclick="switchDashboardTab('wishlist')">
+          <i data-lucide="heart" size="18"></i>
+          <span>Favorit / Wishlist (<span id="userWishlistCount">0</span>)</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: ORDERS HISTORY -->
+      <div id="dashTabOrders" class="dash-content-pane">
+        <div id="customerOrdersContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- TAB 2: PROFILE & DEFAULT ADDRESS -->
+      <div id="dashTabProfile" class="dash-content-pane" style="display:none;">
+        <div class="checkout-card" style="max-width:680px; margin:0 auto;">
+          <h3 class="card-header-title">
+            <i data-lucide="user" size="20"></i> Pengaturan Data Profil & Alamat Pengiriman
+          </h3>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:18px;">
+            Alamat ini akan otomatis digunakan saat Anda melakukan checkout pesanan berikutnya.
+          </p>
+
+          <form onsubmit="handleSaveProfile(event)" class="checkout-form-grid two-cols">
+            <div class="form-group">
+              <label class="form-label" for="editCustName">Nama Lengkap *</label>
+              <input type="text" id="editCustName" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="editCustPhone">Nomor WhatsApp *</label>
+              <input type="tel" id="editCustPhone" class="form-input" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="editCustEmail">Alamat Email *</label>
+              <input type="email" id="editCustEmail" class="form-input" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label class="form-label" for="editCustAddress">Alamat Lengkap Rumah / Kantor *</label>
+              <textarea id="editCustAddress" class="form-textarea" placeholder="Nama jalan, nomor rumah, RT/RW, kelurahan, kecamatan" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="editCustCity">Kota / Kabupaten *</label>
+              <input type="text" id="editCustCity" class="form-input" placeholder="Contoh: Jakarta Selatan" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="editCustPostal">Kode Pos</label>
+              <input type="text" id="editCustPostal" class="form-input" placeholder="Contoh: 12190">
+            </div>
+
+            <div class="form-group full-width" style="margin-top:10px;">
+              <button type="submit" class="btn-primary" style="padding:12px 20px;">
+                <i data-lucide="save" size="18"></i>
+                <span>Simpan Perubahan Profil & Alamat</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 3: WISHLIST -->
+      <div id="dashTabWishlist" class="dash-content-pane" style="display:none;">
+        <div id="customerWishlistContainer" class="products-grid">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal Batalkan Pesanan (Account) -->
+  <div id="accountCancelModal" class="cancel-modal-backdrop" style="display:none;" onclick="if(event.target === this) closeAccountCancelModal()">
+    <div class="cancel-modal-card">
+      <div class="cancel-modal-header">
+        <div style="width:40px; height:40px; border-radius:50%; background:#fee2e2; color:#dc2626; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <i data-lucide="alert-triangle" size="22"></i>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-heading); font-size:1.1rem; font-weight:800; color:var(--text-primary); margin:0;">
+            Batalkan Pesanan Ini?
+          </h3>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0 0;" id="accCancelModalOrderRef">
+            Pesanan #ORD-XXXXX
+          </p>
+        </div>
+      </div>
+      <div class="cancel-modal-body">
+        <p style="margin-top:0; margin-bottom:14px; font-size:0.86rem; line-height:1.5;">
+          Pesanan yang dibatalkan tidak dapat diproses lagi dan tagihan pembayaran akan otomatis ditutup.
+        </p>
+
+        <label class="cancel-reason-label" for="accCancelReasonSelect">Alasan Pembatalan:</label>
+        <select id="accCancelReasonSelect" class="cancel-reason-select">
+          <option value="Ingin mengubah rincian produk / varian">Ingin mengubah rincian produk / varian</option>
+          <option value="Ingin mengganti metode pembayaran / pengiriman">Ingin mengganti metode pembayaran / pengiriman</option>
+          <option value="Menemukan pilihan / harga lain">Menemukan pilihan lain</option>
+          <option value="Salah memasukkan alamat pengiriman">Salah memasukkan alamat pengiriman</option>
+          <option value="Lainnya">Alasan lainnya</option>
+        </select>
+
+        <label class="cancel-reason-label" for="accCancelReasonNotes">Catatan Tambahan (Opsional):</label>
+        <textarea id="accCancelReasonNotes" class="cancel-reason-notes" placeholder="Tuliskan catatan tambahan jika ada..."></textarea>
+      </div>
+      <div class="cancel-modal-actions">
+        <button type="button" class="btn-secondary" onclick="closeAccountCancelModal()" style="flex:1; padding:10px 14px; font-size:0.86rem; font-weight:600; cursor:pointer;">
+          Kembali
+        </button>
+        <button type="button" class="btn-danger-confirm" id="btnAccConfirmCancel" onclick="confirmAccountCancelOrder()" style="flex:1.2;">
+          <i data-lucide="x-circle" size="16"></i>
+          <span>Ya, Batalkan</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Initial State & Data
+      const formatRupiah = (number) => 'Rp ' + Number(number || 0).toLocaleString('id-ID');
+      const refreshIcons = () => { if (window.lucide) window.lucide.createIcons(); };
+
+      // Theme logic
+      let theme = localStorage.getItem('nexus_theme') || 'light';
+      const applyTheme = (t) => {
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('nexus_theme', t);
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.setAttribute('data-lucide', t === 'dark' ? 'sun' : 'moon');
+        refreshIcons();
+      };
+      applyTheme(theme);
+      document.getElementById('btnToggleTheme')?.addEventListener('click', () => {
+        theme = theme === 'light' ? 'dark' : 'light';
+        applyTheme(theme);
+      });
+
+      // Update Cart Badge
+      const updateCartBadge = () => {
+        const cart = JSON.parse(localStorage.getItem('nexus_cart')) || [];
+        const count = cart.reduce((sum, it) => sum + it.quantity, 0);
+        const badge = document.getElementById('cartBadge');
+        if (badge) badge.textContent = count;
+      };
+      updateCartBadge();
+
+      // Toast notification helper
+      window.showToast = (message, type = 'success') => {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        const icon = type === 'success' ? 'check-circle' : (type === 'danger' ? 'alert-triangle' : 'info');
+        toast.innerHTML = `<i data-lucide="${icon}" size="18"></i><span>${message}</span>`;
+        container.appendChild(toast);
+        refreshIcons();
+        setTimeout(() => toast.remove(), 3500);
+      };
+
+      // Header Back button with history fallback
+      document.getElementById('btnAccountHeaderBack')?.addEventListener('click', (e) => {
+        if (window.history.length > 1) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+
+      // 2. Auth & User Management
+      const getCurrentUser = () => {
+        const stored = localStorage.getItem('nexus_current_user');
+        return stored ? JSON.parse(stored) : null;
+      };
+
+      const setCurrentUser = (user) => {
+        if (user) {
+          localStorage.setItem('nexus_current_user', JSON.stringify(user));
+        } else {
+          localStorage.removeItem('nexus_current_user');
+        }
+      };
+
+      // Switch between Login and Register tabs
+      window.switchAuthTab = (tab) => {
+        const tabBtnLogin = document.getElementById('tabBtnLogin');
+        const tabBtnRegister = document.getElementById('tabBtnRegister');
+        const formLogin = document.getElementById('formLogin');
+        const formRegister = document.getElementById('formRegister');
+
+        if (tab === 'login') {
+          tabBtnLogin.classList.add('active');
+          tabBtnRegister.classList.remove('active');
+          formLogin.style.display = 'grid';
+          formRegister.style.display = 'none';
+        } else {
+          tabBtnRegister.classList.add('active');
+          tabBtnLogin.classList.remove('active');
+          formRegister.style.display = 'grid';
+          formLogin.style.display = 'none';
+        }
+        refreshIcons();
+      };
+
+      // Toggle password input visibility
+      window.togglePasswordVisibility = (inputId, btn) => {
+        const input = document.getElementById(inputId);
+        if (!input) return;
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        btn.innerHTML = `<i data-lucide="${isPassword ? 'eye-off' : 'eye'}" size="18"></i>`;
+        refreshIcons();
+      };
+
+      // Forgot password notice
+      window.showForgotPassword = (e) => {
+        e.preventDefault();
+        const settings = JSON.parse(localStorage.getItem('nexus_settings')) || DEFAULT_SETTINGS;
+        const wa = '6282132095241';
+        const msg = encodeURIComponent('Halo Admin Alat Kopi Malang, saya lupa kata sandi akun saya. Mohon bantuan reset sandi akun. Terima kasih!');
+        window.open(`https://wa.me/${wa}?text=${msg}`, '_blank');
+      };
+
+      // Login submission
+      window.handleLogin = (e) => {
+        e.preventDefault();
+        const emailOrPhone = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value.trim();
+
+        if (!emailOrPhone || !password) {
+          showToast('Harap masukkan email/WhatsApp dan kata sandi!', 'danger');
+          return;
+        }
+
+        // Get saved users or default user
+        const users = JSON.parse(localStorage.getItem('nexus_users')) || [];
+        const matched = users.find(u => 
+          (u.email.toLowerCase() === emailOrPhone.toLowerCase() || u.phone === emailOrPhone) && u.password === password
+        );
+
+        if (matched) {
+          setCurrentUser(matched);
+          showToast(`Selamat datang kembali, ${matched.name}!`, 'success');
+          renderView();
+        } else {
+          // If demo user or match generic
+          if (emailOrPhone.includes('budi') || emailOrPhone === '08123456789') {
+            const demoUser = {
+              name: 'Budi Pratama',
+              phone: '08123456789',
+              email: 'budi@gmail.com',
+              address: 'Jl. Sudirman No. 45, Kebayoran Baru',
+              city: 'Jakarta Selatan',
+              postalCode: '12190',
+              password: password
+            };
+            setCurrentUser(demoUser);
+            showToast('Berhasil masuk ke akun!', 'success');
+            renderView();
+          } else {
+            showToast('Email / No. WhatsApp atau kata sandi tidak cocok!', 'danger');
+          }
+        }
+      };
+
+      // Quick Demo Login
+      window.loginDemoAccount = () => {
+        const demoUser = {
+          name: 'Budi Pratama',
+          phone: '08123456789',
+          email: 'budi@gmail.com',
+          address: 'Jl. Senopati No. 88, Selong',
+          city: 'Jakarta Selatan',
+          postalCode: '12190',
+          password: 'password123'
+        };
+        setCurrentUser(demoUser);
+        showToast('✓ Berhasil masuk sebagai Budi Pratama (Akun Demo)', 'success');
+        renderView();
+      };
+
+      // Register submission
+      window.handleRegister = (e) => {
+        e.preventDefault();
+        const name = document.getElementById('regName').value.trim();
+        const phone = document.getElementById('regPhone').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+        if (password !== confirmPassword) {
+          showToast('Konfirmasi kata sandi tidak sesuai!', 'danger');
+          return;
+        }
+
+        const newUser = {
+          name,
+          phone,
+          email,
+          address: '',
+          city: '',
+          postalCode: '',
+          password
+        };
+
+        const users = JSON.parse(localStorage.getItem('nexus_users')) || [];
+        users.push(newUser);
+        localStorage.setItem('nexus_users', JSON.stringify(users));
+
+        setCurrentUser(newUser);
+        showToast(`✓ Akun berhasil dibuat! Selamat datang, ${name}.`, 'success');
+        renderView();
+      };
+
+      // Logout
+      window.handleLogout = () => {
+        if (!confirm('Apakah Anda yakin ingin keluar dari akun?')) return;
+        setCurrentUser(null);
+        showToast('Anda telah keluar dari akun.', 'info');
+        renderView();
+      };
+
+      // Save Profile Edit
+      window.handleSaveProfile = (e) => {
+        e.preventDefault();
+        const currentUser = getCurrentUser();
+        if (!currentUser) return;
+
+        currentUser.name = document.getElementById('editCustName').value.trim();
+        currentUser.phone = document.getElementById('editCustPhone').value.trim();
+        currentUser.email = document.getElementById('editCustEmail').value.trim();
+        currentUser.address = document.getElementById('editCustAddress').value.trim();
+        currentUser.city = document.getElementById('editCustCity').value.trim();
+        currentUser.postalCode = document.getElementById('editCustPostal').value.trim();
+
+        setCurrentUser(currentUser);
+
+        // Update list
+        const users = JSON.parse(localStorage.getItem('nexus_users')) || [];
+        const idx = users.findIndex(u => u.email === currentUser.email || u.phone === currentUser.phone);
+        if (idx !== -1) users[idx] = currentUser;
+        localStorage.setItem('nexus_users', JSON.stringify(users));
+
+        showToast('✓ Profil & alamat pengiriman berhasil diperbarui!', 'success');
+        renderView();
+      };
+
+      // Dashboard tab switcher
+      window.switchDashboardTab = (tab) => {
+        document.querySelectorAll('.account-nav-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.dash-content-pane').forEach(p => p.style.display = 'none');
+
+        if (tab === 'orders') {
+          document.getElementById('tabBtnOrders')?.classList.add('active');
+          document.getElementById('dashTabOrders').style.display = 'block';
+        } else if (tab === 'profile') {
+          document.getElementById('tabBtnProfile')?.classList.add('active');
+          document.getElementById('dashTabProfile').style.display = 'block';
+        } else if (tab === 'wishlist') {
+          document.getElementById('tabBtnWishlist')?.classList.add('active');
+          document.getElementById('dashTabWishlist').style.display = 'block';
+        }
+        refreshIcons();
+      };
+
+      // 3. Render Dashboard Sections
+      const renderDashboardOrders = (user) => {
+        let orders = JSON.parse(localStorage.getItem('nexus_orders')) || [];
+
+        const isOrderProcessedOrBeyond = (order) => {
+          if (!order) return false;
+          const s = (order.status || '').toLowerCase();
+          return (
+            s.includes('proses') ||
+            s.includes('kemas') ||
+            s.includes('kirim') ||
+            s.includes('selesai') ||
+            s.includes('lunas') ||
+            s.includes('konfirmasi') ||
+            s.includes('verifikasi')
+          );
+        };
+
+        const isOrderCancellable = (order) => {
+          if (!order) return false;
+          const s = (order.status || '').toLowerCase();
+          if (s.includes('batal') || isOrderProcessedOrBeyond(order)) {
+            return false;
+          }
+          if (order.paymentProof) return false;
+          return true;
+        };
+
+        // Check if any active orders have exceeded the 24-hour expiration window
+        let ordersModified = false;
+        const nowMs = Date.now();
+        orders.forEach(o => {
+          if (isOrderCancellable(o)) {
+            if (!o.expiresAt) {
+              const createMs = o.createdAt ? new Date(o.createdAt).getTime() : nowMs;
+              o.createdAt = o.createdAt || new Date(createMs).toISOString();
+              o.expiresAt = new Date(createMs + 24 * 60 * 60 * 1000).toISOString();
+              ordersModified = true;
+            }
+            const expMs = new Date(o.expiresAt).getTime();
+            if (nowMs >= expMs) {
+              o.status = 'Dibatalkan';
+              o.cancelReason = 'Waktu pembayaran telah habis (Batas 24 jam terlampaui)';
+              o.cancelledAt = new Date().toLocaleString('id-ID', {
+                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+              });
+              ordersModified = true;
+            }
+          }
+        });
+
+        if (ordersModified) {
+          localStorage.setItem('nexus_orders', JSON.stringify(orders));
+        }
+
+        // Filter orders for this user if phone or email matches, or show all recent local orders
+        const userOrders = orders.filter(o => 
+          o.customer && (
+            (o.customer.phone && o.customer.phone.replace(/[^0-9]/g, '').includes(user.phone.replace(/[^0-9]/g, ''))) ||
+            (o.customer.name && o.customer.name.toLowerCase().includes(user.name.toLowerCase()))
+          )
+        );
+
+        const listToRender = userOrders.length > 0 ? userOrders : orders;
+        const countEl = document.getElementById('userOrdersCount');
+        if (countEl) countEl.textContent = listToRender.length;
+
+        const container = document.getElementById('customerOrdersContainer');
+        if (!container) return;
+
+        if (listToRender.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state" style="padding:40px 20px; background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);">
+              <i data-lucide="shopping-bag" size="44" style="color:var(--text-muted); margin-bottom:12px;"></i>
+              <h4 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Belum Ada Riwayat Pesanan</h4>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">
+                Anda belum melakukan transaksi belanja di Alat Kopi Malang. Temukan produk favorit Anda sekarang!
+              </p>
+              <a href="index.html" class="btn-primary" style="display:inline-flex; padding:10px 20px;">
+                <i data-lucide="compass" size="16"></i>
+                <span>Mulai Belanja</span>
+              </a>
+            </div>
+          `;
+        } else {
+          container.innerHTML = listToRender.map(o => {
+            const sLower = (o.status || '').toLowerCase();
+            const isCancelled = sLower.includes('batal');
+            const isProcessed = isOrderProcessedOrBeyond(o);
+            const showPayInstruction = !isCancelled && !isProcessed;
+            const statusBadgeClass = isCancelled ? 'order-status-badge status-cancelled' : 'order-status-badge';
+            const statusIcon = isCancelled
+              ? 'x-circle'
+              : (sLower.includes('selesai') || sLower.includes('lunas')
+                  ? 'check-circle'
+                  : (sLower.includes('kirim') ? 'truck' : (sLower.includes('proses') || sLower.includes('kemas') ? 'package' : 'clock')));
+
+            let timeBadge = '';
+            if (isOrderCancellable(o) && o.expiresAt && !isCancelled) {
+              const diffSec = Math.max(0, Math.floor((new Date(o.expiresAt).getTime() - Date.now()) / 1000));
+              if (diffSec > 0) {
+                const h = Math.floor(diffSec / 3600);
+                const m = Math.floor((diffSec % 3600) / 60);
+                timeBadge = `
+                  <span style="display:inline-flex; align-items:center; gap:4px; font-size:0.72rem; color:#b45309; background:#fef3c7; border:1px solid #fde68a; padding:1px 6px; border-radius:999px; margin-left:6px; font-weight:600;">
+                    <i data-lucide="clock" size="11"></i> Sisa: ${h}j ${m}m
+                  </span>
+                `;
+              }
+            }
+
+            return `
+            <div class="customer-order-card">
+              <div class="order-header-row">
+                <div>
+                  <div style="font-size:0.95rem; font-weight:800; color:var(--text-primary); font-family:var(--font-heading);">
+                    Pesanan #${o.id}
+                  </div>
+                  <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px; display:flex; align-items:center; flex-wrap:wrap; gap:4px;">
+                    <span><i data-lucide="calendar" size="12"></i> ${o.date} • Kurir: ${o.customer?.courier || 'Reguler'}</span>
+                    ${timeBadge}
+                  </div>
+                </div>
+                <div class="${statusBadgeClass}">
+                  <i data-lucide="${statusIcon}" size="12"></i>
+                  <span>${o.status || 'Menunggu Pembayaran'}</span>
+                </div>
+              </div>
+
+              ${isCancelled && o.cancelReason ? `
+                <div style="margin: 6px 0 10px 0; font-size:0.75rem; color:#b91c1c; background:#fee2e2; padding:3px 10px; border-radius:6px; display:inline-flex; align-items:center; gap:6px;">
+                  <i data-lucide="alert-circle" size="12"></i>
+                  <span>Alasan Batal: <strong>${o.cancelReason}</strong></span>
+                </div>
+              ` : ''}
+
+              <div class="order-items-list" style="margin-bottom:14px;">
+                ${o.items.map(it => `
+                  <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+                    <img src="${it.image}" alt="${it.name}" style="width:46px; height:46px; border-radius:8px; object-fit:cover; border:1px solid var(--border-subtle);">
+                    <div style="flex:1; min-width:0;">
+                      <div style="font-size:0.86rem; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                        ${it.name}
+                      </div>
+                      <div style="font-size:0.75rem; color:var(--text-muted);">
+                        ${it.variant || 'Standar'} • ${it.quantity} unit x ${formatRupiah(it.price)}
+                      </div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div style="display:flex; justify-content:space-between; align-items:center; padding-top:12px; border-top:1px dashed var(--border-subtle); flex-wrap:wrap; gap:10px;">
+                <div>
+                  <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Total ${isCancelled ? 'Tagihan (Dibatalkan)' : 'Pembayaran'}:</span>
+                  <span style="font-family:var(--font-heading); font-size:1.15rem; font-weight:800; color:${isCancelled ? 'var(--text-muted)' : 'var(--primary)'}; ${isCancelled ? 'text-decoration:line-through;' : ''}">
+                    ${formatRupiah(o.grandTotal)}
+                  </span>
+                </div>
+                <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                  ${showPayInstruction ? `
+                    <a href="checkout-finish.html?orderId=${o.id}" class="btn-primary" style="padding:6px 10px; font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px; font-weight:700;">
+                      <i data-lucide="receipt" size="13"></i>
+                      <span>Instruksi Bayar</span>
+                    </a>
+                  ` : ''}
+                  <a href="invoice.html?orderId=${o.id}&download=true" target="_blank" class="btn-secondary" style="padding:6px 10px; font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px; font-weight:700;" title="Download Invoice Pesanan (PDF)">
+                    <i data-lucide="download" size="13"></i>
+                    <span>Download Invoice</span>
+                  </a>
+                  ${isOrderCancellable(o) ? `
+                    <button type="button" class="btn-secondary btn-cancel-order" onclick="openAccountCancelModal('${o.id}')" style="padding:6px 10px; font-size:0.75rem; display:inline-flex; align-items:center; gap:5px; font-weight:700; color:#dc2626; border-color:#fca5a5; cursor:pointer;" title="Batalkan pesanan ini sebelum melakukan pembayaran">
+                      <i data-lucide="x-circle" size="13"></i>
+                      <span>Batalkan Pesanan</span>
+                    </button>
+                  ` : ''}
+                  <a href="https://wa.me/6282132095241?text=${encodeURIComponent(`Halo Admin, saya ingin menanyakan status pesanan saya dengan nomor #${o.id}. Terima kasih!`)}" target="_blank" class="btn-secondary" style="padding:6px 10px; font-size:0.75rem; display:inline-flex; align-items:center; gap:5px;">
+                    <i data-lucide="message-circle" size="13"></i>
+                    <span>Tanya CS</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            `;
+          }).join('');
+        }
+        refreshIcons();
+      };
+
+      const renderDashboardWishlist = () => {
+        const wishlist = JSON.parse(localStorage.getItem('nexus_wishlist')) || [];
+        const countEl = document.getElementById('userWishlistCount');
+        if (countEl) countEl.textContent = wishlist.length;
+
+        const container = document.getElementById('customerWishlistContainer');
+        if (!container) return;
+
+        if (wishlist.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state full-width" style="padding:40px 20px; background:var(--bg-surface); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); grid-column:1/-1;">
+              <i data-lucide="heart" size="44" style="color:var(--text-muted); margin-bottom:12px;"></i>
+              <h4 style="font-size:1.1rem; font-weight:700; margin-bottom:6px;">Wishlist Anda Masih Kosong</h4>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">
+                Simpan produk yang Anda sukai ke dalam favorit agar mudah ditemukan nanti.
+              </p>
+              <a href="index.html" class="btn-primary" style="display:inline-flex; padding:10px 20px;">
+                <span>Jelajahi Produk</span>
+              </a>
+            </div>
+          `;
+        } else {
+          container.innerHTML = wishlist.map(p => `
+            <div class="product-card">
+              <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=${p.id}'">
+                <img src="${p.image}" alt="${p.name}" class="product-card-img">
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-name">${p.category || 'Alat Kopi Malang'}</span>
+                <h4 class="product-title" onclick="window.location.href='product.html?id=${p.id}'">${p.name}</h4>
+                <div class="product-card-bottom-row">
+                  <div class="product-price-col">
+                    <span class="price-current">${formatRupiah(p.price)}</span>
+                  </div>
+                  <button type="button" class="btn-primary" style="padding:6px 12px; font-size:0.75rem;" onclick="window.location.href='product.html?id=${p.id}'">
+                    <span>Lihat</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      };
+
+      // 4. Main View Controller (Switch Auth vs Dashboard)
+      const renderView = () => {
+        const currentUser = getCurrentUser();
+        const authView = document.getElementById('authView');
+        const dashboardView = document.getElementById('dashboardView');
+
+        if (!currentUser) {
+          authView.style.display = 'block';
+          dashboardView.style.display = 'none';
+        } else {
+          authView.style.display = 'none';
+          dashboardView.style.display = 'block';
+
+          // Set Profile Details
+          const initial = currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'U';
+          document.getElementById('userAvatarText').textContent = initial;
+          document.getElementById('userNameTitle').textContent = currentUser.name;
+          document.getElementById('userContactSub').textContent = `${currentUser.email || '-'} • ${currentUser.phone || '-'}`;
+
+          // Pre-fill Edit Profile Form
+          document.getElementById('editCustName').value = currentUser.name || '';
+          document.getElementById('editCustPhone').value = currentUser.phone || '';
+          document.getElementById('editCustEmail').value = currentUser.email || '';
+          document.getElementById('editCustAddress').value = currentUser.address || '';
+          document.getElementById('editCustCity').value = currentUser.city || '';
+          document.getElementById('editCustPostal').value = currentUser.postalCode || '';
+
+          // Render Dashboard Sub-panes
+          renderDashboardOrders(currentUser);
+          renderDashboardWishlist();
+        }
+        refreshIcons();
+      };
+
+      // Cancel Order Modal Handlers for Account Dashboard
+      let pendingCancelOrderId = null;
+
+      window.openAccountCancelModal = (orderId) => {
+        pendingCancelOrderId = orderId;
+        const orders = JSON.parse(localStorage.getItem('nexus_orders')) || [];
+        const target = orders.find(o => o.id === orderId);
+        const ref = document.getElementById('accCancelModalOrderRef');
+        if (ref && target) {
+          ref.textContent = `Pesanan #${target.id} • Total: ${formatRupiah(target.grandTotal)}`;
+        }
+        const modal = document.getElementById('accountCancelModal');
+        if (modal) modal.style.display = 'flex';
+        refreshIcons();
+      };
+
+      window.closeAccountCancelModal = () => {
+        pendingCancelOrderId = null;
+        const modal = document.getElementById('accountCancelModal');
+        if (modal) modal.style.display = 'none';
+      };
+
+      window.confirmAccountCancelOrder = () => {
+        if (!pendingCancelOrderId) return;
+        const orders = JSON.parse(localStorage.getItem('nexus_orders')) || [];
+        const targetIdx = orders.findIndex(o => o.id === pendingCancelOrderId);
+        if (targetIdx === -1) {
+          window.closeAccountCancelModal();
+          return;
+        }
+
+        const reasonSelect = document.getElementById('accCancelReasonSelect');
+        const notesText = document.getElementById('accCancelReasonNotes');
+        const reason = reasonSelect ? reasonSelect.value : 'Dibatalkan oleh Pelanggan';
+        const notes = notesText ? notesText.value.trim() : '';
+        const fullReason = notes ? `${reason} (${notes})` : reason;
+
+        orders[targetIdx].status = 'Dibatalkan';
+        orders[targetIdx].cancelReason = fullReason;
+        orders[targetIdx].cancelledAt = new Date().toLocaleString('id-ID', {
+          day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+
+        localStorage.setItem('nexus_orders', JSON.stringify(orders));
+
+        const cancelledId = pendingCancelOrderId;
+        window.closeAccountCancelModal();
+        showToast(`✓ Pesanan #${cancelledId} berhasil dibatalkan.`, 'success');
+
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+          renderDashboardOrders(currentUser);
+          refreshIcons();
+        }
+      };
+
+      renderView();
+    });
+  </script>
+</body>
+</html>

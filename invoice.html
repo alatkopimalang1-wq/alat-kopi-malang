@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Pesanan - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+  <!-- Local Offline html2pdf.js -->
+  <script src="js/html2pdf.bundle.min.js"></script>
+
+  <style>
+    /* CSS Reset & Variables */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Fixed Top Action Bar (Screen Only) */
+    .invoice-action-bar {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    }
+
+    .action-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .action-bar-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .action-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action-primary {
+      background: #4f46e5;
+      color: #ffffff;
+    }
+    .btn-action-primary:hover {
+      background: #4338ca;
+    }
+
+    .btn-action-secondary {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .btn-action-secondary:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* A4 Paper Canvas */
+    .invoice-wrapper {
+      padding: 24px 12px 60px 12px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .invoice-paper {
+      background: #ffffff;
+      width: 210mm;
+      min-height: 297mm;
+      padding: 16mm 18mm;
+      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+      position: relative;
+      color: #1e293b;
+      font-size: 11pt;
+    }
+
+    /* Header Grid */
+    .invoice-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #4f46e5;
+      margin-bottom: 18px;
+    }
+
+    .store-brand-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .store-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .store-logo-img {
+      height: 48px;
+      max-width: 220px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .store-name-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .store-tagline {
+      font-size: 8.5pt;
+      color: #64748b;
+      margin-top: -4px;
+    }
+
+    .store-address-text {
+      font-size: 8.5pt;
+      color: #475569;
+      line-height: 1.4;
+      max-width: 320px;
+    }
+
+    .invoice-meta-right {
+      text-align: right;
+    }
+
+    .invoice-main-heading {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: #4f46e5;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .invoice-meta-item {
+      font-size: 9pt;
+      color: #475569;
+      margin-bottom: 3px;
+    }
+
+    .invoice-meta-item strong {
+      color: #0f172a;
+    }
+
+    .invoice-status-pill {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 3px 12px;
+      font-size: 8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .invoice-status-pill.paid {
+      background: #d1fae5;
+      color: #065f46;
+      border-color: #a7f3d0;
+    }
+
+    .invoice-status-pill.cancelled {
+      background: #fee2e2 !important;
+      color: #b91c1c !important;
+      border-color: #fca5a5 !important;
+    }
+
+    /* Billing & Shipping Grid */
+    .billing-shipping-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .info-card-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .info-card-label {
+      font-size: 8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #64748b;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+    }
+
+    .info-card-name {
+      font-weight: 800;
+      font-size: 10.5pt;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+
+    .info-card-detail {
+      font-size: 9pt;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    /* Items Table */
+    .invoice-items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+
+    .invoice-items-table th {
+      background: #4f46e5;
+      color: #ffffff;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 9px 12px;
+      text-align: left;
+    }
+
+    .invoice-items-table th:first-child {
+      border-top-left-radius: 6px;
+      text-align: center;
+      width: 36px;
+    }
+
+    .invoice-items-table th:last-child {
+      border-top-right-radius: 6px;
+      text-align: right;
+    }
+
+    .invoice-items-table th.text-center {
+      text-align: center;
+    }
+
+    .invoice-items-table th.text-right {
+      text-align: right;
+    }
+
+    .invoice-items-table td {
+      padding: 10px 12px;
+      font-size: 9pt;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .invoice-items-table tr:nth-child(even) td {
+      background-color: #fafbfc;
+    }
+
+    .item-product-name {
+      font-weight: 700;
+      color: #0f172a;
+      font-size: 9.5pt;
+    }
+
+    .item-product-variant {
+      font-size: 8pt;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    /* Calculation Totals Section */
+    .totals-and-payment-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 18px;
+      margin-bottom: 22px;
+      align-items: start;
+    }
+
+    .payment-summary-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 8.5pt;
+      line-height: 1.45;
+    }
+
+    .payment-summary-header {
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .totals-table-wrap {
+      width: 100%;
+    }
+
+    .totals-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+    }
+
+    .totals-table td {
+      padding: 5px 8px;
+    }
+
+    .totals-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .totals-table tr.grand-total-row td {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #4f46e5;
+      border-top: 2px solid #4f46e5;
+      padding-top: 10px;
+      padding-bottom: 4px;
+    }
+
+    .terbilang-box {
+      background: #eef2ff;
+      border: 1px dashed #c7d2fe;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 8pt;
+      color: #3730a3;
+      margin-top: 8px;
+    }
+
+    .terbilang-box strong {
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Footer / Stamp & Signature */
+    .invoice-footer-section {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      font-size: 8pt;
+      color: #64748b;
+    }
+
+    .signature-stamp-box {
+      text-align: center;
+      width: 180px;
+    }
+
+    .official-seal-graphic {
+      width: 86px;
+      height: 86px;
+      border: 2px dashed #4f46e5;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 6px auto;
+      color: #4f46e5;
+      transform: rotate(-8deg);
+      background: rgba(79, 70, 229, 0.04);
+    }
+
+    .official-seal-graphic span {
+      font-size: 6.5pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .official-seal-graphic strong {
+      font-size: 8pt;
+      font-weight: 800;
+    }
+
+    /* Responsive Screen Styles for Mobile & Tablet */
+    .action-btn-text-short {
+      display: none;
+    }
+    .action-btn-text-full {
+      display: inline;
+    }
+
+    @media screen and (max-width: 768px) {
+      .action-btn-text-full {
+        display: none !important;
+      }
+      .action-btn-text-short {
+        display: inline !important;
+      }
+      .invoice-action-bar {
+        padding: 8px 12px;
+      }
+      .action-bar-left {
+        gap: 8px;
+      }
+      .action-bar-title {
+        font-size: 0.85rem;
+      }
+      .action-bar-right {
+        gap: 6px;
+      }
+      .btn-action {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        gap: 4px;
+      }
+      .invoice-wrapper {
+        padding: 12px 8px 36px 8px;
+      }
+      .invoice-paper {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+        padding: 16px 14px !important;
+        border-radius: 12px;
+        font-size: 9.5pt;
+      }
+      .invoice-header-row {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+      .invoice-meta-right {
+        text-align: left;
+        width: 100%;
+        border-top: 1px dashed #e2e8f0;
+        padding-top: 10px;
+      }
+      .invoice-main-heading {
+        font-size: 1.45rem;
+      }
+      .billing-shipping-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .totals-and-payment-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .invoice-items-table {
+        font-size: 8pt;
+      }
+      .invoice-items-table th, .invoice-items-table td {
+        padding: 8px 6px;
+      }
+      .invoice-footer-section {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    /* ==========================================================================
+       EXACT A4 DESKTOP INVOICE EXPORT (Guarantees PDF matches on-screen invoice)
+       ========================================================================== */
+    .desktop-a4-invoice {
+      width: 210mm !important;
+      max-width: 210mm !important;
+      min-width: 210mm !important;
+      min-height: 297mm !important;
+      padding: 16mm 18mm !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: #ffffff !important;
+      color: #1e293b !important;
+      font-size: 10.5pt !important;
+      box-sizing: border-box !important;
+      display: block !important;
+    }
+
+    .desktop-a4-invoice .invoice-header-row {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      padding-bottom: 16px !important;
+      margin-bottom: 18px !important;
+      border-bottom: 2px solid #4f46e5 !important;
+    }
+
+    .desktop-a4-invoice .store-brand-left {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+      max-width: 440px !important;
+    }
+
+    .desktop-a4-invoice .store-logo-wrap {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      margin-bottom: 6px !important;
+    }
+
+    .desktop-a4-invoice .store-logo-img {
+      height: 48px !important;
+      max-width: 220px !important;
+      width: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+    }
+
+    .desktop-a4-invoice .store-name-title {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 1.35rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      letter-spacing: -0.5px !important;
+    }
+
+    .desktop-a4-invoice .store-tagline {
+      font-size: 8.5pt !important;
+      color: #64748b !important;
+      margin-top: -4px !important;
+    }
+
+    .desktop-a4-invoice .store-address-text {
+      font-size: 8.5pt !important;
+      color: #475569 !important;
+      line-height: 1.4 !important;
+      max-width: 320px !important;
+    }
+
+    .desktop-a4-invoice .invoice-meta-right {
+      display: block !important;
+      text-align: right !important;
+      width: auto !important;
+      border-top: none !important;
+      padding-top: 0 !important;
+    }
+
+    .desktop-a4-invoice .invoice-main-heading {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 1.9rem !important;
+      font-weight: 800 !important;
+      color: #4f46e5 !important;
+      letter-spacing: 1px !important;
+      margin-bottom: 4px !important;
+    }
+
+    .desktop-a4-invoice .invoice-meta-item {
+      font-size: 9pt !important;
+      color: #475569 !important;
+      margin-bottom: 3px !important;
+    }
+
+    .desktop-a4-invoice .invoice-status-pill {
+      display: inline-block !important;
+      margin-top: 6px !important;
+      padding: 3px 12px !important;
+      font-size: 8pt !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      border-radius: 999px !important;
+      background: #fef3c7 !important;
+      color: #b45309 !important;
+      border: 1px solid #fde68a !important;
+    }
+
+    .desktop-a4-invoice .invoice-status-pill.paid {
+      background: #d1fae5 !important;
+      color: #065f46 !important;
+      border-color: #a7f3d0 !important;
+    }
+
+    .desktop-a4-invoice .invoice-status-pill.cancelled {
+      background: #fee2e2 !important;
+      color: #b91c1c !important;
+      border-color: #fca5a5 !important;
+    }
+
+    .desktop-a4-invoice .billing-shipping-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 16px !important;
+      margin-bottom: 22px !important;
+    }
+
+    .desktop-a4-invoice .info-card-box {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 8px !important;
+      padding: 12px 14px !important;
+    }
+
+    .desktop-a4-invoice .info-card-label {
+      font-size: 8pt !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.5px !important;
+      color: #64748b !important;
+      margin-bottom: 6px !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      padding-bottom: 4px !important;
+    }
+
+    .desktop-a4-invoice .info-card-name {
+      font-weight: 800 !important;
+      font-size: 10.5pt !important;
+      color: #0f172a !important;
+      margin-bottom: 2px !important;
+    }
+
+    .desktop-a4-invoice .info-card-detail {
+      font-size: 9pt !important;
+      color: #475569 !important;
+      line-height: 1.45 !important;
+    }
+
+    .desktop-a4-invoice .invoice-items-table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      margin-bottom: 18px !important;
+      font-size: 9pt !important;
+    }
+
+    .desktop-a4-invoice .invoice-items-table th {
+      background: #4f46e5 !important;
+      color: #ffffff !important;
+      padding: 9px 12px !important;
+      font-size: 8.5pt !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.5px !important;
+      text-transform: uppercase !important;
+    }
+
+    .desktop-a4-invoice .invoice-items-table th:nth-child(1) { width: 38px !important; text-align: center !important; }
+    .desktop-a4-invoice .invoice-items-table th:nth-child(3) { width: 95px !important; }
+    .desktop-a4-invoice .invoice-items-table th:nth-child(4) { width: 120px !important; text-align: right !important; }
+    .desktop-a4-invoice .invoice-items-table th:nth-child(5) { width: 48px !important; text-align: center !important; }
+    .desktop-a4-invoice .invoice-items-table th:nth-child(6) { width: 125px !important; text-align: right !important; }
+
+    .desktop-a4-invoice .invoice-items-table td {
+      padding: 10px 12px !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      font-size: 9pt !important;
+    }
+
+    .desktop-a4-invoice .item-product-name {
+      font-weight: 700 !important;
+      color: #0f172a !important;
+      font-size: 9.5pt !important;
+    }
+
+    .desktop-a4-invoice .item-product-variant {
+      font-size: 8pt !important;
+      color: #64748b !important;
+      margin-top: 2px !important;
+    }
+
+    .desktop-a4-invoice .totals-and-payment-row {
+      display: grid !important;
+      grid-template-columns: 1.1fr 1fr !important;
+      gap: 18px !important;
+      margin-bottom: 22px !important;
+      align-items: start !important;
+    }
+
+    .desktop-a4-invoice .payment-summary-box {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 8px !important;
+      padding: 12px 14px !important;
+      font-size: 8.5pt !important;
+      line-height: 1.45 !important;
+    }
+
+    .desktop-a4-invoice .terbilang-box {
+      background: #eef2ff !important;
+      border: 1px dashed #c7d2fe !important;
+      border-radius: 6px !important;
+      padding: 8px 12px !important;
+      font-size: 8pt !important;
+      color: #3730a3 !important;
+      margin-top: 8px !important;
+    }
+
+    .desktop-a4-invoice .totals-table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      font-size: 9pt !important;
+    }
+
+    .desktop-a4-invoice .totals-table td {
+      padding: 5px 8px !important;
+    }
+
+    .desktop-a4-invoice .totals-table tr.grand-total-row td {
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 1.25rem !important;
+      font-weight: 800 !important;
+      color: #4f46e5 !important;
+      border-top: 2px solid #4f46e5 !important;
+      padding-top: 10px !important;
+      padding-bottom: 4px !important;
+    }
+
+    .desktop-a4-invoice .invoice-footer-section {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: flex-end !important;
+      align-items: flex-end !important;
+      border-top: 1px solid #e2e8f0 !important;
+      padding-top: 14px !important;
+      font-size: 8pt !important;
+      color: #64748b !important;
+    }
+
+    .desktop-a4-invoice .signature-stamp-box {
+      text-align: center !important;
+      width: 180px !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Print & A4 Page Sizing */
+    @page {
+      size: A4 portrait;
+      margin: 10mm 12mm;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10pt;
+      }
+      .invoice-action-bar, .no-print {
+        display: none !important;
+      }
+      .invoice-wrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .invoice-paper {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+      }
+      .invoice-header-row {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+      }
+      .invoice-meta-right {
+        text-align: right !important;
+        border-top: none !important;
+        padding-top: 0 !important;
+      }
+      .billing-shipping-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+      }
+      .totals-and-payment-row {
+        display: grid !important;
+        grid-template-columns: 1.05fr 1fr !important;
+      }
+      .invoice-footer-section {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: flex-end !important;
+      }
+      .invoice-items-table th {
+        background-color: #4f46e5 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .terbilang-box {
+        background-color: #eef2ff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Screen Action Bar (Hidden when printing/PDF exporting) -->
+  <header class="invoice-action-bar no-print">
+    <div class="action-bar-left">
+      <a href="javascript:window.history.back()" class="btn-action btn-action-secondary" title="Kembali">
+        <i data-lucide="arrow-left" size="16"></i>
+        <span class="action-btn-text-full">Kembali</span>
+      </a>
+      <div class="action-bar-title">
+        <i data-lucide="file-text" size="18" style="color:#818cf8;"></i>
+        <span class="action-btn-text-full">Pratinjau Invoice Resmi A4</span>
+        <span class="action-btn-text-short">Invoice Pesanan</span>
+      </div>
+    </div>
+    <div class="action-bar-right">
+      <button type="button" class="btn-action btn-action-secondary" onclick="window.print()" title="Cetak dengan Printer atau Simpan PDF">
+        <i data-lucide="printer" size="16"></i>
+        <span class="action-btn-text-full">Cetak / Print</span>
+        <span class="action-btn-text-short">Cetak</span>
+      </button>
+      <button type="button" class="btn-action btn-action-primary" id="btnDownloadPdf" onclick="downloadInvoicePdf()">
+        <i data-lucide="download" size="16"></i>
+        <span id="btnPdfText">
+          <span class="action-btn-text-full">Download PDF (A4)</span>
+          <span class="action-btn-text-short">PDF</span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Paper Container -->
+  <main class="invoice-wrapper">
+    <article class="invoice-paper" id="invoicePaperElement">
+      <!-- Dynamic Invoice Content will be loaded by JavaScript -->
+      <div style="text-align:center; padding:100px 20px;">
+        <p style="color:#64748b; font-size:1rem;">Menyiapkan dokumen invoice pesanan...</p>
+      </div>
+    </article>
+  </main>
+
+  <script>
+    // Format Rupiah
+    function formatRupiah(num) {
+      return 'Rp ' + (Number(num) || 0).toLocaleString('id-ID');
+    }
+
+    // Indonesian Number to Words (Terbilang)
+    function terbilangRupiah(n) {
+      const bilangan = ['', 'Satu', 'Dua', 'Tiga', 'Empat', 'Lima', 'Enam', 'Tujuh', 'Delapan', 'Sembilan', 'Sepuluh', 'Sebelas'];
+      n = Math.floor(Math.abs(Number(n) || 0));
+      if (n === 0) return 'Nol Rupiah';
+      
+      function bilang(x) {
+        if (x < 12) return bilangan[x];
+        if (x < 20) return bilang(x - 10) + ' Belas';
+        if (x < 100) return bilang(Math.floor(x / 10)) + ' Puluh ' + bilangan[x % 10];
+        if (x < 200) return 'Seratus ' + bilang(x - 100);
+        if (x < 1000) return bilang(Math.floor(x / 100)) + ' Ratus ' + bilang(x % 100);
+        if (x < 2000) return 'Seribu ' + bilang(x - 1000);
+        if (x < 1000000) return bilang(Math.floor(x / 1000)) + ' Ribu ' + bilang(x % 1000);
+        if (x < 1000000000) return bilang(Math.floor(x / 1000000)) + ' Juta ' + bilang(x % 1000000);
+        return bilang(Math.floor(x / 1000000000)) + ' Milyar ' + bilang(x % 1000000000);
+      }
+      
+      return (bilang(n).replace(/\s+/g, ' ').trim()) + ' Rupiah';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryOrderId = urlParams.get('orderId') || urlParams.get('id');
+      const allOrders = JSON.parse(localStorage.getItem('nexus_orders')) || [];
+      const lastOrderId = localStorage.getItem('nexus_last_order_id');
+      const settings = JSON.parse(localStorage.getItem('nexus_settings')) || {
+        storeName: 'Alat Kopi Malang',
+        whatsappNumber: '6282132095241'
+      };
+      settings.whatsappNumber = '6282132095241';
+
+      let order = null;
+      if (queryOrderId) {
+        order = allOrders.find(o => o.id === queryOrderId || o.id === '#' + queryOrderId);
+      }
+      if (!order && lastOrderId) {
+        order = allOrders.find(o => o.id === lastOrderId);
+      }
+      if (!order && allOrders.length > 0) {
+        order = allOrders[0];
+      }
+
+      // Check expired order in invoice view
+      if (order) {
+        if (!order.expiresAt) {
+          const createMs = order.createdAt ? new Date(order.createdAt).getTime() : Date.now();
+          order.createdAt = order.createdAt || new Date(createMs).toISOString();
+          order.expiresAt = new Date(createMs + 24 * 60 * 60 * 1000).toISOString();
+          const idx = allOrders.findIndex(o => o.id === order.id);
+          if (idx !== -1) {
+            allOrders[idx] = order;
+            localStorage.setItem('nexus_orders', JSON.stringify(allOrders));
+          }
+        }
+
+        const isUnpaid = (!order.status || order.status === 'Menunggu Pembayaran' || order.status === 'Diproses') && !order.paymentProof;
+        if (isUnpaid && order.status !== 'Dibatalkan' && Date.now() >= new Date(order.expiresAt).getTime()) {
+          order.status = 'Dibatalkan';
+          order.cancelReason = 'Waktu pembayaran telah habis (Batas 24 jam terlampaui)';
+          order.cancelledAt = new Date().toLocaleString('id-ID', {
+            day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+          });
+          const idx = allOrders.findIndex(o => o.id === order.id);
+          if (idx !== -1) {
+            allOrders[idx] = order;
+            localStorage.setItem('nexus_orders', JSON.stringify(allOrders));
+          }
+        }
+      }
+
+      // Fallback demo order if completely empty
+      if (!order) {
+        order = {
+          id: 'ORD-729104',
+          date: new Date().toLocaleString('id-ID', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' }),
+          customer: {
+            name: 'Ahmad Ridwan',
+            phone: '+62 821-3209-5241',
+            address: 'Jl. Ijen No. 12, Klojen, Malang',
+            courier: 'JNE Reguler (2-3 Hari)',
+            note: 'Mohon packing bubble wrap tebal untuk alat kopi'
+          },
+          items: [{
+            name: 'Timemore Chestnut C3 Hand Grinder',
+            variant: 'Matte Black',
+            price: 780000,
+            quantity: 1
+          }],
+          deliveryMethod: 'ship',
+          selectedPaymentMethod: 'qris',
+          subtotal: 780000,
+          deliveryFee: 15000,
+          voucherDiscount: 0,
+          grandTotal: 795000,
+          paymentMethod: 'QRIS Toko',
+          status: 'Menunggu Pembayaran'
+        };
+      }
+
+      // Bank details reference (Connected with nexus_payments & order.paymentDetails)
+      const savedPayments = (() => {
+        try {
+          const p = JSON.parse(localStorage.getItem('nexus_payments'));
+          return Array.isArray(p) && p.length > 0 ? p : null;
+        } catch (_) { return null; }
+      })();
+      const paymentMethodStr = (order.paymentMethod || order.selectedPaymentMethod || 'QRIS Toko').toUpperCase();
+      let matchedPay = order.paymentDetails || null;
+      if (savedPayments) {
+        const found = savedPayments.find(p => (p.code || '').toUpperCase() === (order.selectedPaymentMethod || '').toUpperCase())
+          || savedPayments.find(p => paymentMethodStr.includes((p.code || '').toUpperCase()) || paymentMethodStr.includes((p.badgeText || '').toUpperCase()));
+        if (found) matchedPay = found;
+      }
+
+      let paymentDesc = '';
+      if (matchedPay) {
+        if (matchedPay.type === 'qris') {
+          paymentDesc = `
+            <strong>${(matchedPay.fullName || matchedPay.title || 'QRIS TOKO').toUpperCase()}</strong><br>
+            NMID: <strong>${matchedPay.nmid || 'ID1024334436911'}</strong><br>
+            Atas Nama: <strong>${matchedPay.accountHolder || 'ALAT KOPI MALANG.'}</strong><br>
+            <span style="color:#64748b; font-size:7.5pt;">${matchedPay.rightNote || 'Dapat dibayar via GoPay, OVO, ShopeePay, DANA, BCA, Livin, BRImo'}</span>
+          `;
+        } else {
+          paymentDesc = `
+            <strong>${matchedPay.fullName || matchedPay.tabLabel || 'Transfer Bank'} (${matchedPay.badgeText || ''})</strong><br>
+            No. Rekening: <strong>${matchedPay.accountNumber || '-'}</strong><br>
+            Atas Nama: <strong>${matchedPay.accountHolder || 'ALAT KOPI MALANG'}</strong>
+          `;
+        }
+      } else if (paymentMethodStr.includes('BCA')) {
+        paymentDesc = `
+          <strong>Bank Central Asia (BCA)</strong><br>
+          No. Rekening: <strong>8720192831</strong><br>
+          Atas Nama: <strong>ALAT KOPI MALANG</strong>
+        `;
+      } else if (paymentMethodStr.includes('BRI')) {
+        paymentDesc = `
+          <strong>Bank Rakyat Indonesia (BRI)</strong><br>
+          No. Rekening: <strong>034101002345501</strong><br>
+          Atas Nama: <strong>ALAT KOPI MALANG</strong>
+        `;
+      } else {
+        paymentDesc = `
+          <strong>QRIS TOKO (Standar Nasional)</strong><br>
+          NMID: <strong>ID1024334436911</strong><br>
+          Atas Nama: <strong>ALAT KOPI MALANG.</strong><br>
+          <span style="color:#64748b; font-size:7.5pt;">Dapat dibayar via GoPay, OVO, ShopeePay, DANA, BCA, Livin, BRImo</span>
+        `;
+      }
+
+      const paper = document.getElementById('invoicePaperElement');
+      paper.innerHTML = `
+        <!-- Header -->
+        <header class="invoice-header-row">
+          <div class="store-brand-left">
+            <div class="store-logo-wrap">
+              <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-img">
+            </div>
+            <div class="store-tagline">Specialty Coffee Roastery &amp; Manual Brew Equipment Hub</div>
+            <div class="store-address-text">
+              Jl. Jombang No. 16, Klojen, Kota Malang, Jawa Timur 65116<br>
+              WhatsApp: +${settings.whatsappNumber || '6282132095241'} · Website: alatkopimalang.id
+            </div>
+          </div>
+
+          <div class="invoice-meta-right">
+            <div class="invoice-main-heading">INVOICE</div>
+            <div class="invoice-meta-item">No. Invoice: <strong>INV/AKM/2026/${order.id}</strong></div>
+            <div class="invoice-meta-item">No. Pesanan: <strong>#${order.id}</strong></div>
+            <div class="invoice-meta-item">Tanggal: <strong>${order.date || 'Hari ini'}</strong></div>
+            <div class="invoice-meta-item">Batas Bayar: <strong>24 Jam</strong></div>
+            <div>
+              <span class="invoice-status-pill ${order.status === 'Lunas' ? 'paid' : (order.status === 'Dibatalkan' ? 'cancelled' : '')}">
+                ${(order.status || 'MENUNGGU PEMBAYARAN').toUpperCase()}
+              </span>
+            </div>
+          </div>
+        </header>
+
+        <!-- Billing & Shipping Information -->
+        <section class="billing-shipping-grid">
+          <div class="info-card-box">
+            <div class="info-card-label">DITUJUKAN KEPADA (PEMBELI):</div>
+            <div class="info-card-name">${order.customer?.name || 'Pelanggan'}</div>
+            <div class="info-card-detail">
+              <strong>No. WhatsApp / Telepon:</strong> ${order.customer?.phone || '-'}<br>
+              ${order.customer?.note && order.customer?.note !== '-' ? `<strong>Catatan Khusus:</strong> <em>"${order.customer.note}"</em>` : ''}
+            </div>
+          </div>
+
+          <div class="info-card-box">
+            <div class="info-card-label">METODE &amp; TUJUAN PENGIRIMAN:</div>
+            ${order.deliveryMethod === 'pickup' ? (() => {
+              const savedPickup = (() => {
+                try { return JSON.parse(localStorage.getItem('nexus_pickup') || '{}'); } catch (_) { return {}; }
+              })();
+              const pTitle = order.customer?.deliveryType || savedPickup.title || 'Ambil Langsung di Toko (Pickup)';
+              const pAddr = order.customer?.roasteryAddress || savedPickup.address || 'Jl. Jombang No. 16, Malang 65116';
+              const pHours = order.customer?.pickupHours || savedPickup.operationalHours || 'Setiap hari 08:00 – 21:00 WIB';
+              return `
+              <div class="info-card-name">${pTitle}</div>
+              <div class="info-card-detail">
+                <strong>Lokasi Roastery:</strong> ${pAddr}<br>
+                <strong>Jam Operasional:</strong> ${pHours}<br>
+                <strong>Nama Pengambil:</strong> ${order.customer?.name || '-'}
+              </div>
+              `;
+            })() : `
+              <div class="info-card-name">Pengiriman Kurir Ekspedisi</div>
+              <div class="info-card-detail">
+                <strong>Ekspedisi:</strong> ${order.customer?.courier || 'Kurir Reguler'}<br>
+                <strong>Alamat Penerima:</strong><br>${order.customer?.address || '-'}
+              </div>
+            `}
+          </div>
+        </section>
+
+        <!-- Product Items Table -->
+        <table class="invoice-items-table">
+          <thead>
+            <tr>
+              <th>NO</th>
+              <th>PRODUK &amp; DESKRIPSI</th>
+              <th>VARIAN</th>
+              <th class="text-right">HARGA SATUAN</th>
+              <th class="text-center">QTY</th>
+              <th class="text-right">TOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(order.items || []).map((it, idx) => `
+              <tr>
+                <td style="text-align:center; font-weight:700; color:#64748b;">${idx + 1}</td>
+                <td>
+                  <div class="item-product-name">${it.name}</div>
+                  <div class="item-product-variant">SKU: AKM-PROD-${idx + 1}</div>
+                </td>
+                <td><span style="background:#f1f5f9; padding:2px 6px; border-radius:4px; font-size:8pt;">${it.variant || '100 g'}</span></td>
+                <td style="text-align:right;">${formatRupiah(it.price)}</td>
+                <td style="text-align:center; font-weight:700;">${it.quantity}</td>
+                <td style="text-align:right; font-weight:700;">${formatRupiah(it.price * it.quantity)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+
+        <!-- Totals & Payment Instructions -->
+        <section class="totals-and-payment-row">
+          <div>
+            <div class="payment-summary-box">
+              <div class="payment-summary-header">
+                <i data-lucide="credit-card" size="14" style="color:#4f46e5;"></i>
+                <span>Instruksi &amp; Rekening Pembayaran:</span>
+              </div>
+              <div style="font-size:8.5pt; color:#334155; margin-bottom:8px;">
+                ${paymentDesc}
+              </div>
+              <div style="font-size:7.5pt; color:#64748b; line-height:1.4;">
+                Harap cantumkan No. Invoice <strong>INV/AKM/2026/${order.id}</strong> pada berita transfer atau kirimkan bukti bayar ke WhatsApp Admin.
+              </div>
+            </div>
+
+            <!-- Terbilang Box -->
+            <div class="terbilang-box">
+              <span>TERBILANG:</span><br>
+              <strong># ${terbilangRupiah(order.grandTotal)} #</strong>
+            </div>
+          </div>
+
+          <div class="totals-table-wrap">
+            <table class="totals-table">
+              <tr>
+                <td style="color:#64748b;">Subtotal Item Produk</td>
+                <td>${formatRupiah(order.subtotal)}</td>
+              </tr>
+              <tr>
+                <td style="color:#64748b;">${order.deliveryMethod === 'pickup' ? 'Biaya Pengambilan' : 'Ongkos Kirim'}</td>
+                <td>${formatRupiah(order.deliveryFee)}</td>
+              </tr>
+              ${order.voucherDiscount > 0 ? `
+                <tr style="color:#059669;">
+                  <td>Diskon Voucher (${order.voucher || 'Promo'})</td>
+                  <td>- ${formatRupiah(order.voucherDiscount)}</td>
+                </tr>
+              ` : ''}
+              <tr class="grand-total-row">
+                <td>TOTAL BAYAR</td>
+                <td>${formatRupiah(order.grandTotal)}</td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <!-- Seal Stamp Footer -->
+        <footer class="invoice-footer-section">
+          <div class="signature-stamp-box">
+            <div class="official-seal-graphic">
+              <span>OFFICIAL SEAL</span>
+              <strong>ALAT KOPI</strong>
+              <span>MALANG</span>
+              <span style="font-size:5.5pt; color:#059669; font-weight:800;">✓ VERIFIED</span>
+            </div>
+            <div style="font-weight:700; color:#0f172a; font-size:8.5pt;">ALAT KOPI MALANG</div>
+            <div style="font-size:7.5pt; color:#64748b;">Finance &amp; Fulfillment Dept</div>
+          </div>
+        </footer>
+      `;
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+
+      // PDF Export function (Ensures downloaded PDF is an exact visual replica of invoice order page)
+      window.downloadInvoicePdf = () => {
+        const btn = document.getElementById('btnDownloadPdf');
+        const btnText = document.getElementById('btnPdfText');
+
+        if (btn) btn.disabled = true;
+        if (btnText) {
+          btnText.innerHTML = '<span class="action-btn-text-full">Membuat Dokumen PDF...</span><span class="action-btn-text-short">Proses...</span>';
+        }
+
+        const source = document.getElementById('invoicePaperElement');
+        if (!source) {
+          if (btn) btn.disabled = false;
+          return;
+        }
+
+        // Clone element with exact desktop A4 export styling so it matches the on-screen invoice
+        const clone = source.cloneNode(true);
+        clone.id = 'invoicePaperExportClone';
+        clone.className = 'invoice-paper desktop-a4-invoice';
+
+        // Check if html2pdf is available
+        if (typeof html2pdf !== 'undefined') {
+          const opt = {
+            margin: 0, // Paper already has internal 16mm/18mm padding matching the on-screen page
+            filename: `Invoice-AlatKopiMalang-${order.id}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { 
+              scale: 2, // 300 DPI high-resolution output
+              useCORS: true,
+              logging: false,
+              letterRendering: true,
+              scrollY: 0,
+              scrollX: 0
+            },
+            jsPDF: { 
+              unit: 'mm', 
+              format: 'a4', 
+              orientation: 'portrait' 
+            },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+          };
+
+          html2pdf().set(opt).from(clone).save().then(() => {
+            if (btn) btn.disabled = false;
+            if (btnText) {
+              btnText.innerHTML = '<span class="action-btn-text-full">Download PDF (A4)</span><span class="action-btn-text-short">PDF</span>';
+            }
+          }).catch(err => {
+            console.error('html2pdf generation error:', err);
+            if (btn) btn.disabled = false;
+            if (btnText) {
+              btnText.innerHTML = '<span class="action-btn-text-full">Download PDF (A4)</span><span class="action-btn-text-short">PDF</span>';
+            }
+            window.print();
+          });
+        } else {
+          // Native browser print to PDF fallback
+          window.print();
+          if (btn) btn.disabled = false;
+          if (btnText) {
+            btnText.innerHTML = '<span class="action-btn-text-full">Download PDF (A4)</span><span class="action-btn-text-short">PDF</span>';
+          }
+        }
+      };
+
+      // Auto-trigger download if requested via query parameter ?download=true
+      const autoDownload = urlParams.get('download') === 'true' || urlParams.get('dl') === '1';
+      if (autoDownload) {
+        setTimeout(() => {
+          window.downloadInvoicePdf();
+        }, 500);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Galeri Video Reels & Review Produk - Alat Kopi Malang. Tonton video ulasan produk, inspirasi seduh kopi, dan tips menarik dengan belanja langsung di dalam video.">
+  <title>Galeri Video Reels & Review - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=32">
+  <style>
+    /* Reels Gallery Page Specific Styles */
+    .reels-page-hero {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(14, 165, 233, 0.05) 50%, rgba(99, 102, 241, 0.08) 100%);
+      border-radius: 20px;
+      padding: 28px 24px;
+      margin: 20px 0 24px 0;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="dark"] .reels-page-hero {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.8) 100%);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .reels-page-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+    .reels-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--primary);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+    }
+    [data-theme="dark"] .reels-hero-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    .reels-hero-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.25;
+    }
+
+    /* Reels Gallery Grid */
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 18px;
+      margin-bottom: 60px;
+    }
+
+    /* Card styling in grid */
+    .reels-grid .reel-card {
+      width: 100%;
+      height: 350px;
+    }
+
+    @media (max-width: 768px) {
+      .reels-page-hero {
+        padding: 20px 16px;
+        margin: 12px 0 16px 0;
+        border-radius: 16px;
+      }
+      .reels-hero-title {
+        font-size: 1.3rem;
+      }
+      .reels-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 40px;
+      }
+      .reels-grid .reel-card {
+        height: 290px;
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Tonton ulasan produk & belanja langsung dari video!</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+        <div style="line-height:1.2;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary); background:rgba(79,70,229,0.1); padding:3px 8px; border-radius:6px; border:1px solid rgba(79,70,229,0.2);">Video Reels</span>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Banner -->
+    <section class="reels-page-hero">
+      <div class="reels-page-hero-inner">
+        <h1 class="reels-hero-title">Video Inspirasi Seduh & Review Produk Kopi</h1>
+      </div>
+    </section>
+
+    <!-- Reels Video Grid -->
+    <div class="reels-grid" id="reelsGrid">
+      <!-- Rendered dynamically from DEFAULT_REELS / localStorage -->
+    </div>
+  </main>
+
+
+
+  <!-- Mobile Bottom Navigation (PWA-Like Navigation) -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item" id="navHome">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
+      <span>Beranda</span>
+    </a>
+    <a href="shop.html" class="bottom-nav-item" id="navCategory" title="Pilihan Kategori Produk">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="layout-grid" size="20"></i></div>
+      <span>Kategori</span>
+    </a>
+    <a href="reels.html" class="bottom-nav-item active" id="navReels" title="Koleksi Video Reels">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="film" size="20"></i></div>
+      <span>Video</span>
+    </a>
+    <a href="checkout.html" class="bottom-nav-item" id="navCart" title="Keranjang Belanja">
+      <div class="bottom-nav-icon-wrap">
+        <i data-lucide="shopping-bag" size="20"></i>
+        <span class="badge-count" id="mobileCartBadge">0</span>
+      </div>
+      <span>Keranjang</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
+      <span>Akun</span>
+    </a>
+  </nav>
+
+  <!-- ==========================================================================
+       REELS VIDEO PLAYER MODAL (Self-Hosted MP4 Video Player)
+       ========================================================================== -->
+  <div class="reel-modal-overlay" id="reelModalOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="reel-modal-backdrop" id="reelModalBackdrop"></div>
+    <div class="reel-modal-container" id="reelModalContainer">
+      <!-- Modal Top Controls -->
+      <div class="reel-modal-header">
+        <div class="reel-modal-source" id="reelModalSourceBadge">
+          <i data-lucide="play" size="14"></i>
+          <span id="reelModalSourceText">Alat Kopi Malang</span>
+        </div>
+        <div class="reel-modal-header-actions">
+          <button type="button" class="btn-reel-ctrl" id="btnReelMute" title="Bisu / Aktifkan Suara">
+            <i data-lucide="volume-x" size="18" id="reelMuteIcon"></i>
+          </button>
+          <button type="button" class="btn-reel-ctrl" id="btnCloseReelModal" title="Tutup">
+            <i data-lucide="x" size="20"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Player Frame (9:16 portrait) -->
+      <div class="reel-player-viewport" id="reelPlayerViewport">
+        <!-- Dynamic HTML5 video inserted here -->
+      </div>
+
+      <!-- Navigation Arrows (Previous / Next Reel) -->
+      <button type="button" class="reel-nav-btn prev" id="btnReelModalPrev" title="Video Sebelumnya" aria-label="Video Sebelumnya">
+        <i data-lucide="chevron-left" size="24"></i>
+      </button>
+      <button type="button" class="reel-nav-btn next" id="btnReelModalNext" title="Video Selanjutnya" aria-label="Video Selanjutnya">
+        <i data-lucide="chevron-right" size="24"></i>
+      </button>
+
+      <!-- Bottom Overlay: Hook Title, Caption & Tagged Products Drawer -->
+      <div class="reel-modal-bottom-sheet">
+        <div class="reel-meta-content">
+          <h3 class="reel-modal-title" id="reelModalTitle"></h3>
+          <p class="reel-modal-caption" id="reelModalCaption"></p>
+        </div>
+
+        <!-- Tagged Products Drawer (Klik untuk beli produk dalam video) -->
+        <div class="reel-tagged-products-wrap" id="reelTaggedProductsWrap">
+          <div class="reel-tagged-header">
+            <span class="reel-tagged-title">
+              <i data-lucide="shopping-bag" size="14"></i>
+              <span id="reelTaggedCount">Produk Terkait</span>
+            </span>
+          </div>
+          <div class="reel-tagged-list" id="reelTaggedList">
+            <!-- Dynamic product cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js?v=20"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Theme Initialization
+      let theme = localStorage.getItem('nexus_theme') || 'light';
+      const applyTheme = (t) => {
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('nexus_theme', t);
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.setAttribute('data-lucide', t === 'dark' ? 'sun' : 'moon');
+        if (window.lucide) window.lucide.createIcons();
+      };
+      applyTheme(theme);
+
+      document.getElementById('btnToggleTheme')?.addEventListener('click', () => {
+        theme = theme === 'light' ? 'dark' : 'light';
+        applyTheme(theme);
+      });
+
+      // 2. Badges Sync (Cart & Wishlist)
+      const cart = JSON.parse(localStorage.getItem('nexus_cart')) || [];
+      const wishlist = JSON.parse(localStorage.getItem('nexus_wishlist')) || [];
+      const cartTotal = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      const cartBadge = document.getElementById('cartBadge');
+      const mobileCartBadge = document.getElementById('mobileCartBadge');
+      const wishlistBadge = document.getElementById('wishlistBadge');
+      if (cartBadge) cartBadge.textContent = cartTotal;
+      if (mobileCartBadge) mobileCartBadge.textContent = cartTotal;
+      if (wishlistBadge) wishlistBadge.textContent = wishlist.length;
+
+      // 3. Load Reels State
+      let reels = (() => {
+        const stored = localStorage.getItem('nexus_reels');
+        if (!stored) return (typeof DEFAULT_REELS !== 'undefined' ? DEFAULT_REELS : []);
+        try {
+          const parsed = JSON.parse(stored);
+          return Array.isArray(parsed) && parsed.length > 0 ? parsed : (typeof DEFAULT_REELS !== 'undefined' ? DEFAULT_REELS : []);
+        } catch (e) {
+          return (typeof DEFAULT_REELS !== 'undefined' ? DEFAULT_REELS : []);
+        }
+      })();
+
+      const products = (() => {
+        const stored = localStorage.getItem('nexus_products');
+        if (!stored) return (typeof DEFAULT_PRODUCTS !== 'undefined' ? DEFAULT_PRODUCTS : []);
+        try {
+          const parsed = JSON.parse(stored);
+          return Array.isArray(parsed) && parsed.length > 0 ? parsed : DEFAULT_PRODUCTS;
+        } catch (_) {
+          return DEFAULT_PRODUCTS;
+        }
+      })();
+
+      const formatRupiah = (num) => 'Rp ' + Number(num || 0).toLocaleString('id-ID');
+
+      const grid = document.getElementById('reelsGrid');
+      const statCount = document.getElementById('reelsCountStat');
+      const showingCount = document.getElementById('reelsShowingCount');
+      const searchInput = document.getElementById('reelsSearchInput');
+      const searchClear = document.getElementById('reelsSearchClear');
+
+      if (statCount) statCount.textContent = `${reels.length} Video Tersedia`;
+
+      let currentFiltered = [...reels];
+
+      const renderGrid = (items) => {
+        if (!grid) return;
+        if (showingCount) showingCount.textContent = items.length;
+
+        if (items.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align:center; padding:50px 20px; background:var(--bg-surface); border-radius:16px; border:1px solid var(--border-subtle);">
+              <i data-lucide="film" size="40" style="color:var(--text-muted); margin-bottom:12px;"></i>
+              <h3 style="font-size:1.1rem; color:var(--text-primary); margin:0 0 6px 0;">Tidak Ada Video yang Sesuai</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted); margin:0 0 16px 0;">Coba kata kunci pencarian yang lain.</p>
+              <button type="button" class="btn-primary" onclick="document.getElementById('reelsSearchInput').value=''; document.getElementById('reelsSearchInput').dispatchEvent(new Event('input'));" style="padding:8px 16px; font-size:0.8rem;">
+                Tampilkan Semua Video
+              </button>
+            </div>
+          `;
+          if (window.lucide) window.lucide.createIcons();
+          return;
+        }
+
+        grid.innerHTML = items.map((reel, idx) => {
+          const prodCount = (reel.productIds && Array.isArray(reel.productIds)) ? reel.productIds.length : 1;
+          return `
+            <article class="reel-card" data-reel-index="${idx}" title="${reel.title}">
+              <img src="${reel.thumbnail}" alt="${reel.title}" class="reel-card-thumb" loading="lazy">
+              <div class="reel-card-gradient"></div>
+              <div class="reel-card-top">
+                <span class="reel-play-badge"><i data-lucide="play" size="13"></i></span>
+              </div>
+              <div class="reel-card-hook">
+                ${reel.title}
+              </div>
+              <div class="reel-card-bottom">
+                <span class="reel-products-badge">
+                  <i data-lucide="shopping-bag" size="12"></i> ${prodCount} Produk
+                </span>
+                <p class="reel-card-caption">${reel.caption}</p>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        if (window.lucide) window.lucide.createIcons();
+      };
+
+      renderGrid(currentFiltered);
+
+      // Search functionality
+      searchInput?.addEventListener('input', (e) => {
+        const q = e.target.value.trim().toLowerCase();
+        if (searchClear) searchClear.style.display = q ? 'block' : 'none';
+
+        if (!q) {
+          currentFiltered = [...reels];
+        } else {
+          currentFiltered = reels.filter(r => 
+            (r.title && r.title.toLowerCase().includes(q)) || 
+            (r.caption && r.caption.toLowerCase().includes(q))
+          );
+        }
+        renderGrid(currentFiltered);
+      });
+
+      searchClear?.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.dispatchEvent(new Event('input'));
+          searchInput.focus();
+        }
+      });
+
+      // 4. Modal Video Player
+      const modalOverlay = document.getElementById('reelModalOverlay');
+      const modalBackdrop = document.getElementById('reelModalBackdrop');
+      const closeBtn = document.getElementById('btnCloseReelModal');
+      const viewport = document.getElementById('reelPlayerViewport');
+      const titleEl = document.getElementById('reelModalTitle');
+      const captionEl = document.getElementById('reelModalCaption');
+      const taggedList = document.getElementById('reelTaggedList');
+      const taggedCount = document.getElementById('reelTaggedCount');
+      const muteBtn = document.getElementById('btnReelMute');
+      const muteIcon = document.getElementById('reelMuteIcon');
+      const modalPrevBtn = document.getElementById('btnReelModalPrev');
+      const modalNextBtn = document.getElementById('btnReelModalNext');
+
+      let currentReelIndex = 0;
+      let isMuted = true;
+
+      const updateMuteIcon = () => {
+        if (!muteIcon) return;
+        muteIcon.setAttribute('data-lucide', isMuted ? 'volume-x' : 'volume-2');
+        if (window.lucide) window.lucide.createIcons();
+      };
+
+      const openReelModal = (index) => {
+        if (!modalOverlay || !viewport) return;
+        if (index < 0) index = currentFiltered.length - 1;
+        if (index >= currentFiltered.length) index = 0;
+        currentReelIndex = index;
+
+        const reel = currentFiltered[index];
+        if (!reel) return;
+
+        if (titleEl) titleEl.textContent = reel.title;
+        if (captionEl) captionEl.textContent = reel.caption;
+
+        viewport.innerHTML = '';
+        if (muteBtn) muteBtn.style.display = 'flex';
+
+        const video = document.createElement('video');
+        video.id = 'activeReelVideo';
+        video.src = reel.videoUrl || 'images/home-hero-video.mp4';
+        video.autoplay = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.muted = isMuted;
+        video.poster = reel.thumbnail;
+        video.controls = false;
+        viewport.appendChild(video);
+
+        viewport.onclick = (e) => {
+          if (e.target.tagName && e.target.tagName.toLowerCase() === 'video') {
+            if (video.paused) video.play();
+            else video.pause();
+          }
+        };
+
+        video.play().catch(() => {
+          video.muted = true;
+          isMuted = true;
+          updateMuteIcon();
+          video.play().catch(() => {});
+        });
+
+        // Tagged products
+        if (taggedList) {
+          taggedList.innerHTML = '';
+          const pIds = reel.productIds || [];
+          const matched = products.filter(p => pIds.includes(p.id));
+
+          if (taggedCount) taggedCount.textContent = `Produk dalam Video (${matched.length})`;
+
+          if (matched.length > 0) {
+            matched.forEach(p => {
+              const item = document.createElement('div');
+              item.className = 'reel-product-item';
+              item.innerHTML = `
+                <img src="${p.image}" alt="${p.name}">
+                <div class="reel-product-meta">
+                  <p class="reel-product-name">${p.name}</p>
+                  <p class="reel-product-price">${formatRupiah(p.price)}</p>
+                </div>
+                <button type="button" class="reel-product-btn" onclick="window.location.href='product.html?id=${p.id}'">
+                  Beli <i data-lucide="chevron-right" size="13"></i>
+                </button>
+              `;
+              taggedList.appendChild(item);
+            });
+          } else {
+            taggedList.innerHTML = `<p style="color:#94a3b8; font-size:0.75rem; margin:0;">Tidak ada produk tertaut</p>`;
+          }
+        }
+
+        modalOverlay.classList.add('open');
+        modalOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        if (window.lucide) window.lucide.createIcons();
+      };
+
+      const closeReelModal = () => {
+        if (!modalOverlay) return;
+        modalOverlay.classList.remove('open');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (viewport) viewport.innerHTML = '';
+      };
+
+      // Card click
+      grid.addEventListener('click', (e) => {
+        const card = e.target.closest('.reel-card');
+        if (card && card.dataset.reelIndex !== undefined) {
+          const idx = parseInt(card.dataset.reelIndex, 10);
+          openReelModal(idx);
+        }
+      });
+
+      // Controls
+      closeBtn?.addEventListener('click', closeReelModal);
+      modalBackdrop?.addEventListener('click', closeReelModal);
+      modalPrevBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openReelModal(currentReelIndex - 1);
+      });
+      modalNextBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openReelModal(currentReelIndex + 1);
+      });
+
+      muteBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const video = document.getElementById('activeReelVideo');
+        if (video) {
+          isMuted = !isMuted;
+          video.muted = isMuted;
+          updateMuteIcon();
+        }
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (!modalOverlay || !modalOverlay.classList.contains('open')) return;
+        if (e.key === 'Escape') closeReelModal();
+        else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') openReelModal(currentReelIndex + 1);
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') openReelModal(currentReelIndex - 1);
+      });
+    });
+  </script>
+</body>
+</html>

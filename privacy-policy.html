@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Kebijakan Privasi Alat Kopi Malang. Penjelasan lengkap pengumpulan, penggunaan, penyimpanan, perlindungan, dan penghapusan Informasi Pribadi Pengguna sesuai UU Perlindungan Data Pribadi.">
+  <title>Kebijakan Privasi (Privacy Policy) - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=65">
+
+  <style>
+    /* Dedicated Privacy Policy Page Styling */
+    .privacy-page-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 32px 20px 80px 20px;
+    }
+
+    /* Hero Header Card */
+    .privacy-hero-card {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-secondary) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .privacy-hero-card::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+    .privacy-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .privacy-hero-title {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+    .privacy-hero-desc {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 840px;
+    }
+
+    /* Quick Guarantees Grid */
+    .privacy-guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .privacy-guarantee-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: var(--shadow-xs);
+    }
+    .privacy-guarantee-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .privacy-guarantee-text h4 {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 2px 0;
+    }
+    .privacy-guarantee-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .privacy-hero-card {
+        padding: 24px 20px;
+      }
+      .privacy-hero-title {
+        font-size: 1.65rem;
+      }
+      .privacy-hero-desc {
+        font-size: 0.9rem;
+      }
+      .privacy-guarantee-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    /* Section Cards */
+    .privacy-section-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition-fast);
+    }
+    .privacy-section-card:hover {
+      border-color: rgba(79, 70, 229, 0.35);
+    }
+
+    .privacy-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .privacy-card-badge-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .privacy-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    /* Callout & Notice Boxes */
+    .privacy-notice-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(79, 70, 229, 0.06);
+      border-left: 4px solid var(--primary);
+      margin-bottom: 18px;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .privacy-notice-box strong {
+      color: var(--primary);
+    }
+
+    .privacy-warning-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 4px solid #f59e0b;
+      margin: 16px 0;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 0.93rem;
+    }
+
+    .privacy-danger-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(239, 68, 68, 0.06);
+      border-left: 4px solid #ef4444;
+      margin: 16px 0;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 0.93rem;
+    }
+
+    /* Lists */
+    .privacy-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .privacy-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+    .privacy-list-item strong {
+      color: var(--text-primary);
+    }
+    .privacy-icon-check {
+      color: #10b981;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .privacy-icon-cross {
+      color: #ef4444;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .privacy-icon-bullet {
+      color: var(--primary);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Grid for collected data */
+    .data-collected-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 16px 0 20px 0;
+    }
+    .data-collected-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .data-collected-grid {
+        grid-template-columns: 1fr;
+      }
+      .privacy-section-card {
+        padding: 22px 16px;
+      }
+    }
+
+    /* CTA Box */
+    .privacy-cta-box {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      text-align: center;
+      margin-top: 36px;
+      box-shadow: 0 16px 32px -8px rgba(49, 46, 129, 0.4);
+    }
+    .privacy-cta-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+    }
+    .privacy-cta-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 680px;
+      margin: 0 auto 24px auto;
+      line-height: 1.6;
+    }
+    .privacy-cta-btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-wa-privacy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      background: #10b981;
+      color: #ffffff;
+      border-radius: var(--radius-full);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+      transition: all var(--transition-fast);
+    }
+    .btn-wa-privacy:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    }
+    .btn-email-privacy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    .btn-email-privacy:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Toko Perlengkapan & Mesin Kopi Terlengkap di Malang</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+      </div>
+
+      <!-- Header Search Input -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i data-lucide="search" size="18" class="search-icon-left"></i>
+          <input type="text" id="desktopSearchInput" placeholder="Cari mesin espresso, grinder, aksesoris seduh..." autocomplete="off">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" style="display:none;" aria-label="Hapus Pencarian">
+            <i data-lucide="x" size="14"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrap -->
+  <main class="privacy-page-wrap">
+
+    <!-- Hero Header -->
+    <section class="privacy-hero-card">
+      <div class="privacy-hero-badge">
+        <i data-lucide="shield-check" size="14"></i>
+        <span>Privasi & Perlindungan Data • Alat Kopi Malang</span>
+      </div>
+      <h1 class="privacy-hero-title">Kebijakan Privasi (Privacy Policy)</h1>
+      <p class="privacy-hero-desc">
+        Kebijakan Privasi ini memuat bagaimana <strong>Alat Kopi Malang</strong> (selanjutnya disebut "Kami") mengumpulkan, menggunakan, menyimpan, mengungkapkan, dan melindungi Informasi Pribadi Anda terkait akses dan penggunaan situs web serta aplikasi kami.
+      </p>
+
+      <!-- 3 Quick Highlights -->
+      <div class="privacy-guarantee-grid">
+        <div class="privacy-guarantee-item">
+          <div class="privacy-guarantee-icon-wrap">
+            <i data-lucide="lock" size="22"></i>
+          </div>
+          <div class="privacy-guarantee-text">
+            <h4>Data Aman & Rahasia</h4>
+            <p>Enkripsi modern & perlindungan privasi</p>
+          </div>
+        </div>
+
+        <div class="privacy-guarantee-item">
+          <div class="privacy-guarantee-icon-wrap">
+            <i data-lucide="eye-off" size="22"></i>
+          </div>
+          <div class="privacy-guarantee-text">
+            <h4>Tanpa Simpan Kartu/Biometrik</h4>
+            <p>Hanya melalui payment gateway aman</p>
+          </div>
+        </div>
+
+        <div class="privacy-guarantee-item">
+          <div class="privacy-guarantee-icon-wrap">
+            <i data-lucide="user-check" size="22"></i>
+          </div>
+          <div class="privacy-guarantee-text">
+            <h4>Hak Subjek Data</h4>
+            <p>Akses profil & opsi hapus data mandiri</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: PENDAHULUAN & RUANG LINGKUP -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">1</span>
+        <h2 class="privacy-card-title">Ruang Lingkup Kebijakan Privasi</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        Kebijakan Privasi berlaku untuk layanan yang disediakan oleh <strong>Alat Kopi Malang</strong> (selanjutnya disebut "Kami") dan memuat bagaimana kami dapat mengumpulkan, menggunakan, menyimpan, mengungkapkan, dan melindungi "Informasi Pribadi" Anda, "Informasi Pribadi Tertentu", atau Informasi Pribadi lainnya (secara keseluruhan disebut "Informasi Pribadi") terkait akses Anda atas dan penggunaan situs web maupun aplikasi <strong>Alat Kopi Malang</strong>.
+      </p>
+      <div class="privacy-notice-box">
+        <i data-lucide="file-text" size="22" style="color:var(--primary); flex-shrink:0; margin-top:2px;"></i>
+        <div>
+          <strong>Kebijakan Privasi ini merupakan penjelasan menyeluruh terkait data dan Informasi Pribadi Pengguna, meliputi:</strong>
+          <ul style="margin: 8px 0 0 16px; padding: 0; color: var(--text-secondary); line-height: 1.6;">
+            <li>Pengumpulan Informasi Pribadi</li>
+            <li>Penggunaan Informasi Pribadi</li>
+            <li>Penggunaan Cookies & Teknologi Pelacak</li>
+            <li>Penyimpanan & Keamanan Informasi Pribadi</li>
+            <li>Penghapusan Informasi Pribadi & Akun</li>
+            <li>Hukum dan Peraturan yang Berlaku</li>
+            <li>Pembatasan Tanggung Jawab</li>
+            <li>Perubahan terhadap Kebijakan Privasi</li>
+            <li>Informasi Kontak Layanan Pengguna</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: PENGUMPULAN INFORMASI PRIBADI -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">2</span>
+        <h2 class="privacy-card-title">Pengumpulan Informasi Pribadi</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 14px 0; font-size:0.96rem;">
+        Informasi Pribadi yang Kami kumpulkan secara daring (online) akan dibagi di dalam perusahaan hanya untuk kepentingan internal kami. Ketika Anda membuat akun atau bertransaksi di website kami, informasi pribadi yang umum dan spesifik kami kumpulkan termasuk:
+      </p>
+
+      <div class="data-collected-grid">
+        <div class="data-collected-item">
+          <i data-lucide="user" size="20" style="color:var(--primary);"></i>
+          <span>Nama Lengkap</span>
+        </div>
+        <div class="data-collected-item">
+          <i data-lucide="map-pin" size="20" style="color:var(--primary);"></i>
+          <span>Alamat Pengiriman & Titik Lokasi</span>
+        </div>
+        <div class="data-collected-item">
+          <i data-lucide="mail" size="20" style="color:var(--primary);"></i>
+          <span>Alamat Email Aktif</span>
+        </div>
+        <div class="data-collected-item">
+          <i data-lucide="phone" size="20" style="color:var(--primary);"></i>
+          <span>Nomor Telepon / WhatsApp</span>
+        </div>
+        <div class="data-collected-item">
+          <i data-lucide="credit-card" size="20" style="color:var(--primary);"></i>
+          <span>Informasi Transaksi, Keuangan & Perbankan</span>
+        </div>
+        <div class="data-collected-item">
+          <i data-lucide="wallet" size="20" style="color:var(--primary);"></i>
+          <span>Informasi Mengenai Data Dompet Digital (e-wallet)</span>
+        </div>
+      </div>
+
+      <ul class="privacy-list">
+        <li class="privacy-list-item">
+          <i data-lucide="check-circle" size="18" class="privacy-icon-check"></i>
+          <div>
+            Anda dengan ini menyatakan Informasi Pribadi yang Anda sampaikan (input) ke dalam Sistem Kami (termasuk dokumen yang diunggah dan/atau diberikan kepada <strong>Alat Kopi Malang</strong>) adalah asli, autentik, benar, akurat, lengkap, tidak menyesatkan, terbaru, dan merupakan hak pribadi Anda dan/atau Anda berwenang untuk menyampaikan Informasi Pribadi tersebut ke dalam Sistem Kami.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="check-circle" size="18" class="privacy-icon-check"></i>
+          <div>
+            Kami melindungi segala Informasi Pribadi yang Anda berikan pada saat Anda menggunakan seluruh layanan Kami, termasuk menjaga kerahasiaan Informasi Pribadi Anda.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="check-circle" size="18" class="privacy-icon-check"></i>
+          <div>
+            Kami berhak dari waktu ke waktu meminta autentifikasi dan pemutakhiran data pribadi Pengguna, sehingga data dan Informasi Pribadi Anda akurat, lengkap, dan terbaru. Anda juga berhak dari waktu ke waktu melakukan pemutakhiran terhadap Informasi Pribadi Anda melalui fitur profil akun.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 3: PENGGUNAAN INFORMASI PRIBADI -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">3</span>
+        <h2 class="privacy-card-title">Penggunaan Informasi Pribadi</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        Seluruh Informasi Pribadi yang Anda berikan kepada Kami hanya akan digunakan dan dilindungi oleh Kami. Setiap informasi yang Anda berikan terbatas untuk tujuan proses yang berkaitan dengan:
+      </p>
+      <ul class="privacy-list">
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Memproses segala bentuk permintaan, aktivitas maupun transaksi Anda melalui Situs dan Aplikasi Alat Kopi Malang termasuk untuk keperluan pengiriman produk kepada Anda.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Menawarkan, memperoleh, menyediakan, atau memfasilitasi layanan marketplace seperti laman beranda, penelusuran, pencarian, rekomendasi produk, maupun produk-produk lainnya melalui Situs dan Aplikasi Alat Kopi Malang.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Memungkinkan fitur untuk mempribadikan (*personalised*) akun Anda, seperti Keranjang Belanja dan Wishlist favorit.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Memverifikasi dan menjalankan transaksi finansial yang berhubungan dengan pembayaran online, serta memproses pembayaran yang Anda buat melalui situs secara langsung. Anda hanya boleh memberikan informasi pembayaran yang akurat dan tidak menyesatkan serta wajib memberitahukan perubahan-perubahan terkait Informasi Pribadi finansial Anda.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Mengakses saldo dompet digital (*e-wallet*) Anda untuk membantu mengelola keuangan dan memastikan ketersediaan dana saat akan bertransaksi pada platform kami. Data saldo hanya digunakan secara internal untuk menampilkan informasi pada Anda dan memfasilitasi transaksi, dan tidak digunakan untuk tujuan lain tanpa persetujuan Anda.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Menggunakan fitur biometrik yang mungkin tersedia pada perangkat Anda, seperti otentikasi sidik jari atau pengenalan wajah. <strong>Kami tidak menyimpan data biometrik di server kami atau di perangkat Anda.</strong> Fitur biometrik sepenuhnya dikelola oleh sistem operasi perangkat Anda sendiri dan tidak terintegrasi secara langsung dengan basis data kami.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Memproses pembayaran di situs dan aplikasi kami dengan kartu kredit Anda. <strong>Kami tidak menyimpan data kartu kredit Anda di server kami atau di dalam aplikasi.</strong> Informasi kartu kredit hanya diproses melalui mitra penyedia layanan pembayaran (*payment gateway*) yang telah terverifikasi, bersertifikasi PCI-DSS, dan berlisensi Bank Indonesia.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Melakukan kegiatan internal yang diperlukan untuk menyediakan layanan pada situs/aplikasi Alat Kopi Malang, seperti pemecahan masalah software, perbaikan *bug*, kendala operasional, analisis data, pengujian, penelitian, serta pemantauan tren penggunaan dan aktivitas.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Memeriksa dan mengatasi kendala Anda serta mengarahkan pertanyaan kepada petugas layanan pelanggan (*customer service*) yang tepat.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Menggunakan informasi untuk tujuan penelitian, analisis, pengembangan dan pengujian produk guna meningkatkan keamanan layanan pada Situs, mengembangkan fitur baru, serta menginformasikan produk, layanan, promosi, dan edukasi seputar alat seduh kopi.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Melakukan pemantauan ataupun investigasi terhadap transaksi-transaksi mencurigakan atau transaksi yang terindikasi mengandung unsur kecurangan atau pelanggaran terhadap Syarat dan Ketentuan atau ketentuan hukum yang berlaku, serta mengambil tindakan yang diperlukan.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="circle-dot" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            Pengungkapan dalam keadaan tertentu untuk tujuan penegakan hukum atau pemenuhan persyaratan peraturan perundang-undangan yang berlaku, termasuk dalam sengketa atau proses hukum resmi.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 4: COOKIES & TEKNOLOGI PELACAK -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">4</span>
+        <h2 class="privacy-card-title">Cookies dan Teknologi Pelacak</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        <strong>Alat Kopi Malang</strong> dan pihak ketiga yang bermitra dengan kami dapat menggunakan cookies, web beacon, tag, skrip, objek lokal bersama seperti HTML5, pengidentifikasi iklan, dan teknologi serupa (seperti perangkat pengembangan perangkat lunak / SDK) sehubungan dengan penggunaan Anda atas Situs Web dan Aplikasi kami (secara kolektif disebut "Cookies").
+      </p>
+
+      <div class="privacy-notice-box">
+        <i data-lucide="cookie" size="22" style="color:var(--primary); flex-shrink:0; margin-top:2px;"></i>
+        <div>
+          Cookies memiliki pengidentifikasi unik dan berada di perangkat Anda, di email konfirmasi, dan di halaman web kami. Cookies digunakan untuk:
+          <ul style="margin: 8px 0 0 16px; padding: 0; color: var(--text-secondary); line-height: 1.6;">
+            <li>Menyediakan fungsi dasar dari penggunaan situs web dan keranjang belanja kami;</li>
+            <li>Mengotentikasi profil pengguna, mengingat preferensi tema tampilan (terang/gelap) dan riwayat belanja;</li>
+            <li>Menyampaikan dan mengukur efektivitas kampanye promosi;</li>
+            <li>Menganalisis lalu lintas dan tren kunjungan situs;</li>
+            <li>Menayangkan rekomendasi alat kopi yang relevan kepada Anda;</li>
+            <li>Meningkatkan pengalaman berselancar dengan memahami perilaku dan minat daring pengguna.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="privacy-warning-box">
+        <i data-lucide="settings" size="22" style="color:#d97706; flex-shrink:0; margin-top:2px;"></i>
+        <div>
+          <strong>Menonaktifkan Pengumpulan Cookies:</strong> Anda berhak memilih untuk mematikan atau memblokir cookies melalui pengaturan browser Anda (pada menu "Riwayat", "Preferensi", atau "Privasi"). Namun perlu diperhatikan bahwa penonaktifan cookies tertentu dapat mempengaruhi fungsionalitas keranjang belanja, sesi login, atau pengalaman belanja Anda di situs Alat Kopi Malang.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PENYIMPANAN & KEAMANAN INFORMASI PRIBADI -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">5</span>
+        <h2 class="privacy-card-title">Penyimpanan dan Keamanan Informasi Pribadi</h2>
+      </div>
+      <ul class="privacy-list">
+        <li class="privacy-list-item">
+          <i data-lucide="shield" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Masa Penyimpanan:</strong> Informasi Pribadi Anda hanya akan disimpan selama diperlukan untuk memenuhi tujuan dari pengumpulannya, atau selama penyimpanan tersebut diperlukan atau diperbolehkan oleh peraturan perundang-undangan dan peraturan yang ditetapkan oleh pemerintah Republik Indonesia.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="shield" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Hak Subjek Data:</strong> Sebagai Subjek Data Pribadi, Anda berhak mendapatkan akses dan memperoleh salinan Data Pribadi tentang diri Anda sesuai dengan ketentuan perundang-undangan, yang dapat diakses melalui fitur profil pada platform kami.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="shield" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Kerahasiaan Tingkat Tinggi:</strong> Kerahasiaan Informasi Pribadi Anda adalah hal yang terpenting bagi kami. Kami mengupayakan perlindungan dan pengamanan data dari akses, pengumpulan, penggunaan, atau pengungkapan oleh pihak-pihak yang tidak berwenang.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="shield" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Kewajiban Pengamanan Akun Pengguna:</strong> Anda bertanggung jawab penuh untuk menjaga kerahasiaan dan menyimpan secara aman detail akun Anda, termasuk kata sandi (*password*) dan One Time Password (OTP), serta selalu menjaga keamanan perangkat yang Anda gunakan.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 6: PENGHAPUSAN INFORMASI PRIBADI & AKUN -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">6</span>
+        <h2 class="privacy-card-title">Penghapusan Informasi Pribadi dan Penutupan Akun</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        Pengguna dapat mengajukan permohonan penghapusan Akun dan Penghapusan Informasi Pribadi melalui dua saluran resmi kami:
+      </p>
+
+      <div class="privacy-notice-box">
+        <i data-lucide="mail" size="22" style="color:var(--primary); flex-shrink:0; margin-top:2px;"></i>
+        <div>
+          Kirimkan email ke <a href="mailto:alatkopimalang1@gmail.com" style="color:var(--primary); font-weight:700; text-decoration:underline;">alatkopimalang1@gmail.com</a> atau hubungi WhatsApp di <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:700; text-decoration:underline;">+6282132095241</a> dengan subject/judul <strong>"Data Deletion Request"</strong> serta melampirkan:
+          <ul style="margin: 6px 0 0 16px; padding: 0;">
+            <li>Nama Lengkap Pengguna</li>
+            <li>Alamat Email Terdaftar</li>
+            <li>Alasan Penghapusan Akun dan Informasi Pribadi</li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 14px 0; font-size:0.96rem;">
+        Anda juga dapat melakukan hapus akun secara mandiri dengan cara: masuk ke halaman Profil Akun, tekan tombol <strong>Hapus Akun</strong>, lalu konfirmasi penghapusan beserta alasan Anda.
+      </p>
+
+      <div class="privacy-danger-box">
+        <i data-lucide="alert-octagon" size="22" style="color:#ef4444; flex-shrink:0; margin-top:2px;"></i>
+        <div>
+          <strong>Ketentuan Penting Sebelum Mengajukan Penghapusan Akun:</strong>
+          <ul style="margin: 8px 0 0 16px; padding: 0; color: var(--text-secondary); line-height: 1.6;">
+            <li>Akun Pengguna akan dihapus secara permanen.</li>
+            <li>Pendaftaran kembali menggunakan email atau nomor HP yang sama tetap dapat dilakukan di kemudian hari, namun voucher atau benefit pengguna baru (*new user promo*) tidak akan diberikan kembali.</li>
+            <li>Beberapa data terkait riwayat transaksi faktur resmi dapat tetap disimpan oleh Alat Kopi Malang berdasarkan peraturan perundang-undangan perpajakan dan perdagangan yang berlaku di Indonesia.</li>
+            <li>Akses pengguna terhadap tautan pihak ketiga (e-wallet, kartu tersimpan) akan terputus.</li>
+            <li>Pengguna wajib memastikan <strong>tidak ada lagi saldo deposit atau dana mengendap</strong>. Penarikan saldo deposit wajib diselesaikan sebelum pengajuan penghapusan akun. Akun tidak dapat ditutup jika masih terdapat sisa deposit.</li>
+            <li>Pengguna wajib memastikan <strong>tidak ada transaksi pembelian atau pengiriman produk yang sedang berjalan</strong>.</li>
+            <li>Dengan dilakukannya penutupan dan penghapusan akun, <strong>seluruh Voucher promo dan Poin reward akan hangus</strong> dan tidak dapat ditransfer ke akun lain.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: HUKUM & PERATURAN YANG BERLAKU -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">7</span>
+        <h2 class="privacy-card-title">Hukum dan Peraturan yang Berlaku</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        <strong>Alat Kopi Malang</strong> tunduk dan patuh terhadap segala peraturan perundang-undangan dan kebijakan pemerintah Republik Indonesia yang berlaku, termasuk Undang-Undang Perlindungan Data Pribadi (UU PDP), Undang-Undang Informasi dan Transaksi Elektronik (UU ITE), peraturan penyelenggaraan sistem transaksi elektronik, serta segala peraturan perubahannya yang mengatur perlindungan data dan privasi konsumen.
+      </p>
+    </section>
+
+    <!-- SECTION 8: PEMBATASAN TANGGUNG JAWAB -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">8</span>
+        <h2 class="privacy-card-title">Pembatasan Tanggung Jawab</h2>
+      </div>
+      <ul class="privacy-list">
+        <li class="privacy-list-item">
+          <i data-lucide="alert-circle" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Keamanan Mandiri:</strong> Anda turut serta bertanggung jawab atas keamanan data Anda sendiri dengan menerapkan pengamanan yang tepat, membatasi akses perangkat, membuat kata sandi yang kuat, serta tidak membagikan kode One Time Password (OTP) kepada siapapun.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="alert-circle" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Kelalaian Pribadi:</strong> Kami tidak bertanggung jawab atas pertukaran data yang Anda lakukan sendiri kepada pihak ketiga lain atau antar-pengguna yang mengakibatkan kebocoran data pribadi akibat kelalaian Anda.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="alert-circle" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Tanggung Jawab Sistem:</strong> Kami bertanggung jawab atas keamanan sistem internal kami. Apabila terjadi kegagalan atau insiden perlindungan data pada sistem kami, kami akan menginformasikan kepada Anda melalui email resmi yang terdaftar serta melaporkan kepada instansi pengawas sesuai ketentuan peraturan perundang-undangan.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="alert-circle" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Pengguna di Bawah Umur:</strong> Kami menganjurkan agar orang tua atau wali memantau penggunaan internet anak di bawah umur. Segala penginputan data pribadi anak wajib berada dalam pengawasan dan persetujuan orang tua/wali sebagai pihak yang berwenang.
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="alert-circle" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Keadaan Memaksa (*Force Majeure*):</strong> Kami tidak bertanggung jawab atas kebocoran data yang terjadi akibat Keadaan Memaksa, seperti bencana alam (kebakaran, badai, banjir, gempa bumi), perang, huru-hara, aksi mogok, sabotase telekomunikasi/listrik nasional, kegagalan sistem perbankan terpusat, atau regulasi pembatasan mendadak dari pemerintah. Kami akan memberitahukan kepada Anda selambat-lambatnya 14 (empat belas) hari kalender setelah terjadinya keadaan tersebut.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 9: PEMBARUAN KEBIJAKAN PRIVASI -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">9</span>
+        <h2 class="privacy-card-title">Pembaruan terhadap Kebijakan Privasi</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        Sewaktu-waktu Kami dapat melakukan pembaruan Kebijakan Privasi ini dengan melakukan penambahan ataupun penyelarasan klausul pada halaman ini. Perubahan kebijakan akan diumumkan melalui situs resmi kami di <a href="https://www.alatkopimalang.com" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600; text-decoration:underline;">www.alatkopimalang.com</a> atau saluran media resmi yang Anda daftarkan kepada kami. Anda dianjurkan untuk memeriksa halaman ini secara berkala.
+      </p>
+    </section>
+
+    <!-- SECTION 10: HUBUNGI KAMI -->
+    <section class="privacy-section-card">
+      <div class="privacy-card-header">
+        <span class="privacy-card-badge-num">10</span>
+        <h2 class="privacy-card-title">Hubungi Kami</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        Apabila Anda memiliki pertanyaan, komentar, keluhan, atau permintaan terkait pengelolaan data dan Kebijakan Privasi ini, silakan menghubungi tim layanan pelanggan dan data protection officer kami melalui:
+      </p>
+
+      <ul class="privacy-list">
+        <li class="privacy-list-item">
+          <i data-lucide="mail" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Email Data & Customer Care:</strong> <a href="mailto:alatkopimalang1@gmail.com" style="color:var(--primary); font-weight:600; text-decoration:underline;">alatkopimalang1@gmail.com</a>
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="message-circle" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>WhatsApp Layanan Pelanggan:</strong> <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600; text-decoration:underline;">+6282132095241</a> (Setiap hari pukul 09.00 - 22.00 WIB)
+          </div>
+        </li>
+        <li class="privacy-list-item">
+          <i data-lucide="map-pin" size="18" class="privacy-icon-bullet"></i>
+          <div>
+            <strong>Showroom & Kantor Resmi:</strong> Ruko Tlogomas Square Kav.34, Kec. Lowokwaru, Kota Malang, Jawa Timur
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <div class="privacy-cta-box">
+      <h3 class="privacy-cta-title">Keamanan Privasi Anda Adalah Prioritas Kami</h3>
+      <p class="privacy-cta-desc">
+        Punya pertanyaan mengenai data akun Anda atau membutuhkan bantuan penghapusan data? Hubungi tim support Alat Kopi Malang sekarang.
+      </p>
+      <div class="privacy-cta-btn-row">
+        <a href="https://wa.me/6282132095241?text=Halo%20Admin%20Alat%20Kopi%20Malang%2C%20saya%20ingin%20konsultasi%20mengenai%20privasi%20dan%20data%20akun%20saya%3A" target="_blank" rel="noopener noreferrer" class="btn-wa-privacy" title="Hubungi CS WhatsApp">
+          <i data-lucide="message-circle" size="18"></i>
+          <span>Hubungi via WhatsApp</span>
+        </a>
+        <a href="mailto:alatkopimalang1@gmail.com?subject=Tanya%20Kebijakan%20Privasi%20-%20Alat%20Kopi%20Malang" class="btn-email-privacy" title="Kirim Email">
+          <i data-lucide="mail" size="18"></i>
+          <span>Email Customer Care</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Column 1: Lokasi & Jam Operasional & Media Sosial -->
+        <div class="footer-col footer-col-contact">
+          <h4 class="footer-col-title">Lokasi & Jam Operasional</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <a href="article.html?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
+                <i data-lucide="map-pin" class="footer-contact-icon"></i>
+                <span>Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang</span>
+              </a>
+            </li>
+            <li>
+              <div class="footer-contact-link" style="cursor: default;" title="Jam Operasional Showroom">
+                <i data-lucide="clock" class="footer-contact-icon"></i>
+                <span>Setiap Hari 09.00 AM - 22.00 PM WIB</span>
+              </div>
+            </li>
+            <li>
+              <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer" class="footer-contact-link" title="Hubungi via WhatsApp">
+                <i data-lucide="message-circle" class="footer-contact-icon"></i>
+                <span>+6282132095241</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:alatkopimalang1@gmail.com" class="footer-contact-link" title="Hubungi via Email">
+                <i data-lucide="mail" class="footer-contact-icon"></i>
+                <span>alatkopimalang1@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="footer-social-wrapper">
+            <div class="footer-social-section">
+              <h5 class="footer-social-title">Dapatkan Update Seputar Alat Kopi</h5>
+              <div class="footer-social-icons">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-instagram" title="Ikuti kami di Instagram" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-facebook" title="Ikuti kami di Facebook" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-youtube" title="Tonton YouTube kami" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-tiktok" title="Ikuti kami di TikTok" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.78 1.25-.03 2.4-0.74 2.92-1.84.4-0.79.49-1.7.49-2.58.01-4.91.01-9.82.01-14.73z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Alat Kopi Malang -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Alat Kopi Malang</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="partnership.html">Kemitraan</a></li>
+            <li><a href="articles.html">Artikel AKM</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Bantuan -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Bantuan</h4>
+          <ul class="footer-links-list">
+            <li><a href="account.html">Lacak Pengiriman</a></li>
+            <li><a href="return-policy.html">Pengembalian Produk</a></li>
+            <li><a href="warranty.html">Ketentuan Garansi</a></li>
+            <li><a href="terms.html">Syarat dan Ketentuan</a></li>
+            <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Customer Care -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links-list">
+            <li><a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">Hubungi Kami</a></li>
+            <li><a href="checkout.html">Konfirmasi Pembayaran</a></li>
+            <li><a href="faq.html">FAQ / Bantuan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Copyright -->
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">© 2026 Alat Kopi Malang. Hak Cipta Dilindungi Undang-Undang.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=49"></script>
+  <script src="js/app.js?v=49"></script>
+  <script>
+    // Initialize icons & search redirection
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof window.lucide !== 'undefined' && window.lucide.createIcons) {
+        window.lucide.createIcons();
+      }
+
+      // Search bar interaction
+      const searchInput = document.getElementById('desktopSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && searchInput.value.trim()) {
+            window.location.href = `shop.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

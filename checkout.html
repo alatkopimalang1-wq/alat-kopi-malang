@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Keranjang Belanja & Checkout - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=18">
+  <style>
+    .checkout-container {
+      max-width: 1120px;
+      margin: 24px auto 60px auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: start;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    @media (min-width: 880px) {
+      .checkout-layout {
+        grid-template-columns: 1.4fr 1fr;
+      }
+    }
+    @media (min-width: 1040px) {
+      .checkout-layout {
+        grid-template-columns: minmax(0, 1fr) 390px;
+      }
+    }
+    .checkout-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      box-sizing: border-box;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      .checkout-container {
+        padding: 0 12px !important;
+        margin: 10px auto 30px auto !important;
+      }
+      .checkout-card {
+        padding: 16px 14px !important;
+        border-radius: 14px !important;
+      }
+      .card-header-title {
+        font-size: 1.05rem !important;
+        margin-bottom: 12px !important;
+        padding-bottom: 8px !important;
+      }
+    }
+    .card-header-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span>⚡ Belanja Aman & Cepat dengan Pembayaran Terverifikasi & Garansi 100% Uang Kembali</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <a href="index.html" class="btn-back-header" id="btnCheckoutHeaderBack" title="Kembali ke Beranda">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <a href="index.html" class="btn-secondary" style="padding:8px 12px; font-size:0.82rem; color:var(--text-primary); border-color:var(--border-subtle);">
+          <i data-lucide="shopping-bag" size="16"></i>
+          <span class="hide-mobile">Lanjut Belanja</span>
+        </a>
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+        <a href="account.html" class="btn-icon hide-mobile" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="checkout-container">
+    <div class="checkout-layout">
+      <!-- Left Column: Delivery, Notes, Payment -->
+      <div class="checkout-main-col">
+
+        <!-- Card 1: Delivery -->
+        <div class="checkout-section-card" id="cardDelivery">
+          <div class="checkout-card-header">
+            <div class="checkout-card-header-left">
+              <div class="checkout-header-icon delivery">
+                <i data-lucide="package" size="18"></i>
+              </div>
+              <h2 class="checkout-card-title">Metode Pengiriman</h2>
+            </div>
+          </div>
+
+          <div class="checkout-options-list">
+            <!-- Option 1: Ship to my address -->
+            <div class="checkout-option-card" id="optShipAddress" data-delivery="ship">
+              <div class="custom-radio-circle">
+                <div class="custom-radio-dot"></div>
+              </div>
+              <div class="checkout-option-content">
+                <div class="checkout-option-title-row">
+                  <i data-lucide="package" size="17" style="color:var(--text-muted);"></i>
+                  <span>Kirim ke alamat saya</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 2: Pick up at roastery (Selected by default) -->
+            <div class="checkout-option-card active" id="optPickUp" data-delivery="pickup">
+              <div class="custom-radio-circle">
+                <div class="custom-radio-dot"></div>
+              </div>
+              <div class="checkout-option-content">
+                <div class="checkout-option-title-row">
+                  <i data-lucide="map-pin" size="17" style="color:var(--primary);"></i>
+                  <span id="pickupOptionTitle">Ambil di toko / roastery</span>
+                </div>
+                <div class="checkout-option-subtitle" id="pickupOptionSubtitle">
+                  <span id="pickupOptionAddress">Jl. Jombang No. 16, Malang 65116</span> · <a href="https://maps.google.com/?q=Jl.+Jombang+No.+16,+Malang+65116" target="_blank" rel="noopener noreferrer" class="theme-accent-link" id="pickupOptionMapsLink">Lihat di Google Maps</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pickup Details Form (Shown when Pick up at roastery is active) -->
+          <div class="pickup-subform" id="pickupSubform">
+            <h3 class="pickup-subform-title" id="pickupSubformTitle">Detail Pengambilan</h3>
+            <div class="pickup-fields-grid">
+              <div class="form-group">
+                <label class="field-label" for="pickupCustName">Nama Pengambil <span style="color:var(--danger,#ef4444);">*</span></label>
+                <input type="text" id="pickupCustName" class="field-input" placeholder="Nama Lengkap Anda" value="RD WAV">
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="pickupCustPhone">Nomor WhatsApp / Telepon <span style="color:var(--danger,#ef4444);">*</span></label>
+                <div class="phone-input-group">
+                  <select class="phone-prefix-select" id="pickupCountryCode">
+                    <option value="+62">ID +62</option>
+                    <option value="+65">SG +65</option>
+                    <option value="+60">MY +60</option>
+                  </select>
+                  <input type="tel" id="pickupCustPhone" class="phone-number-field" placeholder="856 9405 5664" value="856 9405 5664">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping Details Form (Shown when Ship to my address is active) -->
+          <div class="pickup-subform" id="shippingSubform" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+              <h3 class="pickup-subform-title" style="margin:0;">Detail Pengiriman & Cek Ongkir Otomatis</h3>
+              <span style="font-size:0.74rem; font-weight:700; color:var(--primary); background:rgba(79,70,229,0.08); border:1px solid rgba(79,70,229,0.2); padding:4px 10px; border-radius:999px;">
+                📍 Origin: Tlogomas, Kota Malang (65144)
+              </span>
+            </div>
+
+            <div class="checkout-form-grid two-cols">
+              <div class="form-group">
+                <label class="field-label" for="shipCustName">Nama Lengkap Penerima <span style="color:var(--danger,#ef4444);">*</span></label>
+                <input type="text" id="shipCustName" class="field-input" placeholder="Nama Lengkap Anda">
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="shipCustPhone">No. WhatsApp Aktif <span style="color:var(--danger,#ef4444);">*</span></label>
+                <input type="tel" id="shipCustPhone" class="field-input" placeholder="08xxxxxxxxxx">
+              </div>
+
+              <!-- Dropdown Wilayah Bertingkat (Provinsi -> Kota/Kabupaten -> Kecamatan & Kode Pos) -->
+              <div class="form-group">
+                <label class="field-label" for="shipProvince">Provinsi Tujuan <span style="color:var(--danger,#ef4444);">*</span></label>
+                <select id="shipProvince" class="form-select"></select>
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="shipCustCity">Kota / Kabupaten Tujuan <span style="color:var(--danger,#ef4444);">*</span></label>
+                <select id="shipCustCity" class="form-select"></select>
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="shipDistrict">Kecamatan Tujuan <span style="color:var(--danger,#ef4444);">*</span></label>
+                <select id="shipDistrict" class="form-select"></select>
+              </div>
+              <div class="form-group">
+                <label class="field-label" for="shipPostalCode">Kode Pos Tujuan <span style="color:var(--danger,#ef4444);">*</span></label>
+                <input type="text" id="shipPostalCode" class="field-input" placeholder="Contoh: 65144" maxlength="6">
+              </div>
+
+              <div class="form-group full-width">
+                <label class="field-label" for="shipCustAddress">Alamat Lengkap (Jalan, No. Rumah, RT/RW, Patokan) <span style="color:var(--danger,#ef4444);">*</span></label>
+                <textarea id="shipCustAddress" class="form-textarea" rows="2" placeholder="Contoh: Jl. Raya Tlogomas No. 24, RT 02 / RW 05"></textarea>
+              </div>
+
+              <!-- Pilihan Layanan Kurir Otomatis (JNE, J&T, SiCepat) -->
+              <div class="form-group full-width">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:8px;">
+                  <label class="field-label" style="margin:0;">Pilih Layanan Kurir (JNE, J&amp;T, SiCepat) <span style="color:var(--danger,#ef4444);">*</span></label>
+                  <span id="shipTotalWeightInfo" style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); background:var(--bg-surface); border:1px solid var(--border-subtle); padding:3px 10px; border-radius:999px;">
+                    ⚖️ Total Berat: 0 g (1 Kg)
+                  </span>
+                </div>
+                <input type="hidden" id="shipCustCourier" value="">
+                <div id="shippingCourierRatesList" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:8px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Order notes (optional) -->
+        <div class="checkout-section-card order-notes-accordion" id="cardOrderNotes">
+          <div class="checkout-card-header" style="margin-bottom:0;">
+            <div class="checkout-card-header-left">
+              <div class="checkout-header-icon notes">
+                <i data-lucide="file-edit" size="18"></i>
+              </div>
+              <h2 class="checkout-card-title">
+                Catatan Pesanan <span style="font-weight:400; color:var(--text-muted); font-size:0.85rem;">(opsional)</span>
+              </h2>
+            </div>
+            <i data-lucide="chevron-right" size="18" class="notes-chevron-icon" id="notesChevron"></i>
+          </div>
+
+          <div class="order-notes-content" id="notesContent" style="display:none; margin-top:14px;">
+            <textarea id="orderCustNote" class="form-textarea" style="width:100%; box-sizing:border-box;"></textarea>
+          </div>
+        </div>
+
+        <!-- Card 3: Payment -->
+        <div class="checkout-section-card" id="cardPayment">
+          <div class="checkout-card-header">
+            <div class="checkout-card-header-left">
+              <div class="checkout-header-icon payment">
+                <i data-lucide="credit-card" size="18"></i>
+              </div>
+              <h2 class="checkout-card-title">Metode Pembayaran</h2>
+            </div>
+          </div>
+
+          <!-- Category heading: QRIS & TRANSFER BANK -->
+          <div class="payment-category-heading" id="paymentCategoryHeading">QRIS &amp; TRANSFER BANK</div>
+
+          <div class="checkout-options-list">
+            <!-- Payment Option: QRIS & Transfer Bank BCA/BRI -->
+            <div class="checkout-option-card active" id="optPaymentDirect">
+              <div class="custom-radio-circle">
+                <div class="custom-radio-dot"></div>
+              </div>
+              <div class="checkout-option-content">
+                <div class="checkout-option-title-row">
+                  <i data-lucide="qr-code" size="18" style="color:var(--primary);" id="selectedPaymentIcon"></i>
+                  <span id="selectedPaymentTitle">QRIS Toko</span>
+                </div>
+                <div class="checkout-option-subtitle" id="paymentDeadlineSubtitle">
+                  Selesaikan pembayaran dalam waktu 24 jam setelah pesanan dibuat.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bank Selector Tabs & Detail Box -->
+          <div style="margin-top:14px; padding:16px; background:var(--bg-secondary); border-radius:10px; border:1px solid var(--border-subtle);">
+            <div id="paymentMethodTabsContainer" style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+              <button type="button" class="bank-choice-btn" data-bank="bca" id="btnPageBCA">
+                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00529c;"></span>
+                <span>Bank BCA</span>
+              </button>
+              <button type="button" class="bank-choice-btn" data-bank="bri" id="btnPageBRI">
+                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#002855;"></span>
+                <span>Bank BRI</span>
+              </button>
+              <button type="button" class="bank-choice-btn active" data-bank="qris" id="btnPageQRIS">
+                <span>QRIS Toko</span>
+              </button>
+            </div>
+
+            <!-- Dynamic Payment Detail Display -->
+            <div id="pagePaymentDynamicDetails">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Order Summary (Sticky) -->
+      <div class="checkout-sidebar-col">
+        <div class="checkout-section-card order-summary-card" style="position:sticky; top:84px;">
+          <!-- Top Accent Bar (Theme primary) -->
+          <div class="order-summary-top-bar"></div>
+
+          <div class="checkout-card-header" style="margin-bottom:14px;">
+            <div class="checkout-card-header-left">
+              <div class="checkout-header-icon summary">
+                <i data-lucide="shopping-bag" size="18"></i>
+              </div>
+              <h2 class="checkout-card-title">Ringkasan Pesanan</h2>
+            </div>
+          </div>
+
+          <!-- Cart Items List -->
+          <div class="summary-items-list" id="checkoutItemsList">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Voucher input row -->
+          <div class="voucher-box" style="margin: 12px 0 16px 0; padding:10px 12px; background:var(--bg-secondary); border-radius:8px;">
+            <div style="font-size:0.75rem; font-weight:700; margin-bottom:6px; color:var(--text-secondary);">
+              Kode Kupon / Voucher Diskon:
+            </div>
+            <div class="voucher-input-row" style="display:flex; gap:6px;">
+              <input type="text" id="pageVoucherInput" style="flex:1; padding:7px 10px; font-size:0.82rem; border-radius:6px; border:1px solid var(--border-subtle); background:var(--bg-surface); color:var(--text-primary);">
+              <button type="button" class="btn-apply-voucher" id="btnApplyPageVoucher" style="padding:7px 14px; font-size:0.82rem; border-radius:6px; background:var(--primary); color:#fff; border:none; font-weight:700; cursor:pointer;">Pakai</button>
+            </div>
+            <div id="pageVoucherBadge"></div>
+          </div>
+
+          <!-- Pricing Calculation Rows -->
+          <div>
+            <div class="summary-pricing-row">
+              <span>Subtotal</span>
+              <span id="pageSubtotal">Rp. 0</span>
+            </div>
+            <div class="summary-pricing-row" id="pageDeliveryFeeRow">
+              <span id="pageDeliveryFeeLabel">Biaya Pengambilan</span>
+              <span id="pageShipping">Rp. 0</span>
+            </div>
+            <div class="summary-pricing-row" id="pageDiscountRow" style="display:none; color:var(--success);">
+              <span>Diskon Voucher</span>
+              <span id="pageDiscount">- Rp. 0</span>
+            </div>
+            <div class="summary-pricing-row" id="pageUniqueCodeRow" style="display:none; color:#d97706;">
+              <span>Kode Unik Verifikasi</span>
+              <span id="pageUniqueCode">+ Rp. 0</span>
+            </div>
+            <div class="summary-pricing-row total-row">
+              <span>Total Pembayaran</span>
+              <span class="summary-total-amount" id="pageGrandTotal">Rp. 0</span>
+            </div>
+          </div>
+
+          <!-- Meta Section: Paying With -->
+          <div class="summary-meta-block" style="margin-bottom:18px;">
+            <div class="summary-meta-label">METODE PEMBAYARAN</div>
+            <div class="summary-meta-value" id="summaryPayingWith" style="margin-bottom:0;">QRIS / TRANSFER BANK BCA</div>
+          </div>
+
+          <!-- Primary CTA Button -->
+          <button type="button" class="btn-place-order-main" id="btnPlaceOrder">
+            <span id="btnPlaceOrderText">Buat Pesanan Pickup</span>
+            <i data-lucide="arrow-right" size="18"></i>
+          </button>
+
+          <!-- Alternative WhatsApp Checkout Button -->
+          <button type="button" class="btn-whatsapp-checkout" id="btnPageCheckoutWA" style="margin-top:10px; width:100%;">
+            <i data-lucide="message-circle" size="18"></i>
+            <span>Kirim Pesanan ke WhatsApp</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+
+  <!-- Receipt Modal for printing -->
+  <div class="modal-overlay" id="checkoutReceiptOverlay">
+    <div class="modal-box" style="max-width:540px;">
+      <div class="modal-header">
+        <h3><i data-lucide="file-check" size="20"></i> Bukti Pesanan & Struk Pembelian</h3>
+        <button class="btn-close-modal" id="btnCloseCheckoutReceipt"><i data-lucide="x" size="18"></i></button>
+      </div>
+      <div class="modal-body" id="checkoutReceiptBody">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <button class="btn-secondary" id="btnPrintCheckoutReceipt">
+          <i data-lucide="printer" size="16"></i>
+          <span>Cetak Struk / PDF</span>
+        </button>
+        <a href="index.html" class="btn-primary" style="display:inline-flex; align-items:center; gap:6px;">
+          <span>Selesai & Lanjut Belanja</span>
+          <i data-lucide="check" size="16"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let cart = JSON.parse(localStorage.getItem('nexus_cart')) || [];
+      // Remove sample product from cart if present
+      cart = cart.filter(item => item.id !== 'prod-016' && item.name !== 'Bali Curtina Natural Kismis Filter');
+      localStorage.setItem('nexus_cart', JSON.stringify(cart));
+
+      const products = JSON.parse(localStorage.getItem('nexus_products')) || DEFAULT_PRODUCTS;
+      const settings = JSON.parse(localStorage.getItem('nexus_settings')) || DEFAULT_SETTINGS;
+      if (!settings.storeName || settings.storeName.toUpperCase().includes('NEXUS') || !settings.whatsappNumber || settings.whatsappNumber === '6281234567890') {
+        settings.storeName = 'Alat Kopi Malang';
+        settings.whatsappNumber = '6282132095241';
+        settings.bankAccounts = DEFAULT_SETTINGS.bankAccounts;
+      }
+      settings.whatsappNumber = '6282132095241';
+      let orders = JSON.parse(localStorage.getItem('nexus_orders')) || [];
+      let theme = localStorage.getItem('nexus_theme') || 'light';
+      let appliedVoucher = null;
+      let deliveryMethod = 'pickup'; // 'pickup' (default) or 'ship'
+      let selectedPaymentMethod = 'qris'; // 'qris' (default matches screenshot), 'bca', 'bri'
+
+      const bankDetails = {
+        qris: {
+          name: 'QRIS',
+          label: 'QRIS Toko',
+          nmid: 'ID1024334436911',
+          holder: 'ALAT KOPI MALANG.'
+        },
+        bca: {
+          name: 'BCA',
+          label: 'Nomor Rekening BCA',
+          number: '8720192831',
+          displayNumber: '8720.192.831',
+          holder: 'ALAT KOPI MALANG',
+          badgeClass: 'bca'
+        },
+        bri: {
+          name: 'BRI',
+          label: 'Nomor Rekening BRI',
+          number: '034101002345501',
+          displayNumber: '0341.0100.2345.501',
+          holder: 'ALAT KOPI MALANG',
+          badgeClass: 'bri'
+        }
+      };
+
+
+      window.copyPaymentText = (text, label) => {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => {
+            showToast(`✓ ${label} berhasil disalin: ${text}`, 'success');
+          }).catch(() => {
+            fallbackCopy(text, label);
+          });
+        } else {
+          fallbackCopy(text, label);
+        }
+      };
+
+      const fallbackCopy = (text, label) => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(`✓ ${label} berhasil disalin!`, 'success');
+      };
+
+      const formatRupiah = (num) => 'Rp. ' + Number(num || 0).toLocaleString('id-ID');
+
+      const refreshIcons = () => {
+        if (window.lucide) window.lucide.createIcons();
+      };
+
+      const showToast = (message, type = 'success') => {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `<i data-lucide="${type === 'danger' ? 'alert-circle' : 'check-circle'}" size="18"></i><span>${message}</span>`;
+        container.appendChild(toast);
+        refreshIcons();
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      };
+
+      // Theme toggle
+      const applyTheme = (t) => {
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('nexus_theme', t);
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.setAttribute('data-lucide', t === 'dark' ? 'sun' : 'moon');
+        refreshIcons();
+      };
+      applyTheme(theme);
+
+      document.getElementById('btnToggleTheme')?.addEventListener('click', () => {
+        theme = theme === 'light' ? 'dark' : 'light';
+        applyTheme(theme);
+      });
+
+      // Delivery Method switching (Connected to DEFAULT_PICKUP from Admin CMS)
+      const pickupConfig = (typeof DEFAULT_PICKUP !== 'undefined' && DEFAULT_PICKUP)
+        ? DEFAULT_PICKUP
+        : {
+            enabled: true,
+            isDefaultMethod: true,
+            title: 'Ambil di toko / roastery',
+            address: 'Jl. Jombang No. 16, Malang 65116',
+            mapsLabel: 'Lihat di Google Maps',
+            mapsUrl: 'https://maps.google.com/?q=Jl.+Jombang+No.+16,+Malang+65116',
+            operationalHours: 'Setiap hari 08:00 – 21:00 WIB',
+            fee: 0,
+            feeLabel: 'Biaya Pengambilan',
+            subformTitle: 'Detail Pengambilan',
+            buttonText: 'Buat Pesanan Pickup'
+          };
+
+      const optPickUp = document.getElementById('optPickUp');
+      const optShipAddress = document.getElementById('optShipAddress');
+      const pickupSubform = document.getElementById('pickupSubform');
+      const shippingSubform = document.getElementById('shippingSubform');
+      const pageDeliveryFeeLabel = document.getElementById('pageDeliveryFeeLabel');
+      const btnPlaceOrderText = document.getElementById('btnPlaceOrderText');
+
+      // Hydrate Pickup Option DOM from pickupConfig
+      const pickupTitleEl = document.getElementById('pickupOptionTitle');
+      const pickupAddressEl = document.getElementById('pickupOptionAddress');
+      const pickupMapsLinkEl = document.getElementById('pickupOptionMapsLink');
+      const pickupSubformTitleEl = document.getElementById('pickupSubformTitle');
+
+      if (pickupTitleEl) pickupTitleEl.textContent = pickupConfig.title || 'Ambil di toko / roastery';
+      if (pickupAddressEl) pickupAddressEl.textContent = pickupConfig.address || 'Jl. Jombang No. 16, Malang 65116';
+      if (pickupMapsLinkEl) {
+        pickupMapsLinkEl.textContent = pickupConfig.mapsLabel || 'Lihat di Google Maps';
+        pickupMapsLinkEl.href = pickupConfig.mapsUrl || `https://maps.google.com/?q=${encodeURIComponent(pickupConfig.address || 'Jl. Jombang No. 16, Malang 65116')}`;
+      }
+      if (pickupSubformTitleEl) pickupSubformTitleEl.textContent = pickupConfig.subformTitle || 'Detail Pengambilan';
+
+      if (pickupConfig.enabled === false) {
+        if (optPickUp) optPickUp.style.display = 'none';
+      }
+
+      const setDeliveryMethod = (method) => {
+        if (method === 'pickup' && pickupConfig.enabled === false) {
+          method = 'ship';
+        }
+        deliveryMethod = method;
+        if (method === 'pickup') {
+          optPickUp?.classList.add('active');
+          optShipAddress?.classList.remove('active');
+          if (pickupSubform) pickupSubform.style.display = 'block';
+          if (shippingSubform) shippingSubform.style.display = 'none';
+          if (pageDeliveryFeeLabel) pageDeliveryFeeLabel.textContent = pickupConfig.feeLabel || 'Biaya Pengambilan';
+          if (btnPlaceOrderText) btnPlaceOrderText.textContent = pickupConfig.buttonText || 'Buat Pesanan Pickup';
+        } else {
+          optShipAddress?.classList.add('active');
+          optPickUp?.classList.remove('active');
+          if (pickupSubform) pickupSubform.style.display = 'none';
+          if (shippingSubform) shippingSubform.style.display = 'block';
+          if (pageDeliveryFeeLabel) pageDeliveryFeeLabel.textContent = 'Ongkos Kirim';
+          if (btnPlaceOrderText) btnPlaceOrderText.textContent = 'Buat Pesanan Pengiriman';
+        }
+        renderCart();
+      };
+
+      optPickUp?.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // allow clicking Google Maps link directly
+        setDeliveryMethod('pickup');
+      });
+      optShipAddress?.addEventListener('click', () => setDeliveryMethod('ship'));
+
+      // Order notes accordion
+      const cardOrderNotes = document.getElementById('cardOrderNotes');
+      const notesContent = document.getElementById('notesContent');
+      cardOrderNotes?.addEventListener('click', (e) => {
+        if (e.target.closest('#orderCustNote')) return; // don't collapse when typing in textarea
+        cardOrderNotes.classList.toggle('open');
+        const isOpen = cardOrderNotes.classList.contains('open');
+        if (notesContent) notesContent.style.display = isOpen ? 'block' : 'none';
+      });
+
+      // =========================================================
+      // AUTOMATIC SHIPPING CALCULATOR (Origin: Tlogomas, Kota Malang 65144)
+      // =========================================================
+      const WILAYAH_INDONESIA = {
+        'Jawa Timur': {
+          'Kota Malang': [
+            { name: 'Lowokwaru (Tlogomas / Dinoyo)', postal: '65144' },
+            { name: 'Klojen', postal: '65111' },
+            { name: 'Blimbing', postal: '65126' },
+            { name: 'Sukun', postal: '65147' },
+            { name: 'Kedungkandang', postal: '65139' }
+          ],
+          'Kabupaten Malang': [
+            { name: 'Dau', postal: '65151' },
+            { name: 'Karangploso', postal: '65152' },
+            { name: 'Singosari', postal: '65153' },
+            { name: 'Kepanjen', postal: '65163' }
+          ],
+          'Kota Batu': [
+            { name: 'Batu', postal: '65311' },
+            { name: 'Junrejo', postal: '65321' },
+            { name: 'Bumiaji', postal: '65331' }
+          ],
+          'Kota Surabaya': [
+            { name: 'Gubeng', postal: '60281' },
+            { name: 'Wonokromo', postal: '60243' },
+            { name: 'Rungkut', postal: '60293' },
+            { name: 'Sukolilo', postal: '60111' }
+          ],
+          'Kabupaten Sidoarjo': [
+            { name: 'Sidoarjo', postal: '61212' },
+            { name: 'Waru', postal: '61256' }
+          ]
+        },
+        'Jawa Tengah': {
+          'Kota Semarang': [
+            { name: 'Semarang Tengah', postal: '50132' },
+            { name: 'Tembalang', postal: '50275' }
+          ],
+          'Kota Surakarta (Solo)': [
+            { name: 'Laweyan', postal: '57148' },
+            { name: 'Banjarsari', postal: '57139' }
+          ]
+        },
+        'DI Yogyakarta': {
+          'Kota Yogyakarta': [
+            { name: 'Gondokusuman', postal: '55224' },
+            { name: 'Umbulharjo', postal: '55161' }
+          ],
+          'Kabupaten Sleman': [
+            { name: 'Depok', postal: '55281' },
+            { name: 'Mlati', postal: '55284' }
+          ]
+        },
+        'DKI Jakarta': {
+          'Jakarta Selatan': [
+            { name: 'Kebayoran Baru', postal: '12190' },
+            { name: 'Tebet', postal: '12810' },
+            { name: 'Cilandak', postal: '12430' }
+          ],
+          'Jakarta Pusat': [
+            { name: 'Menteng', postal: '10310' },
+            { name: 'Tanah Abang', postal: '10250' }
+          ]
+        },
+        'Jawa Barat': {
+          'Kota Bandung': [
+            { name: 'Coblong (Dago)', postal: '40132' },
+            { name: 'Sumur Bandung', postal: '40111' }
+          ],
+          'Kota Bekasi': [
+            { name: 'Bekasi Selatan', postal: '17141' }
+          ]
+        },
+        'Bali': {
+          'Kota Denpasar': [
+            { name: 'Denpasar Selatan', postal: '80221' },
+            { name: 'Denpasar Barat', postal: '80119' }
+          ],
+          'Kabupaten Badung': [
+            { name: 'Kuta Utara (Canggu)', postal: '80361' },
+            { name: 'Kuta Selatan', postal: '80362' }
+          ]
+        },
+        'Luar Pulau Jawa & Bali': {
+          'Kota Medan': [{ name: 'Medan Baru', postal: '20154' }],
+          'Kota Makassar': [{ name: 'Panakkukang', postal: '90231' }],
+          'Kota Balikpapan': [{ name: 'Balikpapan Selatan', postal: '76114' }]
+        }
+      };
+
+      let availableCourierRates = [];
+      let selectedCourierRate = null;
+
+      const getCartTotalWeightGrams = () => {
+        if (!Array.isArray(cart) || cart.length === 0) return 500;
+        return cart.reduce((sum, it) => {
+          const itemWeight = Number(it.weight) || 500;
+          const itemQty = Number(it.quantity) || 1;
+          return sum + (itemWeight * itemQty);
+        }, 0);
+      };
+
+      const computeLocalShippingRates = (prov, city, totalWeightGrams) => {
+        const weightKg = Math.max(1, Math.ceil((Number(totalWeightGrams) || 1000) / 1000));
+        const p = String(prov || '').toLowerCase();
+        const c = String(city || '').toLowerCase();
+        let z = { jne_reg: 38000, jne_next: 58000, jnt_reg: 40000, sicepat_reg: 37000, sicepat_next: 55000, etd_reg: '3 - 6 Hari', etd_next: '2 - 3 Hari' };
+        if (c.includes('malang') || c.includes('batu')) {
+          z = { jne_reg: 9000, jne_next: 15000, jnt_reg: 9000, sicepat_reg: 8500, sicepat_next: 14000, etd_reg: '1 - 2 Hari', etd_next: '1 Hari' };
+        } else if (p.includes('jawa timur')) {
+          z = { jne_reg: 12000, jne_next: 21000, jnt_reg: 12500, sicepat_reg: 11500, sicepat_next: 20000, etd_reg: '1 - 3 Hari', etd_next: '1 Hari' };
+        } else if (p.includes('jawa tengah') || p.includes('yogyakarta')) {
+          z = { jne_reg: 18000, jne_next: 30000, jnt_reg: 19000, sicepat_reg: 17500, sicepat_next: 28000, etd_reg: '2 - 3 Hari', etd_next: '1 - 2 Hari' };
+        } else if (p.includes('jawa barat') || p.includes('jakarta') || p.includes('banten')) {
+          z = { jne_reg: 22000, jne_next: 36000, jnt_reg: 23000, sicepat_reg: 21500, sicepat_next: 34000, etd_reg: '2 - 4 Hari', etd_next: '1 - 2 Hari' };
+        } else if (p.includes('bali')) {
+          z = { jne_reg: 24000, jne_next: 40000, jnt_reg: 25000, sicepat_reg: 23500, sicepat_next: 38000, etd_reg: '2 - 4 Hari', etd_next: '1 - 2 Hari' };
+        }
+        return [
+          { courier_code: 'jne', courier_name: 'JNE Express', service_code: 'REG', service_name: 'Layanan Reguler (REG)', etd: z.etd_reg, price: z.jne_reg * weightKg },
+          { courier_code: 'jne', courier_name: 'JNE Express', service_code: 'YES', service_name: 'Yakin Esok Sampai (Next Day)', etd: z.etd_next, price: z.jne_next * weightKg },
+          { courier_code: 'jnt', courier_name: 'J&T Express', service_code: 'EZ', service_name: 'Reguler (EZ)', etd: z.etd_reg, price: z.jnt_reg * weightKg },
+          { courier_code: 'sicepat', courier_name: 'SiCepat Ekspres', service_code: 'SIUNT', service_name: 'SiUntung (Reguler)', etd: z.etd_reg, price: z.sicepat_reg * weightKg },
+          { courier_code: 'sicepat', courier_name: 'SiCepat Ekspres', service_code: 'BEST', service_name: 'Besok Sampai Tujuan (Next Day)', etd: z.etd_next, price: z.sicepat_next * weightKg }
+        ];
+      };
+
+      const renderCourierRateCards = () => {
+        const listEl = document.getElementById('shippingCourierRatesList');
+        const hiddenCourierInput = document.getElementById('shipCustCourier');
+        if (!listEl) return;
+
+        const badgeStyles = {
+          jne: { bg: '#00529c', text: 'JNE' },
+          jnt: { bg: '#dc2626', text: 'J&T' },
+          sicepat: { bg: '#d97706', text: 'SiCepat' }
+        };
+
+        listEl.innerHTML = availableCourierRates.map((rate, idx) => {
+          const isSelected = selectedCourierRate
+            && selectedCourierRate.courier_code === rate.courier_code
+            && selectedCourierRate.service_code === rate.service_code;
+          const bStyle = badgeStyles[rate.courier_code] || { bg: '#4f46e5', text: rate.courier_code.toUpperCase() };
+          return `
+            <div onclick="window.selectShippingCourierRate(${idx})" style="padding:11px 12px; border-radius:10px; border:2px solid ${isSelected ? 'var(--primary)' : 'var(--border-subtle)'}; background:${isSelected ? 'rgba(79,70,229,0.06)' : 'var(--bg-surface)'}; cursor:pointer; transition:all 0.18s ease; display:flex; flex-direction:column; gap:5px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <span style="padding:2px 7px; border-radius:4px; background:${bStyle.bg}; color:#fff; font-size:0.68rem; font-weight:800; letter-spacing:0.03em;">${bStyle.text}</span>
+                  <strong style="font-size:0.82rem; color:var(--text-primary);">${rate.service_code}</strong>
+                </div>
+                <strong style="font-size:0.88rem; color:var(--primary);">${formatRupiah(rate.price)}</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-muted);">
+                <span>${rate.service_name}</span>
+                <span>⏱️ ETD: ${rate.etd}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        if (selectedCourierRate && hiddenCourierInput) {
+          hiddenCourierInput.value = `${selectedCourierRate.courier_name} - ${selectedCourierRate.service_code} (${selectedCourierRate.etd})`;
+        }
+      };
+
+      window.selectShippingCourierRate = (idx) => {
+        if (!availableCourierRates[idx]) return;
+        selectedCourierRate = availableCourierRates[idx];
+        renderCourierRateCards();
+        renderCart();
+      };
+
+      const fetchShippingRates = async () => {
+        const prov = document.getElementById('shipProvince')?.value || 'Jawa Timur';
+        const city = document.getElementById('shipCustCity')?.value || 'Kota Malang';
+        const district = document.getElementById('shipDistrict')?.value || 'Lowokwaru (Tlogomas / Dinoyo)';
+        const postalCode = document.getElementById('shipPostalCode')?.value || '65144';
+        const totalWeightGrams = getCartTotalWeightGrams();
+        const billedKg = Math.max(1, Math.ceil(totalWeightGrams / 1000));
+
+        const weightInfoEl = document.getElementById('shipTotalWeightInfo');
+        if (weightInfoEl) {
+          weightInfoEl.textContent = `⚖️ Total Berat: ${totalWeightGrams.toLocaleString('id-ID')} g (${billedKg} Kg)`;
+        }
+
+        let rates = [];
+        try {
+          const res = await fetch('/api/shipping/calculate-cost', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              province: prov,
+              city,
+              district,
+              destination_postal_code: postalCode,
+              weight: totalWeightGrams,
+              items: cart.map(it => ({ id: it.id, weight: it.weight || 500, quantity: it.quantity || 1 }))
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && Array.isArray(data.rates) && data.rates.length > 0) {
+              rates = data.rates;
+            }
+          }
+        } catch (_) {
+          // Fallback to client-side rate calculation when opened directly without backend
+        }
+
+        if (rates.length === 0) {
+          rates = computeLocalShippingRates(prov, city, totalWeightGrams);
+        }
+
+        availableCourierRates = rates;
+        // Preserve previously chosen courier_code + service_code if still available, else default to first rate (JNE REG)
+        const prevMatch = selectedCourierRate && availableCourierRates.find(
+          r => r.courier_code === selectedCourierRate.courier_code && r.service_code === selectedCourierRate.service_code
+        );
+        selectedCourierRate = prevMatch || availableCourierRates[0] || null;
+        renderCourierRateCards();
+        renderCart();
+      };
+
+      const initShippingWilayahSelectors = () => {
+        const provEl = document.getElementById('shipProvince');
+        const cityEl = document.getElementById('shipCustCity');
+        const distEl = document.getElementById('shipDistrict');
+        const postalEl = document.getElementById('shipPostalCode');
+        if (!provEl || !cityEl || !distEl) return;
+
+        const provinces = Object.keys(WILAYAH_INDONESIA);
+        provEl.innerHTML = provinces.map(p => `<option value="${p}">${p}</option>`).join('');
+
+        const populateCities = () => {
+          const selectedProv = provEl.value || provinces[0];
+          const citiesObj = WILAYAH_INDONESIA[selectedProv] || {};
+          const cities = Object.keys(citiesObj);
+          cityEl.innerHTML = cities.map(c => `<option value="${c}">${c}</option>`).join('');
+          populateDistricts();
+        };
+
+        const populateDistricts = () => {
+          const selectedProv = provEl.value || provinces[0];
+          const selectedCity = cityEl.value;
+          const districts = (WILAYAH_INDONESIA[selectedProv] && WILAYAH_INDONESIA[selectedProv][selectedCity]) || [];
+          distEl.innerHTML = districts.map(d => `<option value="${d.name}" data-postal="${d.postal}">${d.name} (${d.postal})</option>`).join('');
+          if (districts[0] && postalEl) {
+            postalEl.value = districts[0].postal;
+          }
+          fetchShippingRates();
+        };
+
+        provEl.addEventListener('change', populateCities);
+        cityEl.addEventListener('change', populateDistricts);
+        distEl.addEventListener('change', () => {
+          const opt = distEl.options[distEl.selectedIndex];
+          if (opt && opt.dataset.postal && postalEl) {
+            postalEl.value = opt.dataset.postal;
+          }
+          fetchShippingRates();
+        });
+        postalEl?.addEventListener('change', fetchShippingRates);
+
+        populateCities();
+      };
+
+      // Calculate totals
+      const calculateTotals = () => {
+        const subtotal = cart.reduce((sum, it) => sum + (it.price * it.quantity), 0);
+        let deliveryFee = 0;
+        if (deliveryMethod === 'ship') {
+          deliveryFee = selectedCourierRate ? Number(selectedCourierRate.price) : (Number(settings.defaultShippingCost) || 15000);
+        } else {
+          deliveryFee = Number(pickupConfig.fee) || 0;
+        }
+
+        let voucherDiscount = 0;
+        if (appliedVoucher && subtotal >= appliedVoucher.minPurchase) {
+          if (appliedVoucher.type === 'percentage') {
+            voucherDiscount = Math.round((subtotal * appliedVoucher.value) / 100);
+          } else if (appliedVoucher.type === 'fixed') {
+            voucherDiscount = appliedVoucher.value;
+          } else if (appliedVoucher.type === 'shipping') {
+            voucherDiscount = Math.min(deliveryFee, appliedVoucher.value);
+          }
+        }
+
+        const baseTotal = Math.max(0, subtotal + deliveryFee - voucherDiscount);
+        return { subtotal, deliveryFee, voucherDiscount, baseTotal, grandTotal: baseTotal };
+      };
+
+      // Payment Selector Tabs & Content (Connected to DEFAULT_PAYMENTS from Admin CMS)
+      const paymentCategoryHeadingEl = document.getElementById('paymentCategoryHeading');
+      const paymentDeadlineSubtitleEl = document.getElementById('paymentDeadlineSubtitle');
+      const paymentTabsContainer = document.getElementById('paymentMethodTabsContainer');
+      const selectedPaymentTitle = document.getElementById('selectedPaymentTitle');
+      const summaryPayingWith = document.getElementById('summaryPayingWith');
+      const pagePaymentDynamicDetails = document.getElementById('pagePaymentDynamicDetails');
+
+      if (paymentCategoryHeadingEl && settings.paymentCategoryHeading) {
+        paymentCategoryHeadingEl.textContent = settings.paymentCategoryHeading;
+      }
+      if (paymentDeadlineSubtitleEl && settings.paymentDeadlineSubtitle) {
+        paymentDeadlineSubtitleEl.textContent = settings.paymentDeadlineSubtitle;
+      }
+
+      const activePaymentMethods = (typeof DEFAULT_PAYMENTS !== 'undefined' && Array.isArray(DEFAULT_PAYMENTS))
+        ? DEFAULT_PAYMENTS.filter(p => p.active !== false)
+        : [];
+
+      // Ensure selectedPaymentMethod matches an available method (prefer 'qris' if present, else first active)
+      if (activePaymentMethods.length > 0 && !activePaymentMethods.some(p => p.code === selectedPaymentMethod)) {
+        const qrisMatch = activePaymentMethods.find(p => p.code === 'qris' || p.type === 'qris');
+        selectedPaymentMethod = qrisMatch ? qrisMatch.code : activePaymentMethods[0].code;
+      }
+
+      const getSelectedPaymentObj = () => {
+        return activePaymentMethods.find(p => p.code === selectedPaymentMethod)
+          || activePaymentMethods[0]
+          || {
+            code: 'qris',
+            type: 'qris',
+            tabLabel: 'QRIS Toko',
+            title: 'QRIS Toko',
+            fullName: 'QRIS Toko Resmi',
+            badgeText: 'QRIS',
+            badgeColor: '#4f46e5',
+            nmid: 'ID1024334436911',
+            accountHolder: 'ALAT KOPI MALANG.',
+            qrisImage: 'images/qris-alat-kopi-malang.png',
+            infoNotice: 'Barcode QRIS Ditampilkan Setelah Pesanan Dibuat',
+            rightNote: 'Semua E-Wallet & m-Banking'
+          };
+      };
+
+      window.selectCheckoutPaymentMethod = (code) => {
+        selectedPaymentMethod = code;
+        renderPaymentDetails();
+      };
+
+      const renderPaymentDetails = () => {
+        const pay = getSelectedPaymentObj();
+
+        // Render tabs dynamically
+        if (paymentTabsContainer && activePaymentMethods.length > 0) {
+          paymentTabsContainer.innerHTML = activePaymentMethods.map(m => {
+            const isActive = m.code === pay.code;
+            const dotHtml = m.type === 'qris'
+              ? ''
+              : `<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:${m.badgeColor || '#00529c'};"></span>`;
+            return `
+              <button type="button" class="bank-choice-btn ${isActive ? 'active' : ''}" data-bank="${m.code}" onclick="window.selectCheckoutPaymentMethod('${m.code}')">
+                ${dotHtml}
+                <span>${m.tabLabel || m.title}</span>
+              </button>
+            `;
+          }).join('');
+        }
+
+        if (selectedPaymentTitle) selectedPaymentTitle.textContent = pay.title || pay.tabLabel;
+        if (summaryPayingWith) summaryPayingWith.textContent = (pay.title || pay.tabLabel || '').toUpperCase();
+
+        if (pagePaymentDynamicDetails) {
+          if (pay.type === 'qris') {
+            pagePaymentDynamicDetails.innerHTML = `
+              <div style="background:var(--bg-surface); padding:16px; border-radius:8px; border:1px solid var(--border-subtle);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="padding:3px 10px; background:${pay.badgeColor || '#4f46e5'}; color:#fff; font-weight:800; font-size:0.75rem; display:flex; align-items:center; justify-content:center; border-radius:4px; letter-spacing:0.5px;">${pay.badgeText || 'QRIS'}</div>
+                    <span style="font-weight:700; font-size:0.9rem; color:var(--text-primary);">${pay.fullName || 'QRIS Toko Resmi'}</span>
+                  </div>
+                  <span style="font-size:0.72rem; color:var(--text-muted);">${pay.rightNote || 'Semua E-Wallet & m-Banking'}</span>
+                </div>
+                <div style="background:var(--bg-secondary); padding:10px 14px; border-radius:8px; border:1px solid var(--border-subtle); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+                  <i data-lucide="info" size="16" style="color:var(--primary); flex-shrink:0;"></i>
+                  <span style="font-size:0.82rem; font-weight:700; color:var(--text-primary);">${pay.infoNotice || 'Barcode QRIS Ditampilkan Setelah Pesanan Dibuat'}</span>
+                </div>
+                <div style="font-size:0.76rem; color:var(--text-secondary);">
+                  NMID: <strong>${pay.nmid || 'ID1024334436911'}</strong> · ${pay.accountHolder || 'ALAT KOPI MALANG.'}
+                </div>
+              </div>
+            `;
+          } else {
+            const accNum = pay.accountNumber || '-';
+            const copyLabel = `Nomor Rekening ${pay.badgeText || pay.tabLabel || 'Bank'}`;
+            pagePaymentDynamicDetails.innerHTML = `
+              <div style="background:var(--bg-surface); padding:16px; border-radius:8px; border:1px solid var(--border-subtle);">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="min-width:48px; padding:0 8px; height:24px; background:${pay.badgeColor || '#00529c'}; color:#fff; font-weight:800; font-size:0.75rem; display:flex; align-items:center; justify-content:center; border-radius:4px;">${pay.badgeText || 'BANK'}</div>
+                    <span style="font-weight:700; font-size:0.9rem; color:var(--text-primary);">${pay.fullName || pay.tabLabel}</span>
+                  </div>
+                  <span style="font-size:0.72rem; color:var(--text-muted);">${pay.rightNote || 'Transfer Manual'}</span>
+                </div>
+                <div style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:6px;">Nomor Rekening ${pay.badgeText || pay.tabLabel}:</div>
+                <div style="display:flex; align-items:center; justify-content:space-between; background:var(--bg-secondary); padding:10px 14px; border-radius:6px; border:1px solid var(--border-subtle); margin-bottom:8px;">
+                  <span style="font-family:monospace; font-size:1.15rem; font-weight:800; color:var(--primary); letter-spacing:1px;">${accNum}</span>
+                  <button type="button" onclick="window.copyPaymentText('${accNum.replace(/'/g, "\\'")}', '${copyLabel.replace(/'/g, "\\'")}')" style="padding:5px 12px; font-size:0.78rem; font-weight:700; border-radius:5px; border:1px solid var(--primary); background:var(--primary-light, rgba(79,70,229,0.1)); color:var(--primary); cursor:pointer;">
+                    Salin
+                  </button>
+                </div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">
+                  Atas Nama: <strong style="color:var(--text-primary);">${pay.accountHolder || 'ALAT KOPI MALANG'}</strong>
+                </div>
+              </div>
+            `;
+          }
+        }
+        refreshIcons();
+      };
+
+      renderPaymentDetails();
+
+      // Render cart items & totals
+      const renderCart = () => {
+        const list = document.getElementById('checkoutItemsList');
+        const subtotalEl = document.getElementById('pageSubtotal');
+        const shippingEl = document.getElementById('pageShipping');
+        const grandTotalEl = document.getElementById('pageGrandTotal');
+        const discountRow = document.getElementById('pageDiscountRow');
+        const discountEl = document.getElementById('pageDiscount');
+
+        if (cart.length === 0) {
+          if (list) {
+            list.innerHTML = `
+              <div class="empty-state" style="padding:24px 10px; text-align:center;">
+                <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:12px;">Keranjang pesanan Anda kosong.</p>
+                <a href="index.html" class="btn-primary" style="display:inline-flex; font-size:0.82rem; padding:8px 16px;">
+                  <span>Belanja Sekarang</span>
+                  <i data-lucide="arrow-right" size="14"></i>
+                </a>
+              </div>
+            `;
+          }
+          if (subtotalEl) subtotalEl.textContent = 'Rp. 0';
+          if (shippingEl) shippingEl.textContent = 'Rp. 0';
+          if (grandTotalEl) grandTotalEl.textContent = 'Rp. 0';
+          if (discountRow) discountRow.style.display = 'none';
+          refreshIcons();
+          return;
+        }
+
+        // Render summary items
+        if (list) {
+          list.innerHTML = cart.map((item, idx) => {
+            return `
+              <div class="summary-item-card">
+                <img src="${item.image}" alt="${item.name}" class="summary-item-img" onerror="this.src='images/banner_coffee.jpg'">
+                <div class="summary-item-details">
+                  <div class="summary-item-title-row">
+                    <span class="summary-item-name">${item.name}</span>
+                    <span class="summary-item-price">${formatRupiah(item.price)}</span>
+                  </div>
+                  <div class="summary-item-weight">${item.variant || 'Standar'}${item.weight && !String(item.variant || '').toLowerCase().includes(item.weight + 'g') && !String(item.variant || '').toLowerCase().includes(item.weight + ' g') ? ` · ${item.weight} g` : ''}</div>
+                  <div class="summary-item-qty-row" style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+                    <span>${item.quantity} × ${formatRupiah(item.price)}</span>
+                    <div style="display:flex; align-items:center; gap:6px;">
+                      <button type="button" onclick="window.changeQty(${idx}, -1)" style="width:20px; height:20px; padding:0; font-size:12px; border-radius:4px; border:1px solid var(--border-subtle); background:var(--bg-secondary); color:var(--text-primary); cursor:pointer;">-</button>
+                      <span style="font-weight:700; font-size:0.8rem; min-width:14px; text-align:center;">${item.quantity}</span>
+                      <button type="button" onclick="window.changeQty(${idx}, 1)" style="width:20px; height:20px; padding:0; font-size:12px; border-radius:4px; border:1px solid var(--border-subtle); background:var(--bg-secondary); color:var(--text-primary); cursor:pointer;">+</button>
+                      <button type="button" onclick="window.removeItem(${idx})" title="Hapus produk" style="background:none; border:none; color:var(--text-muted); cursor:pointer; padding:2px; margin-left:4px;">
+                        <i data-lucide="trash-2" size="14"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        const totals = calculateTotals();
+        if (subtotalEl) subtotalEl.textContent = formatRupiah(totals.subtotal);
+        if (shippingEl) shippingEl.textContent = formatRupiah(totals.deliveryFee);
+
+        if (totals.voucherDiscount > 0) {
+          if (discountRow) discountRow.style.display = 'flex';
+          if (discountEl) discountEl.textContent = `- ${formatRupiah(totals.voucherDiscount)}`;
+        } else {
+          if (discountRow) discountRow.style.display = 'none';
+        }
+
+        if (grandTotalEl) grandTotalEl.textContent = formatRupiah(totals.grandTotal);
+
+        refreshIcons();
+      };
+
+      window.changeQty = (idx, delta) => {
+        if (!cart[idx]) return;
+        const newQty = cart[idx].quantity + delta;
+        if (newQty <= 0) {
+          window.removeItem(idx);
+          return;
+        }
+        if (newQty > (cart[idx].maxStock || 99)) {
+          showToast(`Stok maksimal adalah ${cart[idx].maxStock || 99} pcs`, 'danger');
+          return;
+        }
+        cart[idx].quantity = newQty;
+        localStorage.setItem('nexus_cart', JSON.stringify(cart));
+        fetchShippingRates();
+      };
+
+      window.removeItem = (idx) => {
+        cart.splice(idx, 1);
+        localStorage.setItem('nexus_cart', JSON.stringify(cart));
+        fetchShippingRates();
+      };
+
+      // Vouchers
+      document.getElementById('btnApplyPageVoucher')?.addEventListener('click', () => {
+        const code = document.getElementById('pageVoucherInput')?.value.trim().toUpperCase();
+        const matched = DEFAULT_VOUCHERS.find(v => v.code === code);
+        if (!matched) {
+          showToast('Kode voucher tidak valid!', 'danger');
+          return;
+        }
+        const totals = calculateTotals();
+        if (totals.subtotal < matched.minPurchase) {
+          showToast(`Minimal belanja untuk voucher ini adalah ${formatRupiah(matched.minPurchase)}!`, 'danger');
+          return;
+        }
+        appliedVoucher = matched;
+        const badge = document.getElementById('pageVoucherBadge');
+        if (badge) {
+          badge.innerHTML = `
+            <div class="applied-voucher-badge" style="margin-top:6px; display:inline-flex; align-items:center; gap:4px; font-size:0.75rem; background:rgba(16,185,129,0.1); color:#059669; padding:3px 8px; border-radius:4px; font-weight:700;">
+              <i data-lucide="check" size="14"></i>
+              <span>Voucher <strong>${code}</strong> Aktif (${matched.label})</span>
+            </div>
+          `;
+        }
+        renderCart();
+        showToast('✓ Voucher berhasil diterapkan!', 'success');
+      });
+
+      // Submit Order logic (Pickup or Shipping)
+      const submitOrder = (isWhatsAppDirect = false) => {
+        if (cart.length === 0) {
+          showToast('Keranjang Anda kosong! Silakan pilih produk terlebih dahulu.', 'danger');
+          return;
+        }
+
+
+        let customerData = {};
+        if (deliveryMethod === 'pickup') {
+          const name = document.getElementById('pickupCustName')?.value.trim();
+          const countryCode = document.getElementById('pickupCountryCode')?.value || '+62';
+          const rawPhone = document.getElementById('pickupCustPhone')?.value.trim();
+          if (!name) {
+            document.getElementById('pickupCustName')?.focus();
+            showToast('Harap isi Nama untuk Pickup!', 'danger');
+            return;
+          }
+          if (!rawPhone) {
+            document.getElementById('pickupCustPhone')?.focus();
+            showToast('Harap isi Nomor Telepon Pickup!', 'danger');
+            return;
+          }
+          customerData = {
+            name,
+            phone: `${countryCode} ${rawPhone}`,
+            deliveryType: pickupConfig.title || 'Ambil di Toko / Roastery',
+            roasteryAddress: pickupConfig.address || 'Jl. Jombang No. 16, Malang 65116',
+            pickupMapsUrl: pickupConfig.mapsUrl || 'https://maps.google.com/?q=Jl.+Jombang+No.+16,+Malang+65116',
+            pickupHours: pickupConfig.operationalHours || 'Setiap hari 08:00 – 21:00 WIB'
+          };
+        } else {
+          const name = document.getElementById('shipCustName')?.value.trim();
+          const phone = document.getElementById('shipCustPhone')?.value.trim();
+          const province = document.getElementById('shipProvince')?.value || 'Jawa Timur';
+          const city = document.getElementById('shipCustCity')?.value.trim();
+          const district = document.getElementById('shipDistrict')?.value || '';
+          const postalCode = document.getElementById('shipPostalCode')?.value.trim() || '';
+          const address = document.getElementById('shipCustAddress')?.value.trim();
+          const courier = document.getElementById('shipCustCourier')?.value
+            || (selectedCourierRate ? `${selectedCourierRate.courier_name} - ${selectedCourierRate.service_code} (${selectedCourierRate.etd})` : 'JNE Express - REG');
+          if (!name) {
+            document.getElementById('shipCustName')?.focus();
+            showToast('Harap isi Nama Lengkap Penerima!', 'danger');
+            return;
+          }
+          if (!phone) {
+            document.getElementById('shipCustPhone')?.focus();
+            showToast('Harap isi Nomor WhatsApp Aktif!', 'danger');
+            return;
+          }
+          if (!address) {
+            document.getElementById('shipCustAddress')?.focus();
+            showToast('Harap isi Alamat Lengkap Pengiriman!', 'danger');
+            return;
+          }
+          if (!city) {
+            document.getElementById('shipCustCity')?.focus();
+            showToast('Harap pilih Kota / Kabupaten!', 'danger');
+            return;
+          }
+          customerData = {
+            name,
+            phone,
+            deliveryType: 'Kirim ke Alamat Saya',
+            province,
+            city,
+            district,
+            postalCode,
+            address: `${address}, Kec. ${district}, ${city}, ${province} ${postalCode}`.replace(/,\s*,/g, ','),
+            courier,
+            courierCode: selectedCourierRate?.courier_code || 'jne',
+            courierService: selectedCourierRate?.service_code || 'REG',
+            courierEtd: selectedCourierRate?.etd || '1 - 3 Hari',
+            totalWeightGrams: getCartTotalWeightGrams()
+          };
+        }
+
+        const note = document.getElementById('orderCustNote')?.value.trim() || '-';
+        customerData.note = note;
+
+        const totals = calculateTotals();
+        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+        const dateStr = new Date().toLocaleString('id-ID', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+        const payObj = getSelectedPaymentObj();
+        const orderTime = new Date();
+        const createdAt = orderTime.toISOString();
+        const expiresAt = new Date(orderTime.getTime() + 24 * 60 * 60 * 1000).toISOString();
+
+        const orderObj = {
+          id: orderId,
+          date: dateStr,
+          createdAt,
+          expiresAt,
+          customer: customerData,
+          items: [...cart],
+          deliveryMethod,
+          selectedPaymentMethod: payObj.code,
+          paymentDetails: payObj,
+          voucher: appliedVoucher ? appliedVoucher.code : null,
+          subtotal: totals.subtotal,
+          deliveryFee: totals.deliveryFee,
+          voucherDiscount: totals.voucherDiscount,
+          grandTotal: totals.grandTotal,
+          paymentMethod: payObj.title || payObj.tabLabel || 'QRIS Toko',
+          status: 'Menunggu Pembayaran'
+        };
+
+        orders.unshift(orderObj);
+        localStorage.setItem('nexus_orders', JSON.stringify(orders));
+        localStorage.setItem('nexus_last_order_id', orderId);
+
+        // Format items string for WhatsApp
+        const itemsText = orderObj.items.map((it, i) =>
+          `${i+1}. *${it.name}* (${it.variant || '100g'})\n   Qty: ${it.quantity} × ${formatRupiah(it.price)} = ${formatRupiah(it.price * it.quantity)}`
+        ).join('\n\n');
+
+        const deliveryInfoText = deliveryMethod === 'pickup' 
+          ? `📍 *METODE PENGAMBILAN: ${(pickupConfig.title || 'AMBIL DI TOKO / ROASTERY').toUpperCase()}*\n• Lokasi Toko: ${pickupConfig.address || 'Jl. Jombang No. 16, Malang 65116'}\n• Jam Operasional: ${pickupConfig.operationalHours || 'Setiap hari 08:00 – 21:00 WIB'}\n• Nama Pengambil: ${customerData.name}\n• No. Telepon: ${customerData.phone}`
+          : `🚚 *METODE PENGIRIMAN: KURIR EKSPEDISI*\n• Nama Penerima: ${customerData.name}\n• No. WhatsApp: ${customerData.phone}\n• Alamat: ${customerData.address}\n• Ekspedisi: ${customerData.courier}`;
+
+        const paymentInfoText = payObj.type === 'qris'
+          ? `💳 *METODE BAYAR: ${(payObj.title || 'QRIS TOKO').toUpperCase()}*\n• NMID: ${payObj.nmid || 'ID1024334436911'} a/n ${payObj.accountHolder || 'ALAT KOPI MALANG.'}`
+          : `💳 *METODE BAYAR: ${(payObj.title || payObj.tabLabel || 'TRANSFER BANK').toUpperCase()}*\n• No. Rekening: ${payObj.accountNumber || '-'} a/n ${payObj.accountHolder || 'ALAT KOPI MALANG'}`;
+
+        const waText = 
+`Halo Admin ${settings.storeName}, saya telah membuat pesanan checkout:
+
+━━━━━━━━━━━━━━━━━━━
+🛒 *PESANAN BARU (#${orderId})*
+━━━━━━━━━━━━━━━━━━━
+📅 Tanggal: ${dateStr}
+
+${deliveryInfoText}
+• Catatan Khusus: ${customerData.note}
+
+📦 *DAFTAR ITEM:*
+${itemsText}
+
+━━━━━━━━━━━━━━━━━━━
+• Subtotal: ${formatRupiah(orderObj.subtotal)}
+• ${deliveryMethod === 'pickup' ? 'Biaya Pengambilan' : 'Ongkos Kirim'}: ${formatRupiah(orderObj.deliveryFee)}
+${orderObj.voucherDiscount > 0 ? `• Diskon Voucher: -${formatRupiah(orderObj.voucherDiscount)}\n` : ''}💰 *TOTAL BAYAR: ${formatRupiah(orderObj.grandTotal)}*
+
+${paymentInfoText}
+━━━━━━━━━━━━━━━━━━━
+
+Mohon instruksi dan verifikasi pembayarannya ya min. Terima kasih! 🙏`;
+
+        const waUrl = `https://api.whatsapp.com/send?phone=${settings.whatsappNumber || '6282132095241'}&text=${encodeURIComponent(waText)}`;
+
+        // Deduct product stock
+        cart.forEach(ci => {
+          const p = products.find(x => x.id === ci.id);
+          if (p) p.stock = Math.max(0, p.stock - ci.quantity);
+        });
+        localStorage.setItem('nexus_products', JSON.stringify(products));
+
+        // Clear cart
+        cart = [];
+        localStorage.setItem('nexus_cart', JSON.stringify(cart));
+
+        // If WhatsApp direct, open WhatsApp chat
+        if (isWhatsAppDirect) {
+          window.open(waUrl, '_blank');
+        }
+
+        // Redirect to Checkout Finish page
+        window.location.href = `checkout-finish.html?orderId=${orderId}`;
+      };
+
+      // Button listeners
+      document.getElementById('btnPlaceOrder')?.addEventListener('click', () => submitOrder(false));
+      document.getElementById('btnPageCheckoutWA')?.addEventListener('click', () => submitOrder(true));
+      document.getElementById('btnPrintCheckoutReceipt')?.addEventListener('click', () => window.print());
+      document.getElementById('btnCloseCheckoutReceipt')?.addEventListener('click', () => {
+        document.getElementById('checkoutReceiptOverlay')?.classList.remove('open');
+      });
+
+      // Header Back Button with history fallback
+      document.getElementById('btnCheckoutHeaderBack')?.addEventListener('click', (e) => {
+        if (window.history.length > 1) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+
+      // Auto-fill customer form if logged in
+      const currentUser = JSON.parse(localStorage.getItem('nexus_current_user') || 'null');
+      if (currentUser) {
+        if (currentUser.name) {
+          const pName = document.getElementById('pickupCustName');
+          const sName = document.getElementById('shipCustName');
+          if (pName && !pName.value) pName.value = currentUser.name;
+          if (sName) sName.value = currentUser.name;
+        }
+        if (currentUser.phone) {
+          const pPhone = document.getElementById('pickupCustPhone');
+          const sPhone = document.getElementById('shipCustPhone');
+          if (pPhone && !pPhone.value) pPhone.value = currentUser.phone;
+          if (sPhone) sPhone.value = currentUser.phone;
+        }
+        if (currentUser.address) {
+          const sAddr = document.getElementById('shipCustAddress');
+          if (sAddr) sAddr.value = currentUser.address;
+        }
+        if (currentUser.city) {
+          const sCity = document.getElementById('shipCustCity');
+          if (sCity) sCity.value = currentUser.city;
+        }
+      }
+
+      // Initialize Wilayah Selectors & Automatic Shipping Calculation
+      initShippingWilayahSelectors();
+
+      // Initialize default delivery method based on Admin Pickup config (also calls renderCart)
+      setDeliveryMethod((pickupConfig.enabled !== false && pickupConfig.isDefaultMethod !== false) ? 'pickup' : 'ship');
+    });
+  </script>
+</body>
+</html>

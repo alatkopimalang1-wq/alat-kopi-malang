@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Kumpulan Brand Resmi Alat Kopi Malang. Pilih brand untuk melihat katalog produk.">
+  <title>Koleksi Brand - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons (Local Bundle) -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=42">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Koleksi Brand & Partner Resmi Terpercaya</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+        <div style="line-height:1.2;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary); background:rgba(79,70,229,0.1); padding:3px 8px; border-radius:6px; border:1px solid rgba(79,70,229,0.2);">Koleksi Brand</span>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container" style="min-height:75vh; padding-top:16px;">
+
+    <!-- Page Header Title -->
+    <div class="brands-clean-header-section">
+      <h1 class="brands-clean-title">Semua Brand</h1>
+      <p class="brands-clean-desc">Klik logo brand untuk melihat produk</p>
+    </div>
+
+    <!-- Brands Grid (Only Logo & Brand Name) -->
+    <div class="brands-clean-grid" id="brandsGridContainer">
+      <!-- Dynamically rendered by JavaScript -->
+    </div>
+
+  </main>
+
+
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item" id="navHome" title="Beranda Toko">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
+      <span>Beranda</span>
+    </a>
+    <a href="brands.html" class="bottom-nav-item active" id="navBrands" title="Koleksi Brand">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="award" size="20"></i></div>
+      <span>Brand</span>
+    </a>
+    <a href="shop.html" class="bottom-nav-item" id="navShop" title="Katalog Belanja">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="shopping-bag" size="20"></i></div>
+      <span>Belanja</span>
+    </a>
+    <a href="reels.html" class="bottom-nav-item" id="navReels" title="Video Reels & Review">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="film" size="20"></i></div>
+      <span>Reels</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
+      <span>Akun</span>
+    </a>
+  </nav>
+
+  <!-- Cart Drawer Overlay -->
+  <div class="modal-overlay" id="cartOverlay">
+    <aside class="drawer-box" id="cartDrawer">
+      <div class="modal-header">
+        <h3><i data-lucide="shopping-bag" size="20"></i> Keranjang Belanja</h3>
+        <button class="btn-close-modal" id="btnCloseCart"><i data-lucide="x" size="18"></i></button>
+      </div>
+      <div class="modal-body" id="cartBody">
+        <div class="cart-items-list" id="cartItemsContainer"></div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=42"></script>
+  <script src="js/app.js?v=42"></script>
+
+  <!-- Brands Page Rendering Logic: Only Logo & Brand Name -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('brandsGridContainer');
+      if (!container) return;
+
+      container.innerHTML = DEFAULT_BRANDS.map(b => {
+        const targetUrl = `shop.html?brand=${encodeURIComponent(b.name)}`;
+
+        const isAkm = (b.name || '').toLowerCase().includes('alat kopi malang');
+        const logoSrc = (typeof b.logo === 'string' && b.logo.trim().length > 1)
+          ? b.logo.trim()
+          : ((b.logo === true || isAkm) ? 'images/logo.png?v=9' : '');
+        const logoContent = logoSrc
+          ? `<img src="${logoSrc}" alt="${b.name}" class="store-logo-img" style="width:100%; height:100%; object-fit:contain; padding:4px;">`
+          : `<span class="brand-clean-monogram">${b.monogram}</span>`;
+
+        return `
+          <a href="${targetUrl}" class="brand-clean-card" style="--brand-color:${b.color}; --brand-bg:${b.bg};" title="Lihat produk ${b.name}">
+            <div class="brand-clean-avatar">
+              ${logoContent}
+            </div>
+            <span class="brand-clean-name">${b.name}</span>
+          </a>
+        `;
+      }).join('');
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

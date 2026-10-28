@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Jurnal & Ruang Kopi - Alat Kopi Malang. Eksplorasi slow bar, showroom mesin espresso, laboratorium roastery, dan sensory cupping.">
+  <title id="pageTitle">Artikel & Ruang Kopi - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=58">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Jurnal & Ruang Pengalaman Kopi Terlengkap</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="articles.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Kumpulan Artikel" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+        <div class="hide-mobile" style="line-height:1.2;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary); background:rgba(79,70,229,0.1); padding:3px 8px; border-radius:6px; border:1px solid rgba(79,70,229,0.2);">Jurnal & Ruang Kopi</span>
+        </div>
+      </div>
+
+      <!-- Header Search Input -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i data-lucide="search" size="18" class="search-icon-left"></i>
+          <input type="text" id="desktopSearchInput" placeholder="Cari mesin espresso, dripper, grinder..." autocomplete="off">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" style="display:none;" aria-label="Hapus Pencarian">
+            <i data-lucide="x" size="14"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Content Container -->
+  <main class="article-page-wrap" id="articleMainContainer">
+    <!-- Article Hero Header -->
+    <header class="article-header-hero" id="articleHeroHeader">
+
+      <h1 class="article-main-title" id="artTitle">Judul Artikel</h1>
+      <p class="article-main-tagline" id="artTagline">Tagline artikel singkat penjelas pengalaman ruang kopi.</p>
+
+    </header>
+
+    <!-- Featured Cover Photo -->
+    <div class="article-featured-image-box" id="artFeaturedBox">
+      <img src="images/article_slowbar.jpg" alt="Featured Cover Image" class="article-featured-image" id="artFeaturedImg">
+    </div>
+
+    <!-- Main Grid: Content Column & Sidebar Column -->
+    <div class="article-main-grid">
+      <!-- Left Column: Rich Prose, Highlights, Equipment & CTA -->
+      <article class="article-content-column">
+        <!-- Main Prose Body -->
+        <div class="article-prose" id="artProseContent">
+          <!-- Populated dynamically -->
+        </div>
+
+
+        <!-- Call to Action Banner Box -->
+        <div class="article-cta-box" id="artCtaBox">
+          <h3 class="article-cta-title">Tertarik Berkunjung atau Mencoba Langsung?</h3>
+          <p class="article-cta-desc">Ruang pengalaman kopi kami terbuka untuk umum, home barista, dan pelaku usaha kedai kopi. Hubungi tim kami untuk reservasi sesi atau sekadar berdiskusi seputar gear kopi.</p>
+          <div class="article-cta-actions">
+            <a href="#" id="btnCtaWa" target="_blank" rel="noopener noreferrer" class="btn-cta-wa">
+              <i data-lucide="message-circle" size="18"></i>
+              <span>Hubungi via WhatsApp</span>
+            </a>
+            <a href="https://maps.google.com/?q=Alat+Kopi+Malang" target="_blank" rel="noopener noreferrer" class="btn-cta-maps">
+              <i data-lucide="map-pin" size="18"></i>
+              <span>Buka di Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Right Column: Sidebar Widgets -->
+      <aside class="article-sidebar-col">
+        <!-- Widget 1: Info Kunjungan & Jam Operasional -->
+        <div class="sidebar-widget">
+          <h4 class="sidebar-widget-title">
+            <i data-lucide="info" size="18" style="color:var(--primary);"></i>
+            <span>Info Lokasi & Waktu</span>
+          </h4>
+
+          <div class="sidebar-info-row">
+            <i data-lucide="clock" size="16" class="sidebar-info-icon"></i>
+            <div class="sidebar-info-text">
+              <span class="sidebar-info-label">Jam Operasional</span>
+              <span class="sidebar-info-val" id="sidebarHours">09.00 - 23.00 WIB</span>
+            </div>
+          </div>
+
+          <div class="sidebar-info-row">
+            <i data-lucide="map-pin" size="16" class="sidebar-info-icon"></i>
+            <div class="sidebar-info-text">
+              <span class="sidebar-info-label">Alamat Lengkap</span>
+              <span class="sidebar-info-val" id="sidebarAddress">Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang</span>
+            </div>
+          </div>
+
+          <div class="sidebar-info-row">
+            <i data-lucide="ticket" size="16" class="sidebar-info-icon"></i>
+            <div class="sidebar-info-text">
+              <span class="sidebar-info-label">Akses Masuk</span>
+              <span class="sidebar-info-val">Terbuka Untuk Umum (Free Entry)</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Widget 2: Artikel & Ruang Lainnya -->
+        <div class="sidebar-widget">
+          <h4 class="sidebar-widget-title">
+            <i data-lucide="compass" size="18" style="color:var(--primary);"></i>
+            <span>Eksplorasi Ruang Lainnya</span>
+          </h4>
+          <div class="sidebar-articles-list" id="sidebarOtherArticles">
+            <!-- Populated dynamically -->
+          </div>
+          <a href="articles.html" style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:700; color:var(--primary); margin-top:14px; text-decoration:none;">
+            <span>Lihat Semua Artikel & Ruang</span>
+            <i data-lucide="arrow-right" size="14"></i>
+          </a>
+        </div>
+      </aside>
+    </div>
+
+
+  </main>
+
+
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item" id="navHome">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
+      <span>Beranda</span>
+    </a>
+    <a href="shop.html" class="bottom-nav-item" id="navCategory">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="layout-grid" size="20"></i></div>
+      <span>Katalog</span>
+    </a>
+    <a href="account.html?tab=wishlist" class="bottom-nav-item" id="navWishlist">
+      <div class="bottom-nav-icon-wrap">
+        <i data-lucide="heart" size="20"></i>
+        <span class="badge-count" id="mobileWishlistBadge">0</span>
+      </div>
+      <span>Favorit</span>
+    </a>
+    <a href="checkout.html" class="bottom-nav-item" id="navCart">
+      <div class="bottom-nav-icon-wrap">
+        <i data-lucide="shopping-bag" size="20"></i>
+        <span class="badge-count" id="mobileCartBadge">0</span>
+      </div>
+      <span>Keranjang</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item" id="navAccount">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
+      <span>Akun</span>
+    </a>
+  </nav>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=49"></script>
+  <script src="js/app.js?v=49"></script>
+
+  <!-- Dedicated Article Page Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const articles = (typeof DEFAULT_ARTICLES !== 'undefined' && Array.isArray(DEFAULT_ARTICLES)) ? DEFAULT_ARTICLES : [];
+      if (!articles || articles.length === 0) return;
+
+      // Extract ?id= or ?slug= from URL
+      const params = new URLSearchParams(window.location.search);
+      const queryId = params.get('id');
+      const querySlug = params.get('slug');
+
+      let currentArticleIndex = 0;
+      if (queryId) {
+        const found = articles.findIndex(a => a.id === queryId);
+        if (found !== -1) currentArticleIndex = found;
+      } else if (querySlug) {
+        const found = articles.findIndex(a => a.slug === querySlug);
+        if (found !== -1) currentArticleIndex = found;
+      }
+
+      const art = articles[currentArticleIndex] || articles[0];
+
+      // Update Page Title and Meta Description
+      document.title = `${art.title} - Alat Kopi Malang`;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', art.excerpt || art.tagline);
+
+
+      const titleEl = document.getElementById('artTitle');
+      if (titleEl) titleEl.textContent = art.title;
+
+      const taglineEl = document.getElementById('artTagline');
+      if (taglineEl) taglineEl.textContent = art.tagline || art.excerpt;
+
+
+      // Featured Cover Image
+      const featImg = document.getElementById('artFeaturedImg');
+      if (featImg) {
+        featImg.src = art.image;
+        featImg.alt = art.title;
+      }
+
+
+
+      // Prose Body Content
+      const proseEl = document.getElementById('artProseContent');
+      if (proseEl) {
+        proseEl.innerHTML = art.content || `<p class="article-lead">${art.excerpt}</p>`;
+      }
+
+
+      // WhatsApp CTA
+      const waMsg = encodeURIComponent(art.whatsappText || `Halo Alat Kopi Malang, saya tertarik dengan artikel: ${art.title}`);
+      const btnCtaWa = document.getElementById('btnCtaWa');
+      if (btnCtaWa) {
+        btnCtaWa.href = `https://wa.me/6282132095241?text=${waMsg}`;
+      }
+
+      // Sidebar Info
+      const sHours = document.getElementById('sidebarHours');
+      if (sHours) sHours.textContent = art.hours || art.badgeInfo || '09.00 - 23.00 WIB';
+
+      const sAddr = document.getElementById('sidebarAddress');
+      if (sAddr) sAddr.textContent = art.address || 'Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang';
+
+
+
+      // Sidebar Other Articles
+      const otherList = document.getElementById('sidebarOtherArticles');
+      if (otherList) {
+        const others = articles.filter((_, idx) => idx !== currentArticleIndex);
+        otherList.innerHTML = others.map(o => `
+          <a href="article.html?id=${o.id}" class="sidebar-article-item" title="${o.title}">
+            <div class="sidebar-art-thumb">
+              <img src="${o.image}" alt="${o.title}" loading="lazy">
+            </div>
+            <div class="sidebar-art-info">
+              <div class="sidebar-art-cat">${o.category}</div>
+              <div class="sidebar-art-title">${o.title}</div>
+            </div>
+          </a>
+        `).join('');
+      }
+
+
+
+
+      // Reinitialize Lucide Icons
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>

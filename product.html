@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Detail Produk - Alat Kopi Malang. Belanja perlengkapan seduh dan alat kopi pilihan terlengkap, aman, dan cepat langsung via WhatsApp & Website.">
+  <title id="pageTitle">Detail Produk - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=18">
+  <style>
+    /* Critical layout guarantee: Mobile Search Bar beside Logo */
+    .header-search {
+      display: block !important;
+      flex: 1 !important;
+      min-width: 0 !important;
+    }
+    @media (max-width: 768px) {
+      .site-header .header-inner {
+        height: 56px !important;
+        gap: 8px !important;
+        padding: 0 10px !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+      .site-header .header-left-group {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+      }
+      .site-header .store-logo-horizontal {
+        height: 32px !important;
+        max-width: 125px !important;
+        width: auto !important;
+      }
+      .site-header .category-dropdown-btn {
+        display: none !important;
+      }
+      .site-header .header-search {
+        display: block !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+      }
+      .site-header .search-input-wrapper {
+        display: flex !important;
+        align-items: center !important;
+        position: relative !important;
+        width: 100% !important;
+      }
+      .site-header .search-input-wrapper input {
+        height: 38px !important;
+        padding: 0 32px 0 34px !important;
+        font-size: 0.84rem !important;
+        border-radius: 9999px !important;
+        background: var(--bg-secondary) !important;
+        border: 1px solid var(--border-subtle) !important;
+        color: var(--text-primary) !important;
+        width: 100% !important;
+        display: block !important;
+      }
+      .site-header .search-icon-left {
+        position: absolute !important;
+        left: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        align-items: center !important;
+        color: var(--text-muted) !important;
+        pointer-events: none !important;
+      }
+      .site-header .search-clear-btn {
+        position: absolute !important;
+        right: 8px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
+      .site-header .header-actions {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 2px !important;
+      }
+      .site-header .btn-icon {
+        width: 36px !important;
+        height: 36px !important;
+        background: transparent !important;
+        border: none !important;
+      }
+
+      /* Mobile Category Bottom Sheet */
+      .category-mobile-backdrop {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.65) !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        z-index: 99998 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transition: opacity 0.28s ease !important;
+      }
+      .category-mobile-backdrop.open {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+      .category-dropdown-menu {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 22px 22px 0 0 !important;
+        box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.45) !important;
+        background: var(--bg-surface) !important;
+        border: 1px solid var(--border-subtle) !important;
+        border-bottom: none !important;
+        z-index: 99999 !important;
+        padding: 0 0 max(28px, env(safe-area-inset-bottom)) 0 !important;
+        transform: translateY(100%) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+        display: block !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      .category-dropdown-menu.open,
+      .category-dropdown-wrap.open .category-dropdown-menu {
+        transform: translateY(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+      .sheet-drag-handle {
+        width: 44px;
+        height: 5px;
+        border-radius: 9999px;
+        background: var(--text-muted);
+        opacity: 0.35;
+        margin: 8px auto 6px auto;
+      }
+      .category-sheet-header {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 10px 18px 12px 18px !important;
+        border-bottom: 1px solid var(--border-subtle) !important;
+      }
+      .category-sheet-header .sheet-title {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        color: var(--text-primary) !important;
+      }
+      .btn-close-cat-sheet {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        background: var(--bg-secondary) !important;
+        color: var(--text-secondary) !important;
+        border: none !important;
+        display: grid !important;
+        place-items: center !important;
+        cursor: pointer !important;
+      }
+      .category-dropdown-menu .cat-drop-item {
+        padding: 14px 20px !important;
+        font-size: 0.94rem !important;
+        font-weight: 600 !important;
+        border-bottom: 1px solid var(--border-subtle) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        color: var(--text-primary) !important;
+      }
+      .category-dropdown-menu .cat-drop-item:active {
+        background: var(--bg-secondary) !important;
+      }
+    }
+    .product-page-container {
+      max-width: 1000px;
+      margin: 20px auto 60px auto;
+      padding: 0 16px;
+    }
+    .product-main-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    @media (max-width: 640px) {
+      .product-main-card {
+        padding: 14px;
+      }
+    }
+    @media (min-width: 768px) {
+      .sticky-bottom-action-bar {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Belanja Alat Kopi Gak Perlu Ribet, Hanya Dalam Sekali Klik !</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-left-group" style="display:flex; align-items:center; gap:8px;">
+        <a href="index.html" class="btn-back-header" id="btnProductHeaderBack" title="Kembali ke Beranda">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+
+        <!-- Category Dropdown Trigger & Panel -->
+        <div class="category-dropdown-wrap" id="categoryDropdownWrap">
+          <button type="button" class="category-dropdown-btn" id="btnCategoryDropdown" aria-expanded="false" aria-controls="categoryDropdownMenu" title="Kategori Produk">
+            <span class="btn-cat-left">
+              <i data-lucide="layout-grid" size="18"></i>
+              <span>Kategori</span>
+            </span>
+          </button>
+
+          <!-- Dropdown Menu List -->
+          <div class="category-dropdown-menu" id="categoryDropdownMenu">
+            <div class="category-sheet-header hide-desktop">
+              <div class="sheet-drag-handle"></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                <div class="sheet-title">
+                  <i data-lucide="layout-grid" size="18"></i>
+                  <span>Kategori Produk</span>
+                </div>
+                <button type="button" class="btn-close-cat-sheet" id="btnCloseCatSheet" aria-label="Tutup Menu">
+                  <i data-lucide="x" size="18"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Item: Semua Kategori -->
+            <a href="shop.html?category=ALL" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="layout-grid" size="16"></i>
+                <span>Semua Kategori</span>
+              </span>
+              <span class="cat-badge-mini">11 Item</span>
+            </a>
+
+            <!-- Item: Mesin Espresso -->
+            <a href="shop.html?category=Mesin%20Espresso" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="coffee" size="16"></i>
+                <span>Mesin Espresso</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Manual Grinder -->
+            <a href="shop.html?category=Manual%20Grinder" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="rotate-cw" size="16"></i>
+                <span>Manual Grinder</span>
+              </span>
+              <span class="cat-badge-mini">2 Item</span>
+            </a>
+
+            <!-- Item: Grinder Listrik -->
+            <a href="shop.html?category=Grinder%20Listrik" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="zap" size="16"></i>
+                <span>Grinder Listrik</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Manual Brew -->
+            <a href="shop.html?category=Manual%20Brew" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="filter" size="16"></i>
+                <span>Manual Brew</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Gadget & Elektronik -->
+            <a href="shop.html?category=Gadget%20%26%20Elektronik" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="smartphone" size="16"></i>
+                <span>Gadget & Elektronik</span>
+              </span>
+              <span class="cat-badge-mini">3 Item</span>
+            </a>
+
+            <!-- Item: Fashion & Sepatu -->
+            <a href="shop.html?category=Fashion%20%26%20Sepatu" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="shirt" size="16"></i>
+                <span>Fashion & Sepatu</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Aksesoris & Tas -->
+            <a href="shop.html?category=Aksesoris%20%26%20Tas" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="briefcase" size="16"></i>
+                <span>Aksesoris & Tas</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Lifestyle & Rumah -->
+            <a href="shop.html?category=Lifestyle%20%26%20Rumah" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="sparkles" size="16"></i>
+                <span>Lifestyle & Rumah</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Produk Terlaris -->
+            <a href="shop.html?filter=featured" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="flame" size="16" style="color:#ef4444;"></i>
+                <span>Produk Terlaris & Trending</span>
+              </span>
+              <span class="cat-badge-hot">HOT</span>
+            </a>
+
+            <!-- Item: Promo & Diskon Spesial -->
+            <a href="flashsale.html" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="badge-percent" size="16" style="color:#f59e0b;"></i>
+                <span>Promo & Diskon Spesial</span>
+              </span>
+              <span class="cat-badge-sale">SALE</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Input (Links to catalog search on shop.html) -->
+      <div class="header-search">
+        <form action="shop.html" method="GET" class="search-input-wrapper">
+          <span class="search-icon-left"><i data-lucide="search" size="18"></i></span>
+          <input type="text" name="search" id="desktopSearchInput" placeholder="Cari Produk Alat Kopi...">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" title="Hapus pencarian">
+            <i data-lucide="x" size="16"></i>
+          </button>
+        </form>
+      </div>
+
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button (Desktop only) -->
+        <a href="account.html" class="btn-icon hide-mobile" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Backdrop for mobile sheet -->
+    <div class="category-mobile-backdrop" id="categoryMobileBackdrop"></div>
+  </header>
+
+  <main class="product-page-container">
+    <div class="product-main-card" id="productCardContainer">
+      <div style="text-align:center; padding:50px 0; color:var(--text-muted);">
+        <i data-lucide="loader" class="animate-spin" size="36"></i>
+        <p style="margin-top:12px;">Sedang memuat data produk...</p>
+      </div>
+    </div>
+
+    <!-- Related Products Section -->
+    <div style="margin-top:36px;">
+      <h3 style="font-family:var(--font-heading); font-size:1.15rem; font-weight:800; margin-bottom:14px;">
+        Rekomendasi Produk Lainnya
+      </h3>
+      <div class="products-grid" id="relatedProductsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+
+
+  <!-- Sticky Mobile Bottom Action Bar (WA Icon + Keranjang + Checkout) -->
+  <div class="sticky-bottom-action-bar" id="mobileActionBar">
+    <button type="button" class="btn-wa-icon-only" id="btnMobileBuyWA" title="Pesan Langsung via WhatsApp" aria-label="Order via WhatsApp">
+      <i data-lucide="message-circle" size="20"></i>
+    </button>
+    <button type="button" class="btn-add-to-cart" id="btnMobileAddToCart">
+      <i data-lucide="shopping-bag" size="16"></i>
+      <span>+ Keranjang</span>
+    </button>
+    <button type="button" class="btn-primary" id="btnMobileBuyNow">
+      <i data-lucide="credit-card" size="16"></i>
+      <span>Checkout</span>
+    </button>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load state from localStorage or default
+      const products = (() => {
+        const stored = localStorage.getItem('nexus_products');
+        if (!stored) return DEFAULT_PRODUCTS;
+        if (localStorage.getItem('nexus_admin_products_saved') === 'true') {
+          try { return JSON.parse(stored); } catch (_) { return DEFAULT_PRODUCTS; }
+        }
+        try {
+          const parsed = JSON.parse(stored);
+          const existingIds = new Set(parsed.map(p => p.id));
+          const newDefaults = DEFAULT_PRODUCTS.filter(d => !existingIds.has(d.id));
+          const mapped = parsed.map(p => {
+            const def = DEFAULT_PRODUCTS.find(d => d.id === p.id);
+            const brand = p.brand || (def ? def.brand : 'Alat Kopi Malang');
+            const badge = p.badge === 'Terlaris' ? 'Unggulan' : p.badge;
+            const category = def ? def.category : (p.category || 'Lainnya');
+            if (def && Array.isArray(def.variants) && def.variants.length === 0) {
+              return { ...p, brand, badge, category, variants: [] };
+            }
+            return { ...p, brand, badge, category };
+          });
+          return [...mapped, ...newDefaults];
+        } catch (e) {
+          return DEFAULT_PRODUCTS;
+        }
+      })();
+      const settings = JSON.parse(localStorage.getItem('nexus_settings')) || DEFAULT_SETTINGS;
+      if (!settings.storeName || settings.storeName.toUpperCase().includes('NEXUS') || !settings.whatsappNumber || settings.whatsappNumber === '6281234567890') {
+        settings.storeName = 'Alat Kopi Malang';
+        settings.whatsappNumber = '6282132095241';
+      }
+      settings.whatsappNumber = '6282132095241';
+      let cart = JSON.parse(localStorage.getItem('nexus_cart')) || [];
+      let theme = localStorage.getItem('nexus_theme') || 'light';
+
+      const formatRupiah = (number) => 'Rp ' + Number(number || 0).toLocaleString('id-ID');
+
+      const refreshIcons = () => {
+        if (window.lucide) window.lucide.createIcons();
+      };
+
+      // Theme
+      const applyTheme = (t) => {
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('nexus_theme', t);
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.setAttribute('data-lucide', t === 'dark' ? 'sun' : 'moon');
+        refreshIcons();
+      };
+      applyTheme(theme);
+
+      document.getElementById('btnToggleTheme')?.addEventListener('click', () => {
+        theme = theme === 'light' ? 'dark' : 'light';
+        applyTheme(theme);
+      });
+
+      // Category Dropdown & Mobile Bottom Sheet Controller
+      const btnCatDropdown = document.getElementById('btnCategoryDropdown');
+      const catDropdownWrap = document.getElementById('categoryDropdownWrap');
+      const catMenu = document.getElementById('categoryDropdownMenu');
+      const catMobileBackdrop = document.getElementById('categoryMobileBackdrop');
+      const btnCloseCatSheet = document.getElementById('btnCloseCatSheet');
+
+      let catHoverTimer = null;
+
+      const syncCategoryMenuPlacement = () => {
+        const isMobile = window.innerWidth <= 768;
+        const menuEl = document.getElementById('categoryDropdownMenu');
+        const backdropEl = document.getElementById('categoryMobileBackdrop');
+        const wrapEl = document.getElementById('categoryDropdownWrap');
+
+        if (isMobile) {
+          if (menuEl && menuEl.parentElement !== document.body) {
+            document.body.appendChild(menuEl);
+          }
+          if (backdropEl && backdropEl.parentElement !== document.body) {
+            document.body.appendChild(backdropEl);
+          }
+        } else {
+          if (menuEl && wrapEl && menuEl.parentElement !== wrapEl) {
+            wrapEl.appendChild(menuEl);
+          }
+          if (backdropEl && wrapEl && backdropEl.parentElement !== wrapEl) {
+            wrapEl.appendChild(backdropEl);
+          }
+        }
+      };
+      syncCategoryMenuPlacement();
+      window.addEventListener('resize', syncCategoryMenuPlacement);
+
+      const openCategoryDropdown = () => {
+        if (catHoverTimer) {
+          clearTimeout(catHoverTimer);
+          catHoverTimer = null;
+        }
+        const currentWrap = document.getElementById('categoryDropdownWrap');
+        const currentMenu = document.getElementById('categoryDropdownMenu');
+        const currentBackdrop = document.getElementById('categoryMobileBackdrop');
+        const currentBtn = document.getElementById('btnCategoryDropdown');
+
+        currentWrap?.classList.add('open');
+        currentMenu?.classList.add('open');
+        if (currentBtn) currentBtn.setAttribute('aria-expanded', 'true');
+
+        if (window.innerWidth <= 768) {
+          currentBackdrop?.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      const scheduleCloseCategoryDropdown = (delay = 220) => {
+        if (catHoverTimer) clearTimeout(catHoverTimer);
+        catHoverTimer = setTimeout(() => {
+          closeCategoryDropdown();
+        }, delay);
+      };
+
+      const closeCategoryDropdown = () => {
+        if (catHoverTimer) clearTimeout(catHoverTimer);
+        const currentWrap = document.getElementById('categoryDropdownWrap');
+        const currentMenu = document.getElementById('categoryDropdownMenu');
+        const currentBackdrop = document.getElementById('categoryMobileBackdrop');
+        const currentBtn = document.getElementById('btnCategoryDropdown');
+
+        currentWrap?.classList.remove('open');
+        currentMenu?.classList.remove('open');
+        if (currentBtn) currentBtn.setAttribute('aria-expanded', 'false');
+        currentBackdrop?.classList.remove('open');
+        document.body.style.overflow = '';
+      };
+
+      const toggleCategoryDropdown = (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        if (catHoverTimer) clearTimeout(catHoverTimer);
+
+        const currentMenu = document.getElementById('categoryDropdownMenu');
+        const currentWrap = document.getElementById('categoryDropdownWrap');
+        const isCurrentlyOpen = currentMenu?.classList.contains('open') || currentWrap?.classList.contains('open');
+
+        if (isCurrentlyOpen) {
+          closeCategoryDropdown();
+        } else {
+          openCategoryDropdown();
+        }
+      };
+
+      // Hover support for desktop: view categories and flyout menus by moving cursor
+      if (catDropdownWrap) {
+        catDropdownWrap.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 768) {
+            openCategoryDropdown();
+          }
+        });
+
+        catDropdownWrap.addEventListener('mouseleave', () => {
+          if (window.innerWidth > 768) {
+            scheduleCloseCategoryDropdown(220);
+          }
+        });
+      }
+
+      btnCatDropdown?.addEventListener('click', toggleCategoryDropdown);
+      catMobileBackdrop?.addEventListener('click', closeCategoryDropdown);
+      btnCloseCatSheet?.addEventListener('click', closeCategoryDropdown);
+
+      document.addEventListener('click', (e) => {
+        const currentWrap = document.getElementById('categoryDropdownWrap');
+        const currentMenu = document.getElementById('categoryDropdownMenu');
+        const currentBtn = document.getElementById('btnCategoryDropdown');
+
+        const clickedInside =
+          (currentWrap && currentWrap.contains(e.target)) ||
+          (currentMenu && currentMenu.contains(e.target)) ||
+          (currentBtn && currentBtn.contains(e.target));
+
+        if (!clickedInside) {
+          closeCategoryDropdown();
+        }
+      });
+
+      // Mobile submenu accordion toggle if tapped
+      document.querySelectorAll('.cat-drop-item.has-submenu').forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (window.innerWidth <= 768) {
+            if (e.target.closest('.submenu-link') || e.target.closest('.submenu-all-link')) {
+              return;
+            }
+            item.classList.toggle('open-sub');
+          }
+        });
+      });
+
+      // Update badge
+      const updateBadge = () => {
+        const count = cart.reduce((sum, it) => sum + it.quantity, 0);
+        const badge = document.getElementById('cartBadge');
+        if (badge) badge.textContent = count;
+      };
+      updateBadge();
+
+      // Dynamically update category item counts
+      const updateCategoryBadges = () => {
+        document.querySelectorAll('.cat-drop-item[data-category], a.cat-drop-item').forEach(item => {
+          const href = item.getAttribute('href') || '';
+          let cat = item.dataset.category;
+          if (!cat && href.includes('category=')) {
+            const match = href.match(/category=([^&#]+)/);
+            if (match) cat = decodeURIComponent(match[1]);
+          }
+          const badge = item.querySelector('.cat-badge-mini');
+          if (badge && cat) {
+            if (cat === 'ALL') {
+              badge.textContent = `${products.length} Item`;
+            } else {
+              const count = products.filter(p => p.category === cat).length;
+              badge.textContent = `${count} Item`;
+            }
+          }
+        });
+      };
+      updateCategoryBadges();
+
+      const showToast = (message, type = 'success') => {
+        const container = document.getElementById('toastContainer');
+        if (!container) return;
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `<i data-lucide="check-circle" size="18"></i><span>${message}</span>`;
+        container.appendChild(toast);
+        refreshIcons();
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      };
+
+      // Parse product ID from URL query: ?id=prod-001
+      const urlParams = new URLSearchParams(window.location.search);
+      const prodId = urlParams.get('id') || (products[0] ? products[0].id : null);
+
+      const currentProd = products.find(p => p.id === prodId) || products[0];
+
+      if (!currentProd) {
+        document.getElementById('productCardContainer').innerHTML = `
+          <div class="empty-state">
+            <h3>Produk Tidak Ditemukan</h3>
+            <p>Produk yang Anda cari tidak tersedia atau telah dihapus.</p>
+            <a href="index.html" class="btn-primary" style="display:inline-flex; margin-top:12px;">Kembali ke Beranda</a>
+          </div>
+        `;
+        refreshIcons();
+        return;
+      }
+
+      // Update document title
+      document.title = `${currentProd.name} - ${settings.storeName}`;
+
+      const extractWeightGrams = (label = '', fallbackWeight = 500) => {
+        const str = String(label || '').toLowerCase();
+        const kgMatch = str.match(/(\d+(?:[.,]\d+)?)\s*kg\b/);
+        if (kgMatch) return Math.round(parseFloat(kgMatch[1].replace(',', '.')) * 1000);
+        const gMatch = str.match(/(\d+)\s*(?:gram|gr|g)\b/);
+        if (gMatch) return parseInt(gMatch[1], 10);
+        return Number(fallbackWeight) || 500;
+      };
+
+      const baseProductWeight = Number(currentProd.weight) || extractWeightGrams(currentProd.name, 500);
+
+      const normalizeVariantItems = (prod) => {
+        if (Array.isArray(prod.variantItems) && prod.variantItems.length > 0) {
+          return prod.variantItems.map(v => ({
+            type: v.type === 'Ukuran' ? 'Ukuran' : 'Warna',
+            name: v.name || '',
+            image: v.image || '',
+            stock: v.stock !== undefined && v.stock !== '' ? Number(v.stock) : Number(prod.stock || 0),
+            weight: Number(v.weight) || extractWeightGrams(v.name, baseProductWeight),
+            price: Number(v.price) || prod.price || 0,
+            label: `${v.type === 'Ukuran' ? 'Ukuran' : 'Warna'}: ${v.name}`
+          }));
+        }
+        if (Array.isArray(prod.variants) && prod.variants.length > 0) {
+          return prod.variants.map(vStr => {
+            const cleanStr = String(vStr || '').replace(/^(Ukuran|Warna)\s*:\s*/i, '').trim();
+            const isUkuran = /^ukuran\s*:/i.test(vStr) || /(ukuran|size|gram|\bg\b|kg|ml|liter|\bl\b|\bs\b|\bm\b|xl|cm|mm|01|02|cup|oz)/i.test(cleanStr);
+            const t = isUkuran ? 'Ukuran' : 'Warna';
+            return {
+              type: t,
+              name: cleanStr,
+              image: '',
+              stock: Number(prod.stock || 0),
+              weight: extractWeightGrams(cleanStr, baseProductWeight),
+              price: prod.price || 0,
+              label: `${t}: ${cleanStr}`
+            };
+          });
+        }
+        return [];
+      };
+
+      const isPreOrderProduct = !!(currentProd.isPreOrder || (currentProd.badge && currentProd.badge.toUpperCase().includes('PRE-ORDER')));
+      const resolvedVariantItems = normalizeVariantItems(currentProd);
+      const ukuranVariants = resolvedVariantItems.filter(v => v.type === 'Ukuran');
+      const warnaVariants = resolvedVariantItems.filter(v => v.type === 'Warna');
+      const totalProductStock = isPreOrderProduct
+        ? 999999
+        : (resolvedVariantItems.length > 0
+            ? resolvedVariantItems.reduce((sum, v) => sum + (Number(v.stock) || 0), 0)
+            : Number(currentProd.stock || 0));
+
+      // Saat produk pertama kali dibuka: tampilkan gambar utama & data utama produk, biarkan pelanggan memilih variasi sendiri
+      let selectedVariant = resolvedVariantItems.length > 0 ? null : 'Standar';
+      let activeVariantPrice = currentProd.price;
+      let activeVariantWeight = baseProductWeight;
+      let activeVariantStock = totalProductStock;
+      let activeVariantImage = '';
+      let selectedQty = 1;
+
+      // E-Commerce Marketplace Links (Resolved from product or store settings; '0' hides the marketplace button)
+      const resolveEcommerceUrl = (prodVal, settingVal, fallbackUrl) => {
+        if (String(prodVal ?? '').trim() === '0' || String(settingVal ?? '').trim() === '0') {
+          if (String(prodVal ?? '').trim() === '0') return null;
+          if (!prodVal && String(settingVal ?? '').trim() === '0') return null;
+        }
+        const raw = (prodVal && String(prodVal).trim()) || (settingVal && String(settingVal).trim()) || '';
+        return raw || fallbackUrl;
+      };
+      const tokopediaUrl = resolveEcommerceUrl(currentProd.tokopediaUrl, settings.tokopediaUrl, 'https://www.tokopedia.com');
+      const shopeeUrl = resolveEcommerceUrl(currentProd.shopeeUrl, settings.shopeeUrl, 'https://shopee.co.id');
+      const tiktokUrl = resolveEcommerceUrl(currentProd.tiktokUrl, settings.tiktokUrl, 'https://www.tiktok.com');
+      const hasAnyEcommerceLink = !!(tokopediaUrl || shopeeUrl || tiktokUrl);
+
+      // Render product detail
+      const discountPercentage = currentProd.originalPrice 
+        ? Math.round(((currentProd.originalPrice - currentProd.price) / currentProd.originalPrice) * 100) 
+        : null;
+
+      // Build ordered gallery list up to 6 photos with currentProd.image as Primary
+      const rawGallery = Array.isArray(currentProd.images) && currentProd.images.length > 0
+        ? [...currentProd.images]
+        : (currentProd.image ? [currentProd.image] : []);
+      if (currentProd.image && !rawGallery.includes(currentProd.image)) {
+        rawGallery.unshift(currentProd.image);
+      }
+      const galleryPhotos = [
+        currentProd.image || rawGallery[0],
+        ...rawGallery.filter(u => u && u !== (currentProd.image || rawGallery[0]))
+      ].filter(Boolean).slice(0, 6);
+
+      window.switchProductDetailPhoto = (url, btnEl) => {
+        const mainImg = document.getElementById('mainDetailImage');
+        if (mainImg && url) mainImg.src = url;
+        document.querySelectorAll('.prod-gallery-thumb-btn').forEach(b => {
+          b.style.borderColor = 'var(--border-subtle)';
+          b.style.boxShadow = 'none';
+          b.style.opacity = '0.72';
+        });
+        if (btnEl) {
+          btnEl.style.borderColor = 'var(--primary)';
+          btnEl.style.boxShadow = '0 0 0 2px rgba(79,70,229,0.2)';
+          btnEl.style.opacity = '1';
+        }
+      };
+
+      const isMainSoldOut = !isPreOrderProduct && totalProductStock <= 0;
+
+      document.getElementById('productCardContainer').innerHTML = `
+        <div class="product-detail-layout">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div class="product-detail-gallery" style="position:relative; ${isMainSoldOut ? 'background:#0f172a;' : ''}">
+              ${isMainSoldOut
+                ? `<span class="card-badge badge-sold-out" style="top:14px; left:14px; background:linear-gradient(135deg, #111827, #334155); color:#fff; border:1px solid rgba(255,255,255,0.28); font-weight:800; letter-spacing:0.06em; z-index:4;">SOLD OUT</span>`
+                : (isPreOrderProduct
+                    ? `<span class="card-badge" style="top:14px; left:14px; background:linear-gradient(135deg, #f59e0b, #d97706); color:#fff; font-weight:800; letter-spacing:0.04em;">PRE-ORDER</span>`
+                    : (discountPercentage ? `<span class="card-badge" style="top:14px; left:14px;">Hemat ${discountPercentage}%</span>` : ''))
+              }
+              ${isMainSoldOut ? `
+                <div class="sold-out-overlay" style="position:absolute; inset:0; background:rgba(15,23,42,0.46); display:flex; align-items:center; justify-content:center; z-index:2; pointer-events:none;">
+                  <span class="sold-out-overlay-pill" style="background:rgba(15,23,42,0.9); color:#fff; border:1.5px solid rgba(255,255,255,0.38); padding:8px 18px; border-radius:999px; font-size:0.88rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; box-shadow:0 4px 14px rgba(0,0,0,0.45);">SOLD OUT</span>
+                </div>
+              ` : ''}
+              <img src="${activeVariantImage || galleryPhotos[0] || currentProd.image}" alt="${currentProd.name}" id="mainDetailImage" style="${isMainSoldOut ? 'filter:brightness(0.42) contrast(0.95) grayscale(35%);' : ''}">
+            </div>
+            ${galleryPhotos.length > 1 ? `
+              <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:8px;">
+                ${galleryPhotos.map((imgUrl, idx) => `
+                  <button type="button" class="prod-gallery-thumb-btn" onclick="window.switchProductDetailPhoto('${imgUrl}', this)" style="padding:0; border-radius:10px; overflow:hidden; aspect-ratio:1/1; background:var(--bg-secondary); cursor:pointer; transition:all 0.2s ease; border:2px solid ${idx === 0 ? 'var(--primary)' : 'var(--border-subtle)'}; box-shadow:${idx === 0 ? '0 0 0 2px rgba(79,70,229,0.2)' : 'none'}; opacity:${idx === 0 ? '1' : '0.72'};" title="Foto ${idx + 1}${idx === 0 ? ' (Gambar Utama)' : ''}">
+                    <img src="${imgUrl}" alt="Foto ${idx + 1}" style="width:100%; height:100%; object-fit:cover; display:block;">
+                  </button>
+                `).join('')}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="product-detail-info">
+            ${isPreOrderProduct ? `
+              <div style="margin-bottom:8px;">
+                <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.75rem; font-weight:800; background:linear-gradient(135deg, #f59e0b, #d97706); color:#ffffff; padding:4px 12px; border-radius:999px; letter-spacing:0.05em; box-shadow:0 2px 8px rgba(245,158,11,0.28);">
+                  <i data-lucide="clock" size="13"></i>
+                  <span>PRE-ORDER</span>
+                </span>
+              </div>
+            ` : ''}
+            <h1 class="product-detail-title" style="font-size:1.6rem; margin-top:0;">${currentProd.name}</h1>
+
+            <!-- Brand Verification Card -->
+            <div class="product-brand-card">
+              <div class="brand-info-left">
+                <div class="brand-icon-box">
+                  <i data-lucide="award" size="18"></i>
+                </div>
+                <div>
+                  <span class="brand-subtitle">Merk / Brand Resmi</span>
+                  <h4 class="brand-title-text">${currentProd.brand || 'Alat Kopi Malang'}</h4>
+                </div>
+              </div>
+              <div class="brand-badge-pill">
+                <i data-lucide="shield-check" size="14"></i>
+                <span>100% Original</span>
+              </div>
+            </div>
+
+            <div class="product-detail-price" style="font-size:1.75rem; margin-bottom:16px;">
+              <span id="mainProductPriceText">${formatRupiah(activeVariantPrice)}</span>
+              ${currentProd.originalPrice ? `<span class="price-original" style="font-size:1rem; margin-left:8px;">${formatRupiah(currentProd.originalPrice)}</span>` : ''}
+            </div>
+
+            ${resolvedVariantItems.length > 0 ? `
+              <div class="product-detail-variants" id="pageVariantsContainer" style="display:flex; flex-direction:column; gap:12px;">
+                ${ukuranVariants.length > 0 ? `
+                  <div>
+                    <label style="font-size:0.82rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">
+                      📏 Pilih Variasi Ukuran:
+                    </label>
+                    <div class="variants-pills">
+                      ${ukuranVariants.map((v) => {
+                        const isFirstActive = v.label === selectedVariant;
+                        const showPriceTag = v.price !== currentProd.price || new Set(resolvedVariantItems.map(x => x.price)).size > 1;
+                        return `
+                          <button type="button" class="variant-btn ${isFirstActive ? 'active' : ''}" data-variant="${v.label}" data-price="${v.price}" data-weight="${v.weight || baseProductWeight}" data-stock="${v.stock}" data-image="${v.image || ''}" style="display:inline-flex; align-items:center; gap:7px;">
+                            ${v.image ? `<img src="${v.image}" alt="${v.name}" style="width:24px; height:24px; border-radius:6px; object-fit:cover; flex-shrink:0; border:1px solid rgba(0,0,0,0.1);">` : ''}
+                            <span style="text-align:left;">
+                              <span style="display:block;">${v.name}</span>
+                              ${showPriceTag ? `<small style="display:block; font-size:0.68rem; opacity:0.85; font-weight:700;">${formatRupiah(v.price)}</small>` : ''}
+                            </span>
+                          </button>
+                        `;
+                      }).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+                ${warnaVariants.length > 0 ? `
+                  <div>
+                    <label style="font-size:0.82rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:6px;">
+                      🎨 Pilih Variasi Warna:
+                    </label>
+                    <div class="variants-pills">
+                      ${warnaVariants.map((v) => {
+                        const isFirstActive = v.label === selectedVariant;
+                        const showPriceTag = v.price !== currentProd.price || new Set(resolvedVariantItems.map(x => x.price)).size > 1;
+                        return `
+                          <button type="button" class="variant-btn ${isFirstActive ? 'active' : ''}" data-variant="${v.label}" data-price="${v.price}" data-weight="${v.weight || baseProductWeight}" data-stock="${v.stock}" data-image="${v.image || ''}" style="display:inline-flex; align-items:center; gap:7px;">
+                            ${v.image ? `<img src="${v.image}" alt="${v.name}" style="width:24px; height:24px; border-radius:6px; object-fit:cover; flex-shrink:0; border:1px solid rgba(0,0,0,0.1);">` : ''}
+                            <span style="text-align:left;">
+                              <span style="display:block;">${v.name}</span>
+                              ${showPriceTag ? `<small style="display:block; font-size:0.68rem; opacity:0.85; font-weight:700;">${formatRupiah(v.price)}</small>` : ''}
+                            </span>
+                          </button>
+                        `;
+                      }).join('')}
+                    </div>
+                  </div>
+                ` : ''}
+              </div>
+            ` : ''}
+
+            <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px 18px; margin-bottom:16px;">
+              ${!isPreOrderProduct ? `
+                <div id="mainProductStockWrap" class="stock-indicator ${activeVariantStock <= 5 ? 'low' : ''}" style="margin:0; font-size:0.85rem;">
+                  <i data-lucide="${activeVariantStock <= 5 ? 'alert-triangle' : 'check-circle'}" size="16"></i>
+                  <span>Stok Tersedia: <strong id="mainProductStockText">${activeVariantStock} unit</strong> (${activeVariantStock > 0 ? 'Siap Kirim' : 'Habis'})</span>
+                </div>
+              ` : ''}
+              <div style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; color:var(--text-secondary); background:var(--bg-secondary); padding:4px 10px; border-radius:999px; border:1px solid var(--border-subtle);">
+                <i data-lucide="scale" size="14" style="color:var(--primary);"></i>
+                <span>Berat: <strong id="mainProductWeightText" style="color:var(--text-primary);">${activeVariantWeight} gram</strong></span>
+              </div>
+            </div>
+
+            <div class="product-detail-desc" style="font-size:0.92rem; padding:16px; line-height:1.6; margin-bottom:24px;">
+              <h4 style="font-size:0.88rem; font-weight:800; margin-bottom:8px; color:var(--text-primary);">Deskripsi & Spesifikasi Produk:</h4>
+              ${currentProd.description}
+            </div>
+
+            <!-- Action Buttons (Desktop) -->
+            <div style="display:flex; flex-direction:column; gap:12px; margin-top:auto;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <label style="font-size:0.82rem; font-weight:700;">Jumlah:</label>
+                <div class="cart-item-qty" style="padding:4px 8px;">
+                  <button type="button" class="btn-qty" id="btnPageQtyMinus">-</button>
+                  <span class="qty-number" id="pageQtyNumber" style="font-size:1rem; min-width:32px;">1</span>
+                  <button type="button" class="btn-qty" id="btnPageQtyPlus">+</button>
+                </div>
+                ${!isPreOrderProduct ? `
+                  <span id="mainProductMaxQtyText" style="font-size:0.8rem; color:var(--text-muted);">Maks. ${activeVariantStock} pcs</span>
+                ` : ''}
+              </div>
+
+              <div class="product-detail-actions-grid">
+                <button type="button" class="btn-add-to-cart" id="btnPageAddToCart">
+                  <i data-lucide="shopping-bag" size="18"></i>
+                  <span>+ <span class="desktop-only-inline">Tambah </span>Keranjang</span>
+                </button>
+                <button type="button" class="btn-primary" id="btnPageBuyNow">
+                  <i data-lucide="credit-card" size="18"></i>
+                  <span>Checkout</span>
+                </button>
+              </div>
+
+              <!-- Direct WhatsApp Purchase Button -->
+              <button type="button" class="btn-whatsapp-checkout" id="btnPageDirectWA" style="margin-top:4px;">
+                <i data-lucide="message-circle" size="20"></i>
+                <span>Order Via WhatsApp</span>
+              </button>
+
+              <!-- Pemberitahuan Produk Tersedia di Marketplace E-Commerce -->
+              ${hasAnyEcommerceLink ? `
+              <div class="product-ecommerce-section">
+                <div class="ecommerce-notice-header">
+                  <div class="ecommerce-notice-title">
+                    <i data-lucide="shopping-bag" size="16"></i>
+                    <span>Produk Ini Tersedia di:</span>
+                  </div>
+                  <span class="ecommerce-official-badge">Toko Resmi</span>
+                </div>
+                <div class="ecommerce-links-grid" style="grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));">
+                  ${tokopediaUrl ? `
+                  <a href="${tokopediaUrl}" target="_blank" rel="noopener noreferrer" class="ecommerce-link-card tokopedia" title="Tokopedia">
+                    <div class="ecommerce-icon-wrap">
+                      <svg class="ecommerce-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 8.5C4 7.67 4.67 7 5.5 7h13c.83 0 1.5.67 1.5 1.5V19c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V8.5z" fill="#03AC0E"/>
+                        <path d="M8 7V5.5C8 3.57 9.57 2 11.5 2h1c1.93 0 3.5 1.57 3.5 3.5V7" stroke="#03AC0E" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="9" cy="13.5" r="2.2" fill="#FFFFFF"/>
+                        <circle cx="15" cy="13.5" r="2.2" fill="#FFFFFF"/>
+                        <circle cx="9.4" cy="13.5" r="1.1" fill="#03AC0E"/>
+                        <circle cx="15.4" cy="13.5" r="1.1" fill="#03AC0E"/>
+                        <path d="M10.8 17.2c.7.4 1.7.4 2.4 0" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <span class="ecommerce-store-name">Tokopedia</span>
+                  </a>
+                  ` : ''}
+
+                  ${shopeeUrl ? `
+                  <a href="${shopeeUrl}" target="_blank" rel="noopener noreferrer" class="ecommerce-link-card shopee" title="Shopee">
+                    <div class="ecommerce-icon-wrap">
+                      <svg class="ecommerce-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.2 8H4.8C4.36 8 4 8.36 4 8.8l1.3 12.2c.1.9.9 1.6 1.8 1.6h9.8c.9 0 1.7-.7 1.8-1.6L20 8.8c0-.44-.36-.8-.8-.8z" fill="#EE4D2D"/>
+                        <path d="M8 8V5.5C8 3.57 9.57 2 11.5 2h1c1.93 0 3.5 1.57 3.5 3.5V8" stroke="#EE4D2D" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M14.2 12.3c-.3-.2-.8-.4-1.4-.5-.8-.2-1.2-.4-1.2-.8 0-.4.3-.6.9-.6.6 0 1.1.2 1.5.5l.6-1.1c-.6-.4-1.3-.6-2.1-.6-1.4 0-2.3.8-2.3 1.9 0 .9.6 1.4 1.6 1.7.8.2 1.1.4 1.1.8 0 .4-.4.7-1 .7-.7 0-1.3-.3-1.8-.7l-.6 1.1c.7.5 1.4.8 2.4.8 1.5 0 2.4-.8 2.4-2 0-.8-.6-1.4-1.5-1.7z" fill="#FFFFFF"/>
+                      </svg>
+                    </div>
+                    <span class="ecommerce-store-name">Shopee</span>
+                  </a>
+                  ` : ''}
+
+                  ${tiktokUrl ? `
+                  <a href="${tiktokUrl}" target="_blank" rel="noopener noreferrer" class="ecommerce-link-card tiktok" title="TikTok Shop">
+                    <div class="ecommerce-icon-wrap">
+                      <svg class="ecommerce-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" rx="6" fill="#000000"/>
+                        <path d="M16.8 8.2a4.2 4.2 0 0 1-2.8-1.2v6a4.2 4.2 0 1 1-3.6-4.1v2.3a2 2 0 1 0 1.4 1.9V4h2.2c.1 1.6 1.2 2.8 2.8 3.2v1z" fill="#FFFFFF"/>
+                        <path d="M16.3 8a4.2 4.2 0 0 1-2.3-1v6a4.2 4.2 0 0 1-3.6 4.1c-.3 0-.5 0-.8-.1 1.7 1.3 4.2.8 5.3-.9.3-.5.4-1.1.4-1.7V8.5c.3.1.7.2 1 .2V8z" fill="#25F4EE" opacity="0.85"/>
+                        <path d="M14.8 4h-.9v7.7c0 1.9-1.2 3.6-3 4.1-.3.1-.6.1-.9.1 1.9 1 4.3.1 5.1-1.8.2-.5.3-1.1.3-1.6V5.9c.7.4 1.5.6 2.3.7V4.8c-.9-.1-1.9-.9-2.6-1.8V4z" fill="#FE2C55" opacity="0.85"/>
+                      </svg>
+                    </div>
+                    <span class="ecommerce-store-name">TikTok Shop</span>
+                  </a>
+                  ` : ''}
+                </div>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+      refreshIcons();
+
+      // Helper to prompt user to pick a variant if not selected yet
+      const ensureVariantSelected = () => {
+        if (resolvedVariantItems.length > 0 && !selectedVariant) {
+          showToast('Silakan pilih variasi produk terlebih dahulu!', 'danger');
+          const varBox = document.getElementById('pageVariantsContainer');
+          if (varBox) {
+            varBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            varBox.style.transition = 'box-shadow 0.25s ease, background 0.25s ease';
+            varBox.style.borderRadius = '12px';
+            varBox.style.padding = '8px';
+            varBox.style.boxShadow = '0 0 0 2px #ef4444';
+            varBox.style.background = 'rgba(239, 68, 68, 0.05)';
+            setTimeout(() => {
+              varBox.style.boxShadow = 'none';
+              varBox.style.background = 'transparent';
+            }, 1600);
+          }
+          return false;
+        }
+        return true;
+      };
+
+      // Variant Buttons (Updates Selected Variant, Dynamic Variant Price, Weight, Stock & Photo)
+      document.querySelectorAll('#pageVariantsContainer .variant-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const isAlreadyActive = btn.classList.contains('active');
+          document.querySelectorAll('#pageVariantsContainer .variant-btn').forEach(b => b.classList.remove('active'));
+
+          if (isAlreadyActive) {
+            // Unselect variant -> revert to main product photo, price, weight, and stock
+            selectedVariant = null;
+            activeVariantPrice = currentProd.price;
+            activeVariantWeight = baseProductWeight;
+            activeVariantStock = totalProductStock;
+            activeVariantImage = '';
+
+            const priceEl = document.getElementById('mainProductPriceText');
+            if (priceEl) priceEl.textContent = formatRupiah(activeVariantPrice);
+
+            const weightEl = document.getElementById('mainProductWeightText');
+            if (weightEl) weightEl.textContent = `${activeVariantWeight} gram`;
+
+            const stockWrap = document.getElementById('mainProductStockWrap');
+            if (stockWrap) {
+              stockWrap.className = `stock-indicator ${activeVariantStock <= 5 ? 'low' : ''}`;
+              stockWrap.innerHTML = `<i data-lucide="${activeVariantStock <= 5 ? 'alert-triangle' : 'check-circle'}" size="16"></i><span>Stok Tersedia: <strong id="mainProductStockText">${activeVariantStock} unit</strong> (${activeVariantStock > 0 ? 'Siap Kirim' : 'Habis'})</span>`;
+              refreshIcons();
+            }
+            const maxQtyEl = document.getElementById('mainProductMaxQtyText');
+            if (maxQtyEl) maxQtyEl.textContent = `Maks. ${activeVariantStock} pcs`;
+
+            const mainImg = document.getElementById('mainDetailImage');
+            if (mainImg) {
+              mainImg.src = galleryPhotos[0] || currentProd.image;
+            }
+            return;
+          }
+
+          btn.classList.add('active');
+          selectedVariant = btn.dataset.variant;
+          const vPrice = parseInt(btn.dataset.price);
+          if (vPrice > 0) {
+            activeVariantPrice = vPrice;
+            const priceEl = document.getElementById('mainProductPriceText');
+            if (priceEl) priceEl.textContent = formatRupiah(activeVariantPrice);
+          }
+          const vWeight = parseInt(btn.dataset.weight);
+          if (vWeight > 0) {
+            activeVariantWeight = vWeight;
+            const weightEl = document.getElementById('mainProductWeightText');
+            if (weightEl) weightEl.textContent = `${activeVariantWeight} gram`;
+          }
+          if (!isPreOrderProduct && btn.dataset.stock !== undefined && btn.dataset.stock !== '') {
+            activeVariantStock = parseInt(btn.dataset.stock) || 0;
+            const stockWrap = document.getElementById('mainProductStockWrap');
+            if (stockWrap) {
+              stockWrap.className = `stock-indicator ${activeVariantStock <= 5 ? 'low' : ''}`;
+              stockWrap.innerHTML = `<i data-lucide="${activeVariantStock <= 5 ? 'alert-triangle' : 'check-circle'}" size="16"></i><span>Stok Tersedia: <strong id="mainProductStockText">${activeVariantStock} unit</strong> (${activeVariantStock > 0 ? 'Siap Kirim' : 'Habis'})</span>`;
+              refreshIcons();
+            }
+            const maxQtyEl = document.getElementById('mainProductMaxQtyText');
+            if (maxQtyEl) maxQtyEl.textContent = `Maks. ${activeVariantStock} pcs`;
+            if (selectedQty > activeVariantStock && activeVariantStock > 0) {
+              selectedQty = activeVariantStock;
+              const qtyNumEl = document.getElementById('pageQtyNumber');
+              if (qtyNumEl) qtyNumEl.textContent = selectedQty;
+            }
+          } else if (isPreOrderProduct) {
+            activeVariantStock = 999999;
+          }
+          const vImg = btn.dataset.image || '';
+          activeVariantImage = vImg;
+          const mainImg = document.getElementById('mainDetailImage');
+          if (mainImg) {
+            mainImg.src = vImg || galleryPhotos[0] || currentProd.image;
+          }
+        });
+      });
+
+      // Quantity Stepper
+      const qtyNumEl = document.getElementById('pageQtyNumber');
+      document.getElementById('btnPageQtyMinus')?.addEventListener('click', () => {
+        if (selectedQty > 1) {
+          selectedQty--;
+          if (qtyNumEl) qtyNumEl.textContent = selectedQty;
+        }
+      });
+      document.getElementById('btnPageQtyPlus')?.addEventListener('click', () => {
+        if (selectedQty < activeVariantStock) {
+          selectedQty++;
+          if (qtyNumEl) qtyNumEl.textContent = selectedQty;
+        } else {
+          showToast(`Maksimal stok tersedia adalah ${activeVariantStock} pcs`, 'danger');
+        }
+      });
+
+      // Add to Cart
+      const handleAddToCart = () => {
+        if (!ensureVariantSelected()) return false;
+        if (activeVariantStock <= 0) {
+          showToast('Maaf, stok untuk varian ini sedang habis!', 'danger');
+          return false;
+        }
+        const existing = cart.find(it => it.id === currentProd.id && it.variant === selectedVariant);
+        if (existing) {
+          if (existing.quantity + selectedQty > activeVariantStock) {
+            showToast('Stok tidak mencukupi!', 'danger');
+            return false;
+          }
+          existing.quantity += selectedQty;
+          existing.price = activeVariantPrice;
+          existing.weight = activeVariantWeight;
+          existing.image = activeVariantImage || currentProd.image;
+          existing.maxStock = activeVariantStock;
+        } else {
+          cart.push({
+            id: currentProd.id,
+            name: currentProd.name,
+            price: activeVariantPrice,
+            weight: activeVariantWeight,
+            image: activeVariantImage || currentProd.image,
+            variant: selectedVariant,
+            quantity: selectedQty,
+            maxStock: activeVariantStock
+          });
+        }
+        localStorage.setItem('nexus_cart', JSON.stringify(cart));
+        updateBadge();
+        showToast(`✓ "${currentProd.name}" (${selectedVariant}) berhasil masuk ke keranjang!`, 'success');
+        return true;
+      };
+
+      document.getElementById('btnPageAddToCart')?.addEventListener('click', handleAddToCart);
+      document.getElementById('btnMobileAddToCart')?.addEventListener('click', handleAddToCart);
+
+      // Buy Now -> navigates to checkout in same window
+      const handleBuyNow = () => {
+        if (handleAddToCart()) {
+          window.location.href = 'checkout.html';
+        }
+      };
+
+      document.getElementById('btnPageBuyNow')?.addEventListener('click', handleBuyNow);
+      document.getElementById('btnMobileBuyNow')?.addEventListener('click', handleBuyNow);
+
+      // Header Back Button with history fallback
+      document.getElementById('btnProductHeaderBack')?.addEventListener('click', (e) => {
+        if (window.history.length > 1) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+
+      // Direct WhatsApp Order (Opens in New Tab / New Link)
+      const openWhatsAppOrder = () => {
+        if (!ensureVariantSelected()) return;
+        const total = activeVariantPrice * selectedQty;
+        const msg = 
+`Halo Admin ${settings.storeName}, saya tertarik untuk membeli produk berikut:
+
+📦 *PRODUK:* ${currentProd.name}
+🏷️ *VARIAN:* ${selectedVariant}
+💵 *HARGA SATUAN:* ${formatRupiah(activeVariantPrice)}
+🔢 *JUMLAH:* ${selectedQty} pcs
+💰 *TOTAL HARGA:* ${formatRupiah(total)}
+
+🔗 *Link Produk:* ${window.location.href}
+
+Apakah stok masih tersedia dan bisa langsung dikirim? Mohon infonya min. Terima kasih! 🙏`;
+
+        const waUrl = `https://api.whatsapp.com/send?phone=6282132095241&text=${encodeURIComponent(msg)}`;
+        window.open(waUrl, '_blank');
+      };
+
+      document.getElementById('btnPageDirectWA')?.addEventListener('click', openWhatsAppOrder);
+      document.getElementById('btnMobileBuyWA')?.addEventListener('click', openWhatsAppOrder);
+
+      // Render Related Products (Every click is a new link!)
+      window.handleRelatedAddToCart = (id) => {
+        const prod = products.find(p => p.id === id);
+        if (!prod) return;
+        const existing = cart.find(it => it.id === prod.id && it.variant === (prod.variants?.[0] || 'Standar'));
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({
+            id: prod.id,
+            name: prod.name,
+            price: prod.price,
+            image: prod.image,
+            variant: prod.variants?.[0] || 'Standar',
+            quantity: 1,
+            maxStock: prod.stock
+          });
+        }
+        localStorage.setItem('nexus_cart', JSON.stringify(cart));
+        updateBadge();
+        showToast(`✓ "${prod.name}" berhasil masuk ke keranjang!`, 'success');
+      };
+
+      const related = products.filter(p => p.id !== currentProd.id).slice(0, 4);
+      const relatedGrid = document.getElementById('relatedProductsGrid');
+      if (relatedGrid) {
+        relatedGrid.innerHTML = related.map(p => {
+          const hasVariants = Array.isArray(p.variants) && p.variants.length > 0 && !(p.variants.length === 1 && p.variants[0].toLowerCase() === 'standar');
+          const isRelPreOrder = !!(p.isPreOrder || (p.badge && p.badge.toUpperCase().includes('PRE-ORDER')));
+          const rawRelStock = Number(p.stock);
+          let relStock = (!isNaN(rawRelStock) && rawRelStock <= 0) ? 0 : (isNaN(rawRelStock) ? 0 : Math.max(0, rawRelStock));
+          if (!isRelPreOrder && relStock > 0 && Array.isArray(p.variantItems) && p.variantItems.length > 0) {
+            const hasExp = p.variantItems.some(v => v && v.stock !== undefined && v.stock !== '');
+            if (hasExp) relStock = p.variantItems.reduce((sum, v) => sum + Math.max(0, parseInt(v?.stock) || 0), 0);
+          }
+          const isRelSoldOut = !isRelPreOrder && relStock <= 0;
+          return `
+          <div class="product-card ${isRelSoldOut ? 'is-sold-out' : ''}" onclick="window.location.href='product.html?id=${p.id}'" title="Lihat ${p.name}">
+            <div class="product-card-img-wrap" style="${isRelSoldOut ? 'background:#0f172a;' : ''}">
+              ${isRelSoldOut
+                ? `<span class="card-badge badge-sold-out" style="background:linear-gradient(135deg, #111827, #334155); color:#fff; border:1px solid rgba(255,255,255,0.28); font-weight:800; letter-spacing:0.06em; z-index:4;">SOLD OUT</span>`
+                : (isRelPreOrder
+                    ? `<span class="card-badge" style="background:linear-gradient(135deg, #f59e0b, #d97706); color:#fff; font-weight:800; letter-spacing:0.04em;">PRE-ORDER</span>`
+                    : (p.badge ? `<span class="card-badge popular">${p.badge}</span>` : ''))
+              }
+              ${isRelSoldOut ? `
+                <div class="sold-out-overlay" style="position:absolute; inset:0; background:rgba(15,23,42,0.46); display:flex; align-items:center; justify-content:center; z-index:2; pointer-events:none;">
+                  <span class="sold-out-overlay-pill" style="background:rgba(15,23,42,0.9); color:#fff; border:1.5px solid rgba(255,255,255,0.38); padding:6px 14px; border-radius:999px; font-size:0.75rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; box-shadow:0 4px 14px rgba(0,0,0,0.45);">SOLD OUT</span>
+                </div>
+              ` : ''}
+              <img src="${p.image}" alt="${p.name}" class="product-card-img" style="${isRelSoldOut ? 'filter:brightness(0.42) contrast(0.95) grayscale(35%);' : ''}">
+            </div>
+            <div class="product-card-body" style="${isRelSoldOut ? 'opacity:0.78;' : ''}">
+              <span class="product-category-name">${p.category}</span>
+              <h4 class="product-title">${p.name}</h4>
+              <div class="product-card-bottom-row">
+                <div class="product-price-col">
+                  <span class="price-current">${formatRupiah(p.price)}</span>
+                  ${p.originalPrice ? `<span class="price-original">${formatRupiah(p.originalPrice)}</span>` : ''}
+                </div>
+                ${isRelSoldOut ? `
+                  <button type="button" class="btn-card-select-variant" 
+                    onclick="event.stopPropagation(); window.location.href='product.html?id=${p.id}'" 
+                    style="background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); box-shadow:none;"
+                    title="Stok Habis - ${p.name}">
+                    <span>Habis</span>
+                  </button>
+                ` : (hasVariants ? `
+                  <button type="button" class="btn-card-select-variant" 
+                    onclick="event.stopPropagation(); window.location.href='product.html?id=${p.id}'" 
+                    title="Pilih Varian ${p.name}" 
+                    aria-label="Pilih Varian ${p.name}">
+                    <span>Pilih</span>
+                    <i data-lucide="chevron-right" size="14"></i>
+                  </button>
+                ` : `
+                  <button type="button" class="btn-card-cart-icon" 
+                    onclick="event.preventDefault(); event.stopPropagation(); window.handleRelatedAddToCart('${p.id}')" 
+                    title="Tambah ke Keranjang" 
+                    aria-label="Tambah ${p.name} ke Keranjang">
+                    <i data-lucide="shopping-bag" size="17"></i>
+                  </button>
+                `)}
+              </div>
+            </div>
+          </div>
+        `;
+        }).join('');
+      }
+
+      refreshIcons();
+    });
+  </script>
+</body>
+</html>

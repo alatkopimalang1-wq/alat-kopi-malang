@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Pembayaran & Selesai Checkout - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css?v=18">
+
+  <style>
+    .finish-page-container {
+      max-width: 1080px;
+      margin: 28px auto 60px auto;
+      padding: 0 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .finish-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      align-items: start;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .finish-col-left, .finish-col-right {
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .finish-col-right {
+      position: static;
+    }
+
+    @media (min-width: 900px) {
+      .finish-layout {
+        grid-template-columns: 1.4fr 1fr;
+        gap: 28px;
+      }
+      .finish-col-right {
+        position: sticky;
+        top: 84px;
+      }
+    }
+
+    /* Cards */
+    .finish-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg, 16px);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* Success Hero Card */
+    .success-hero-card {
+      text-align: center;
+      padding: 32px 24px;
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, var(--bg-surface) 60%);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .success-icon-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #10b981;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+      animation: pulseGreen 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGreen {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 14px rgba(16, 185, 129, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .success-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.25rem, 4vw, 1.65rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0 0 8px 0;
+      line-height: 1.25;
+    }
+
+    .success-subtitle {
+      font-size: clamp(0.82rem, 2.5vw, 0.9rem);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 18px auto;
+      line-height: 1.5;
+    }
+
+    .order-meta-pill-bar {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 8px 12px;
+      background: var(--bg-secondary);
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .order-meta-pill-item {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .order-id-badge {
+      font-family: monospace;
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 0.95rem;
+    }
+
+    .status-badge-pending {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      background: rgba(245, 158, 11, 0.12);
+      color: #d97706;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Timer Countdown Box */
+    .timer-alert-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-md, 12px);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .timer-alert-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .timer-icon-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #f59e0b;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .timer-digital-display {
+      font-family: monospace;
+      font-size: clamp(1.15rem, 4.5vw, 1.45rem);
+      font-weight: 800;
+      color: #b45309;
+      background: var(--bg-surface);
+      padding: 4px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      letter-spacing: 1.5px;
+      flex-shrink: 0;
+    }
+
+    /* Payment Box Highlights */
+    .payment-instruction-card {
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-lg, 16px);
+      background: var(--bg-surface);
+      box-shadow: 0 4px 20px var(--primary-glow);
+    }
+
+    .payment-header-strip {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: -24px -24px 20px -24px;
+    }
+
+    .nominal-display-box {
+      background: var(--bg-secondary);
+      border: 1px dashed var(--primary);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .nominal-amount {
+      font-family: var(--font-heading);
+      font-size: clamp(1.35rem, 5vw, 1.65rem);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 6px;
+      border: 1px solid var(--primary);
+      background: var(--primary-light, rgba(79, 70, 229, 0.08));
+      color: var(--primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      touch-action: manipulation;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Responsive Text Switchers for Mobile / Desktop */
+    .wa-btn-short,
+    .copy-text-short {
+      display: none;
+    }
+    .wa-btn-full,
+    .copy-text-full {
+      display: inline;
+    }
+
+    /* QR Code Display */
+    .qr-center-box {
+      background: #ffffff;
+      padding: 14px;
+      border-radius: 14px;
+      border: 2px solid var(--border-subtle);
+      display: inline-block;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      margin: 10px auto;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    #qrisSvg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Bank Account Block */
+    .bank-account-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .bank-number-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 0;
+      background: var(--bg-surface);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .bank-number-text {
+      font-family: monospace;
+      font-size: clamp(1rem, 4.5vw, 1.25rem);
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+      word-break: break-all;
+    }
+
+    /* Accordion Guide */
+    .guide-step-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+
+    .guide-step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .guide-step-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* WhatsApp Big CTA */
+    .btn-wa-confirm-big {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: #ffffff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+      transition: all var(--transition-fast);
+      margin-top: 14px;
+      min-height: 48px;
+      touch-action: manipulation;
+    }
+
+    .btn-wa-confirm-big:hover {
+      background: #1eb857;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(37, 211, 102, 0.45);
+    }
+
+    /* Proof Upload Box */
+    .upload-proof-box {
+      border: 2px dashed var(--border-subtle);
+      border-radius: 12px;
+      padding: 18px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: var(--bg-surface);
+      margin-top: 12px;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .upload-proof-box:hover {
+      border-color: var(--primary);
+      background: var(--primary-light, rgba(79, 70, 229, 0.04));
+    }
+
+    /* Order Summary Sidebar */
+    .summary-item-finish {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: center;
+    }
+
+    .summary-item-finish:last-child {
+      border-bottom: none;
+    }
+
+    .summary-item-finish-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-secondary);
+      flex-shrink: 0;
+    }
+
+    .summary-row-finish {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+    }
+
+    .summary-row-finish.total {
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 10px;
+      margin-top: 8px;
+    }
+
+    /* ==========================================================================
+       TABLET RESPONSIVE STYLES (max-width: 899px)
+       ========================================================================== */
+    @media (max-width: 899px) {
+      .finish-page-container {
+        padding: 0 16px;
+        margin: 18px auto 40px auto;
+      }
+      .finish-layout {
+        gap: 18px;
+      }
+      .finish-card {
+        padding: 20px 18px;
+        border-radius: 14px;
+        margin-bottom: 16px;
+      }
+      .payment-header-strip {
+        margin: -20px -18px 16px -18px;
+        padding: 12px 18px;
+      }
+      .success-hero-card {
+        padding: 24px 18px;
+      }
+    }
+
+    /* ==========================================================================
+       MOBILE RESPONSIVE STYLES (max-width: 640px)
+       ========================================================================== */
+    @media (max-width: 640px) {
+      .wa-btn-full,
+      .copy-text-full {
+        display: none !important;
+      }
+      .wa-btn-short,
+      .copy-text-short {
+        display: inline !important;
+      }
+
+      .btn-wa-confirm-big {
+        padding: 12px 14px;
+        font-size: clamp(0.85rem, 3.8vw, 0.92rem);
+        gap: 8px;
+        white-space: nowrap;
+      }
+
+      .finish-page-container {
+        padding: 0 12px;
+        margin: 12px auto 30px auto;
+      }
+      .finish-layout {
+        gap: 14px;
+      }
+      .finish-card {
+        padding: 16px 14px;
+        border-radius: 14px;
+        margin-bottom: 14px;
+      }
+      .payment-header-strip {
+        margin: -16px -14px 14px -14px;
+        padding: 10px 14px;
+      }
+      .success-hero-card {
+        padding: 20px 14px;
+      }
+      .success-icon-badge {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 12px;
+      }
+      .order-meta-pill-bar {
+        width: 100%;
+        border-radius: 12px;
+        padding: 8px 10px;
+        gap: 6px;
+        justify-content: space-around;
+      }
+      .order-meta-pill-bar .pill-divider {
+        display: none;
+      }
+      .order-meta-pill-item {
+        font-size: 0.75rem;
+      }
+      .timer-alert-card {
+        padding: 10px 12px;
+        gap: 8px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .timer-alert-left {
+        gap: 8px;
+        min-width: 0;
+        flex: 1;
+      }
+      .timer-alert-left .timer-subtitle {
+        display: none;
+      }
+      .timer-alert-left .timer-title {
+        font-size: 0.8rem !important;
+      }
+      .timer-icon-circle {
+        width: 32px;
+        height: 32px;
+      }
+      .timer-digital-display {
+        width: auto;
+        font-size: 1.05rem;
+        padding: 4px 8px;
+        letter-spacing: 1px;
+      }
+      .nominal-display-box {
+        padding: 12px 14px;
+        gap: 8px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nominal-amount {
+        font-size: 1.35rem;
+      }
+      .nominal-display-box .copy-btn {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+        white-space: nowrap;
+      }
+      .bank-account-box {
+        padding: 14px 12px;
+      }
+      .bank-number-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 8px 12px;
+      }
+      .bank-number-text {
+        text-align: left;
+        font-size: 1.05rem;
+        word-break: keep-all;
+      }
+      .bank-number-row .copy-btn {
+        width: auto;
+        padding: 6px 10px;
+        font-size: 0.78rem;
+        white-space: nowrap;
+      }
+      .guide-step-row {
+        gap: 8px;
+      }
+      .guide-step-text {
+        font-size: 0.8rem;
+      }
+      .qr-center-box {
+        padding: 10px;
+        width: 200px;
+      }
+    }
+
+    /* ==========================================================================
+       ULTRA SMALL MOBILE (max-width: 375px)
+       ========================================================================== */
+    @media (max-width: 375px) {
+      .finish-page-container {
+        padding: 0 8px;
+      }
+      .finish-card {
+        padding: 14px 10px;
+        border-radius: 12px;
+      }
+      .payment-header-strip {
+        margin: -14px -10px 12px -10px;
+        padding: 8px 10px;
+      }
+      .nominal-amount {
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Print styling */
+    @media print {
+      body { background: #ffffff !important; color: #000000 !important; }
+      .site-header, .top-ticker, .site-footer, .btn-wa-confirm-big, .upload-proof-box, .timer-alert-card, .btn-secondary, #btnToggleTheme, .copy-btn {
+        display: none !important;
+      }
+      .finish-layout { display: block !important; }
+      .finish-card { border: 1px solid #ccc !important; box-shadow: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span>⚡ Pesanan Diterima · Selesaikan Pembayaran Anda untuk Memulai Proses Pesanan</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <a href="index.html" class="btn-back-header" title="Kembali ke Beranda">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+      </div>
+
+      <div class="header-actions">
+        <a href="shop.html" class="btn-secondary" style="padding:8px 12px; font-size:0.82rem; color:var(--text-primary); border-color:var(--border-subtle);">
+          <i data-lucide="shopping-bag" size="16"></i>
+          <span class="hide-mobile">Lanjut Belanja</span>
+        </a>
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+        <a href="account.html" class="btn-icon hide-mobile" title="Akun &amp; Riwayat Pesanan">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="finish-page-container">
+    <div id="finishContentRoot">
+      <!-- Injected by JavaScript -->
+      <div style="text-align:center; padding:60px 20px;">
+        <div style="display:inline-block; width:40px; height:40px; border:3px solid var(--border-subtle); border-top-color:var(--primary); border-radius:50%; animation:spin 0.8s linear infinite;"></div>
+        <p style="margin-top:16px; color:var(--text-secondary); font-size:0.95rem;">Memuat rincian instruksi pembayaran pesanan Anda...</p>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- Modal Batalkan Pesanan (Checkout Finish) -->
+  <div id="cancelOrderModal" class="cancel-modal-backdrop" style="display:none;" onclick="if(event.target === this) closeCancelOrderModal()">
+    <div class="cancel-modal-card">
+      <div class="cancel-modal-header">
+        <div style="width:40px; height:40px; border-radius:50%; background:#fee2e2; color:#dc2626; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <i data-lucide="alert-triangle" size="22"></i>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-heading); font-size:1.1rem; font-weight:800; color:var(--text-primary); margin:0;">
+            Batalkan Pesanan Ini?
+          </h3>
+          <p style="font-size:0.78rem; color:var(--text-muted); margin:2px 0 0 0;" id="cancelModalOrderRef">
+            Pesanan #ORD-XXXXX
+          </p>
+        </div>
+      </div>
+      <div class="cancel-modal-body">
+        <p style="margin-top:0; margin-bottom:14px; font-size:0.86rem; line-height:1.5;">
+          Apakah Anda yakin ingin membatalkan pesanan ini? Pesanan yang dibatalkan tidak dapat diproses lagi dan tagihan pembayaran akan ditutup otomatis.
+        </p>
+
+        <label class="cancel-reason-label" for="cancelReasonSelect">Pilih Alasan Pembatalan:</label>
+        <select id="cancelReasonSelect" class="cancel-reason-select">
+          <option value="Ingin mengubah rincian produk / varian">Ingin mengubah rincian produk / varian</option>
+          <option value="Ingin mengganti metode pembayaran / pengiriman">Ingin mengganti metode pembayaran / pengiriman</option>
+          <option value="Menemukan pilihan / produk lain">Menemukan pilihan lain</option>
+          <option value="Salah memasukkan alamat pengiriman">Salah memasukkan alamat pengiriman</option>
+          <option value="Lainnya">Alasan lainnya</option>
+        </select>
+
+        <label class="cancel-reason-label" for="cancelReasonNotes">Catatan Tambahan (Opsional):</label>
+        <textarea id="cancelReasonNotes" class="cancel-reason-notes" placeholder="Tuliskan catatan tambahan jika ada..."></textarea>
+      </div>
+      <div class="cancel-modal-actions">
+        <button type="button" class="btn-secondary" onclick="closeCancelOrderModal()" style="flex:1; padding:10px 14px; font-size:0.86rem; font-weight:600; cursor:pointer;">
+          Kembali
+        </button>
+        <button type="button" class="btn-danger-confirm" id="btnConfirmCancelOrder" onclick="confirmCancelCurrentOrder()" style="flex:1.2;">
+          <i data-lucide="x-circle" size="16"></i>
+          <span>Ya, Batalkan Pesanan</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" style="position:fixed; bottom:20px; right:20px; z-index:9999; display:flex; flex-direction:column; gap:8px;"></div>
+
+  <script>
+    // Toast Notification helper
+    function showToast(msg, type = 'success') {
+      const c = document.getElementById('toastContainer');
+      if (!c) return;
+      const t = document.createElement('div');
+      const bg = type === 'success' ? '#10b981' : type === 'danger' ? '#ef4444' : '#4f46e5';
+      t.style.cssText = `background:${bg}; color:#fff; padding:10px 16px; border-radius:8px; font-size:0.85rem; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.18); display:flex; align-items:center; gap:8px; animation:fadeIn 0.25s ease;`;
+      t.innerHTML = `<span>${msg}</span>`;
+      c.appendChild(t);
+      setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => t.remove(), 300);
+      }, 3500);
+    }
+
+    // Format Rupiah
+    function formatRupiah(num) {
+      return 'Rp. ' + (Number(num) || 0).toLocaleString('id-ID');
+    }
+
+    // One-click Copy helper
+    window.copyText = (text, label) => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(`✓ ${label} berhasil disalin: ${text}`, 'success');
+        }).catch(() => fallbackCopy(text, label));
+      } else {
+        fallbackCopy(text, label);
+      }
+    };
+
+    function fallbackCopy(text, label) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast(`✓ ${label} berhasil disalin: ${text}`, 'success');
+    }
+
+    // Theme Management
+    const themeBtn = document.getElementById('btnToggleTheme');
+    const themeIcon = document.getElementById('themeIcon');
+    let currentTheme = localStorage.getItem('nexus_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+    const updateThemeIcon = (t) => {
+      if (!themeIcon) return;
+      themeIcon.setAttribute('data-lucide', t === 'dark' ? 'sun' : 'moon');
+      if (window.lucide) lucide.createIcons();
+    };
+    updateThemeIcon(currentTheme);
+
+    themeBtn?.addEventListener('click', () => {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      localStorage.setItem('nexus_theme', currentTheme);
+      updateThemeIcon(currentTheme);
+    });
+
+    // Bank Details Reference
+    const BANK_INFO = {
+      qris: {
+        code: 'qris',
+        title: 'QRIS Toko',
+        name: 'QRIS',
+        nmid: 'ID1024334436911',
+        holder: 'ALAT KOPI MALANG.'
+      },
+      bca: {
+        code: 'bca',
+        title: 'Transfer Bank BCA',
+        name: 'Bank Central Asia (BCA)',
+        number: '8720192831',
+        displayNumber: '8720.192.831',
+        holder: 'ALAT KOPI MALANG',
+        badgeBg: '#00529c'
+      },
+      bri: {
+        code: 'bri',
+        title: 'Transfer Bank BRI',
+        name: 'Bank Rakyat Indonesia (BRI)',
+        number: '034101002345501',
+        displayNumber: '0341.0100.2345.501',
+        holder: 'ALAT KOPI MALANG',
+        badgeBg: '#002855'
+      }
+    };
+
+    // Main App Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.getElementById('finishContentRoot');
+      const settings = JSON.parse(localStorage.getItem('nexus_settings')) || {
+        storeName: 'Alat Kopi Malang',
+        whatsappNumber: '6282132095241'
+      };
+      settings.whatsappNumber = '6282132095241';
+
+      // Extract Order ID from query param or localStorage
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryOrderId = urlParams.get('orderId') || urlParams.get('id');
+      // Filter out demo sample orders
+      let allOrders = JSON.parse(localStorage.getItem('nexus_orders')) || [];
+      allOrders = allOrders.filter(o => !o.items?.some(it => it.id === 'prod-demo-1' || it.name === 'Bali Curtina Natural Kismis Filter'));
+      localStorage.setItem('nexus_orders', JSON.stringify(allOrders));
+
+      const lastOrderId = localStorage.getItem('nexus_last_order_id');
+
+      let currentOrder = null;
+      if (queryOrderId) {
+        currentOrder = allOrders.find(o => o.id === queryOrderId || o.id === '#' + queryOrderId);
+      }
+      if (!currentOrder && lastOrderId) {
+        currentOrder = allOrders.find(o => o.id === lastOrderId);
+      }
+      if (!currentOrder && allOrders.length > 0) {
+        currentOrder = allOrders[0];
+      }
+
+      // Ensure expiresAt is set (24 hours from creation or current time)
+      if (currentOrder && !currentOrder.expiresAt) {
+        const createMs = currentOrder.createdAt ? new Date(currentOrder.createdAt).getTime() : Date.now();
+        currentOrder.createdAt = currentOrder.createdAt || new Date(createMs).toISOString();
+        currentOrder.expiresAt = new Date(createMs + 24 * 60 * 60 * 1000).toISOString();
+        const idx = allOrders.findIndex(o => o.id === currentOrder.id);
+        if (idx !== -1) {
+          allOrders[idx] = currentOrder;
+          localStorage.setItem('nexus_orders', JSON.stringify(allOrders));
+        }
+      }
+
+      let timerInterval = null;
+
+      // Render Finish Page (callable whenever status changes)
+      window.renderFinishPage = () => {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+
+        // If no orders found, display clean empty state
+        if (!currentOrder) {
+          root.innerHTML = `
+            <div class="finish-card" style="text-align:center; padding:48px 24px;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--bg-secondary); color:var(--text-muted); display:inline-flex; align-items:center; justify-content:center; margin-bottom:16px;">
+                <i data-lucide="shopping-bag" size="32"></i>
+              </div>
+              <h2 style="font-family:var(--font-heading); font-size:1.4rem; font-weight:800; margin-bottom:8px;">Belum Ada Pesanan yang Aktif</h2>
+              <p style="color:var(--text-secondary); font-size:0.9rem; max-width:440px; margin:0 auto 24px auto;">
+                Silakan pilih alat kopi atau biji kopi specialty favorit Anda di etalase toko untuk membuat pesanan baru.
+              </p>
+              <div style="display:flex; justify-content:center; gap:12px;">
+                <a href="shop.html" class="btn-primary" style="padding:10px 24px; text-decoration:none; font-weight:700;">Mulai Belanja</a>
+                <a href="index.html" class="btn-secondary" style="padding:10px 20px; text-decoration:none; font-weight:600;">Beranda</a>
+              </div>
+            </div>
+          `;
+          if (window.lucide) lucide.createIcons();
+          return;
+        }
+
+        const sLower = (currentOrder.status || '').toLowerCase();
+        const isCancelled = sLower.includes('batal');
+        const isProcessedOrDone = (
+          sLower.includes('proses') ||
+          sLower.includes('kemas') ||
+          sLower.includes('kirim') ||
+          sLower.includes('selesai') ||
+          sLower.includes('lunas')
+        );
+        const isUnpaid = !isCancelled && !isProcessedOrDone && !currentOrder.paymentProof;
+
+        // Auto-cancel if 24-hour payment window has passed
+        if (!isCancelled && isUnpaid && currentOrder.expiresAt) {
+          const expMs = new Date(currentOrder.expiresAt).getTime();
+          if (Date.now() >= expMs) {
+            currentOrder.status = 'Dibatalkan';
+            currentOrder.cancelReason = 'Waktu pembayaran telah habis (Batas 24 jam terlampaui)';
+            currentOrder.cancelledAt = new Date().toLocaleString('id-ID', {
+              day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+            const idx = allOrders.findIndex(o => o.id === currentOrder.id);
+            if (idx !== -1) {
+              allOrders[idx] = currentOrder;
+            }
+            localStorage.setItem('nexus_orders', JSON.stringify(allOrders));
+            showToast('Waktu pembayaran pesanan telah habis (24 jam). Pesanan otomatis dibatalkan.', 'danger');
+            return renderFinishPage();
+          }
+        }
+
+        // Determine active payment method from order or nexus_payments
+        const savedPayments = (() => {
+          try {
+            const p = JSON.parse(localStorage.getItem('nexus_payments'));
+            return Array.isArray(p) && p.length > 0 ? p : null;
+          } catch (_) { return null; }
+        })();
+
+        let activeBank = null;
+        const rawPayment = (currentOrder.selectedPaymentMethod || currentOrder.paymentMethod || '').toLowerCase();
+
+        if (savedPayments) {
+          activeBank = savedPayments.find(p => (p.code || '').toLowerCase() === rawPayment)
+            || savedPayments.find(p => rawPayment.includes((p.code || '').toLowerCase()) || rawPayment.includes((p.badgeText || '').toLowerCase()));
+        }
+        if (!activeBank && currentOrder.paymentDetails) {
+          activeBank = currentOrder.paymentDetails;
+        }
+
+        let paymentKey = 'qris';
+        if (activeBank) {
+          paymentKey = activeBank.type === 'qris' ? 'qris' : (activeBank.code || 'bank');
+          activeBank = {
+            code: activeBank.code || activeBank.badgeText || 'bank',
+            type: activeBank.type || (paymentKey === 'qris' ? 'qris' : 'bank'),
+            title: activeBank.title || activeBank.tabLabel || 'QRIS Toko',
+            name: activeBank.fullName || activeBank.tabLabel || 'QRIS',
+            nmid: activeBank.nmid || 'ID1024334436911',
+            number: activeBank.accountNumber || '',
+            holder: activeBank.accountHolder || 'ALAT KOPI MALANG',
+            badgeBg: activeBank.badgeColor || '#00529c',
+            badgeText: activeBank.badgeText || (activeBank.code || 'BANK').toUpperCase(),
+            qrisImage: activeBank.qrisImage || 'images/qris-alat-kopi-malang.png'
+          };
+        } else {
+          if (rawPayment.includes('bca')) {
+            paymentKey = 'bca';
+          } else if (rawPayment.includes('bri')) {
+            paymentKey = 'bri';
+          } else {
+            paymentKey = 'qris';
+          }
+          activeBank = BANK_INFO[paymentKey] || BANK_INFO.qris;
+        }
+
+        // WhatsApp confirmation URL generator
+        const waText = 
+`Halo Admin ${settings.storeName}, saya ingin konfirmasi pembayaran pesanan saya:
+
+━━━━━━━━━━━━━━━━━━━
+🛒 *KONFIRMASI BAYAR (#${currentOrder.id})*
+━━━━━━━━━━━━━━━━━━━
+📅 Tanggal: ${currentOrder.date || 'Hari ini'}
+👤 Pemesan: ${currentOrder.customer?.name || '-'} (${currentOrder.customer?.phone || '-'})
+💰 Total Bayar: ${formatRupiah(currentOrder.grandTotal)}
+💳 Metode: ${activeBank.title}
+
+Mohon dicek dan diverifikasi pembayarannya ya min. Terima kasih! 🙏`;
+
+        const waUrl = `https://api.whatsapp.com/send?phone=${settings.whatsappNumber || '6282132095241'}&text=${encodeURIComponent(waText)}`;
+
+        // Render Page Layout
+        root.innerHTML = `
+          <!-- Top Hero Card (Success or Cancelled) -->
+          ${isCancelled ? `
+            <div class="finish-card cancelled-hero-card">
+              <div class="cancelled-icon-badge">
+                <i data-lucide="x" size="36" stroke-width="3"></i>
+              </div>
+              <h1 class="success-title">Pesanan Dibatalkan</h1>
+              <p class="success-subtitle">
+                Pesanan ini telah dibatalkan atas permintaan Anda sebelum pembayaran dan konfirmasi. Tagihan pembayaran telah dinonaktifkan secara otomatis.
+              </p>
+              <div class="order-meta-pill-bar">
+                <div class="order-meta-pill-item">
+                  <i data-lucide="hash" size="14"></i>
+                  <span>No. Pesanan:</span>
+                  <span class="order-id-badge">#${currentOrder.id}</span>
+                </div>
+                <span class="pill-divider" style="color:var(--border-subtle);">|</span>
+                <div class="order-meta-pill-item">
+                  <i data-lucide="calendar" size="14"></i>
+                  <span>${currentOrder.date || 'Baru Saja'}</span>
+                </div>
+                <span class="pill-divider" style="color:var(--border-subtle);">|</span>
+                <div class="order-status-badge status-cancelled">
+                  <i data-lucide="x-circle" size="13"></i>
+                  <span>Dibatalkan</span>
+                </div>
+              </div>
+              ${currentOrder.cancelReason ? `
+                <div style="margin-top:12px; font-size:0.8rem; color:var(--text-muted); background:var(--bg-secondary); display:inline-block; padding:4px 14px; border-radius:999px; border:1px solid var(--border-subtle);">
+                  Alasan: <strong>${currentOrder.cancelReason}</strong>
+                </div>
+              ` : ''}
+            </div>
+          ` : `
+            <div class="finish-card success-hero-card">
+              <div class="success-icon-badge">
+                <i data-lucide="check" size="36" stroke-width="3"></i>
+              </div>
+              <h1 class="success-title">Pesanan Berhasil Dibuat!</h1>
+              <p class="success-subtitle">
+                Terima kasih telah berbelanja di <strong>${settings.storeName}</strong>. Mohon selesaikan pembayaran sesuai rincian metode yang Anda pilih di bawah ini.
+              </p>
+              <div class="order-meta-pill-bar">
+                <div class="order-meta-pill-item">
+                  <i data-lucide="hash" size="14"></i>
+                  <span>No. Pesanan:</span>
+                  <span class="order-id-badge">#${currentOrder.id}</span>
+                  <button type="button" onclick="window.copyText('${currentOrder.id}', 'Nomor Pesanan')" title="Salin No. Pesanan" style="background:none; border:none; color:var(--primary); cursor:pointer; padding:2px 4px; display:inline-flex; align-items:center;">
+                    <i data-lucide="copy" size="13"></i>
+                  </button>
+                </div>
+                <span class="pill-divider" style="color:var(--border-subtle);">|</span>
+                <div class="order-meta-pill-item">
+                  <i data-lucide="calendar" size="14"></i>
+                  <span>${currentOrder.date || 'Baru Saja'}</span>
+                </div>
+                <span class="pill-divider" style="color:var(--border-subtle);">|</span>
+                <div class="status-badge-pending" id="orderStatusBadge">
+                  <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#f59e0b;"></span>
+                  <span>${currentOrder.status || 'Menunggu Pembayaran'}</span>
+                </div>
+              </div>
+            </div>
+          `}
+
+          <!-- 2-Column Responsive Finish Layout -->
+          <div class="finish-layout">
+
+            <!-- Left Column: Payment Instructions OR Cancellation Notice -->
+            <div class="finish-col-left">
+
+              ${isCancelled ? `
+                <!-- Cancellation Notice Card -->
+                <div class="finish-card" style="border-left: 4px solid #ef4444;">
+                  <div style="display:flex; align-items:flex-start; gap:14px;">
+                    <div style="width:38px; height:38px; border-radius:50%; background:#fee2e2; color:#dc2626; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                      <i data-lucide="alert-circle" size="20"></i>
+                    </div>
+                    <div style="flex:1;">
+                      <h3 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:var(--text-primary); margin:0 0 6px 0;">
+                        Pembayaran Tidak Perlu Dilakukan
+                      </h3>
+                      <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.5; margin:0 0 16px 0;">
+                        Pesanan <strong>#${currentOrder.id}</strong> telah dibatalkan secara resmi. Anda tidak perlu mentransfer pembayaran ke rekening atau QRIS toko. Jika Anda ingin melakukan pemesanan ulang atau memilih produk lain, silakan kunjungi katalog kami.
+                      </p>
+                      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <a href="shop.html" class="btn-primary" style="padding:10px 18px; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                          <i data-lucide="shopping-bag" size="16"></i>
+                          <span>Belanja Produk Lain</span>
+                        </a>
+                        <a href="account.html" class="btn-secondary" style="padding:10px 18px; font-size:0.84rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                          <i data-lucide="package" size="16"></i>
+                          <span>Lihat Riwayat Pesanan</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CS Support Card -->
+                <div class="finish-card">
+                  <h4 style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800; margin-bottom:6px; display:flex; align-items:center; gap:8px;">
+                    <i data-lucide="help-circle" size="18" style="color:var(--primary);"></i>
+                    <span>Butuh Bantuan Lainnya?</span>
+                  </h4>
+                  <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:14px; line-height:1.45;">
+                    Jika pembatalan ini tidak disengaja atau Anda memerlukan konsultasi peralatan dan biji kopi specialty, Customer Support kami siap membantu Anda.
+                  </p>
+                  <a href="https://wa.me/${settings.whatsappNumber || '6282132095241'}?text=${encodeURIComponent(`Halo Admin ${settings.storeName}, saya ingin menanyakan perihal pesanan #${currentOrder.id}.`)}" target="_blank" class="btn-secondary" style="display:inline-flex; align-items:center; gap:8px; padding:9px 16px; font-size:0.82rem; font-weight:600; text-decoration:none;">
+                    <i data-lucide="message-circle" size="16" style="color:#25d366;"></i>
+                    <span>Hubungi CS via WhatsApp</span>
+                  </a>
+                </div>
+              ` : !isUnpaid ? `
+                <!-- Processed / Shipped / Completed Notice Card -->
+                <div class="finish-card" style="border-left: 4px solid #10b981;">
+                  <div style="display:flex; align-items:flex-start; gap:14px;">
+                    <div style="width:38px; height:38px; border-radius:50%; background:rgba(16,185,129,0.14); color:#059669; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                      <i data-lucide="check-circle" size="20"></i>
+                    </div>
+                    <div style="flex:1;">
+                      <h3 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; color:var(--text-primary); margin:0 0 6px 0;">
+                        Status Pesanan: ${currentOrder.status || 'Diproses & Dikemas'}
+                      </h3>
+                      <p style="font-size:0.84rem; color:var(--text-secondary); line-height:1.5; margin:0 0 16px 0;">
+                        Terima kasih! Pesanan <strong>#${currentOrder.id}</strong> telah diverifikasi dan saat ini berstatus <strong>${currentOrder.status}</strong>. Anda dapat mengunduh invoice resmi pada panel di samping atau melihat daftar pesanan di halaman akun.
+                      </p>
+                      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                        <a href="account.html" class="btn-primary" style="padding:10px 18px; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                          <i data-lucide="package" size="16"></i>
+                          <span>Kembali ke Riwayat Pesanan</span>
+                        </a>
+                        <a href="shop.html" class="btn-secondary" style="padding:10px 18px; font-size:0.84rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                          <i data-lucide="shopping-bag" size="16"></i>
+                          <span>Belanja Lagi</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ` : `
+                <!-- Countdown Alert Box -->
+                <div class="timer-alert-card">
+                  <div class="timer-alert-left">
+                    <div class="timer-icon-circle">
+                      <i data-lucide="clock" size="18"></i>
+                    </div>
+                    <div>
+                      <div class="timer-title" style="font-size:0.78rem; font-weight:700; text-transform:uppercase; color:#b45309; letter-spacing:0.04em;">Selesaikan Pembayaran Dalam:</div>
+                      <div class="timer-subtitle" style="font-size:0.75rem; color:var(--text-secondary); margin-top:2px;">Batas waktu 24 jam. Pesanan otomatis dibatalkan jika waktu pembayaran habis.</div>
+                    </div>
+                  </div>
+                  <div class="timer-digital-display" id="paymentCountdown">23:59:59</div>
+                </div>
+
+                <!-- Payment Method Card (Tailored to chosen payment) -->
+                <div class="finish-card payment-instruction-card" id="mainPaymentCard">
+                  <div class="payment-header-strip">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <i data-lucide="${paymentKey === 'qris' ? 'qr-code' : 'credit-card'}" size="18"></i>
+                      <strong style="font-size:0.95rem;">${activeBank.title}</strong>
+                    </div>
+                    <span style="font-size:0.75rem; background:rgba(255,255,255,0.2); padding:2px 8px; border-radius:4px; font-weight:600;">Metode Terpilih</span>
+                  </div>
+
+                  <!-- Total Nominal Display -->
+                  <div class="nominal-display-box">
+                    <div>
+                      <div style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.04em;">Total yang Harus Dibayar:</div>
+                      <div class="nominal-amount" id="finishTotalAmount">${formatRupiah(currentOrder.grandTotal)}</div>
+                    </div>
+                    <button type="button" class="copy-btn" onclick="window.copyText('${currentOrder.grandTotal}', 'Nominal Transfer')">
+                      <i data-lucide="copy" size="14"></i>
+                      <span class="copy-text-full">Salin Nominal</span>
+                      <span class="copy-text-short">Salin</span>
+                    </button>
+                  </div>
+
+                  <!-- Specific Payment Body Content -->
+                  <div id="dynamicPaymentBody">
+                    ${renderPaymentBody(paymentKey, activeBank, currentOrder)}
+                  </div>
+                </div>
+
+                <!-- Confirmation Actions Card -->
+                <div class="finish-card">
+                  <h3 style="font-family:var(--font-heading); font-size:1.1rem; font-weight:700; margin-bottom:6px;">Sudah Melakukan Pembayaran?</h3>
+                  <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:14px; line-height:1.45;">
+                    Kirimkan konfirmasi atau screenshot bukti transfer ke WhatsApp admin kami untuk mempercepat verifikasi pesanan.
+                  </p>
+
+                  <!-- WhatsApp Confirm Button -->
+                  <a href="${waUrl}" target="_blank" class="btn-wa-confirm-big" id="btnConfirmWhatsApp">
+                    <i data-lucide="message-circle" size="20"></i>
+                    <span class="wa-btn-full">Konfirmasi Pembayaran via WhatsApp</span>
+                    <span class="wa-btn-short">Konfirmasi via WhatsApp</span>
+                  </a>
+
+                </div>
+              `}
+
+            </div>
+
+            <!-- Right Column: Order Details Summary -->
+            <div class="finish-col-right">
+
+              <!-- Order Items Summary Card -->
+              <div class="finish-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid var(--border-subtle);">
+                  <h3 style="font-family:var(--font-heading); font-size:1.05rem; font-weight:800; display:flex; align-items:center; gap:8px;">
+                    <i data-lucide="package" size="18" style="color:var(--primary);"></i>
+                    <span>Rincian Pesanan</span>
+                  </h3>
+                  <span style="font-size:0.78rem; font-weight:700; background:var(--bg-secondary); padding:2px 8px; border-radius:6px; color:var(--text-secondary);">
+                    ${(currentOrder.items || []).length} Item
+                  </span>
+                </div>
+
+                <!-- Product items list -->
+                <div style="max-height:260px; overflow-y:auto; padding-right:4px; margin-bottom:12px;">
+                  ${(currentOrder.items || []).map(it => `
+                    <div class="summary-item-finish">
+                      <img src="${it.image || 'images/banner_coffee.jpg'}" alt="${it.name}" class="summary-item-finish-img" onerror="this.src='images/banner_coffee.jpg'">
+                      <div style="flex:1; min-width:0;">
+                        <div style="font-weight:700; font-size:0.85rem; color:var(--text-primary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${it.name}</div>
+                        <div style="font-size:0.75rem; color:var(--text-muted);">${it.variant || '100g'} · ${it.quantity} × ${formatRupiah(it.price)}</div>
+                      </div>
+                      <div style="font-weight:700; font-size:0.85rem; color:var(--text-primary); text-align:right;">
+                        ${formatRupiah(it.price * it.quantity)}
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+
+                <!-- Cost breakdown -->
+                <div style="border-top:1px dashed var(--border-subtle); padding-top:12px;">
+                  <div class="summary-row-finish">
+                    <span>Subtotal Produk</span>
+                    <span>${formatRupiah(currentOrder.subtotal)}</span>
+                  </div>
+                  <div class="summary-row-finish">
+                    <span>${currentOrder.deliveryMethod === 'pickup' ? 'Biaya Pengambilan' : 'Ongkos Kirim'}</span>
+                    <span>${formatRupiah(currentOrder.deliveryFee)}</span>
+                  </div>
+                  ${currentOrder.voucherDiscount > 0 ? `
+                    <div class="summary-row-finish" style="color:#059669; font-weight:700;">
+                      <span>Diskon Voucher (${currentOrder.voucher || 'Promo'})</span>
+                      <span>- ${formatRupiah(currentOrder.voucherDiscount)}</span>
+                    </div>
+                  ` : ''}
+                  <div class="summary-row-finish total">
+                    <span>Total ${isCancelled ? 'Tagihan (Dibatalkan)' : 'Pembayaran'}</span>
+                    <span style="color:${isCancelled ? 'var(--text-muted)' : 'var(--primary)'}; font-size:1.15rem; ${isCancelled ? 'text-decoration:line-through;' : ''}">
+                      ${formatRupiah(currentOrder.grandTotal)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Delivery / Pickup Details Card -->
+              <div class="finish-card">
+                <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border-subtle);">
+                  <i data-lucide="${currentOrder.deliveryMethod === 'pickup' ? 'store' : 'truck'}" size="18" style="color:var(--primary);"></i>
+                  <h4 style="font-family:var(--font-heading); font-size:0.95rem; font-weight:800;">
+                    ${currentOrder.deliveryMethod === 'pickup' ? 'Informasi Ambil di Toko (Pickup)' : 'Informasi Pengiriman Ekspedisi'}
+                  </h4>
+                </div>
+
+                ${currentOrder.deliveryMethod === 'pickup' ? (() => {
+                  const savedPickup = (() => {
+                    try { return JSON.parse(localStorage.getItem('nexus_pickup') || '{}'); } catch (_) { return {}; }
+                  })();
+                  const pAddr = currentOrder.customer?.roasteryAddress || savedPickup.address || 'Jl. Jombang No. 16, Malang 65116';
+                  const pHours = currentOrder.customer?.pickupHours || savedPickup.operationalHours || 'Setiap hari 08:00 – 21:00 WIB';
+                  const pMapsUrl = currentOrder.customer?.pickupMapsUrl || savedPickup.mapsUrl || `https://maps.google.com/?q=${encodeURIComponent(pAddr)}`;
+                  const pNote = savedPickup.notesInstruction || '';
+                  return `
+                  <div style="font-size:0.82rem; line-height:1.5; color:var(--text-secondary);">
+                    <div style="margin-bottom:6px;">
+                      <strong style="color:var(--text-primary);">Lokasi Roastery / Toko:</strong><br>
+                      ${pAddr}
+                    </div>
+                    <div style="margin-bottom:6px;">
+                      <strong style="color:var(--text-primary);">Nama Pengambil:</strong> ${currentOrder.customer?.name || '-'}<br>
+                      <strong style="color:var(--text-primary);">No. Telepon:</strong> ${currentOrder.customer?.phone || '-'}
+                    </div>
+                    <div style="margin-bottom:10px;">
+                      <strong style="color:var(--text-primary);">Jam Buka Toko:</strong> ${pHours}
+                    </div>
+                    ${pNote ? `<div style="margin-bottom:10px; font-size:0.78rem; padding:8px 10px; background:var(--bg-secondary); border-radius:6px; border:1px solid var(--border-subtle);">${pNote}</div>` : ''}
+                    <a href="${pMapsUrl}" target="_blank" style="display:inline-flex; align-items:center; gap:6px; color:var(--primary); font-weight:700; text-decoration:none; font-size:0.78rem;">
+                      <i data-lucide="map-pin" size="14"></i>
+                      <span>${savedPickup.mapsLabel || 'Petunjuk Arah Google Maps'}</span>
+                    </a>
+                  </div>
+                  `;
+                })() : `
+                  <div style="font-size:0.82rem; line-height:1.5; color:var(--text-secondary);">
+                    <div style="margin-bottom:6px;">
+                      <strong style="color:var(--text-primary);">Penerima:</strong> ${currentOrder.customer?.name || '-'} (${currentOrder.customer?.phone || '-'})
+                    </div>
+                    <div style="margin-bottom:6px;">
+                      <strong style="color:var(--text-primary);">Alamat Lengkap:</strong><br>
+                      ${currentOrder.customer?.address || '-'}
+                    </div>
+                    <div>
+                      <strong style="color:var(--text-primary);">Ekspedisi:</strong> ${currentOrder.customer?.courier || 'Kurir Standar'}
+                    </div>
+                  </div>
+                `}
+
+                ${currentOrder.customer?.note && currentOrder.customer?.note !== '-' ? `
+                  <div style="margin-top:12px; padding-top:10px; border-top:1px dashed var(--border-subtle); font-size:0.78rem;">
+                    <strong style="color:var(--text-primary);">Catatan Pesanan:</strong>
+                    <div style="font-style:italic; color:var(--text-secondary); margin-top:2px;">"${currentOrder.customer.note}"</div>
+                  </div>
+                ` : ''}
+              </div>
+
+              <!-- Action Buttons Card -->
+              <div class="finish-card" style="padding:16px;">
+                <!-- Download Invoice Direct Button -->
+                <a href="invoice.html?orderId=${currentOrder.id}&download=true" target="_blank" class="btn-primary" style="padding:12px 14px; font-size:0.88rem; font-weight:700; width:100%; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; box-sizing:border-box; background:#4f46e5; color:#ffffff; border-radius:10px; box-shadow:0 4px 12px rgba(79,70,229,0.22); margin-bottom:8px;">
+                  <i data-lucide="download" size="17"></i>
+                  <span class="wa-btn-full">Download Invoice (PDF)</span>
+                  <span class="wa-btn-short">Download Invoice (PDF)</span>
+                </a>
+
+                <!-- Batalkan Pesanan Button (Only visible before payment and confirmation) -->
+                ${isUnpaid && !isCancelled ? `
+                  <button type="button" class="btn-cancel-order" onclick="openCancelOrderModal()" style="width:100%; padding:10px 14px; font-size:0.82rem; font-weight:700; color:#dc2626; border:1px solid #fca5a5; display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer; margin-bottom:8px; border-radius:10px; background:transparent;">
+                    <i data-lucide="x-circle" size="15"></i>
+                    <span>Batalkan Pesanan Ini</span>
+                  </button>
+                ` : ''}
+
+                <div style="display:flex; gap:8px;">
+                  <a href="account.html" class="btn-secondary" style="flex:1; padding:10px 12px; font-size:0.82rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; text-align:center; font-weight:600;">
+                    Riwayat Pesanan
+                  </a>
+                  <a href="shop.html" class="btn-secondary" style="flex:1; padding:10px 12px; font-size:0.82rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; text-align:center; font-weight:600;">
+                    Belanja Lagi
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        `;
+
+        // Start countdown if not cancelled
+        if (!isCancelled) {
+          const countdownEl = document.getElementById('paymentCountdown');
+          const expMs = currentOrder.expiresAt ? new Date(currentOrder.expiresAt).getTime() : (Date.now() + 24 * 3600 * 1000);
+
+          const updateTimer = () => {
+            const now = Date.now();
+            const diffSec = Math.max(0, Math.floor((expMs - now) / 1000));
+
+            if (diffSec <= 0) {
+              if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+              }
+              if (countdownEl) countdownEl.textContent = '00:00:00';
+
+              // Auto-cancel expired order
+              currentOrder.status = 'Dibatalkan';
+              currentOrder.cancelReason = 'Waktu pembayaran telah habis (Batas 24 jam terlampaui)';
+              currentOrder.cancelledAt = new Date().toLocaleString('id-ID', {
+                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+              });
+
+              const idx = allOrders.findIndex(o => o.id === currentOrder.id);
+              if (idx !== -1) {
+                allOrders[idx] = currentOrder;
+              }
+              localStorage.setItem('nexus_orders', JSON.stringify(allOrders));
+
+              showToast('Waktu pembayaran telah habis (24 jam). Pesanan otomatis dibatalkan.', 'danger');
+              renderFinishPage();
+              return;
+            }
+
+            const h = Math.floor(diffSec / 3600);
+            const m = Math.floor((diffSec % 3600) / 60);
+            const s = diffSec % 60;
+            if (countdownEl) {
+              countdownEl.textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            }
+          };
+
+          // Run immediately so real-time countdown is displayed instantly without delay
+          updateTimer();
+          timerInterval = setInterval(updateTimer, 1000);
+
+
+        }
+
+        // Initialize Lucide icons
+        if (window.lucide) {
+          lucide.createIcons();
+        }
+      };
+
+      // Modal functions
+      window.openCancelOrderModal = () => {
+        if (!currentOrder) return;
+        const ref = document.getElementById('cancelModalOrderRef');
+        if (ref) {
+          ref.textContent = `Pesanan #${currentOrder.id} • Total: ${formatRupiah(currentOrder.grandTotal)}`;
+        }
+        const modal = document.getElementById('cancelOrderModal');
+        if (modal) modal.style.display = 'flex';
+        if (window.lucide) lucide.createIcons();
+      };
+
+      window.closeCancelOrderModal = () => {
+        const modal = document.getElementById('cancelOrderModal');
+        if (modal) modal.style.display = 'none';
+      };
+
+      window.confirmCancelCurrentOrder = () => {
+        if (!currentOrder) return;
+
+        const reasonSelect = document.getElementById('cancelReasonSelect');
+        const notesText = document.getElementById('cancelReasonNotes');
+        const reason = reasonSelect ? reasonSelect.value : 'Dibatalkan oleh Pelanggan';
+        const notes = notesText ? notesText.value.trim() : '';
+        const fullReason = notes ? `${reason} (${notes})` : reason;
+
+        currentOrder.status = 'Dibatalkan';
+        currentOrder.cancelReason = fullReason;
+        currentOrder.cancelledAt = new Date().toLocaleString('id-ID', {
+          day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+
+        // Update in allOrders list & save
+        const idx = allOrders.findIndex(o => o.id === currentOrder.id);
+        if (idx !== -1) {
+          allOrders[idx] = currentOrder;
+        }
+        localStorage.setItem('nexus_orders', JSON.stringify(allOrders));
+
+        window.closeCancelOrderModal();
+        showToast(`✓ Pesanan #${currentOrder.id} berhasil dibatalkan.`, 'success');
+
+        // Re-render finish page with cancelled state
+        renderFinishPage();
+      };
+
+      // Helper function to render Payment Body
+      function renderPaymentBody(pKey, bank, order) {
+        if (pKey === 'qris' || bank.type === 'qris') {
+          const qrisImgSrc = bank.qrisImage || 'images/qris-alat-kopi-malang.png';
+          return `
+            <div style="text-align:center; padding:10px 0;">
+              <div style="margin-bottom:12px;">
+                <div style="font-weight:800; font-size:1.15rem; color:var(--text-primary); letter-spacing:0.5px;">${(bank.title || 'QRIS TOKO').toUpperCase()}</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">NMID: ${bank.nmid} · ${bank.holder}</div>
+              </div>
+
+              <!-- Official QRIS Poster Image Box -->
+              <div class="qr-center-box" id="qrisContainerBox" style="background:#ffffff; border-radius:14px; border:2px solid var(--border-subtle); padding:10px; display:inline-block; max-width:320px; width:100%; box-shadow:0 6px 20px rgba(0,0,0,0.08); margin:0 auto; box-sizing:border-box;">
+                <img src="${qrisImgSrc}" alt="QRIS Resmi ${bank.holder}" id="officialQrisImg" style="width:100%; height:auto; display:block; border-radius:8px;">
+              </div>
+
+              <!-- Download QR Button -->
+              <div style="margin:12px 0 16px 0;">
+                <button type="button" class="btn-secondary" onclick="window.downloadQris('${qrisImgSrc.replace(/'/g, "\\'")}')" style="padding:6px 14px; font-size:0.8rem; display:inline-flex; align-items:center; gap:6px;">
+                  <i data-lucide="download" size="14"></i>
+                  <span>Simpan Gambar QR</span>
+                </button>
+              </div>
+
+              <!-- Supported E-Wallets -->
+              <div style="background:var(--bg-secondary); padding:10px 14px; border-radius:8px; margin-bottom:18px;">
+                <div style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); margin-bottom:6px;">Mendukung Seluruh Scanner QRIS Indonesia:</div>
+                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:6px; font-size:0.74rem; font-weight:700; color:var(--text-primary);">
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">GoPay</span>
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">OVO</span>
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">ShopeePay</span>
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">DANA</span>
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">BCA Mobile</span>
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">Livin Mandiri</span>
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">BRImo</span>
+                  <span style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; border:1px solid var(--border-subtle);">LinkAja</span>
+                </div>
+              </div>
+
+              <!-- 3 Step Guide -->
+              <div style="text-align:left; background:var(--bg-secondary); padding:16px; border-radius:10px;">
+                <div style="font-weight:700; font-size:0.85rem; color:var(--text-primary); margin-bottom:10px;">Cara Membayar dengan QRIS:</div>
+                <div class="guide-step-row">
+                  <div class="guide-step-num">1</div>
+                  <div class="guide-step-text">Buka aplikasi m-Banking atau e-Wallet favorit Anda di smartphone.</div>
+                </div>
+                <div class="guide-step-row">
+                  <div class="guide-step-num">2</div>
+                  <div class="guide-step-text">Pilih menu <strong>Scan / Bayar QRIS</strong>, lalu arahkan kamera ke barcode QR di atas.</div>
+                </div>
+                <div class="guide-step-row" style="margin-bottom:0;">
+                  <div class="guide-step-num">3</div>
+                  <div class="guide-step-text">Pastikan penerima adalah <strong>ALAT KOPI MALANG</strong> dan nominal sesuai <strong>${formatRupiah(order.grandTotal)}</strong>, lalu masukkan PIN Anda.</div>
+                </div>
+              </div>
+            </div>
+          `;
+        } else {
+          // Bank Transfer BCA or BRI
+          return `
+            <div>
+              <div class="bank-account-box">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <div style="background:${bank.badgeBg || '#00529c'}; color:#fff; font-weight:800; font-size:0.75rem; padding:4px 10px; border-radius:4px;">
+                      ${bank.code.toUpperCase()}
+                    </div>
+                    <strong style="font-size:0.95rem; color:var(--text-primary);">${bank.name}</strong>
+                  </div>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">Transfer Manual</span>
+                </div>
+
+                <div style="margin-top:14px;">
+                  <div style="font-size:0.75rem; color:var(--text-secondary);">Nomor Rekening Tujuan:</div>
+                  <div class="bank-number-row">
+                    <span class="bank-number-text">${bank.number}</span>
+                    <button type="button" class="copy-btn" onclick="window.copyText('${bank.number}', 'Nomor Rekening ${bank.code.toUpperCase()}')">
+                      <i data-lucide="copy" size="14"></i>
+                      <span class="copy-text-full">Salin No. Rekening</span>
+                      <span class="copy-text-short">Salin</span>
+                    </button>
+                  </div>
+                  <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:6px;">
+                    Atas Nama: <strong style="color:var(--text-primary);">${bank.holder}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step Guide for Bank Transfer -->
+              <div style="background:var(--bg-secondary); padding:16px; border-radius:10px; margin-top:14px;">
+                <div style="font-weight:700; font-size:0.85rem; color:var(--text-primary); margin-bottom:10px;">
+                  Petunjuk Transfer ${bank.name}:
+                </div>
+                <div class="guide-step-row">
+                  <div class="guide-step-num">1</div>
+                  <div class="guide-step-text">Buka aplikasi mobile banking (${bank.code === 'bca' ? 'BCA Mobile / myBCA' : 'BRImo'}) atau kunjungi ATM terdekat.</div>
+                </div>
+                <div class="guide-step-row">
+                  <div class="guide-step-num">2</div>
+                  <div class="guide-step-text">Pilih menu Transfer Antar Rekening, masukkan nomor rekening <strong>${bank.number}</strong> a/n <strong>${bank.holder}</strong>.</div>
+                </div>
+                <div class="guide-step-row">
+                  <div class="guide-step-num">3</div>
+                  <div class="guide-step-text">Masukkan nominal transfer tepat sebesar <strong>${formatRupiah(order.grandTotal)}</strong>.</div>
+                </div>
+                <div class="guide-step-row" style="margin-bottom:0;">
+                  <div class="guide-step-num">4</div>
+                  <div class="guide-step-text">Simpan struk / screenshot transaksi berhasil untuk konfirmasi pembayaran di bawah.</div>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      // QRIS Download helper
+      window.downloadQris = (customSrc) => {
+        const dlLink = document.createElement('a');
+        dlLink.download = `QRIS-ALAT-KOPI-MALANG-${currentOrder ? currentOrder.id : 'RESMI'}.png`;
+        dlLink.href = customSrc || 'images/qris-alat-kopi-malang.png';
+        dlLink.click();
+        showToast('✓ Gambar QRIS resmi berhasil diunduh ke perangkat!', 'success');
+      };
+
+      // First initial render
+      renderFinishPage();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Pusat Bantuan & FAQ (Frequently Asked Questions) Alat Kopi Malang. Jawaban lengkap seputar pemesanan, pembayaran, ekspedisi pengiriman, garansi mesin, servis, dan retur barang.">
+  <title>Pusat Bantuan & FAQ - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=65">
+
+  <style>
+    /* Dedicated FAQ Page Styling */
+    .faq-page-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 32px 20px 80px 20px;
+    }
+
+    /* Hero Header Card */
+    .faq-hero-card {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-secondary) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 40px 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .faq-hero-card::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+    .faq-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .faq-hero-title {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+    .faq-hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0 auto 28px auto;
+      max-width: 760px;
+    }
+
+    /* Search Input in Hero */
+    .faq-search-box {
+      max-width: 620px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .faq-search-box input {
+      width: 100%;
+      padding: 16px 20px 16px 50px;
+      font-size: 1rem;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+      transition: all var(--transition-fast);
+      outline: none;
+    }
+    .faq-search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 6px 24px rgba(79, 70, 229, 0.18);
+    }
+    .faq-search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .faq-search-clear {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+    .faq-search-clear:hover {
+      background: var(--border-subtle);
+      color: var(--text-primary);
+    }
+
+
+    /* Category Group Cards */
+    .faq-group-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition-fast);
+    }
+    .faq-group-card:hover {
+      border-color: rgba(79, 70, 229, 0.35);
+    }
+
+    .faq-group-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .faq-group-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .faq-icon-indigo { background: #e0e7ff; color: #4338ca; }
+    .faq-icon-emerald { background: #d1fae5; color: #059669; }
+    .faq-icon-amber { background: #fef3c7; color: #d97706; }
+    .faq-icon-rose { background: #ffe4e6; color: #e11d48; }
+    .faq-icon-blue { background: #e0f2fe; color: #0284c7; }
+
+    .faq-group-title {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    /* Accordion Item */
+    .faq-accordion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--bg-secondary);
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+    .faq-item:hover {
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+    .faq-item[open] {
+      background: var(--bg-surface);
+      border-color: rgba(79, 70, 229, 0.4);
+      box-shadow: var(--shadow-xs);
+    }
+    .faq-summary {
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      user-select: none;
+      list-style: none;
+    }
+    .faq-summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-chevron {
+      color: var(--text-muted);
+      transition: transform var(--transition-fast);
+      flex-shrink: 0;
+    }
+    .faq-item[open] .faq-chevron {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+    .faq-content {
+      padding: 0 20px 20px 20px;
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      border-top: 1px dashed transparent;
+    }
+    .faq-item[open] .faq-content {
+      border-top-color: var(--border-subtle);
+      padding-top: 14px;
+    }
+    .faq-content a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Empty Search State */
+    .faq-empty-state {
+      display: none;
+      text-align: center;
+      padding: 48px 20px;
+      background: var(--bg-surface);
+      border: 1px dashed var(--border-subtle);
+      border-radius: var(--radius-lg);
+      margin-bottom: 24px;
+    }
+    .faq-empty-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 12px 0 6px 0;
+    }
+    .faq-empty-desc {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      margin: 0 0 18px 0;
+    }
+
+    @media (max-width: 768px) {
+      .faq-hero-card {
+        padding: 28px 20px;
+      }
+      .faq-hero-title {
+        font-size: 1.75rem;
+      }
+      .faq-hero-desc {
+        font-size: 0.92rem;
+      }
+      .faq-group-card {
+        padding: 22px 16px;
+      }
+      .faq-summary {
+        font-size: 0.92rem;
+        padding: 14px 16px;
+      }
+      .faq-content {
+        padding: 0 16px 16px 16px;
+      }
+    }
+
+    /* CTA Box */
+    .faq-cta-box {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 38px 32px;
+      text-align: center;
+      margin-top: 36px;
+      box-shadow: 0 16px 32px -8px rgba(49, 46, 129, 0.4);
+    }
+    .faq-cta-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+    }
+    .faq-cta-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 680px;
+      margin: 0 auto 24px auto;
+      line-height: 1.6;
+    }
+    .faq-cta-btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-wa-faq {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      background: #10b981;
+      color: #ffffff;
+      border-radius: var(--radius-full);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+      transition: all var(--transition-fast);
+    }
+    .btn-wa-faq:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    }
+    .btn-email-faq {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    .btn-email-faq:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Toko Perlengkapan & Mesin Kopi Terlengkap di Malang</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+      </div>
+
+      <!-- Header Search Input -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i data-lucide="search" size="18" class="search-icon-left"></i>
+          <input type="text" id="desktopSearchInput" placeholder="Cari mesin espresso, grinder, aksesoris seduh..." autocomplete="off">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" style="display:none;" aria-label="Hapus Pencarian">
+            <i data-lucide="x" size="14"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrap -->
+  <main class="faq-page-wrap">
+
+    <!-- Hero Header -->
+    <section class="faq-hero-card">
+      <div class="faq-hero-badge">
+        <i data-lucide="help-circle" size="14"></i>
+        <span>Pusat Bantuan & FAQ • Alat Kopi Malang</span>
+      </div>
+      <h1 class="faq-hero-title">Frequently Asked Questions</h1>
+      <p class="faq-hero-desc">
+        Temukan panduan lengkap dan jawaban cepat seputar pemesanan produk, metode transaksi perbankan, jaminan garansi mesin espresso, jasa servis, ekspedisi pengiriman, hingga kebijakan retur barang di Alat Kopi Malang.
+      </p>
+
+      <!-- Instant Filter Search Bar -->
+      <div class="faq-search-box">
+        <i data-lucide="search" size="20" class="faq-search-icon"></i>
+        <input type="text" id="faqFilterInput" placeholder="Cari pertanyaan (misal: garansi, retur, ongkir, servis)..." autocomplete="off">
+        <button type="button" class="faq-search-clear" id="faqClearBtn" title="Hapus pencarian">
+          <i data-lucide="x" size="14"></i>
+        </button>
+      </div>
+    </section>
+
+
+    <!-- Empty State (When search yields no result) -->
+    <div class="faq-empty-state" id="faqEmptyState">
+      <i data-lucide="file-question" size="48" style="color:var(--text-muted); margin:0 auto;"></i>
+      <h3 class="faq-empty-title">Pertanyaan Tidak Ditemukan</h3>
+      <p class="faq-empty-desc">Maaf, kami tidak menemukan jawaban yang cocok dengan kata kunci pencarian Anda. Tim Customer Care kami siap membantu secara langsung.</p>
+      <a href="https://wa.me/6282132095241?text=Halo%20Admin%20Alat%20Kopi%20Malang%2C%20saya%20ingin%20bertanya%20seputar%3A" target="_blank" rel="noopener noreferrer" class="btn-wa-faq">
+        <i data-lucide="message-circle" size="18"></i>
+        <span>Tanya CS via WhatsApp</span>
+      </a>
+    </div>
+
+    <!-- KATEGORI 1: PEMESANAN & PEMBAYARAN -->
+    <section class="faq-group-card" data-category="order">
+      <div class="faq-group-header">
+        <div class="faq-group-icon faq-icon-indigo">
+          <i data-lucide="shopping-bag" size="22"></i>
+        </div>
+        <h2 class="faq-group-title">1. Pemesanan & Metode Pembayaran</h2>
+      </div>
+
+      <div class="faq-accordion-list">
+        <details class="faq-item" open>
+          <summary class="faq-summary">
+            <span>Bagaimana cara memesan alat dan mesin kopi di Alat Kopi Malang?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Anda dapat memesan dengan tiga cara mudah:
+            <ol style="margin: 6px 0 0 18px; padding: 0;">
+              <li><strong>Belanja Online:</strong> Pilih produk di website, masukkan ke keranjang, dan selesaikan checkout online.</li>
+              <li><strong>Pesan via WhatsApp:</strong> Hubungi customer service kami di <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">+6282132095241</a> untuk konsultasi rekomendasi alat dan pemesanan cepat.</li>
+              <li><strong>Kunjungi Showroom:</strong> Datang langsung ke showroom kami di Ruko Tlogomas Square Kav.34 Malang untuk mencoba unit langsung (*hands-on*).</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Metode pembayaran apa saja yang tersedia?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Kami menerima berbagai metode transaksi yang aman dan terpercaya:
+            <ul style="margin: 6px 0 0 18px; padding: 0;">
+              <li><strong>Transfer Bank Resmi:</strong> Rekening bank atas nama Alat Kopi Malang (BCA, Mandiri, BNI, BRI).</li>
+              <li><strong>QRIS Instan:</strong> Mendukung semua aplikasi e-wallet (GoPay, OVO, Dana, ShopeePay) dan Mobile Banking.</li>
+              <li><strong>Kartu Kredit / Debit Online:</strong> Dilengkapi proteksi keamanan 3D Secure dan standar PCI-DSS.</li>
+              <li><strong>Pembayaran di Showroom:</strong> Tunai, Debit EDC, dan QRIS di kasir toko offline kami.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Berapa lama batas waktu pembayaran untuk transfer bank?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Batas waktu pembayaran melalui transfer bank adalah <strong>24 jam</strong> sejak pesanan dibuat. Jika dalam 24 jam pembayaran belum diselesaikan atau belum dikonfirmasi, sistem kami berhak membatalkan pesanan dan merilis kembali stok barang untuk pelanggan lain.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apakah harga yang tercantum sudah termasuk ongkos kirim?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Harga produk yang tertera di website belum termasuk biaya pengiriman. Tarif ongkir akan dihitung secara transparan dan otomatis pada halaman checkout berdasarkan bobot/volume barang, jenis kurir pilihan, serta alamat tujuan pengiriman Anda.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- KATEGORI 2: PENGIRIMAN & EKSPEDISI -->
+    <section class="faq-group-card" data-category="shipping">
+      <div class="faq-group-header">
+        <div class="faq-group-icon faq-icon-blue">
+          <i data-lucide="truck" size="22"></i>
+        </div>
+        <h2 class="faq-group-title">2. Pengiriman & Ekspedisi</h2>
+      </div>
+
+      <div class="faq-accordion-list">
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Kapan pesanan saya akan dikirimkan?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Pesanan belanja online diproses dan disiapkan maksimal <strong>2 x 24 jam</strong> setelah konfirmasi pembayaran diverifikasi. Untuk pesanan yang terverifikasi sebelum pukul 15.00 WIB pada hari kerja, kami mengupayakan pengiriman di hari yang sama.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Ekspedisi dan kurir apa saja yang digunakan?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Kami bekerja sama dengan berbagai penyedia jasa logistik terpercaya di Indonesia:
+            <ul style="margin: 6px 0 0 18px; padding: 0;">
+              <li><strong>Kurir Reguler & Kilat:</strong> JNE (YES, Reguler, JTR), J&T Express, SiCepat, dan Anteraja.</li>
+              <li><strong>Instant & Same Day:</strong> GoSend dan GrabExpress (khusus area Malang Raya).</li>
+              <li><strong>Kargo Khusus Mesin Komersial:</strong> Baraka Sarana Tama, Indah Logistik Kargo, dan Dakota Cargo untuk pengiriman mesin espresso berbobot besar ke seluruh penjuru Nusantara.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Bagaimana cara melacak pengiriman pesanan saya?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Nomor resi resmi akan dikirimkan ke email Anda sesaat setelah paket diserahkan ke pihak ekspedisi. Anda juga dapat memeriksa riwayat dan nomor resi secara langsung melalui halaman <a href="account.html">Lacak Pengiriman di Akun Saya</a>.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apakah barang pecah belah dan mesin kopi dikemas dengan aman?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Keamanan paket adalah prioritas utama kami. Seluruh produk (terutama server kaca, dripper keramik, grinder, dan mesin espresso) dikemas dengan standar <em>multi-layer bubble wrap</em>, kardus pelindung tebal, stiker fragile, serta opsi <strong>palet kayu dan asuransi pengiriman</strong> untuk pengiriman antarpulau.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- KATEGORI 3: GARANSI & SERVIS MESIN -->
+    <section class="faq-group-card" data-category="warranty">
+      <div class="faq-group-header">
+        <div class="faq-group-icon faq-icon-emerald">
+          <i data-lucide="shield" size="22"></i>
+        </div>
+        <h2 class="faq-group-title">3. Garansi & Jasa Servis Mesin</h2>
+      </div>
+
+      <div class="faq-accordion-list">
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apakah mesin kopi dan grinder di Alat Kopi Malang bergaransi resmi?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Ya! Seluruh produk elektrik yang dibeli dari Alat Kopi Malang mendapatkan garansi resmi distributor dengan masa perlindungan <strong>6, 12, atau 24 bulan</strong> (sesuai spesifikasi masing-masing unit). Syarat lengkap dapat dibaca pada halaman <a href="warranty.html">Ketentuan Garansi Produk Elektrik</a>.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apa saja yang dicakup dalam garansi purna jual?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Garansi mencakup <strong>bebas biaya jasa perbaikan (labor fee)</strong> teknisi resmi dan <strong>penggantian suku cadang</strong> yang mengalami kegagalan fungsi akibat cacat produksi pabrik (*factory defect*). Garansi tidak mencakup kelalaian pemakaian, tegangan listrik tidak stabil, bencana alam (*force majeure*), atau unit yang telah dibongkar di luar bengkel servis kami.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Bagaimana prosedur mengajukan klaim garansi atau servis?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Cukup hubungi tim teknis kami via WhatsApp di <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">+6282132095241</a> dengan melampirkan invoice resmi pembelian dan foto/video kendala mesin. Anda juga dapat membawa unit langsung ke Workshop/Showroom kami di Ruko Tlogomas Square Kav.34 Malang.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apakah melayani servis mesin kopi di luar masa garansi atau brand lain?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Tentu saja! Divisi <strong>Jasa Servis & Maintenance Alat Kopi Malang</strong> melayani perawatan rutin (*preventive maintenance*), *descaling boiler*, penggantian *seal gasket*, kalibrasi burr grinder, hingga perbaikan mesin espresso komersial kafe dengan estimasi biaya transparan yang dikonfirmasikan sebelum perbaikan.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- KATEGORI 4: PENGEMBALIAN PRODUK & REFUND -->
+    <section class="faq-group-card" data-category="return">
+      <div class="faq-group-header">
+        <div class="faq-group-icon faq-icon-amber">
+          <i data-lucide="repeat" size="22"></i>
+        </div>
+        <h2 class="faq-group-title">4. Pengembalian Produk & Refund</h2>
+      </div>
+
+      <div class="faq-accordion-list">
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Berapa batas waktu pengajuan retur barang?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Pengajuan retur dapat dilakukan maksimal <strong>2 hingga 3 hari kalender</strong> sejak barang diterima oleh pembeli berdasarkan status resmi dari kurir ekspedisi. Ketentuan detail dapat dilihat pada halaman <a href="return-policy.html">Kebijakan Pengembalian Produk</a>.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apa saja syarat agar retur barang dapat disetujui?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Retur hanya diterima jika:
+            <ul style="margin: 6px 0 0 18px; padding: 0;">
+              <li>Menyertakan <strong>video unboxing utuh</strong> (tanpa jeda/editan) sejak paket bersegel dibuka;</li>
+              <li>Produk <strong>belum pernah digunakan</strong> sama sekali;</li>
+              <li>Kondisi barang, kotak kemasan asli, buku panduan, dan label *handtag* masih lengkap utuh;</li>
+              <li>Barang diterima dalam kondisi rusak/cacat pabrik, salah kirim item, atau isi kuantitas kurang.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Bagaimana jika barang pengganti sudah habis stoknya?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Jika unit produk pengganti habis, Anda dapat menukarnya dengan produk lain yang bernilai sama, atau mengajukan pengembalian dana (*refund*). Dana akan ditransfer kembali ke rekening Anda paling lambat <strong>7 x 24 jam hari kerja</strong> setelah nomor rekening penerima kami verifikasi.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- KATEGORI 5: SHOWROOM & LAYANAN TOKO -->
+    <section class="faq-group-card" data-category="showroom">
+      <div class="faq-group-header">
+        <div class="faq-group-icon faq-icon-rose">
+          <i data-lucide="store" size="22"></i>
+        </div>
+        <h2 class="faq-group-title">5. Showroom & Layanan Khusus</h2>
+      </div>
+
+      <div class="faq-accordion-list">
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Di mana alamat showroom Alat Kopi Malang dan jam bukanya?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Showroom dan Experience Center kami berlokasi di:
+            <p style="margin: 6px 0; font-weight: 600; color: var(--text-primary);">
+              📍 Ruko Tlogomas Square Kav.34, Kec. Lowokwaru, Kota Malang, Jawa Timur
+            </p>
+            Kami buka <strong>setiap hari</strong> (Senin - Minggu) mulai pukul <strong>09.00 AM s/d 22.00 PM WIB</strong>.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apakah saya bisa mencoba (*hands-on trial*) mesin sebelum membeli?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Sangat bisa! Di showroom kami tersedia <em>Brewing Bar & Espresso Station</em> di mana Anda dapat melihat langsung fisik produk, mencoba kalibrasi grinder kopi, mencoba *steaming* susu, dan berkonsultasi mengenai spesifikasi alat yang paling sesuai dengan anggaran dan kebutuhan Anda.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Apakah Alat Kopi Malang melayani pengadaan paket kafe dan Training Barista?</span>
+            <i data-lucide="chevron-down" size="18" class="faq-chevron"></i>
+          </summary>
+          <div class="faq-content">
+            Ya! Kami melayani solusi menyeluruh bagi pemilik kafe baru:
+            <ul style="margin: 6px 0 0 18px; padding: 0;">
+              <li><strong>Pengadaan Mesin & Peralatan Kafe:</strong> Paket bundling espresso machine, commercial grinder, water filtration, dan bar tools dengan harga spesial kemitraan.</li>
+              <li><strong>Training Barista & Konsultasi Menu:</strong> Pelatihan operasional mesin, teknik seduh manual, kalibrasi espresso, serta alur kerja bar kafe.</li>
+              <li><strong>Layanan Titip Jual (Consignment):</strong> Bantuan penjualan unit mesin kopi seken terkurasi dan berkualitas.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <div class="faq-cta-box">
+      <h3 class="faq-cta-title">Masih Memiliki Pertanyaan Lain?</h3>
+      <p class="faq-cta-desc">
+        Tim spesialis barista dan customer care Alat Kopi Malang siap membantu menjawab setiap pertanyaan dan memberikan solusi terbaik untuk kebutuhan kopi Anda.
+      </p>
+      <div class="faq-cta-btn-row">
+        <a href="https://wa.me/6282132095241?text=Halo%20Admin%20Alat%20Kopi%20Malang%2C%20saya%20butuh%20bantuan%20seputar%3A" target="_blank" rel="noopener noreferrer" class="btn-wa-faq" title="Hubungi CS WhatsApp">
+          <i data-lucide="message-circle" size="18"></i>
+          <span>Hubungi via WhatsApp</span>
+        </a>
+        <a href="mailto:alatkopimalang1@gmail.com?subject=Tanya%20Bantuan%20-%20Alat%20Kopi%20Malang" class="btn-email-faq" title="Kirim Email Bantuan">
+          <i data-lucide="mail" size="18"></i>
+          <span>Email Customer Support</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Column 1: Lokasi & Jam Operasional & Media Sosial -->
+        <div class="footer-col footer-col-contact">
+          <h4 class="footer-col-title">Lokasi & Jam Operasional</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <a href="article.html?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
+                <i data-lucide="map-pin" class="footer-contact-icon"></i>
+                <span>Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang</span>
+              </a>
+            </li>
+            <li>
+              <div class="footer-contact-link" style="cursor: default;" title="Jam Operasional Showroom">
+                <i data-lucide="clock" class="footer-contact-icon"></i>
+                <span>Setiap Hari 09.00 AM - 22.00 PM WIB</span>
+              </div>
+            </li>
+            <li>
+              <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer" class="footer-contact-link" title="Hubungi via WhatsApp">
+                <i data-lucide="message-circle" class="footer-contact-icon"></i>
+                <span>+6282132095241</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:alatkopimalang1@gmail.com" class="footer-contact-link" title="Hubungi via Email">
+                <i data-lucide="mail" class="footer-contact-icon"></i>
+                <span>alatkopimalang1@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="footer-social-wrapper">
+            <div class="footer-social-section">
+              <h5 class="footer-social-title">Dapatkan Update Seputar Alat Kopi</h5>
+              <div class="footer-social-icons">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-instagram" title="Ikuti kami di Instagram" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-facebook" title="Ikuti kami di Facebook" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-youtube" title="Tonton YouTube kami" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-tiktok" title="Ikuti kami di TikTok" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.78 1.25-.03 2.4-0.74 2.92-1.84.4-0.79.49-1.7.49-2.58.01-4.91.01-9.82.01-14.73z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Alat Kopi Malang -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Alat Kopi Malang</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="partnership.html">Kemitraan</a></li>
+            <li><a href="articles.html">Artikel AKM</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Bantuan -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Bantuan</h4>
+          <ul class="footer-links-list">
+            <li><a href="account.html">Lacak Pengiriman</a></li>
+            <li><a href="return-policy.html">Pengembalian Produk</a></li>
+            <li><a href="warranty.html">Ketentuan Garansi</a></li>
+            <li><a href="terms.html">Syarat dan Ketentuan</a></li>
+            <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Customer Care -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links-list">
+            <li><a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">Hubungi Kami</a></li>
+            <li><a href="checkout.html">Konfirmasi Pembayaran</a></li>
+            <li><a href="faq.html">FAQ / Bantuan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Copyright -->
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">© 2026 Alat Kopi Malang. Hak Cipta Dilindungi Undang-Undang.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=49"></script>
+  <script src="js/app.js?v=49"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lucide icons
+      if (typeof window.lucide !== 'undefined' && window.lucide.createIcons) {
+        window.lucide.createIcons();
+      }
+
+      // Live search filter in FAQ
+      const faqInput = document.getElementById('faqFilterInput');
+      const faqClear = document.getElementById('faqClearBtn');
+      const faqGroups = document.querySelectorAll('.faq-group-card');
+      const faqItems = document.querySelectorAll('.faq-item');
+      const emptyState = document.getElementById('faqEmptyState');
+      function filterFAQ() {
+        const query = faqInput.value.trim().toLowerCase();
+        let totalVisible = 0;
+
+        faqClear.style.display = query ? 'flex' : 'none';
+
+        faqGroups.forEach(group => {
+          let groupVisibleCount = 0;
+          const itemsInGroup = group.querySelectorAll('.faq-item');
+
+          itemsInGroup.forEach(item => {
+            const summaryText = item.querySelector('.faq-summary span').textContent.toLowerCase();
+            const contentText = item.querySelector('.faq-content').textContent.toLowerCase();
+            const matchesQuery = !query || summaryText.includes(query) || contentText.includes(query);
+
+            if (matchesQuery) {
+              item.style.display = '';
+              if (query) {
+                item.setAttribute('open', '');
+              }
+              groupVisibleCount++;
+              totalVisible++;
+            } else {
+              item.style.display = 'none';
+            }
+          });
+
+          if (groupVisibleCount > 0) {
+            group.style.display = '';
+          } else {
+            group.style.display = 'none';
+          }
+        });
+
+        if (totalVisible === 0) {
+          emptyState.style.display = 'block';
+        } else {
+          emptyState.style.display = 'none';
+        }
+      }
+
+      if (faqInput) {
+        faqInput.addEventListener('input', filterFAQ);
+      }
+
+      if (faqClear) {
+        faqClear.addEventListener('click', () => {
+          faqInput.value = '';
+          filterFAQ();
+          faqInput.focus();
+        });
+      }
+
+      // Header desktop search redirection
+      const searchInput = document.getElementById('desktopSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && searchInput.value.trim()) {
+            window.location.href = `shop.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

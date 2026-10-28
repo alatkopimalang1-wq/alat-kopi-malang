@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Alat Kopi Malang - Toko online perlengkapan & alat kopi terlengkap di Malang. Belanja mesin kopi, manual brew, grinder, dan aksesoris kopi berkualitas dengan mudah, cepat, dan aman langsung via Website & WhatsApp!">
+  <meta property="og:title" content="Alat Kopi Malang - Toko Alat & Mesin Kopi Terlengkap">
+  <meta property="og:description" content="Belanja mesin kopi espresso, manual brew V60, grinder kopi, dan aksesoris barista pilihan dengan penawaran terbaik dan checkout kilat WhatsApp.">
+  <meta property="og:type" content="website">
+  <title>Alat Kopi Malang - Toko Alat Kopi Terlengkap & Terpercaya</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons (Local Bundle) -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=66">
+  <style>
+    /* Critical layout guarantee: Mobile Search Bar beside Logo */
+    .header-search {
+      display: block !important;
+      flex: 1 !important;
+      min-width: 0 !important;
+    }
+    @media (max-width: 768px) {
+      .site-header .header-inner {
+        height: 56px !important;
+        gap: 8px !important;
+        padding: 0 10px !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+      .site-header .header-left-group {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+      }
+      .site-header .store-logo-horizontal {
+        height: 32px !important;
+        max-width: 125px !important;
+        width: auto !important;
+      }
+      .site-header .category-dropdown-btn {
+        display: none !important;
+      }
+      .site-header .header-search {
+        display: block !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        margin: 0 !important;
+      }
+      .site-header .search-input-wrapper {
+        display: flex !important;
+        align-items: center !important;
+        position: relative !important;
+        width: 100% !important;
+      }
+      .site-header .search-input-wrapper input {
+        height: 38px !important;
+        padding: 0 32px 0 34px !important;
+        font-size: 0.84rem !important;
+        border-radius: 9999px !important;
+        background: var(--bg-secondary) !important;
+        border: 1px solid var(--border-subtle) !important;
+        color: var(--text-primary) !important;
+        width: 100% !important;
+        display: block !important;
+      }
+      .site-header .search-icon-left {
+        position: absolute !important;
+        left: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        display: flex !important;
+        align-items: center !important;
+        color: var(--text-muted) !important;
+        pointer-events: none !important;
+      }
+      .site-header .search-clear-btn {
+        position: absolute !important;
+        right: 8px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+      }
+      .site-header .header-actions {
+        flex-shrink: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 2px !important;
+      }
+      .site-header .btn-icon {
+        width: 36px !important;
+        height: 36px !important;
+        background: transparent !important;
+        border: none !important;
+      }
+      .mobile-search-row {
+        display: none !important;
+      }
+
+      /* Mobile Category Bottom Sheet (PWA-Like full visibility in front) */
+      .category-mobile-backdrop {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background: rgba(0, 0, 0, 0.65) !important;
+        backdrop-filter: blur(5px) !important;
+        -webkit-backdrop-filter: blur(5px) !important;
+        z-index: 99998 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transition: opacity 0.28s ease !important;
+      }
+      .category-mobile-backdrop.open {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+      .category-dropdown-menu {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        border-radius: 22px 22px 0 0 !important;
+        box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.45) !important;
+        background: var(--bg-surface) !important;
+        border: 1px solid var(--border-subtle) !important;
+        border-bottom: none !important;
+        z-index: 99999 !important;
+        padding: 0 0 max(28px, env(safe-area-inset-bottom)) 0 !important;
+        transform: translateY(100%) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease !important;
+        display: block !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+      }
+      .category-dropdown-menu.open,
+      .category-dropdown-wrap.open .category-dropdown-menu {
+        transform: translateY(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+      }
+      .sheet-drag-handle {
+        width: 44px;
+        height: 5px;
+        border-radius: 9999px;
+        background: var(--text-muted);
+        opacity: 0.35;
+        margin: 8px auto 6px auto;
+      }
+      .category-sheet-header {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 10px 18px 12px 18px !important;
+        border-bottom: 1px solid var(--border-subtle) !important;
+      }
+      .category-sheet-header .sheet-title {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        font-size: 1.05rem !important;
+        font-weight: 700 !important;
+        color: var(--text-primary) !important;
+      }
+      .btn-close-cat-sheet {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        background: var(--bg-secondary) !important;
+        color: var(--text-secondary) !important;
+        border: none !important;
+        display: grid !important;
+        place-items: center !important;
+        cursor: pointer !important;
+      }
+      .category-dropdown-menu .cat-drop-item {
+        padding: 14px 20px !important;
+        font-size: 0.94rem !important;
+        font-weight: 600 !important;
+        border-bottom: 1px solid var(--border-subtle) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        color: var(--text-primary) !important;
+      }
+      .category-dropdown-menu .cat-drop-item:active {
+        background: var(--bg-secondary) !important;
+      }
+    }
+
+    /* Draggable Categories Horizontal Bar (Desktop & Mobile) */
+    .categories-scroll-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    .categories-scroll-wrapper::before,
+    .categories-scroll-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      bottom: 8px;
+      width: 40px;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .categories-scroll-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-body), transparent);
+    }
+    .categories-scroll-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-body), transparent);
+    }
+    .categories-scroll-wrapper.has-scroll-left::before {
+      opacity: 1;
+    }
+    .categories-scroll-wrapper.has-scroll-right::after {
+      opacity: 1;
+    }
+    .cat-scroll-arrow {
+      position: absolute;
+      top: calc(50% - 3px);
+      transform: translateY(-50%);
+      z-index: 6;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0;
+      pointer-events: none;
+    }
+    .cat-scroll-arrow.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .cat-scroll-arrow:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 18px var(--primary-glow);
+    }
+    .cat-scroll-arrow-left {
+      left: -12px;
+    }
+    .cat-scroll-arrow-right {
+      right: -12px;
+    }
+    .categories-scroll {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px 12px 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-x pan-y;
+      overscroll-behavior-x: contain;
+      width: 100%;
+    }
+    .categories-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    .categories-scroll.is-dragging {
+      cursor: grabbing !important;
+      scroll-behavior: auto !important;
+    }
+    .category-pill {
+      white-space: nowrap;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .cat-scroll-arrow {
+        display: none !important;
+      }
+      .categories-scroll-wrapper::before,
+      .categories-scroll-wrapper::after {
+        display: none !important;
+      }
+      .categories-scroll {
+        gap: 6px;
+        padding: 4px 0 8px 0;
+        cursor: default;
+      }
+      .category-pill {
+        padding: 6px 12px;
+        font-size: 0.78rem;
+      }
+      .sort-filter-group {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Belanja Alat Kopi Gak Perlu Ribet, Hanya Dalam Sekali Klik !</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Brand Logo & Shop By Categories Dropdown -->
+      <div class="header-left-group">
+        <a href="index.html" class="brand-logo" id="brandLogo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+
+        <!-- Category Dropdown Trigger & Panel -->
+        <div class="category-dropdown-wrap" id="categoryDropdownWrap">
+          <button type="button" class="category-dropdown-btn" id="btnCategoryDropdown" aria-expanded="false" aria-controls="categoryDropdownMenu" title="Kategori Produk">
+            <span class="btn-cat-left">
+              <i data-lucide="layout-grid" size="18"></i>
+              <span>Kategori</span>
+            </span>
+          </button>
+
+          <!-- Dropdown Menu List (Float on desktop, bottom sheet on mobile) -->
+          <div class="category-dropdown-menu" id="categoryDropdownMenu">
+            <div class="category-sheet-header hide-desktop">
+              <div class="sheet-drag-handle"></div>
+              <div style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                <div class="sheet-title">
+                  <i data-lucide="layout-grid" size="18"></i>
+                  <span>Kategori Produk</span>
+                </div>
+                <button type="button" class="btn-close-cat-sheet" id="btnCloseCatSheet" aria-label="Tutup Menu">
+                  <i data-lucide="x" size="18"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Item: Semua Kategori -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="ALL">
+              <span class="cat-drop-left">
+                <i data-lucide="layout-grid" size="16"></i>
+                <span>Semua Kategori</span>
+              </span>
+              <span class="cat-badge-mini">11 Item</span>
+            </a>
+
+            <!-- Item: Mesin Espresso -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Mesin Espresso">
+              <span class="cat-drop-left">
+                <i data-lucide="coffee" size="16"></i>
+                <span>Mesin Espresso</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Manual Grinder -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Manual Grinder">
+              <span class="cat-drop-left">
+                <i data-lucide="rotate-cw" size="16"></i>
+                <span>Manual Grinder</span>
+              </span>
+              <span class="cat-badge-mini">2 Item</span>
+            </a>
+
+            <!-- Item: Grinder Listrik -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Grinder Listrik">
+              <span class="cat-drop-left">
+                <i data-lucide="zap" size="16"></i>
+                <span>Grinder Listrik</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Manual Brew -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Manual Brew">
+              <span class="cat-drop-left">
+                <i data-lucide="filter" size="16"></i>
+                <span>Manual Brew</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Gadget & Elektronik -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Gadget & Elektronik">
+              <span class="cat-drop-left">
+                <i data-lucide="smartphone" size="16"></i>
+                <span>Gadget & Elektronik</span>
+              </span>
+              <span class="cat-badge-mini">3 Item</span>
+            </a>
+
+            <!-- Item: Fashion & Sepatu -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Fashion & Sepatu">
+              <span class="cat-drop-left">
+                <i data-lucide="shirt" size="16"></i>
+                <span>Fashion & Sepatu</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Aksesoris & Tas -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Aksesoris & Tas">
+              <span class="cat-drop-left">
+                <i data-lucide="briefcase" size="16"></i>
+                <span>Aksesoris & Tas</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Lifestyle & Rumah -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-category="Lifestyle & Rumah">
+              <span class="cat-drop-left">
+                <i data-lucide="sparkles" size="16"></i>
+                <span>Lifestyle & Rumah</span>
+              </span>
+              <span class="cat-badge-mini">1 Item</span>
+            </a>
+
+            <!-- Item: Produk Terlaris -->
+            <a href="javascript:void(0)" class="cat-drop-item" data-filter-type="featured">
+              <span class="cat-drop-left">
+                <i data-lucide="flame" size="16" style="color:#ef4444;"></i>
+                <span>Produk Terlaris & Trending</span>
+              </span>
+              <span class="cat-badge-hot">HOT</span>
+            </a>
+
+            <!-- Item: Promo & Diskon Spesial -->
+            <a href="flashsale.html" class="cat-drop-item">
+              <span class="cat-drop-left">
+                <i data-lucide="badge-percent" size="16" style="color:#f59e0b;"></i>
+                <span>Promo & Diskon Spesial</span>
+              </span>
+              <span class="cat-badge-sale">SALE</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Search Input -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <span class="search-icon-left"><i data-lucide="search" size="18"></i></span>
+          <input type="text" id="desktopSearchInput" placeholder="Cari Produk Alat Kopi...">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" title="Hapus pencarian">
+            <i data-lucide="x" size="16"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button (Visible on desktop, accessible via bottom nav on mobile) -->
+        <button class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button (Desktop only; on mobile accessible via bottom nav) -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+
+
+    <!-- Backdrop for mobile sheet -->
+    <div class="category-mobile-backdrop" id="categoryMobileBackdrop"></div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Banner Carousel / Image Slider (Matching Reference Image) -->
+    <section class="hero-section">
+      <div class="hero-slider-wrap" id="heroSlider">
+        <!-- Navigation Arrows -->
+        <button type="button" class="slider-arrow-btn prev" id="sliderPrevBtn" aria-label="Slide Sebelumnya">
+          <i data-lucide="chevron-left" size="24"></i>
+        </button>
+        <button type="button" class="slider-arrow-btn next" id="sliderNextBtn" aria-label="Slide Selanjutnya">
+          <i data-lucide="chevron-right" size="24"></i>
+        </button>
+
+        <!-- Slider Track -->
+        <div class="hero-slider-track" id="sliderTrack">
+          <!-- Slide 1 -->
+          <div class="hero-slide">
+            <img src="images/banner_coffee.jpg" alt="Comandante C40 Lab Series" class="hero-slide-bg">
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="hero-slide">
+            <img src="images/banner_gadgets.jpg" alt="Koleksi Alat Kopi Malang" class="hero-slide-bg" loading="lazy">
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="hero-slide">
+            <img src="images/banner_sneakers.jpg" alt="Promo Alat Kopi Malang" class="hero-slide-bg" loading="lazy">
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="hero-slide">
+            <img src="images/article_showroom.jpg" alt="Showroom Alat Kopi Malang" class="hero-slide-bg" loading="lazy">
+          </div>
+
+          <!-- Slide 5 -->
+          <div class="hero-slide">
+            <img src="images/article_slowbar.jpg" alt="Training Barista Alat Kopi Malang" class="hero-slide-bg" loading="lazy">
+          </div>
+
+          <!-- Slide 6 -->
+          <div class="hero-slide">
+            <img src="images/article_roastery.jpg" alt="Jasa Servis Mesin Kopi Alat Kopi Malang" class="hero-slide-bg" loading="lazy">
+          </div>
+        </div>
+
+        <!-- Slider Pagination Dots (Bottom Right matching reference image) -->
+        <div class="slider-dots-container" id="sliderDotsContainer">
+          <button type="button" class="slider-dot active" data-slide="0" aria-label="Slide 1"></button>
+          <button type="button" class="slider-dot" data-slide="1" aria-label="Slide 2"></button>
+          <button type="button" class="slider-dot" data-slide="2" aria-label="Slide 3"></button>
+          <button type="button" class="slider-dot" data-slide="3" aria-label="Slide 4"></button>
+          <button type="button" class="slider-dot" data-slide="4" aria-label="Slide 5"></button>
+          <button type="button" class="slider-dot" data-slide="5" aria-label="Slide 6"></button>
+        </div>
+      </div>
+
+      <!-- Quick Perks / Keunggulan Toko -->
+      <div class="perks-bar">
+        <div class="perk-item">
+          <div class="perk-icon"><i data-lucide="truck" size="18"></i></div>
+          <div class="perk-text">
+            <h4>Pengiriman Cepat</h4>
+            <p>Order Langsung Kirim</p>
+          </div>
+        </div>
+        <div class="perk-item">
+          <div class="perk-icon"><i data-lucide="shield-check" size="18"></i></div>
+          <div class="perk-text">
+            <h4>100% Original</h4>
+            <p>Garansi uang kembali</p>
+          </div>
+        </div>
+        <div class="perk-item">
+          <div class="perk-icon"><i data-lucide="badge-check" size="18"></i></div>
+          <div class="perk-text">
+            <h4>Produk Bergaransi</h4>
+            <p>Garansi Toko dan Distributor</p>
+          </div>
+        </div>
+        <div class="perk-item">
+          <div class="perk-icon"><i data-lucide="headset" size="18"></i></div>
+          <div class="perk-text">
+            <h4>Free Konsultasi</h4>
+            <p>24 Jam</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catalog Header & Categories -->
+    <section class="catalog-header" id="catalogSection" style="margin-bottom: 40px;">
+      <!-- Horizontal Scrollable Category Pills Wrapper -->
+      <div class="categories-scroll-wrapper" id="categoriesScrollWrapper">
+        <button type="button" class="cat-scroll-arrow cat-scroll-arrow-left" id="catScrollLeft" aria-label="Geser ke kiri" title="Geser ke kiri">
+          <i data-lucide="chevron-left" size="18"></i>
+        </button>
+        <div class="categories-scroll" id="categoriesBar" role="tablist" aria-label="Kategori Produk">
+          <button class="category-pill active" data-category="ALL" role="tab">
+            <i data-lucide="layout-grid" size="14"></i>
+            <span>Semua Produk</span>
+          </button>
+          <button class="category-pill" data-category="Mesin Espresso" role="tab">
+            <i data-lucide="coffee" size="14"></i>
+            <span>Mesin Espresso</span>
+          </button>
+          <button class="category-pill" data-category="Manual Grinder" role="tab">
+            <i data-lucide="rotate-cw" size="14"></i>
+            <span>Manual Grinder</span>
+          </button>
+          <button class="category-pill" data-category="Grinder Listrik" role="tab">
+            <i data-lucide="zap" size="14"></i>
+            <span>Grinder Listrik</span>
+          </button>
+          <button class="category-pill" data-category="Manual Brew" role="tab">
+            <i data-lucide="filter" size="14"></i>
+            <span>Manual Brew</span>
+          </button>
+          <button class="category-pill" data-category="Gadget & Elektronik" role="tab">
+            <i data-lucide="smartphone" size="14"></i>
+            <span>Gadget & Elektronik</span>
+          </button>
+          <button class="category-pill" data-category="Fashion & Sepatu" role="tab">
+            <i data-lucide="shirt" size="14"></i>
+            <span>Fashion & Sepatu</span>
+          </button>
+          <button class="category-pill" data-category="Aksesoris & Tas" role="tab">
+            <i data-lucide="briefcase" size="14"></i>
+            <span>Aksesoris & Tas</span>
+          </button>
+          <button class="category-pill" data-category="Lifestyle & Rumah" role="tab">
+            <i data-lucide="sparkles" size="14"></i>
+            <span>Lifestyle & Rumah</span>
+          </button>
+        </div>
+        <button type="button" class="cat-scroll-arrow cat-scroll-arrow-right" id="catScrollRight" aria-label="Geser ke kanan" title="Geser ke kanan">
+          <i data-lucide="chevron-right" size="18"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- Flash Sale Section (Match Reference Design) -->
+    <section class="flash-sale-container" id="flashSaleSection" aria-label="Promo Flash Sale">
+      <!-- Left Column: Simple & Clean Flash Sale Brand (No Image Background) -->
+      <div class="flash-sale-hero-col">
+        <div class="flash-sale-simple-brand" onclick="window.location.href='flashsale.html'" title="Buka Promo Flash Sale">
+          <div class="flash-badge-pill">
+            <i data-lucide="zap" size="14"></i>
+            <span>PROMO SPESIAL</span>
+          </div>
+          <h2 class="flash-simple-title">
+            FLASH<br>
+            <span class="flash-title-highlight">SALE</span>
+          </h2>
+          <p class="flash-simple-desc">
+            Penawaran terbatas harga terbaik hari ini
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Timer Header & Product Cards -->
+      <div class="flash-sale-content-col">
+        <!-- Top Info Bar: Countdown & Link -->
+        <div class="flash-sale-top-bar">
+          <div class="flash-sale-timer-wrap">
+            <span class="flash-mobile-header-badge">⚡ FLASH SALE</span>
+            <span class="flash-timer-label">Berakhir dalam</span>
+            <div class="flash-countdown" id="flashSaleCountdown" aria-label="Hitung mundur flash sale">
+              <span class="flash-time-box" id="flashHours">04</span>
+              <span class="flash-time-box" id="flashMinutes">11</span>
+              <span class="flash-time-box" id="flashSeconds">21</span>
+            </div>
+          </div>
+          <a href="flashsale.html" class="flash-view-all-link" title="Lihat Semua Promo Flash Sale" aria-label="Lihat Semua Promo Flash Sale">
+            <span>Lihat Semua</span>
+            <i data-lucide="chevron-right" size="16"></i>
+          </a>
+        </div>
+
+        <!-- Cards Row / Carousel -->
+        <div class="flash-cards-grid" id="flashCardsGrid">
+          <!-- Card 1: Otten - Vietnam Drip XL -->
+          <article class="flash-product-card" data-id="prod-012" onclick="window.location.href='product.html?id=prod-012'" title="Otten - Vietnam Drip XL">
+            <div class="flash-card-img-wrap">
+              <img src="images/vietnam_drip.jpg" alt="Otten - Vietnam Drip XL" class="flash-card-img" loading="lazy">
+            </div>
+            <div class="flash-card-info">
+              <h4 class="flash-card-title">Otten - Vietnam Drip XL</h4>
+              <div class="flash-card-price-row">
+                <span class="flash-card-price-original">Rp 249.000</span>
+                <span class="flash-card-price-deal">Rp 189.000</span>
+              </div>
+              <div class="flash-card-divider"></div>
+              <div class="flash-card-stock">
+                <span>Tersedia</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Hario - Alat Seduh Saringan Kopi V60 -->
+          <article class="flash-product-card" data-id="prod-013" onclick="window.location.href='product.html?id=prod-013'" title="Hario - Alat Seduh Saringan Kopi V60">
+            <div class="flash-card-img-wrap">
+              <span class="flash-card-badge-distributor">FLASH SALE</span>
+              <img src="images/v60_dripper.jpg" alt="Hario - Alat Seduh Saringan Kopi V60" class="flash-card-img" loading="lazy">
+            </div>
+            <div class="flash-card-info">
+              <h4 class="flash-card-title">Hario - Alat Seduh Saringan Kopi V60...</h4>
+              <div class="flash-card-price-row">
+                <span class="flash-card-price-original">Rp 200.000</span>
+                <span class="flash-card-price-deal">Rp 159.000</span>
+              </div>
+              <div class="flash-card-divider"></div>
+              <div class="flash-card-stock">
+                <span>Tersedia</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Fellow - Rocky Lowball Tumblers -->
+          <article class="flash-product-card" data-id="prod-014" onclick="window.location.href='product.html?id=prod-014'" title="Fellow - Rocky Lowball Tumblers">
+            <div class="flash-card-img-wrap">
+              <img src="images/fellow_tumbler.jpg" alt="Fellow - Rocky Lowball Tumblers" class="flash-card-img" loading="lazy">
+            </div>
+            <div class="flash-card-info">
+              <h4 class="flash-card-title">Fellow - Rocky Lowball Tumblers (Matte Whit...</h4>
+              <div class="flash-card-price-row">
+                <span class="flash-card-price-original">Rp 495.000</span>
+                <span class="flash-card-price-deal">Rp 395.000</span>
+              </div>
+              <div class="flash-card-divider"></div>
+              <div class="flash-card-stock">
+                <span>Tersedia</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Hario V60 Station VSS-1-OV Olive Wood -->
+          <article class="flash-product-card" data-id="prod-015" onclick="window.location.href='product.html?id=prod-015'" title="Hario V60 Station VSS-1-OV Olive Wood">
+            <div class="flash-card-img-wrap">
+              <span class="flash-card-badge-distributor">FLASH SALE</span>
+              <img src="images/v60_wood_station.jpg" alt="Hario V60 Station VSS-1-OV Olive Wood" class="flash-card-img" loading="lazy">
+            </div>
+            <div class="flash-card-info">
+              <h4 class="flash-card-title">Hario V60 Station VSS-1-OV Olive Wood</h4>
+              <div class="flash-card-price-row">
+                <span class="flash-card-price-original">Rp 2.310.000</span>
+                <span class="flash-card-price-deal">Rp 1.850.000</span>
+              </div>
+              <div class="flash-card-divider"></div>
+              <div class="flash-card-stock">
+                <span>Tersedia</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION: PRODUK TERBARU (LATEST PRODUCTS)
+         ========================================================================== -->
+    <section class="latest-products-section" id="latestProductsSection" aria-label="Produk Terbaru Alat Kopi Malang">
+      <div class="latest-section-header">
+        <div class="latest-header-left">
+          <h2 class="latest-section-title">Produk Terbaru</h2>
+          <p class="latest-section-desc">Peralatan seduh kopi manual, grinder presisi, dan mesin espresso terlengkap siap kirim.</p>
+        </div>
+        <div class="latest-header-right">
+          <a href="shop.html?filter=newest" class="btn-latest-view-all" title="Lihat Seluruh Produk Terbaru">
+            <span>Lihat Semua</span>
+            <i data-lucide="arrow-right" size="16"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Products Grid: 4 Produk Terbaru (Rendered dynamically) -->
+      <div class="latest-products-grid" id="latestProductsGrid"></div>
+    </section>
+
+    <!-- ==========================================================================
+         INTERACTIVE 3D STACK / OVERLAPPING CARD CAROUSEL SLIDER (PENAWARAN KHUSUS)
+         (Placed directly after Produk Terbaru)
+         ========================================================================== -->
+    <section class="stack-slider-section ratio-1-1" id="stackSliderSectionTop" data-type="penawaran-khusus" aria-label="Penawaran Khusus">
+      <div class="stack-slider-header">
+        <div class="stack-header-left">
+          <h2 class="stack-slider-title">Penawaran Khusus</h2>
+          <p class="stack-slider-subtitle">Training Barista, Jasa Servis, Titip Jual, Pengadaan Barang</p>
+        </div>
+      </div>
+
+      <!-- 3D Overlapping Card Viewport with Side Navigation Arrows -->
+      <div class="stack-slider-viewport" role="region" aria-label="3D Card Slider Viewport" tabindex="0">
+        <!-- Side Navigation Arrows -->
+        <button type="button" class="stack-side-nav stack-side-prev" aria-label="Lihat coffee shop sebelumnya" title="Sebelumnya (←)">
+          <i data-lucide="chevron-left" size="24"></i>
+        </button>
+        <button type="button" class="stack-side-nav stack-side-next" aria-label="Lihat coffee shop berikutnya" title="Berikutnya (→)">
+          <i data-lucide="chevron-right" size="24"></i>
+        </button>
+
+        <div class="stack-cards-container">
+          <!-- Populated by js/stack-slider.js -->
+        </div>
+        <div class="stack-slider-glow"></div>
+      </div>
+    </section>
+
+    <!-- Video Reels Carousel Section (Matching Reference Image: Otten Video Style) -->
+    <section class="reels-section-container" id="reelsVideoSection" aria-label="Video Reels & Review Produk">
+      <div class="reels-section-header">
+        <div class="reels-header-left">
+          <h2 class="reels-section-title">Video Alat Kopi Malang</h2>
+        </div>
+        <div class="reels-header-right">
+          <a href="reels.html" class="reels-view-all-link" title="Lihat Semua Video Reels" aria-label="Lihat Semua Video Reels">
+            <span>Lihat Semua</span>
+            <i data-lucide="chevron-right" size="16"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="reels-carousel-wrapper" id="reelsCarouselWrapper">
+        <!-- Scroll navigation arrow left -->
+        <button type="button" class="reels-nav-arrow reels-nav-arrow-left" id="btnReelsPrev" aria-label="Geser video ke kiri" title="Geser ke kiri">
+          <i data-lucide="chevron-left" size="20"></i>
+        </button>
+
+        <!-- Video Cards Track -->
+        <div class="reels-carousel-track" id="reelsTrack">
+          <!-- Dynamic Reel Cards populated by JavaScript from DEFAULT_REELS -->
+        </div>
+
+        <!-- Scroll navigation arrow right (Matching screenshot floating circle arrow) -->
+        <button type="button" class="reels-nav-arrow reels-nav-arrow-right" id="btnReelsNext" aria-label="Geser video ke kanan" title="Geser ke kanan">
+          <i data-lucide="chevron-right" size="20"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         BRAND PILIHAN (FEATURED BRANDS CIRCULAR CAROUSEL)
+         ========================================================================== -->
+    <section class="brands-section-container" id="brandsSection" aria-label="Brand Pilihan Alat Kopi Malang">
+      <div class="brands-section-header">
+        <div class="brands-header-left">
+          <h2 class="brands-section-title">Brand Pilihan</h2>
+        </div>
+        <div class="brands-header-right">
+          <a href="brands.html" class="brands-view-all-link" title="Lihat Seluruh Brand">
+            <span>Semua Brand</span>
+            <i data-lucide="chevron-right" size="16"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="brands-carousel-wrapper" id="brandsCarouselWrapper">
+        <button type="button" class="brands-nav-arrow brands-nav-left" id="btnBrandsPrev" aria-label="Geser brand ke kiri" title="Geser ke kiri">
+          <i data-lucide="chevron-left" size="18"></i>
+        </button>
+
+        <div class="brands-carousel-track" id="brandsCarouselTrack">
+          <!-- Populated dynamically by JavaScript -->
+        </div>
+
+        <button type="button" class="brands-nav-arrow brands-nav-right" id="btnBrandsNext" aria-label="Geser brand ke kanan" title="Geser ke kanan">
+          <i data-lucide="chevron-right" size="18"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         KUMPULAN ARTIKEL & RUANG KOPI (COFFEE EXPERIENCE & ARTICLES)
+         ========================================================================== -->
+    <section class="articles-section-container" id="articlesSection" aria-label="Kumpulan Artikel & Ruang Pengalaman Kopi">
+      <div class="articles-section-header">
+        <div class="articles-header-left">
+          <h2 class="articles-section-title">Alat Kopi Malang X Sanubari Roastery</h2>
+          <p class="articles-section-desc">Kolaborasi Showroom Alat Kopi, Roastery dan Coffee Shop Pertama di Kota Malang</p>
+        </div>
+        <div class="articles-header-right">
+          <a href="articles.html" class="articles-view-all-link" id="btnArticlesViewAll" title="Lihat Kumpulan Artikel & Ruang Kopi Alat Kopi Malang X Sanubari Roastery">
+            <span>Lihat Semua</span>
+            <i data-lucide="chevron-right" size="16"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="articles-carousel-wrapper" id="articlesCarouselWrapper">
+        <button type="button" class="articles-nav-arrow articles-nav-arrow-left" id="btnArticlesPrev" aria-label="Geser artikel ke kiri" title="Geser ke kiri">
+          <i data-lucide="chevron-left" size="20"></i>
+        </button>
+
+        <div class="articles-carousel-track" id="articlesCarouselTrack">
+          <!-- Card 1: Resep Seduh By Sanubari Roastery -->
+          <a href="article.html?id=art-005" class="article-card" data-article-id="art-005" title="Buka halaman artikel Resep Seduh By Sanubari Roastery">
+            <div class="article-card-thumb">
+              <img src="images/article_resep_seduh.jpg" alt="Resep Seduh By Sanubari Roastery" class="article-card-img" loading="lazy">
+            </div>
+            <div class="article-card-body">
+              <h3 class="article-card-title">Resep Seduh By Sanubari Roastery</h3>
+              <p class="article-card-desc">Resep kalibrasi seduh manual V60 resmi dari Sanubari Roastery: rasio emas 1:15, teknik 3 pourings, dan rahasia ekstraksi sweetness maksimal.</p>
+            </div>
+            <div class="article-card-footer">
+              <span class="article-card-action-text">Lihat Resep Seduh</span>
+              <div class="article-card-arrow">
+                <i data-lucide="arrow-right" size="16"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: Slow Bar & Manual Brew Experience -->
+          <a href="article.html?id=art-001" class="article-card" data-article-id="art-001" title="Buka halaman artikel Slow Bar & Manual Brew Experience">
+            <div class="article-card-thumb">
+              <img src="images/article_slowbar.jpg" alt="Slow Bar & Manual Brew Experience" class="article-card-img" loading="lazy">
+            </div>
+            <div class="article-card-body">
+              <h3 class="article-card-title">Slow Bar & Manual Brew Experience</h3>
+              <p class="article-card-desc">Cicipi kalibrasi seduhan manual filter V60, Aeropress, dan Kalita Wave langsung di hadapan barista profesional kami.</p>
+            </div>
+            <div class="article-card-footer">
+              <span class="article-card-action-text">Kunjungi Slow Bar</span>
+              <div class="article-card-arrow">
+                <i data-lucide="arrow-right" size="16"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3: Equipment & Commercial Espresso Showroom -->
+          <a href="article.html?id=art-002" class="article-card" data-article-id="art-002" title="Buka halaman artikel Equipment & Commercial Espresso Showroom">
+            <div class="article-card-thumb">
+              <img src="images/article_showroom.jpg" alt="Equipment & Commercial Espresso Showroom" class="article-card-img" loading="lazy">
+            </div>
+            <div class="article-card-body">
+              <h3 class="article-card-title">Equipment & Commercial Espresso Showroom</h3>
+              <p class="article-card-desc">Kolaborasi dengan Alat Kopi Malang: coba langsung mesin espresso komersial, grinder, dan setup coffee shop impian.</p>
+            </div>
+            <div class="article-card-footer">
+              <span class="article-card-action-text">Eksplorasi Showroom</span>
+              <div class="article-card-arrow">
+                <i data-lucide="arrow-right" size="16"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 4: Laboratorium Roastery & Kurva Digital -->
+          <a href="article.html?id=art-003" class="article-card" data-article-id="art-003" title="Buka halaman artikel Laboratorium Roastery & Kurva Digital">
+            <div class="article-card-thumb">
+              <img src="images/article_roastery.jpg" alt="Laboratorium Roastery & Kurva Digital" class="article-card-img" loading="lazy">
+            </div>
+            <div class="article-card-body">
+              <h3 class="article-card-title">Laboratorium Roastery & Kurva Digital</h3>
+              <p class="article-card-desc">Pusat sangrai presisi biji kopi lereng Gunung Kawi dengan mesin sangrai berteknologi kurva digital real-time.</p>
+            </div>
+            <div class="article-card-footer">
+              <span class="article-card-action-text">Tentang Roastery</span>
+              <div class="article-card-arrow">
+                <i data-lucide="arrow-right" size="16"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 5: Sensory Room & Weekly Cupping -->
+          <a href="article.html?id=art-004" class="article-card" data-article-id="art-004" title="Buka halaman artikel Sensory Room & Weekly Cupping">
+            <div class="article-card-thumb">
+              <img src="images/article_sensory.jpg" alt="Sensory Room & Weekly Cupping" class="article-card-img" loading="lazy">
+            </div>
+            <div class="article-card-body">
+              <h3 class="article-card-title">Sensory Room & Weekly Cupping</h3>
+              <p class="article-card-desc">Ruang kalibrasi rasa standar SCA: sensorik batch baru, cupping notes, dan eksplorasi profil kopi single origin.</p>
+            </div>
+            <div class="article-card-footer">
+              <span class="article-card-action-text">Jadwal Acara & Cupping</span>
+              <div class="article-card-arrow">
+                <i data-lucide="arrow-right" size="16"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <button type="button" class="articles-nav-arrow articles-nav-arrow-right" id="btnArticlesNext" aria-label="Geser artikel ke kanan" title="Geser ke kanan">
+          <i data-lucide="chevron-right" size="20"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         INTERACTIVE 3D STACK / OVERLAPPING CARD CAROUSEL SLIDER (SHOWCASE)
+         ========================================================================== -->
+    <section class="stack-slider-section" id="stackSliderSection" aria-label="Mitra dan Client Langganan AKM">
+      <div class="stack-slider-header">
+        <div class="stack-header-left">
+          <h2 class="stack-slider-title">Mitra dan Client Langganan AKM</h2>
+          <p class="stack-slider-subtitle">Deretan Coffee Shop ternama yang mempercayakan perlengkapan mereka kepada kami.</p>
+        </div>
+
+      </div>
+
+      <!-- 3D Overlapping Card Viewport with Side Navigation Arrows -->
+      <div class="stack-slider-viewport" id="stackSliderViewport" role="region" aria-label="3D Card Slider Viewport" tabindex="0">
+        <!-- Side Navigation Arrows -->
+        <button type="button" class="stack-side-nav stack-side-prev" id="stackNavPrev" aria-label="Lihat coffee shop sebelumnya" title="Sebelumnya (←)">
+          <i data-lucide="chevron-left" size="24"></i>
+        </button>
+        <button type="button" class="stack-side-nav stack-side-next" id="stackNavNext" aria-label="Lihat coffee shop berikutnya" title="Berikutnya (→)">
+          <i data-lucide="chevron-right" size="24"></i>
+        </button>
+
+        <div class="stack-cards-container" id="stackCardsContainer">
+          <!-- Populated by js/stack-slider.js -->
+        </div>
+        <div class="stack-slider-glow"></div>
+      </div>
+    </section>
+
+    <!-- Cinematic Autoplay Video Section -->
+    <section class="hero-video-wrap" id="homeVideoShowcase" style="margin-bottom: 50px;">
+      <video 
+        id="homeHeroVideo" 
+        class="hero-video-element" 
+        src="images/home-hero-video.mp4" 
+        autoplay 
+        muted 
+        loop 
+        playsinline 
+        preload="auto"
+        poster="images/banner_coffee.jpg">
+      </video>
+
+      <!-- Floating Video Control Buttons -->
+      <div class="video-ctrl-floating-group">
+        <button type="button" class="btn-video-ctrl" id="btnVideoPlayPause" title="Jeda / Putar Video" aria-label="Jeda / Putar Video">
+          <i data-lucide="pause" size="18" id="videoPlayPauseIcon"></i>
+        </button>
+        <button type="button" class="btn-video-ctrl" id="btnVideoMuteUnmute" title="Bisu / Aktifkan Suara" aria-label="Bisu / Aktifkan Suara">
+          <i data-lucide="volume-x" size="18" id="videoMuteUnmuteIcon"></i>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER (OTTEN STYLE 4-COLUMN FOOTER)
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Column 1: Lokasi & Jam Operasional & Media Sosial -->
+        <div class="footer-col footer-col-contact">
+          <h4 class="footer-col-title">Lokasi & Jam Operasional</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <a href="article.html?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
+                <i data-lucide="map-pin" class="footer-contact-icon"></i>
+                <span>Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang</span>
+              </a>
+            </li>
+            <li>
+              <div class="footer-contact-link" style="cursor: default;" title="Jam Operasional Showroom">
+                <i data-lucide="clock" class="footer-contact-icon"></i>
+                <span>Setiap Hari 09.00 AM - 22.00 PM WIB</span>
+              </div>
+            </li>
+            <li>
+              <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer" class="footer-contact-link" title="Hubungi via WhatsApp">
+                <i data-lucide="message-circle" class="footer-contact-icon"></i>
+                <span>+6282132095241</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:alatkopimalang1@gmail.com" class="footer-contact-link" title="Hubungi via Email">
+                <i data-lucide="mail" class="footer-contact-icon"></i>
+                <span>alatkopimalang1@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="footer-social-wrapper">
+            <div class="footer-social-section">
+              <h5 class="footer-social-title">Dapatkan Update Seputar Alat Kopi</h5>
+              <div class="footer-social-icons">
+                <!-- Instagram (Gradient) -->
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-instagram" title="Ikuti kami di Instagram" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <!-- Facebook (Blue) -->
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-facebook" title="Ikuti kami di Facebook" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <!-- YouTube (Red) -->
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-youtube" title="Tonton YouTube kami" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+                <!-- TikTok -->
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-tiktok" title="Ikuti kami di TikTok" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.78 1.25-.03 2.4-0.74 2.92-1.84.4-0.79.49-1.7.49-2.58.01-4.91.01-9.82.01-14.73z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="footer-ecommerce-section">
+              <h5 class="footer-social-title">Kunjungi Toko Kami di:</h5>
+              <div class="footer-social-icons">
+                <!-- Shopee -->
+                <a href="https://shopee.co.id" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-shopee" title="Official Store Shopee" aria-label="Shopee">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                    <path d="M19.2 8H4.8C4.36 8 4 8.36 4 8.8l1.3 12.2c.1.9.9 1.6 1.8 1.6h9.8c.9 0 1.7-.7 1.8-1.6L20 8.8c0-.44-.36-.8-.8-.8z" fill="#FFFFFF"/>
+                    <path d="M8 8V5.5C8 3.57 9.57 2 11.5 2h1c1.93 0 3.5 1.57 3.5 3.5V8" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M14.2 12.3c-.3-.2-.8-.4-1.4-.5-.8-.2-1.2-.4-1.2-.8 0-.4.3-.6.9-.6.6 0 1.1.2 1.5.5l.6-1.1c-.6-.4-1.3-.6-2.1-.6-1.4 0-2.3.8-2.3 1.9 0 .9.6 1.4 1.6 1.7.8.2 1.1.4 1.1.8 0 .4-.4.7-1 .7-.7 0-1.3-.3-1.8-.7l-.6 1.1c.7.5 1.4.8 2.4.8 1.5 0 2.4-.8 2.4-2 0-.8-.6-1.4-1.5-1.7z" fill="#EE4D2D"/>
+                  </svg>
+                </a>
+                <!-- Tokopedia -->
+                <a href="https://www.tokopedia.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-tokopedia" title="Official Store Tokopedia" aria-label="Tokopedia">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                    <path d="M4 8.5C4 7.67 4.67 7 5.5 7h13c.83 0 1.5.67 1.5 1.5V19c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V8.5z" fill="#FFFFFF"/>
+                    <path d="M8 7V5.5C8 3.57 9.57 2 11.5 2h1c1.93 0 3.5 1.57 3.5 3.5V7" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="9" cy="13.5" r="2.2" fill="#03AC0E"/>
+                    <circle cx="15" cy="13.5" r="2.2" fill="#03AC0E"/>
+                    <circle cx="9.4" cy="13.5" r="1.1" fill="#FFFFFF"/>
+                    <circle cx="15.4" cy="13.5" r="1.1" fill="#FFFFFF"/>
+                    <path d="M10.8 17.2c.7.4 1.7.4 2.4 0" stroke="#03AC0E" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </a>
+                <!-- TikTok Shop -->
+                <a href="https://shop.tiktok.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-tiktokshop" title="Belanja di TikTok Shop" aria-label="TikTok Shop">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+                    <path d="M5.5 8h13l1.2 11.5c.1.8-.6 1.5-1.4 1.5H5.7c-.8 0-1.5-.7-1.4-1.5L5.5 8z" fill="#18181b" stroke="#ffffff" stroke-width="1.4"/>
+                    <path d="M8.5 8V6a3.5 3.5 0 0 1 7 0v2" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/>
+                    <path d="M14.2 11.2a2.3 2.3 0 0 1-1.5-.7v3.5a2.2 2.2 0 1 1-1.9-2.2v1.3a1 1 0 1 0 .8 1V9h1.3c0 .8.6 1.5 1.3 1.7v.5z" fill="#FFFFFF"/>
+                    <path d="M13.9 11.1a2.3 2.3 0 0 1-1.2-.6v3.5a2.2 2.2 0 0 1-1.9 2.2c-.2 0-.3 0-.4-.1.9.7 2.2.4 2.8-.5.1-.2.2-.5.2-.9v-3.7h.5z" fill="#25F4EE" opacity="0.85"/>
+                    <path d="M13.2 9h-.5v4.2c0 1-.6 1.9-1.6 2.2-.2 0-.4.1-.6.1 1 .5 2.3 0 2.7-1 .1-.2.2-.5.2-.9V10c.4.2.8.3 1.2.4V9.4c-.5-.1-1-.5-1.3-.9-.1.2-.2.5-.2.5z" fill="#FE2C55" opacity="0.85"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Alat Kopi Malang -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Alat Kopi Malang</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="partnership.html">Kemitraan</a></li>
+            <li><a href="articles.html">Artikel AKM</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Bantuan -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Bantuan</h4>
+          <ul class="footer-links-list">
+            <li><a href="account.html">Lacak Pengiriman</a></li>
+            <li><a href="return-policy.html">Pengembalian Produk</a></li>
+            <li><a href="warranty.html">Ketentuan Garansi</a></li>
+            <li><a href="terms.html">Syarat dan Ketentuan</a></li>
+            <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Customer Care -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links-list">
+            <li><a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">Hubungi Kami</a></li>
+            <li><a href="checkout.html">Konfirmasi Pembayaran</a></li>
+            <li><a href="faq.html">FAQ / Bantuan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Copyright & Trust Info -->
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Alat Kopi Malang. Hak Cipta Dilindungi.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation (PWA-Like Navigation) -->
+  <nav class="bottom-nav">
+    <button class="bottom-nav-item active" id="navHome">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
+      <span>Beranda</span>
+    </button>
+    <button class="bottom-nav-item" id="navCategory" title="Pilihan Kategori Produk">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="layout-grid" size="20"></i></div>
+      <span>Kategori</span>
+    </button>
+    <button class="bottom-nav-item" id="navWishlist">
+      <div class="bottom-nav-icon-wrap">
+        <i data-lucide="heart" size="20"></i>
+        <span class="badge-count" id="mobileWishlistBadge">0</span>
+      </div>
+      <span>Favorit</span>
+    </button>
+    <a href="checkout.html" class="bottom-nav-item" id="navCart" title="Keranjang Belanja">
+      <div class="bottom-nav-icon-wrap">
+        <i data-lucide="shopping-bag" size="20"></i>
+        <span class="badge-count" id="mobileCartBadge">0</span>
+      </div>
+      <span>Keranjang</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
+      <span>Akun</span>
+    </a>
+  </nav>
+
+  <!-- ==========================================================================
+       CART DRAWER
+       ========================================================================== -->
+  <div class="modal-overlay" id="cartOverlay">
+    <aside class="drawer-box" id="cartDrawer">
+      <div class="modal-header">
+        <h3><i data-lucide="shopping-bag" size="20"></i> Keranjang Belanja</h3>
+        <button class="btn-close-modal" id="btnCloseCart"><i data-lucide="x" size="18"></i></button>
+      </div>
+
+      <div class="modal-body" id="cartBody">
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cartItemsContainer">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Voucher Code Input -->
+        <div class="voucher-box" id="voucherSection">
+          <div style="font-size:0.78rem; font-weight:700; margin-bottom:6px; color:var(--text-secondary);">
+            Punya Kode Promo / Voucher?
+          </div>
+          <div class="voucher-input-row">
+            <input type="text" id="voucherInput" placeholder="Ketik DISKON10">
+            <button type="button" class="btn-apply-voucher" id="btnApplyVoucher">Terapkan</button>
+          </div>
+          <div id="appliedVoucherInfo"></div>
+        </div>
+
+        <!-- Order Notes -->
+        <div style="margin-top: 14px;">
+          <label style="font-size:0.78rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:4px;">
+            Catatan Pesanan (Opsional)
+          </label>
+          <input type="text" id="cartOrderNote" class="form-input" style="padding: 8px 12px; font-size:0.82rem;" placeholder="Contoh: Titip ke satpam, packing kardus tebal">
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary" id="cartSummaryContainer">
+          <div class="summary-row">
+            <span>Subtotal Produk</span>
+            <span id="summarySubtotal">Rp 0</span>
+          </div>
+          <div class="summary-row" id="summaryDiscountRow" style="display:none; color:var(--success);">
+            <span>Diskon Voucher</span>
+            <span id="summaryDiscount">- Rp 0</span>
+          </div>
+          <div class="summary-row">
+            <span>Estimasi Ongkos Kirim</span>
+            <span id="summaryShipping">Rp 15.000</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total Pembayaran</span>
+            <span class="price-highlight" id="summaryGrandTotal">Rp 0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="flex-direction: column;">
+        <button class="btn-primary" id="btnProceedCheckout" style="width:100%; justify-content:center; padding:12px;">
+          <i data-lucide="credit-card" size="18"></i>
+          <span>Lanjut ke Pembayaran</span>
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==========================================================================
+       CHECKOUT MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="checkoutOverlay">
+    <div class="modal-box large">
+      <div class="modal-header">
+        <h3><i data-lucide="check-circle" size="20"></i> Form Pembayaran & Checkout</h3>
+        <button class="btn-close-modal" id="btnCloseCheckout"><i data-lucide="x" size="18"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="checkoutForm" onsubmit="return false;">
+          <div class="checkout-form-grid two-cols">
+            <div class="form-group">
+              <label class="form-label" for="custName"><i data-lucide="user" size="14"></i> Nama Lengkap Penerima <span class="required-star">*</span></label>
+              <input type="text" id="custName" class="form-input" placeholder="Contoh: Budi Pratama" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="custPhone"><i data-lucide="phone" size="14"></i> Nomor WhatsApp Aktif <span class="required-star">*</span></label>
+              <input type="tel" id="custPhone" class="form-input" placeholder="Contoh: 08123456789" required>
+            </div>
+            <div class="form-group full-width">
+              <label class="form-label" for="custAddress"><i data-lucide="map-pin" size="14"></i> Alamat Lengkap Pengiriman <span class="required-star">*</span></label>
+              <textarea id="custAddress" class="form-textarea" placeholder="Tuliskan nama jalan, no rumah, RT/RW, kelurahan, kecamatan, dan kode pos" required></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="custCity"><i data-lucide="map" size="14"></i> Kota / Kabupaten <span class="required-star">*</span></label>
+              <input type="text" id="custCity" class="form-input" placeholder="Contoh: Jakarta Selatan" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="custCourier"><i data-lucide="truck" size="14"></i> Pilihan Ekspedisi <span class="required-star">*</span></label>
+              <select id="custCourier" class="form-select">
+                <option value="JNE Reguler (2-3 Hari)">JNE Reguler (2-3 Hari)</option>
+                <option value="J&T Express (1-2 Hari)">J&T Express (1-2 Hari)</option>
+                <option value="SiCepat Kilat (1-2 Hari)">SiCepat Kilat (1-2 Hari)</option>
+                <option value="GoSend / Grab Instant">Instant GoSend / Grab (Sameday)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Selesaikan Pembayaran (BCA & BRI Manual Verification) -->
+          <div class="payment-completion-card" style="margin-top:20px; padding:18px 20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <h3 class="completion-header-title" style="font-size:1.1rem; margin-bottom:0;">Selesaikan Pembayaran</h3>
+              <div class="completion-bank-selector" id="modalBankSelector">
+                <button type="button" class="bank-choice-btn active" data-bank="bca" id="modalBtnBCA">
+                  <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00529c;"></span>
+                  <span>BCA</span>
+                </button>
+                <button type="button" class="bank-choice-btn" data-bank="bri" id="modalBtnBRI">
+                  <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#002855;"></span>
+                  <span>BRI</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Row 1: Batas Pembayaran -->
+            <div class="completion-row" style="padding:10px 0;">
+              <div class="completion-col">
+                <span class="completion-label">Batas Pembayaran</span>
+                <span class="completion-value" id="modalExpiryDate" style="font-size:0.9rem;">-</span>
+              </div>
+            </div>
+
+            <!-- Row 2: Metode Pembayaran -->
+            <div class="completion-row" style="padding:10px 0;">
+              <div class="completion-col">
+                <span class="completion-label">Metode Pembayaran</span>
+                <span class="completion-value" id="modalMethodName" style="font-size:0.9rem;">Transfer Bank (Verifikasi Manual)</span>
+              </div>
+              <div id="modalBankBadge">
+                <div class="bank-logo-icon bca" style="width:48px; height:26px; font-size:0.72rem; border-radius:4px;">BCA</div>
+              </div>
+            </div>
+
+            <!-- Row 3: Nomor Rekening -->
+            <div class="completion-row" style="padding:10px 0;">
+              <div class="completion-col">
+                <span class="completion-label" id="modalAccountLabel">Nomor Rekening BCA</span>
+                <span class="completion-value" id="modalAccountNumber" style="font-family:monospace; font-size:1rem; letter-spacing:0.5px;">8720192831</span>
+              </div>
+              <button type="button" class="completion-copy-link" id="modalBtnCopyAccount">Salin</button>
+            </div>
+
+            <!-- Row 4: Nama Bank -->
+            <div class="completion-row" style="padding:10px 0;">
+              <div class="completion-col">
+                <span class="completion-label">Nama Bank</span>
+                <span class="completion-value" id="modalBankName" style="font-size:0.9rem;">BCA</span>
+              </div>
+            </div>
+
+            <!-- Row 5: Total Pembayaran -->
+            <div class="completion-row" style="padding:10px 0;">
+              <div class="completion-col">
+                <span class="completion-label">Total Pembayaran</span>
+                <span class="completion-value amount-highlight" id="modalTotalAmount">Rp 0</span>
+              </div>
+              <button type="button" class="completion-copy-link" id="modalBtnCopyAmount">Salin</button>
+            </div>
+
+            <!-- Notice Box -->
+            <div class="completion-notice-box" style="margin:12px 0 14px 0; padding:10px 14px; font-size:0.78rem;">
+              <i data-lucide="info" size="15" style="flex-shrink:0; color:#d97706;"></i>
+              <span>Mohon transfer sesuai dengan 3 digit angka terakhir</span>
+            </div>
+
+            <!-- Button Konfirmasi Pembayaran -->
+            <button type="button" class="btn-confirm-payment-main" id="btnModalConfirmPayment">
+              <i data-lucide="check-circle-2" size="18"></i>
+              <span>Konfirmasi Pembayaran</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer" style="display:flex; flex-direction:column; gap:8px;">
+        <div class="completion-divider-or" style="margin:4px 0;">atau</div>
+        <button type="button" class="btn-whatsapp-checkout" id="btnCheckoutWhatsApp">
+          <i data-lucide="message-circle" size="20"></i>
+          <span>Kirim Pesanan ke WhatsApp</span>
+        </button>
+        <button type="button" class="btn-secondary" id="btnConfirmWebOrder" style="width:100%; justify-content:center; color:var(--text-primary); border-color:var(--border-subtle); background:var(--bg-surface);">
+          <i data-lucide="receipt" size="18"></i>
+          <span>Simpan Pesanan & Cetak Struk</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       PRODUCT DETAIL MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="productModalOverlay">
+    <div class="modal-box large">
+      <div class="modal-header">
+        <h3><i data-lucide="package" size="20"></i> Detail Produk</h3>
+        <button class="btn-close-modal" id="btnCloseProductModal"><i data-lucide="x" size="18"></i></button>
+      </div>
+
+      <div class="modal-body" id="productModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       WISHLIST DRAWER / MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="wishlistOverlay">
+    <aside class="drawer-box" id="wishlistDrawer">
+      <div class="modal-header">
+        <h3><i data-lucide="heart" size="20"></i> Produk Favorit Anda</h3>
+        <button class="btn-close-modal" id="btnCloseWishlist"><i data-lucide="x" size="18"></i></button>
+      </div>
+      <div class="modal-body" id="wishlistBody">
+        <div class="cart-items-list" id="wishlistItemsContainer">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ==========================================================================
+       ORDER RECEIPT / INVOICE MODAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="receiptOverlay">
+    <div class="modal-box" style="max-width:540px;">
+      <div class="modal-header">
+        <h3><i data-lucide="file-check" size="20"></i> Struk & Bukti Pemesanan</h3>
+        <button class="btn-close-modal" id="btnCloseReceipt"><i data-lucide="x" size="18"></i></button>
+      </div>
+
+      <div class="modal-body" id="receiptContent">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="modal-footer" style="justify-content: space-between;">
+        <button class="btn-secondary" id="btnPrintReceipt">
+          <i data-lucide="printer" size="16"></i>
+          <span>Cetak / Simpan PDF</span>
+        </button>
+        <button class="btn-primary" id="btnFinishReceipt">
+          <i data-lucide="check" size="16"></i>
+          <span>Selesai & Lanjut Belanja</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       REELS VIDEO PLAYER MODAL (Instagram Reels, TikTok & MP4 Compatible)
+       ========================================================================== -->
+  <div class="reel-modal-overlay" id="reelModalOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="reel-modal-backdrop" id="reelModalBackdrop"></div>
+    <div class="reel-modal-container" id="reelModalContainer">
+      <!-- Modal Top Controls -->
+      <div class="reel-modal-header">
+        <div class="reel-modal-source" id="reelModalSourceBadge">
+          <i data-lucide="play" size="14"></i>
+          <span id="reelModalSourceText">Alat Kopi Malang</span>
+        </div>
+        <div class="reel-modal-header-actions">
+          <button type="button" class="btn-reel-ctrl" id="btnReelMute" title="Bisu / Aktifkan Suara">
+            <i data-lucide="volume-x" size="18" id="reelMuteIcon"></i>
+          </button>
+          <button type="button" class="btn-reel-ctrl" id="btnCloseReelModal" title="Tutup">
+            <i data-lucide="x" size="20"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Player Frame (9:16 portrait) -->
+      <div class="reel-player-viewport" id="reelPlayerViewport">
+        <!-- Dynamic video element or iframe inserted here -->
+      </div>
+
+      <!-- Navigation Arrows (Previous / Next Reel) -->
+      <button type="button" class="reel-nav-btn prev" id="btnReelModalPrev" title="Video Sebelumnya" aria-label="Video Sebelumnya">
+        <i data-lucide="chevron-left" size="24"></i>
+      </button>
+      <button type="button" class="reel-nav-btn next" id="btnReelModalNext" title="Video Selanjutnya" aria-label="Video Selanjutnya">
+        <i data-lucide="chevron-right" size="24"></i>
+      </button>
+
+      <!-- Bottom Overlay: Hook Title, Caption, Social Direct Link & Tagged Products -->
+      <div class="reel-modal-bottom-sheet">
+        <div class="reel-meta-content">
+          <h3 class="reel-modal-title" id="reelModalTitle"></h3>
+          <p class="reel-modal-caption" id="reelModalCaption"></p>
+          <div class="reel-social-action-row" id="reelSocialActionRow"></div>
+        </div>
+
+        <!-- Tagged Products Drawer (Klik untuk beli produk dalam video) -->
+        <div class="reel-tagged-products-wrap" id="reelTaggedProductsWrap">
+          <div class="reel-tagged-header">
+            <span class="reel-tagged-title">
+              <i data-lucide="shopping-bag" size="14"></i>
+              <span id="reelTaggedCount">Produk Terkait</span>
+            </span>
+          </div>
+          <div class="reel-tagged-list" id="reelTaggedList">
+            <!-- Dynamic product cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=49"></script>
+  <script src="js/app.js?v=49"></script>
+  <script src="js/stack-slider.js?v=6"></script>
+</body>
+</html>

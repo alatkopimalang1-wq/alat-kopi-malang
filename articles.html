@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Kumpulan Artikel & Ruang Pengalaman Kopi: Kolaborasi Alat Kopi Malang X Sanubari Roastery. Slow Bar, Showroom Mesin Espresso, Roastery Lab, dan Sensory Cupping di Kota Malang.">
+  <title>Kumpulan Artikel - Alat Kopi Malang X Sanubari Roastery</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=53">
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG X SANUBARI ROASTERY:</strong> Jurnal & Ruang Kolaborasi Pengalaman Kopi Pertama di Kota Malang</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+        <div class="hide-mobile" style="line-height:1.2;">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--primary); background:rgba(79,70,229,0.1); padding:3px 8px; border-radius:6px; border:1px solid rgba(79,70,229,0.2);">Kumpulan Artikel</span>
+        </div>
+      </div>
+
+      <!-- Header Search Input -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i data-lucide="search" size="18" class="search-icon-left"></i>
+          <input type="text" id="desktopSearchInput" placeholder="Cari slow bar, showroom, roastery..." autocomplete="off">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" style="display:none;" aria-label="Hapus Pencarian">
+            <i data-lucide="x" size="14"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Articles Archive Page Container -->
+  <main class="articles-archive-page">
+
+    <!-- Hero Header Banner -->
+    <header class="articles-archive-hero">
+      <h1 class="articles-archive-title">Alat Kopi Malang X Sanubari Roastery</h1>
+      <p class="articles-archive-desc">
+        Kolaborasi Showroom Alat Kopi, Roastery dan Coffee Shop Pertama di Kota Malang
+      </p>
+    </header>
+
+    <!-- Grid of Articles -->
+    <div class="articles-archive-grid" id="articlesArchiveGrid">
+      <!-- Articles rendered dynamically by JavaScript -->
+    </div>
+
+
+
+  </main>
+
+
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav-item" id="navHome" title="Beranda Toko">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
+      <span>Beranda</span>
+    </a>
+    <a href="brands.html" class="bottom-nav-item" id="navBrands" title="Koleksi Brand">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="award" size="20"></i></div>
+      <span>Brand</span>
+    </a>
+    <a href="shop.html" class="bottom-nav-item" id="navShop" title="Katalog Belanja">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="shopping-bag" size="20"></i></div>
+      <span>Belanja</span>
+    </a>
+    <a href="articles.html" class="bottom-nav-item active" id="navArticles" title="Kumpulan Artikel">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="book-open" size="20"></i></div>
+      <span>Artikel</span>
+    </a>
+    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+      <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
+      <span>Akun</span>
+    </a>
+  </nav>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=49"></script>
+  <script src="js/app.js?v=49"></script>
+
+  <!-- Articles Archive Interactive Controller -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const articles = (typeof DEFAULT_ARTICLES !== 'undefined' && Array.isArray(DEFAULT_ARTICLES)) ? DEFAULT_ARTICLES : [];
+      const grid = document.getElementById('articlesArchiveGrid');
+      const searchInput = document.getElementById('articlesArchiveSearchInput');
+      const searchClear = document.getElementById('articlesArchiveSearchClear');
+      const headerSearchInput = document.getElementById('desktopSearchInput');
+      const headerSearchClear = document.getElementById('desktopSearchClear');
+      const tabs = document.querySelectorAll('.articles-archive-tab');
+
+      let currentFilter = 'all';
+      let searchQuery = '';
+
+      // Map filter key to category match rules
+      const filterMatches = (art, filter) => {
+        if (!filter || filter === 'all') return true;
+        const text = `${art.id} ${art.slug} ${art.category} ${art.title} ${art.excerpt}`.toLowerCase();
+        if (filter === 'slowbar') return text.includes('slow') || text.includes('manual') || text.includes('resep') || text.includes('seduh');
+        if (filter === 'showroom') return text.includes('showroom') || text.includes('commercial') || text.includes('espresso');
+        if (filter === 'roastery') return text.includes('roast') || text.includes('roastery');
+        if (filter === 'sensory') return text.includes('sensory') || text.includes('cupping');
+        return true;
+      };
+
+      const renderArticles = () => {
+        if (!grid) return;
+
+        const filtered = articles.filter(art => {
+          const matchesCategory = filterMatches(art, currentFilter);
+          if (!matchesCategory) return false;
+
+          if (!searchQuery) return true;
+          const searchHaystack = `${art.title} ${art.excerpt} ${art.tagline || ''} ${art.category} ${art.author || ''}`.toLowerCase();
+          return searchHaystack.includes(searchQuery.toLowerCase());
+        });
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align:center; padding:50px 20px; background:var(--bg-surface); border:1px dashed var(--border-subtle); border-radius:20px;">
+              <i data-lucide="search-x" size="48" style="color:var(--text-muted); margin-bottom:12px; display:inline-block;"></i>
+              <h3 style="font-family:'Outfit',sans-serif; font-size:1.25rem; font-weight:800; color:var(--text-primary); margin:0 0 6px 0;">Tidak Ada Artikel Ditemukan</h3>
+              <p style="font-size:0.88rem; color:var(--text-secondary); margin:0 0 16px 0;">Coba gunakan kata kunci lain atau pilih tab kategori 'Semua Ruang & Artikel'.</p>
+              <button type="button" id="btnResetArticlesFilter" class="btn-primary" style="padding:8px 18px; font-size:0.84rem; border-radius:9999px;">
+                Reset Pencarian & Filter
+              </button>
+            </div>
+          `;
+          const resetBtn = document.getElementById('btnResetArticlesFilter');
+          if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+              currentFilter = 'all';
+              searchQuery = '';
+              if (searchInput) { searchInput.value = ''; searchClear.style.display = 'none'; }
+              if (headerSearchInput) { headerSearchInput.value = ''; if (headerSearchClear) headerSearchClear.style.display = 'none'; }
+              tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-filter') === 'all'));
+              renderArticles();
+            });
+          }
+          if (window.lucide) window.lucide.createIcons();
+          return;
+        }
+
+        grid.innerHTML = filtered.map(art => {
+          return `
+            <article class="article-archive-card" data-article-id="${art.id}">
+              <a href="article.html?id=${art.id}" style="text-decoration:none; color:inherit; display:flex; flex-direction:column; height:100%;">
+                <div class="article-archive-thumb">
+                  <img src="${art.image}" alt="${art.title}" loading="lazy">
+                </div>
+
+                <div class="article-archive-body">
+                  <h2 class="article-archive-title">${art.title}</h2>
+                  <p class="article-archive-excerpt">${art.excerpt || art.tagline}</p>
+                </div>
+              </a>
+            </article>
+          `;
+        }).join('');
+
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      };
+
+      // Filter tabs event listeners
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentFilter = tab.getAttribute('data-filter') || 'all';
+          renderArticles();
+        });
+      });
+
+      // In-page search input
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim();
+          if (searchClear) searchClear.style.display = searchQuery ? 'flex' : 'none';
+          renderArticles();
+        });
+
+        if (searchClear) {
+          searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            searchQuery = '';
+            searchClear.style.display = 'none';
+            renderArticles();
+            searchInput.focus();
+          });
+        }
+      }
+
+      // Header desktop search input synchronization
+      if (headerSearchInput) {
+        headerSearchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value.trim();
+          if (searchInput) searchInput.value = searchQuery;
+          if (searchClear) searchClear.style.display = searchQuery ? 'flex' : 'none';
+          if (headerSearchClear) headerSearchClear.style.display = searchQuery ? 'block' : 'none';
+          renderArticles();
+        });
+
+        if (headerSearchClear) {
+          headerSearchClear.addEventListener('click', () => {
+            headerSearchInput.value = '';
+            if (searchInput) searchInput.value = '';
+            searchQuery = '';
+            headerSearchClear.style.display = 'none';
+            if (searchClear) searchClear.style.display = 'none';
+            renderArticles();
+          });
+        }
+      }
+
+      // Check URL parameters for initial category or search (?category=slowbar, ?q=...)
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryParam = urlParams.get('category') || urlParams.get('filter');
+      const qParam = urlParams.get('q');
+
+      if (categoryParam) {
+        currentFilter = categoryParam;
+        tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-filter') === categoryParam));
+      }
+
+      if (qParam) {
+        searchQuery = qParam;
+        if (searchInput) { searchInput.value = qParam; if (searchClear) searchClear.style.display = 'flex'; }
+        if (headerSearchInput) { headerSearchInput.value = qParam; if (headerSearchClear) headerSearchClear.style.display = 'block'; }
+      }
+
+      // Initial render
+      renderArticles();
+    });
+  </script>
+</body>
+</html>

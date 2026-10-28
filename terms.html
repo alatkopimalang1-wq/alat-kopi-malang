@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Syarat & Ketentuan resmi penggunaan situs web, tata cara pemesanan, transaksi perbankan, pengiriman kurir, retur barang, dan kebijakan layanan di Alat Kopi Malang.">
+  <title>Syarat & Ketentuan Layanan - Alat Kopi Malang</title>
+  <link rel="icon" type="image/png" href="images/logo-circle.png?v=9">
+  <link rel="apple-touch-icon" href="images/logo-circle.png?v=9">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="js/lucide.min.js"></script>
+
+  <!-- Application CSS -->
+  <link rel="stylesheet" href="css/style.css?v=65">
+
+  <style>
+    /* Dedicated Terms & Conditions Page Styling */
+    .terms-page-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 32px 20px 80px 20px;
+    }
+
+    /* Hero Header Card */
+    .terms-hero-card {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-secondary) 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .terms-hero-card::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+    .terms-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: rgba(79, 70, 229, 0.1);
+      border: 1px solid rgba(79, 70, 229, 0.25);
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .terms-hero-title {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.02em;
+    }
+    .terms-hero-desc {
+      font-size: 1.02rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+      max-width: 840px;
+    }
+
+    /* Quick Guarantees Grid */
+    .terms-guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .terms-guarantee-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: var(--shadow-xs);
+    }
+    .terms-guarantee-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .terms-guarantee-text h4 {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 2px 0;
+    }
+    .terms-guarantee-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .terms-hero-card {
+        padding: 24px 20px;
+      }
+      .terms-hero-title {
+        font-size: 1.65rem;
+      }
+      .terms-hero-desc {
+        font-size: 0.9rem;
+      }
+      .terms-guarantee-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    /* Section Cards */
+    .terms-section-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition-fast);
+    }
+    .terms-section-card:hover {
+      border-color: rgba(79, 70, 229, 0.35);
+    }
+
+    .terms-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .terms-card-badge-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .terms-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0;
+      line-height: 1.25;
+    }
+
+    /* Callout & Notice Boxes */
+    .terms-notice-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(79, 70, 229, 0.06);
+      border-left: 4px solid var(--primary);
+      margin-bottom: 18px;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .terms-notice-box strong {
+      color: var(--primary);
+    }
+
+    .terms-warning-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: var(--radius-md);
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 4px solid #f59e0b;
+      margin: 16px 0;
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 0.93rem;
+    }
+
+    /* Lists */
+    .terms-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .terms-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.96rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+    .terms-list-item strong {
+      color: var(--text-primary);
+    }
+    .terms-icon-check {
+      color: #10b981;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .terms-icon-cross {
+      color: #ef4444;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .terms-icon-bullet {
+      color: var(--primary);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .terms-section-card {
+        padding: 22px 16px;
+      }
+    }
+
+    /* CTA Box */
+    .terms-cta-box {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      text-align: center;
+      margin-top: 36px;
+      box-shadow: 0 16px 32px -8px rgba(49, 46, 129, 0.4);
+    }
+    .terms-cta-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin: 0 0 10px 0;
+    }
+    .terms-cta-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.88);
+      max-width: 680px;
+      margin: 0 auto 24px auto;
+      line-height: 1.6;
+    }
+    .terms-cta-btn-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-wa-terms {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 26px;
+      background: #10b981;
+      color: #ffffff;
+      border-radius: var(--radius-full);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+      transition: all var(--transition-fast);
+    }
+    .btn-wa-terms:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    }
+    .btn-email-terms {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+    }
+    .btn-email-terms:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-ticker">
+    <span><strong>ALAT KOPI MALANG:</strong> Toko Perlengkapan & Mesin Kopi Terlengkap di Malang</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- Back Button & Brand Logo -->
+      <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+          <i data-lucide="arrow-left" size="20"></i>
+        </a>
+        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+          <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
+        </a>
+      </div>
+
+      <!-- Header Search Input -->
+      <div class="header-search">
+        <div class="search-input-wrapper">
+          <i data-lucide="search" size="18" class="search-icon-left"></i>
+          <input type="text" id="desktopSearchInput" placeholder="Cari grinder, dripper, mesin espresso..." autocomplete="off">
+          <button type="button" class="search-clear-btn" id="desktopSearchClear" style="display:none;" aria-label="Hapus Pencarian">
+            <i data-lucide="x" size="14"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Theme Switcher -->
+        <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
+          <i data-lucide="moon" id="themeIcon" size="20"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+          <i data-lucide="heart" size="20"></i>
+          <span class="badge-count" id="wishlistBadge">0</span>
+        </a>
+
+        <!-- Cart Button -->
+        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+          <i data-lucide="shopping-bag" size="20"></i>
+          <span class="badge-count" id="cartBadge">0</span>
+        </a>
+
+        <!-- Akun Saya Button -->
+        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+          <i data-lucide="user" size="20"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrap -->
+  <main class="terms-page-wrap">
+
+    <!-- Hero Header -->
+    <section class="terms-hero-card">
+      <div class="terms-hero-badge">
+        <i data-lucide="scale" size="14"></i>
+        <span>Ketentuan Resmi Layanan • Alat Kopi Malang</span>
+      </div>
+      <h1 class="terms-hero-title">Syarat & Ketentuan Penggunaan Layanan</h1>
+      <p class="terms-hero-desc">
+        Ketentuan ini mengatur akses, penggunaan situs web, tata cara pemesanan, transaksi perbankan, pengiriman kurir ekspedisi, serta hak dan kewajiban antara pelanggan dan Alat Kopi Malang.
+      </p>
+
+      <!-- 3 Quick Highlights -->
+      <div class="terms-guarantee-grid">
+        <div class="terms-guarantee-item">
+          <div class="terms-guarantee-icon-wrap">
+            <i data-lucide="shield-check" size="22"></i>
+          </div>
+          <div class="terms-guarantee-text">
+            <h4>Transaksi Aman</h4>
+            <p>Rekening resmi & proses terverifikasi</p>
+          </div>
+        </div>
+
+        <div class="terms-guarantee-item">
+          <div class="terms-guarantee-icon-wrap">
+            <i data-lucide="check-circle-2" size="22"></i>
+          </div>
+          <div class="terms-guarantee-text">
+            <h4>QC Produk Terjamin</h4>
+            <p>Pemeriksaan unit sebelum dikirim</p>
+          </div>
+        </div>
+
+        <div class="terms-guarantee-item">
+          <div class="terms-guarantee-icon-wrap">
+            <i data-lucide="headphones" size="22"></i>
+          </div>
+          <div class="terms-guarantee-text">
+            <h4>Bantuan Responsif</h4>
+            <p>Customer support siap melayani</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: PENDAHULUAN -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">1</span>
+        <h2 class="terms-card-title">Pendahuluan</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        Selamat datang di website <strong>www.alatkopimalang.com</strong> dan/atau aplikasi mobile <strong>Alat Kopi Malang</strong>! Silakan membaca Syarat Penggunaan ini dengan seksama. Anda harus membaca, memahami, menerima, dan menyetujui semua persyaratan dan ketentuan dalam Perjanjian ini sebelum menggunakan aplikasi dan/atau menerima konten yang terdapat di dalamnya.
+      </p>
+      <div class="terms-notice-box">
+        <i data-lucide="info" size="22" style="color:var(--primary); flex-shrink:0; margin-top:2px;"></i>
+        <div>
+          Dengan mengakses atau menggunakan situs <strong>Alat Kopi Malang</strong>, pengguna dianggap telah memahami dan menyetujui semua isi dalam syarat dan ketentuan di bawah ini. Syarat dan ketentuan dapat diubah atau diperbaharui sewaktu-waktu tanpa ada pemberitahuan terlebih dahulu. Perubahan dari syarat dan ketentuan akan segera berlaku setelah dicantumkan di dalam situs <strong>www.alatkopimalang.com</strong>. Jika pengguna merasa keberatan terhadap syarat dan ketentuan yang kami ajukan dalam perjanjian ini, maka kami anjurkan untuk tidak menggunakan situs ini.
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: KETENTUAN PENGGUNAAN SITUS -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">2</span>
+        <h2 class="terms-card-title">Ketentuan Penggunaan Situs</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.6; margin:0 0 16px 0; font-size:0.96rem;">
+        Saat mengunjungi dan menggunakan situs <strong>Alat Kopi Malang</strong>, termasuk setiap fitur dan layanannya, setiap pengguna wajib untuk mematuhi ketentuan pengguna situs berikut ini:
+      </p>
+      <ul class="terms-list">
+        <li class="terms-list-item">
+          <i data-lucide="check" size="20" class="terms-icon-check"></i>
+          <div>
+            Akses situs ini hanya diperkenankan untuk keperluan dan kepentingan berbelanja serta informasi terkait dengan layanan situs ini.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="x" size="20" class="terms-icon-cross"></i>
+          <div>
+            Pengguna tidak diperkenankan untuk mereproduksi, mendistribusikan, memajang, menjual, menyewakan, mengirimkan, membuat karya turunan dari, menerjemahkan, memodifikasi, merekayasa balik, membongkar, mengurai, atau mengeksploitasi situs <strong>Alat Kopi Malang</strong>.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="x" size="20" class="terms-icon-cross"></i>
+          <div>
+            Pengguna tidak diperkenankan untuk membuat dan menerbitkan konten yang melanggar hak cipta, paten, merek dagang, merek layanan, rahasia dagang, atau hak kepemilikan lainnya.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 3: KOMENTAR & KONTEN PENGGUNA -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">3</span>
+        <h2 class="terms-card-title">Komentar dan Konten Pengguna</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        Seluruh komentar yang dituliskan, dan gambar/foto/image yang di-upload di website <strong>Alat Kopi Malang</strong> akan dikategorikan dan diperlakukan sebagai konten yang bersifat tidak rahasia. Anda dilarang untuk menuliskan komentar atau gambar/foto/image yang mengandung kalimat/analogi pelecehan terhadap <strong>Alat Kopi Malang</strong> atau pihak ketiga lainnya/masyarakat. <strong>Alat Kopi Malang</strong> berhak merubah atau menghapus komentar dan gambar/foto/image yang mengandung unsur yang tidak layak tayang (SARA, Pornografi, Pelecehan, Penghinaan, Pencemaran, dsb).
+      </p>
+    </section>
+
+    <!-- SECTION 4: TRANSAKSI & PEMESANAN -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">4</span>
+        <h2 class="terms-card-title">Ketentuan Transaksi dan Pemesanan</h2>
+      </div>
+      <ul class="terms-list">
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Harga & Ongkos Kirim:</strong> Harga yang tertera di website Alat Kopi Malang belum termasuk biaya/tarif pengiriman, Tarif Armada, ataupun kurir baik dalam kota maupun ke luar kota (ekspedisi). Untuk pengiriman, kami menggunakan jasa pengiriman dengan tarif yang disesuaikan berdasarkan pilihan konsumen dengan kebijakan tarif masing-masing penyedia jasa pengiriman.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Quality Control (QC):</strong> Kami menjamin semua produk telah dicek oleh petugas kami sebelum dikirim kepada Konsumen.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Kerusakan dalam Perjalanan:</strong> Jika terjadi kerusakan pada produk semasa dalam perjalanan, dalam waktu <strong>2 x 24 jam</strong> setelah produk diterima, silakan hubungi kami melalui email ke: <a href="mailto:alatkopimalang1@gmail.com" style="color:var(--primary); font-weight:600; text-decoration:underline;">alatkopimalang1@gmail.com</a> atau WhatsApp Customer Care.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Ketelitian Order:</strong> Pelanggan yang melakukan order online melalui website kami harap memperhatikan isian untuk kolom quantity, size, ataupun warna.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Biaya Kirim Non-Refundable:</strong> Biaya atas jasa pengiriman tidak dapat diganti oleh Alat Kopi Malang jika produk yang dipesan oleh Konsumen tidak diterima, yang disebabkan oleh kelalaian dari Konsumen dalam menerima produk dan/atau kesalahan/kelalaian yang dilakukan oleh jasa pengiriman.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Akurasi Alamat & Titik Pengiriman:</strong> Pengguna diharapkan untuk melengkapi alamat pengiriman dengan selengkap-lengkapnya dan menempatkan titik lokasi setepat mungkin untuk memastikan akurasi alamat pengiriman. Alat Kopi Malang akan mengikuti ketentuan dari penyedia jasa pengiriman terkait dengan perubahan harga pengiriman yang disebabkan oleh kesalahan dalam penempatan titik atau penulisan alamat.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Ketentuan Produk Diskon:</strong> Khusus untuk produk-produk diskon, jika terjadi permasalahan ataupun kendala pada produk diskon maka dapat menghubungi call centre Alat Kopi Malang. Adapun Produk diskon telah dicek oleh petugas kami sebelum dikirimkan ke alamat Konsumen. Produk yang didiskon ini kami sediakan khusus untuk Anda dengan paket harga yang menarik.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Proses Pemesanan Shopping Cart:</strong> Untuk pembelian online melalui shopping cart, pesanan dan pengiriman akan diproses oleh pihak Alat Kopi Malang maksimal <strong>2 x 24 jam</strong> setelah pembayaran diterima oleh rekening bank resmi atas nama <strong>Alat Kopi Malang</strong>. Lama waktu pengiriman disesuaikan dengan area pelayanan daerah tujuan.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Garansi Mesin Kopi:</strong> Produk berupa mesin kopi yang dibeli dari website Alat Kopi Malang dilengkapi dengan masa garansi yang disesuaikan dengan ketentuan garansi setiap produk (dapat dilihat pada halaman <a href="warranty.html" style="color:var(--primary); font-weight:600; text-decoration:underline;">Ketentuan Garansi</a>).
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Layanan Call Center:</strong> Apabila terjadi kendala terkait dengan Produk maka Konsumen dapat menghubungi call center Alat Kopi Malang.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Resi Pengiriman:</strong> Anda akan menerima email notifikasi mengenai Nomor Resi Pengiriman sesaat setelah produk pesanan Anda dikirim.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Batas Waktu Pembayaran Bank Transfer:</strong> Untuk pembelian menggunakan bank transfer, Anda akan menerima email konfirmasi orderan setelah berbelanja dari website Alat Kopi Malang. Produk pesanan Anda akan kami simpan paling lama <strong>24 jam</strong> sebelum konfirmasi pembayaran. Jika Anda belum melakukan pembayaran dalam waktu 24 jam, maka Alat Kopi Malang berhak menjual kembali produk pesanan Anda.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Ketiadaan Stok & Pengembalian Dana:</strong> Jika Anda telah melakukan pembayaran untuk produk yang Anda pesan, tetapi produk yang telah Anda bayar tidak tersedia, Alat Kopi Malang akan mengembalikan uang yang Anda bayar paling lama <strong>7 x 24 jam hari kerja</strong> setelah Customer memberikan nomor rekening yang akan ditransfer kembali.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="circle-dot" size="18" class="terms-icon-bullet"></i>
+          <div>
+            <strong>Tanggung Jawab Logistik:</strong> Pengguna memahami dan menyetujui bahwa setiap permasalahan yang terjadi pada saat proses pengiriman produk oleh penyedia jasa layanan pengiriman produk adalah merupakan tanggung jawab penyedia jasa layanan pengiriman.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 5: PENGEMBALIAN PRODUK / RETUR -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">5</span>
+        <h2 class="terms-card-title">Pengembalian Produk / Retur</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        Jika Anda tidak puas dengan Produk yang telah Anda beli, Anda bisa melakukan pengembalian produk tersebut ke gudang/showroom kami. Namun, pengembalian produk disesuaikan dengan ketentuan Alat Kopi Malang dan terlebih dahulu kami lakukan pengecekan.
+      </p>
+
+      <div class="terms-warning-box">
+        <i data-lucide="alert-triangle" size="22" style="color:#d97706; flex-shrink:0; margin-top:2px;"></i>
+        <div>
+          <strong>Mohon Perhatikan Hal-hal Berikut Ini:</strong>
+        </div>
+      </div>
+
+      <ul class="terms-list">
+        <li class="terms-list-item">
+          <i data-lucide="clock" size="18" class="terms-icon-bullet"></i>
+          <div>
+            Anda dapat melakukan pengembalian produk / retur maksimal <strong>3 x 24 jam</strong> setelah Anda menerima produk dari Alat Kopi Malang (detail syarat kondisi barang dapat dilihat pada <a href="return-policy.html" style="color:var(--primary); font-weight:600; text-decoration:underline;">Kebijakan Pengembalian Produk</a>).
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="package" size="18" class="terms-icon-bullet"></i>
+          <div>
+            Produk harus dikirim dalam kondisi asli dan berada dalam kemasan lengkap dengan aksesoris terkait dan handtags. Produk retur merupakan tanggung jawab dari customer sampai pihak Alat Kopi Malang menerimanya, mohon bantuan Anda untuk mengembalikan paket dengan hati-hati.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="truck" size="18" class="terms-icon-bullet"></i>
+          <div>
+            Biaya pengiriman untuk pengembalian produk / retur ditanggung oleh Customer. Kami menyarankan agar Anda menggunakan jasa pengiriman JNE atau jasa pengiriman lain yang terpercaya untuk mencegah kemungkinan kehilangan produk pada saat pengiriman.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="clipboard-check" size="18" class="terms-icon-bullet"></i>
+          <div>
+            Pengembalian produk hanya akan diterima apabila telah dilakukan pengecekan oleh tim kami untuk memutuskan apakah produk tersebut layak untuk dikembalikan.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="repeat" size="18" class="terms-icon-bullet"></i>
+          <div>
+            Pengembalian produk tidak dapat diuangkan, hanya boleh ditukar dengan produk serupa atau jika produk habis, boleh ditukar dengan produk lainnya.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="tag" size="18" class="terms-icon-bullet"></i>
+          <div>
+            Produk yang dikembalikan dan ganti produk tidak akan mendapat potongan atau promosi yang digunakan pada pembelian tersebut.
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="check-circle-2" size="18" class="terms-icon-check"></i>
+          <div>
+            <strong>Alat Kopi Malang hanya menerima pengembalian produk / retur jika:</strong>
+            <ul style="margin: 8px 0 0 16px; padding: 0; color: var(--text-secondary); line-height: 1.6;">
+              <li>Produk rusak yang disebabkan oleh kesalahan produksi pabrik</li>
+              <li>Produk cacat</li>
+              <li>Salah / item salah dikirim</li>
+              <li>Bagian produk hilang</li>
+            </ul>
+          </div>
+        </li>
+        <li class="terms-list-item">
+          <i data-lucide="wallet" size="18" class="terms-icon-bullet"></i>
+          <div>
+            Jika terjadi refund / pengembalian dalam bentuk deposit, maka nominal yang akan dikembalikan adalah nominal setelah dikurangi pemakaian voucher dan poin dalam bentuk prorate.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SECTION 6: KEBIJAKAN PRIVASI -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">6</span>
+        <h2 class="terms-card-title">Kebijakan Privasi</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        Kami menghargai privasi kamu. Informasi pribadi yang kami kumpulkan akan digunakan sesuai dengan kebijakan privasi kami. Pastikan untuk membaca kebijakan tersebut untuk memahami bagaimana kami mengelola data kamu secara aman dan bertanggung jawab.
+      </p>
+    </section>
+
+    <!-- SECTION 7: PERUBAHAN SYARAT & KETENTUAN -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">7</span>
+        <h2 class="terms-card-title">Perubahan Syarat dan Ketentuan</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        Kami berhak untuk mengubah syarat dan ketentuan ini kapan saja. Perubahan akan diumumkan di situs ini, dan penggunaan berkelanjutan dari situs ini setelah perubahan dianggap sebagai penerimaan syarat yang baru.
+      </p>
+    </section>
+
+    <!-- SECTION 8: HUKUM YANG BERLAKU -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">8</span>
+        <h2 class="terms-card-title">Hukum yang Berlaku</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        Syarat dan ketentuan ini diatur oleh hukum yang berlaku di Republik Indonesia. Setiap sengketa yang timbul akan diselesaikan melalui musyawarah untuk mufakat, atau melalui pengadilan yang berwenang di wilayah hukum Indonesia.
+      </p>
+    </section>
+
+    <!-- SECTION 9: TANGGUNG JAWAB PENGGUNA -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">9</span>
+        <h2 class="terms-card-title">Tanggung Jawab Pengguna</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        Pengguna bertanggung jawab untuk menjaga kerahasiaan informasi akun dan kata sandi mereka. Kami tidak bertanggung jawab atas kerugian yang timbul akibat penggunaan akun yang tidak sah oleh pihak ketiga.
+      </p>
+    </section>
+
+    <!-- SECTION 10: KONTAK RESMI -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">10</span>
+        <h2 class="terms-card-title">Kontak Resmi</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0 0 16px 0; font-size:0.96rem;">
+        Jika Anda memiliki pertanyaan atau komentar mengenai syarat dan ketentuan ini, silakan hubungi kami melalui email di <a href="mailto:alatkopimalang1@gmail.com" style="color:var(--primary); font-weight:600; text-decoration:underline;">alatkopimalang1@gmail.com</a> atau WhatsApp layanan pelanggan di <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer" style="color:var(--primary); font-weight:600; text-decoration:underline;">+6282132095241</a>. Kami akan berusaha untuk merespons secepat mungkin.
+      </p>
+    </section>
+
+    <!-- SECTION 11: KETENTUAN LAIN -->
+    <section class="terms-section-card">
+      <div class="terms-card-header">
+        <span class="terms-card-badge-num">11</span>
+        <h2 class="terms-card-title">Ketentuan Lain</h2>
+      </div>
+      <p style="color:var(--text-secondary); line-height:1.7; margin:0; font-size:0.96rem;">
+        Syarat dan ketentuan ini merupakan keseluruhan perjanjian antara pengguna dan <strong>Alat Kopi Malang</strong>. Jika ada ketentuan yang dianggap tidak sah atau tidak dapat dilaksanakan, ketentuan tersebut akan dianggap terpisah dan tidak mempengaruhi keberlakuan ketentuan lainnya.
+      </p>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <div class="terms-cta-box">
+      <h3 class="terms-cta-title">Ada Pertanyaan Terkait Layanan Kami?</h3>
+      <p class="terms-cta-desc">
+        Tim Customer Support Alat Kopi Malang siap melayani pertanyaan seputar produk, pemesanan, pengiriman, dan ketentuan toko setiap hari mulai pukul 09.00 - 22.00 WIB.
+      </p>
+      <div class="terms-cta-btn-row">
+        <a href="https://wa.me/6282132095241?text=Halo%20Admin%20Alat%20Kopi%20Malang%2C%20saya%20ingin%20bertanya%20seputar%20syarat%20dan%20ketentuan%20layanan%3A" target="_blank" rel="noopener noreferrer" class="btn-wa-terms" title="Hubungi CS WhatsApp">
+          <i data-lucide="message-circle" size="18"></i>
+          <span>Hubungi via WhatsApp</span>
+        </a>
+        <a href="mailto:alatkopimalang1@gmail.com?subject=Tanya%20Syarat%20dan%20Ketentuan%20-%20Alat%20Kopi%20Malang" class="btn-email-terms" title="Kirim Email">
+          <i data-lucide="mail" size="18"></i>
+          <span>Email Customer Care</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Column 1: Lokasi & Jam Operasional & Media Sosial -->
+        <div class="footer-col footer-col-contact">
+          <h4 class="footer-col-title">Lokasi & Jam Operasional</h4>
+          <ul class="footer-contact-list">
+            <li>
+              <a href="article.html?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
+                <i data-lucide="map-pin" class="footer-contact-icon"></i>
+                <span>Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang</span>
+              </a>
+            </li>
+            <li>
+              <div class="footer-contact-link" style="cursor: default;" title="Jam Operasional Showroom">
+                <i data-lucide="clock" class="footer-contact-icon"></i>
+                <span>Setiap Hari 09.00 AM - 22.00 PM WIB</span>
+              </div>
+            </li>
+            <li>
+              <a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer" class="footer-contact-link" title="Hubungi via WhatsApp">
+                <i data-lucide="message-circle" class="footer-contact-icon"></i>
+                <span>+6282132095241</span>
+              </a>
+            </li>
+            <li>
+              <a href="mailto:alatkopimalang1@gmail.com" class="footer-contact-link" title="Hubungi via Email">
+                <i data-lucide="mail" class="footer-contact-icon"></i>
+                <span>alatkopimalang1@gmail.com</span>
+              </a>
+            </li>
+          </ul>
+
+          <div class="footer-social-wrapper">
+            <div class="footer-social-section">
+              <h5 class="footer-social-title">Dapatkan Update Seputar Alat Kopi</h5>
+              <div class="footer-social-icons">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-instagram" title="Ikuti kami di Instagram" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-facebook" title="Ikuti kami di Facebook" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-youtube" title="Tonton YouTube kami" aria-label="YouTube">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.377.55a3.016 3.016 0 0 0-2.122 2.136C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.55 9.376.55 9.376.55s7.505 0 9.377-.55a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn social-tiktok" title="Ikuti kami di TikTok" aria-label="TikTok">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+                    <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-1.01-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 2.89 3.5 2.78 1.25-.03 2.4-0.74 2.92-1.84.4-0.79.49-1.7.49-2.58.01-4.91.01-9.82.01-14.73z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Alat Kopi Malang -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Alat Kopi Malang</h4>
+          <ul class="footer-links-list">
+            <li><a href="about.html">Tentang Kami</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="partnership.html">Kemitraan</a></li>
+            <li><a href="articles.html">Artikel AKM</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Bantuan -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Bantuan</h4>
+          <ul class="footer-links-list">
+            <li><a href="account.html">Lacak Pengiriman</a></li>
+            <li><a href="return-policy.html">Pengembalian Produk</a></li>
+            <li><a href="warranty.html">Ketentuan Garansi</a></li>
+            <li><a href="terms.html">Syarat dan Ketentuan</a></li>
+            <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Customer Care -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Customer Care</h4>
+          <ul class="footer-links-list">
+            <li><a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">Hubungi Kami</a></li>
+            <li><a href="checkout.html">Konfirmasi Pembayaran</a></li>
+            <li><a href="faq.html">FAQ / Bantuan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom Copyright -->
+      <div class="footer-bottom-bar">
+        <p class="copyright-text">© 2026 Alat Kopi Malang. Hak Cipta Dilindungi Undang-Undang.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/data.js?v=49"></script>
+  <script src="js/app.js?v=49"></script>
+  <script>
+    // Initialize icons & search redirection
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof window.lucide !== 'undefined' && window.lucide.createIcons) {
+        window.lucide.createIcons();
+      }
+
+      // Search bar interaction
+      const searchInput = document.getElementById('desktopSearchInput');
+      if (searchInput) {
+        searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && searchInput.value.trim()) {
+            window.location.href = `shop.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
