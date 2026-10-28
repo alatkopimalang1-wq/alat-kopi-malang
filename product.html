@@ -215,11 +215,6 @@
         padding: 14px;
       }
     }
-    @media (min-width: 768px) {
-      .sticky-bottom-action-bar {
-        display: none !important;
-      }
-    }
   </style>
 </head>
 <body>
@@ -420,21 +415,6 @@
   </main>
 
 
-
-  <!-- Sticky Mobile Bottom Action Bar (WA Icon + Keranjang + Checkout) -->
-  <div class="sticky-bottom-action-bar" id="mobileActionBar">
-    <button type="button" class="btn-wa-icon-only" id="btnMobileBuyWA" title="Pesan Langsung via WhatsApp" aria-label="Order via WhatsApp">
-      <i data-lucide="message-circle" size="20"></i>
-    </button>
-    <button type="button" class="btn-add-to-cart" id="btnMobileAddToCart">
-      <i data-lucide="shopping-bag" size="16"></i>
-      <span>+ Keranjang</span>
-    </button>
-    <button type="button" class="btn-primary" id="btnMobileBuyNow">
-      <i data-lucide="credit-card" size="16"></i>
-      <span>Checkout</span>
-    </button>
-  </div>
 
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer"></div>
@@ -1187,7 +1167,6 @@
       };
 
       document.getElementById('btnPageAddToCart')?.addEventListener('click', handleAddToCart);
-      document.getElementById('btnMobileAddToCart')?.addEventListener('click', handleAddToCart);
 
       // Buy Now -> navigates to checkout in same window
       const handleBuyNow = () => {
@@ -1197,7 +1176,6 @@
       };
 
       document.getElementById('btnPageBuyNow')?.addEventListener('click', handleBuyNow);
-      document.getElementById('btnMobileBuyNow')?.addEventListener('click', handleBuyNow);
 
       // Header Back Button with history fallback
       document.getElementById('btnProductHeaderBack')?.addEventListener('click', (e) => {
@@ -1229,7 +1207,6 @@ Apakah stok masih tersedia dan bisa langsung dikirim? Mohon infonya min. Terima 
       };
 
       document.getElementById('btnPageDirectWA')?.addEventListener('click', openWhatsAppOrder);
-      document.getElementById('btnMobileBuyWA')?.addEventListener('click', openWhatsAppOrder);
 
       // Render Related Products (Every click is a new link!)
       window.handleRelatedAddToCart = (id) => {
