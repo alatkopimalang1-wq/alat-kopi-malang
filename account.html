@@ -223,10 +223,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <div style="display:flex; align-items:center; gap:10px;">
-        <a href="index.html" class="btn-back-header" id="btnAccountHeaderBack" title="Kembali ke Beranda">
+        <a href="./" class="btn-back-header" id="btnAccountHeaderBack" title="Kembali ke Beranda">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
       </div>
@@ -238,7 +238,7 @@
         </button>
 
         <!-- Cart Button -->
-        <a href="checkout.html" class="btn-icon" title="Keranjang Belanja">
+        <a href="checkout" class="btn-icon" title="Keranjang Belanja">
           <i data-lucide="shopping-bag" size="20"></i>
           <span class="badge-count" id="cartBadge">0</span>
         </a>
@@ -360,7 +360,7 @@
           <div class="form-group full-width">
             <label style="display:flex; align-items:flex-start; gap:8px; font-size:0.78rem; color:var(--text-muted); cursor:pointer;">
               <input type="checkbox" id="regAgree" required style="margin-top:2px;">
-              <span>Saya menyetujui <a href="terms.html" target="_blank" style="color:var(--primary); text-decoration:underline;">Syarat & Ketentuan</a> serta <a href="privacy-policy.html" target="_blank" style="color:var(--primary); text-decoration:underline;">Kebijakan Privasi</a> Alat Kopi Malang.</span>
+              <span>Saya menyetujui <a href="terms" target="_blank" style="color:var(--primary); text-decoration:underline;">Syarat & Ketentuan</a> serta <a href="privacy-policy" target="_blank" style="color:var(--primary); text-decoration:underline;">Kebijakan Privasi</a> Alat Kopi Malang.</span>
             </label>
           </div>
 
@@ -866,7 +866,7 @@
               <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">
                 Anda belum melakukan transaksi belanja di Alat Kopi Malang. Temukan produk favorit Anda sekarang!
               </p>
-              <a href="index.html" class="btn-primary" style="display:inline-flex; padding:10px 20px;">
+              <a href="./" class="btn-primary" style="display:inline-flex; padding:10px 20px;">
                 <i data-lucide="compass" size="16"></i>
                 <span>Mulai Belanja</span>
               </a>
@@ -949,12 +949,12 @@
                 </div>
                 <div style="display:flex; gap:6px; flex-wrap:wrap;">
                   ${showPayInstruction ? `
-                    <a href="checkout-finish.html?orderId=${o.id}" class="btn-primary" style="padding:6px 10px; font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px; font-weight:700;">
+                    <a href="checkout-finish?orderId=${o.id}" class="btn-primary" style="padding:6px 10px; font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px; font-weight:700;">
                       <i data-lucide="receipt" size="13"></i>
                       <span>Instruksi Bayar</span>
                     </a>
                   ` : ''}
-                  <a href="invoice.html?orderId=${o.id}&download=true" target="_blank" class="btn-secondary" style="padding:6px 10px; font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px; font-weight:700;" title="Download Invoice Pesanan (PDF)">
+                  <a href="invoice?orderId=${o.id}&download=true" target="_blank" class="btn-secondary" style="padding:6px 10px; font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:5px; font-weight:700;" title="Download Invoice Pesanan (PDF)">
                     <i data-lucide="download" size="13"></i>
                     <span>Download Invoice</span>
                   </a>
@@ -993,7 +993,7 @@
               <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">
                 Simpan produk yang Anda sukai ke dalam favorit agar mudah ditemukan nanti.
               </p>
-              <a href="index.html" class="btn-primary" style="display:inline-flex; padding:10px 20px;">
+              <a href="./" class="btn-primary" style="display:inline-flex; padding:10px 20px;">
                 <span>Jelajahi Produk</span>
               </a>
             </div>
@@ -1001,17 +1001,17 @@
         } else {
           container.innerHTML = wishlist.map(p => `
             <div class="product-card">
-              <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=${p.id}'">
+              <div class="product-card-img-wrap" onclick="window.location.href='product?id=${p.id}'">
                 <img src="${p.image}" alt="${p.name}" class="product-card-img">
               </div>
               <div class="product-card-body">
                 <span class="product-category-name">${p.category || 'Alat Kopi Malang'}</span>
-                <h4 class="product-title" onclick="window.location.href='product.html?id=${p.id}'">${p.name}</h4>
+                <h4 class="product-title" onclick="window.location.href='product?id=${p.id}'">${p.name}</h4>
                 <div class="product-card-bottom-row">
                   <div class="product-price-col">
                     <span class="price-current">${formatRupiah(p.price)}</span>
                   </div>
-                  <button type="button" class="btn-primary" style="padding:6px 12px; font-size:0.75rem;" onclick="window.location.href='product.html?id=${p.id}'">
+                  <button type="button" class="btn-primary" style="padding:6px 12px; font-size:0.75rem;" onclick="window.location.href='product?id=${p.id}'">
                     <span>Lihat</span>
                   </button>
                 </div>

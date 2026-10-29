@@ -2,6 +2,18 @@
  * Data Toko Online & Produk Awal
  */
 
+// Clean URL: sembunyikan ".html" dari address bar (contoh: /shop.html -> /shop)
+(function cleanHtmlExtensionFromUrl() {
+  try {
+    if (!/^https?:$/.test(window.location.protocol)) return;
+    const p = window.location.pathname;
+    if (!/\.html$/i.test(p)) return;
+    let clean = p.replace(/\.html$/i, '');
+    if (/\/index$/i.test(clean)) clean = clean.replace(/index$/i, '');
+    window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
+  } catch (_) {}
+})();
+
 const DEFAULT_PRODUCTS = [
   {
     id: 'prod-001',
@@ -291,7 +303,7 @@ const DEFAULT_SETTINGS = {
  * Video diupload langsung di website (format MP4 / WebM), bukan link eksternal TikTok / Instagram.
  * 
  * Pengelolaan & Upload Video:
- * - Admin dapat mengupload video baru melalui Panel Penjual (admin.html -> Tab 'Kelola Video Reels')
+ * - Admin dapat mengupload video baru melalui Panel Penjual (admin -> Tab 'Kelola Video Reels')
  * - Video yang diupload disimpan langsung di website dan otomatis muncul di carousel beranda.
  */
 const DEFAULT_REELS = [
@@ -770,12 +782,12 @@ const DEFAULT_ARTICLES = [
 // DEFAULT HERO BANNERS, FLASH SALE, STACK SLIDER & ABOUT US DATA
 // ============================================================================
 const DEFAULT_BANNERS = [
-  { id: 'ban-1', image: 'images/banner_coffee.jpg', title: 'Comandante C40 Lab Series', link: 'shop.html?category=Manual%20Grinder' },
-  { id: 'ban-2', image: 'images/banner_gadgets.jpg', title: 'Koleksi Alat Kopi Malang', link: 'shop.html' },
-  { id: 'ban-3', image: 'images/banner_sneakers.jpg', title: 'Promo Alat Kopi Malang', link: 'flashsale.html' },
-  { id: 'ban-4', image: 'images/article_showroom.jpg', title: 'Showroom Alat Kopi Malang', link: 'article.html?id=art-002' },
-  { id: 'ban-5', image: 'images/article_slowbar.jpg', title: 'Training Barista Alat Kopi Malang', link: 'article.html?id=art-001' },
-  { id: 'ban-6', image: 'images/article_roastery.jpg', title: 'Jasa Servis Mesin Kopi Alat Kopi Malang', link: 'article.html?id=art-003' }
+  { id: 'ban-1', image: 'images/banner_coffee.jpg', title: 'Comandante C40 Lab Series', link: 'shop?category=Manual%20Grinder' },
+  { id: 'ban-2', image: 'images/banner_gadgets.jpg', title: 'Koleksi Alat Kopi Malang', link: 'shop' },
+  { id: 'ban-3', image: 'images/banner_sneakers.jpg', title: 'Promo Alat Kopi Malang', link: 'flashsale' },
+  { id: 'ban-4', image: 'images/article_showroom.jpg', title: 'Showroom Alat Kopi Malang', link: 'article?id=art-002' },
+  { id: 'ban-5', image: 'images/article_slowbar.jpg', title: 'Training Barista Alat Kopi Malang', link: 'article?id=art-001' },
+  { id: 'ban-6', image: 'images/article_roastery.jpg', title: 'Jasa Servis Mesin Kopi Alat Kopi Malang', link: 'article?id=art-003' }
 ];
 
 const DEFAULT_FLASHSALE = [
@@ -1071,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', () => {
     flashCardsGrid.innerHTML = DEFAULT_FLASHSALE.map(item => {
       const isSoldOut = Number(item.stock) <= 0;
       return `
-      <article class="flash-product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${item.id}" onclick="window.location.href='product.html?id=${item.id}'" title="${item.name}">
+      <article class="flash-product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${item.id}" onclick="window.location.href='product?id=${item.id}'" title="${item.name}">
         <div class="flash-card-img-wrap" style="position:relative; ${isSoldOut ? 'background:#0f172a;' : ''}">
           ${isSoldOut
             ? '<span class="flash-card-badge-distributor" style="background:linear-gradient(135deg, #111827, #334155); color:#fff; border:1px solid rgba(255,255,255,0.28); font-weight:800; letter-spacing:0.06em; z-index:4;">SOLD OUT</span>'
@@ -1100,7 +1112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   }
 
-  // 4. Flash Sale Page Grid on flashsale.html (#flashPromoGrid)
+  // 4. Flash Sale Page Grid on flashsale (#flashPromoGrid)
   const flashPromoGrid = document.getElementById('flashPromoGrid');
   if (flashPromoGrid && Array.isArray(DEFAULT_FLASHSALE) && DEFAULT_FLASHSALE.length > 0) {
     flashPromoGrid.innerHTML = DEFAULT_FLASHSALE.map(item => {
@@ -1109,8 +1121,8 @@ document.addEventListener('DOMContentLoaded', () => {
         : 20;
       const isSoldOut = Number(item.stock) <= 0;
       return `
-        <article class="product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${item.id}" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=${item.id}'">
-          <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=${item.id}'" style="${isSoldOut ? 'background:#0f172a;' : ''}">
+        <article class="product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${item.id}" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product?id=${item.id}'">
+          <div class="product-card-img-wrap" onclick="window.location.href='product?id=${item.id}'" style="${isSoldOut ? 'background:#0f172a;' : ''}">
             ${isSoldOut
               ? `<span class="card-badge badge-sold-out" style="background:linear-gradient(135deg, #111827, #334155); color:#fff; border:1px solid rgba(255,255,255,0.28); font-weight:800; letter-spacing:0.06em; z-index:4;">SOLD OUT</span>`
               : `<span class="card-badge">${item.distributorBadge ? 'FLASH SALE' : `Diskon ${disc}%`}</span>`
@@ -1127,7 +1139,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="product-card-body" style="${isSoldOut ? 'opacity:0.78;' : ''}">
             <span class="product-category-name">${item.category || 'Promo Flash Sale'}</span>
-            <a href="product.html?id=${item.id}" class="product-title" title="Buka detail ${item.name}">${item.name}</a>
+            <a href="product?id=${item.id}" class="product-title" title="Buka detail ${item.name}">${item.name}</a>
             <div class="product-card-bottom-row">
               <div class="product-price-col">
                 <span class="price-current">${formatRp(item.price)}</span>
@@ -1137,7 +1149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <span>${isSoldOut ? 'Sold Out' : (item.stock <= 5 ? `Sisa ${item.stock} unit` : 'Tersedia')}</span>
                 </div>
               </div>
-              <button type="button" class="btn-card-select-variant" onclick="event.stopPropagation(); window.location.href='product.html?id=${item.id}'" style="${isSoldOut ? 'background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); box-shadow:none;' : ''}">
+              <button type="button" class="btn-card-select-variant" onclick="event.stopPropagation(); window.location.href='product?id=${item.id}'" style="${isSoldOut ? 'background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); box-shadow:none;' : ''}">
                 <span>${isSoldOut ? 'Habis' : 'Pilih'}</span>
                 ${isSoldOut ? '' : '<i data-lucide="chevron-right" size="14"></i>'}
               </button>
@@ -1152,7 +1164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const articlesTrack = document.getElementById('articlesCarouselTrack');
   if (articlesTrack && Array.isArray(DEFAULT_ARTICLES) && DEFAULT_ARTICLES.length > 0) {
     articlesTrack.innerHTML = DEFAULT_ARTICLES.map(art => `
-      <a href="article.html?id=${art.id}" class="article-card" data-article-id="${art.id}" title="Buka halaman artikel ${art.title}">
+      <a href="article?id=${art.id}" class="article-card" data-article-id="${art.id}" title="Buka halaman artikel ${art.title}">
         <div class="article-card-thumb">
           <img src="${art.image}" alt="${art.title}" class="article-card-img" loading="lazy">
         </div>
@@ -1206,8 +1218,8 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
 
       const hasProductGrid = !!document.getElementById('productsGrid');
-      const allHref = hasProductGrid ? 'javascript:void(0)' : 'shop.html?category=ALL';
-      const featuredHref = hasProductGrid ? 'javascript:void(0)' : 'shop.html?sort=popular';
+      const allHref = hasProductGrid ? 'javascript:void(0)' : 'shop?category=ALL';
+      const featuredHref = hasProductGrid ? 'javascript:void(0)' : 'shop?sort=popular';
 
       categoryDropdownMenu.innerHTML = headerHtml + `
         <a href="${allHref}" class="cat-drop-item" data-category="ALL">
@@ -1219,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </a>
       ` + DEFAULT_CATEGORIES.map(c => {
         const count = DEFAULT_PRODUCTS.filter(p => (p.category || '').toLowerCase() === (c.name || '').toLowerCase()).length;
-        const itemHref = hasProductGrid ? 'javascript:void(0)' : `shop.html?category=${encodeURIComponent(c.name)}`;
+        const itemHref = hasProductGrid ? 'javascript:void(0)' : `shop?category=${encodeURIComponent(c.name)}`;
         return `
           <a href="${itemHref}" class="cat-drop-item" data-category="${c.name}">
             <span class="cat-drop-left">
@@ -1237,7 +1249,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </span>
           <span class="cat-badge-hot">HOT</span>
         </a>
-        <a href="flashsale.html" class="cat-drop-item">
+        <a href="flashsale" class="cat-drop-item">
           <span class="cat-drop-left">
             <i data-lucide="badge-percent" size="16" style="color:#f59e0b;"></i>
             <span>Promo & Diskon Spesial</span>
@@ -1248,7 +1260,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 7. About Page Hydration (about.html) if customized
+  // 7. About Page Hydration (about) if customized
   if (localStorage.getItem('nexus_about')) {
     const heroBadgeEl = document.querySelector('.about-hero-badge span');
     const heroTitleEl = document.querySelector('.about-hero-title');

@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hanya tampilkan footer di Home Page (index.html atau root /)
     const path = window.location.pathname;
     const page = path.split('/').pop().toLowerCase();
-    const isHome = page === '' || page === 'index.html';
+    const isHome = page === '' || page === 'index' || page === 'index' + '.html';
 
     if (!isHome) {
       const existing = document.querySelector('.site-footer');
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h4 class="footer-col-title">Lokasi & Jam Operasional</h4>
             <ul class="footer-contact-list">
               <li>
-                <a href="article.html?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
+                <a href="article?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
                   <i data-lucide="map-pin" class="footer-contact-icon"></i>
                   <span>Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang</span>
                 </a>
@@ -302,10 +302,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="footer-col">
             <h4 class="footer-col-title">Alat Kopi Malang</h4>
             <ul class="footer-links-list">
-              <li><a href="about.html">Tentang Kami</a></li>
-              <li><a href="brands.html">Brands</a></li>
-              <li><a href="partnership.html">Kemitraan</a></li>
-              <li><a href="articles.html">Artikel AKM</a></li>
+              <li><a href="about">Tentang Kami</a></li>
+              <li><a href="brands">Brands</a></li>
+              <li><a href="partnership">Kemitraan</a></li>
+              <li><a href="articles">Artikel AKM</a></li>
             </ul>
           </div>
 
@@ -313,11 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="footer-col">
             <h4 class="footer-col-title">Bantuan</h4>
             <ul class="footer-links-list">
-              <li><a href="account.html">Lacak Pengiriman</a></li>
-              <li><a href="return-policy.html">Pengembalian Produk</a></li>
-              <li><a href="warranty.html">Ketentuan Garansi</a></li>
-              <li><a href="terms.html">Syarat dan Ketentuan</a></li>
-              <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+              <li><a href="account">Lacak Pengiriman</a></li>
+              <li><a href="return-policy">Pengembalian Produk</a></li>
+              <li><a href="warranty">Ketentuan Garansi</a></li>
+              <li><a href="terms">Syarat dan Ketentuan</a></li>
+              <li><a href="privacy-policy">Kebijakan Privasi</a></li>
             </ul>
           </div>
 
@@ -326,8 +326,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <h4 class="footer-col-title">Customer Care</h4>
             <ul class="footer-links-list">
               <li><a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">Hubungi Kami</a></li>
-              <li><a href="checkout.html">Konfirmasi Pembayaran</a></li>
-              <li><a href="faq.html">FAQ / Bantuan</a></li>
+              <li><a href="checkout">Konfirmasi Pembayaran</a></li>
+              <li><a href="faq">FAQ / Bantuan</a></li>
             </ul>
           </div>
         </div>
@@ -536,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
           e.preventDefault();
           State.filterBrand = null;
           try {
-            window.history.pushState({}, '', 'shop.html');
+            window.history.pushState({}, '', 'shop');
           } catch (_) {}
           updateShopHeaderInfo('ALL');
           renderProducts();
@@ -607,8 +607,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const isSoldOut = !isPreOrder && effectiveStock <= 0;
 
       return `
-        <article class="product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${product.id}" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=${product.id}'">
-          <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=${product.id}'" style="${isSoldOut ? 'background:#0f172a;' : ''}">
+        <article class="product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${product.id}" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product?id=${product.id}'">
+          <div class="product-card-img-wrap" onclick="window.location.href='product?id=${product.id}'" style="${isSoldOut ? 'background:#0f172a;' : ''}">
             ${isSoldOut
               ? `<span class="card-badge badge-sold-out" style="background:linear-gradient(135deg, #111827, #334155); color:#fff; border:1px solid rgba(255,255,255,0.28); font-weight:800; letter-spacing:0.06em; z-index:4;">SOLD OUT</span>`
               : (isPreOrder
@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 : (isPreOrder ? `<span style="font-size:0.64rem; font-weight:800; background:rgba(245,158,11,0.14); color:#d97706; border:1px solid rgba(245,158,11,0.35); padding:1px 6px; border-radius:4px; letter-spacing:0.03em;">PRE-ORDER</span>` : '')
               }
             </div>
-            <a href="product.html?id=${product.id}" class="product-title" title="Buka detail ${product.name}">
+            <a href="product?id=${product.id}" class="product-title" title="Buka detail ${product.name}">
               ${product.name}
             </a>
 
@@ -657,14 +657,14 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
               ${isSoldOut ? `
                 <button type="button" class="btn-card-select-variant" 
-                  onclick="event.stopPropagation(); window.location.href='product.html?id=${product.id}'" 
+                  onclick="event.stopPropagation(); window.location.href='product?id=${product.id}'" 
                   style="background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); box-shadow:none;"
                   title="Stok Habis - ${product.name}">
                   <span>Habis</span>
                 </button>
               ` : (hasVariants ? `
                 <button type="button" class="btn-card-select-variant" 
-                  onclick="event.stopPropagation(); window.location.href='product.html?id=${product.id}'" 
+                  onclick="event.stopPropagation(); window.location.href='product?id=${product.id}'" 
                   title="Pilih Varian ${product.name}" 
                   aria-label="Pilih Varian ${product.name}">
                   <span>Pilih</span>
@@ -857,12 +857,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     container.innerHTML = State.cart.map((item, idx) => `
       <div class="cart-item">
-        <a href="product.html?id=${item.id}" class="cart-item-img-link" title="Lihat ${item.name}">
+        <a href="product?id=${item.id}" class="cart-item-img-link" title="Lihat ${item.name}">
           <img src="${item.image}" alt="${item.name}" class="cart-item-img">
         </a>
         <div class="cart-item-info">
           <div class="cart-item-header-row">
-            <a href="product.html?id=${item.id}" class="cart-item-title">${item.name}</a>
+            <a href="product?id=${item.id}" class="cart-item-title">${item.name}</a>
             <button type="button" class="btn-remove-cart" onclick="window.removeFromCart(${idx})" title="Hapus produk" aria-label="Hapus ${item.name}">
               <i data-lucide="trash-2" size="16"></i>
             </button>
@@ -1138,7 +1138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <i data-lucide="shopping-bag" size="18"></i>
                 <span>+ Keranjang</span>
               </button>
-              <a href="product.html?id=${product.id}" class="btn-primary" style="padding:12px; border-radius:var(--radius-full); justify-content:center;">
+              <a href="product?id=${product.id}" class="btn-primary" style="padding:12px; border-radius:var(--radius-full); justify-content:center;">
                 <i data-lucide="arrow-right" size="16"></i>
                 <span>Buka Halaman Produk</span>
               </a>
@@ -1922,7 +1922,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
   // SHOP PAGE & CATEGORY ROUTING
   // ==========================================
   const isShopPage = typeof window !== 'undefined' && (
-    window.location.pathname.toLowerCase().includes('shop.html') || 
+    window.location.pathname.toLowerCase().includes('shop') || 
     window.location.pathname.toLowerCase().endsWith('/shop')
   );
 
@@ -2016,7 +2016,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
       const targetParam = (categoryName && categoryName !== 'ALL')
         ? `?category=${encodeURIComponent(categoryName)}`
         : '';
-      window.location.href = `shop.html${targetParam}`;
+      window.location.href = `shop${targetParam}`;
       return;
     }
 
@@ -2036,8 +2036,8 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
     // Update URL history state without reloading the page
     try {
       const newUrl = (categoryName && categoryName !== 'ALL')
-        ? `shop.html?category=${encodeURIComponent(categoryName)}`
-        : 'shop.html';
+        ? `shop?category=${encodeURIComponent(categoryName)}`
+        : 'shop';
       window.history.pushState({ category: categoryName }, '', newUrl);
     } catch (_) {}
 
@@ -2074,7 +2074,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
       const targetCat = (categoryName || '').trim().toLowerCase();
       if (linkCat === targetCat) {
         link.classList.add('active');
-      } else if (categoryName === 'ALL' && link.getAttribute('href') === 'index.html') {
+      } else if (categoryName === 'ALL' && link.getAttribute('href') === './') {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -2281,7 +2281,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
       e.preventDefault();
       const type = el.dataset.filterType;
       if (!isShopPage) {
-        window.location.href = `shop.html?filter=${encodeURIComponent(type)}`;
+        window.location.href = `shop?filter=${encodeURIComponent(type)}`;
         return;
       }
       State.searchQuery = '';
@@ -2296,7 +2296,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
         State.currentCategory = 'ALL';
       }
       try {
-        window.history.pushState({ filter: type }, '', `shop.html?filter=${encodeURIComponent(type)}`);
+        window.history.pushState({ filter: type }, '', `shop?filter=${encodeURIComponent(type)}`);
       } catch (_) {}
       updateShopHeaderInfo(type === 'promo' ? 'Promo Spesial' : 'Produk Terlaris');
       renderProducts();
@@ -2336,9 +2336,9 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
       const query = (e.target.value || '').trim();
       if (!isShopPage) {
         if (query) {
-          window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+          window.location.href = `shop?search=${encodeURIComponent(query)}`;
         } else {
-          window.location.href = `shop.html`;
+          window.location.href = `shop`;
         }
       }
     }
@@ -2954,7 +2954,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
         : `<span class="brand-monogram">${b.monogram}</span>`;
 
       return `
-        <a href="shop.html?brand=${encodeURIComponent(b.name)}" class="brand-circle-item" title="Lihat produk ${b.name}">
+        <a href="shop?brand=${encodeURIComponent(b.name)}" class="brand-circle-item" title="Lihat produk ${b.name}">
           <div class="brand-circle-avatar" style="--brand-color:${b.color}; --brand-bg:${b.bg};">
             <div class="brand-circle-inner">
               ${innerContent}
@@ -3332,7 +3332,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
                 <p class="reel-product-name">${p.name}</p>
                 <p class="reel-product-price">${formatRupiah(p.price)}</p>
               </div>
-              <button type="button" class="reel-product-btn" onclick="window.location.href='product.html?id=${p.id}'">
+              <button type="button" class="reel-product-btn" onclick="window.location.href='product?id=${p.id}'">
                 Beli <i data-lucide="chevron-right" size="13"></i>
               </button>
             `;
@@ -3475,8 +3475,8 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
         const isSoldOut = !isPreOrder && effectiveStock <= 0;
 
         return `
-          <article class="product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${product.id}" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=${product.id}'">
-            <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=${product.id}'" style="${isSoldOut ? 'background:#0f172a;' : ''}">
+          <article class="product-card ${isSoldOut ? 'is-sold-out' : ''}" data-id="${product.id}" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product?id=${product.id}'">
+            <div class="product-card-img-wrap" onclick="window.location.href='product?id=${product.id}'" style="${isSoldOut ? 'background:#0f172a;' : ''}">
               ${isSoldOut
                 ? `<span class="card-badge badge-sold-out" style="background:linear-gradient(135deg, #111827, #334155); color:#fff; border:1px solid rgba(255,255,255,0.28); font-weight:800; letter-spacing:0.06em; z-index:4;">SOLD OUT</span>`
                 : (isPreOrder
@@ -3507,7 +3507,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
                   : (isPreOrder ? `<span style="font-size:0.64rem; font-weight:800; background:rgba(245,158,11,0.14); color:#d97706; border:1px solid rgba(245,158,11,0.35); padding:1px 6px; border-radius:4px; letter-spacing:0.03em;">PRE-ORDER</span>` : '')
                 }
               </div>
-              <a href="product.html?id=${product.id}" class="product-title" title="Buka detail ${product.name}">
+              <a href="product?id=${product.id}" class="product-title" title="Buka detail ${product.name}">
                 ${product.name}
               </a>
 
@@ -3524,14 +3524,14 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
                 </div>
                 ${isSoldOut ? `
                   <button type="button" class="btn-card-select-variant" 
-                    onclick="event.stopPropagation(); window.location.href='product.html?id=${product.id}'" 
+                    onclick="event.stopPropagation(); window.location.href='product?id=${product.id}'" 
                     style="background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); box-shadow:none;"
                     title="Stok Habis - ${product.name}">
                     <span>Habis</span>
                   </button>
                 ` : (hasVariants ? `
                   <button type="button" class="btn-card-select-variant" 
-                    onclick="event.stopPropagation(); window.location.href='product.html?id=${product.id}'" 
+                    onclick="event.stopPropagation(); window.location.href='product?id=${product.id}'" 
                     title="Pilih Varian ${product.name}" 
                     aria-label="Pilih Varian ${product.name}">
                     <span>Pilih</span>

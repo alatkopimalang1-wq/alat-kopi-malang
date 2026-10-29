@@ -32,10 +32,10 @@
     <div class="container header-inner">
       <!-- Back Button & Brand Logo -->
       <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
-        <a href="articles.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Kumpulan Artikel" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+        <a href="articles" class="btn-back-header" id="btnBackHome" title="Kembali ke Kumpulan Artikel" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
         <div class="hide-mobile" style="line-height:1.2;">
@@ -62,19 +62,19 @@
         </button>
 
         <!-- Wishlist Button -->
-        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+        <a href="account?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
           <i data-lucide="heart" size="20"></i>
           <span class="badge-count" id="wishlistBadge">0</span>
         </a>
 
         <!-- Cart Button -->
-        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+        <a href="checkout" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
           <i data-lucide="shopping-bag" size="20"></i>
           <span class="badge-count" id="cartBadge">0</span>
         </a>
 
         <!-- Akun Saya Button -->
-        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+        <a href="account" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
           <i data-lucide="user" size="20"></i>
         </a>
       </div>
@@ -167,7 +167,7 @@
           <div class="sidebar-articles-list" id="sidebarOtherArticles">
             <!-- Populated dynamically -->
           </div>
-          <a href="articles.html" style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:700; color:var(--primary); margin-top:14px; text-decoration:none;">
+          <a href="articles" style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:700; color:var(--primary); margin-top:14px; text-decoration:none;">
             <span>Lihat Semua Artikel & Ruang</span>
             <i data-lucide="arrow-right" size="14"></i>
           </a>
@@ -182,29 +182,29 @@
 
   <!-- Mobile Bottom Navigation -->
   <nav class="bottom-nav">
-    <a href="index.html" class="bottom-nav-item" id="navHome">
+    <a href="./" class="bottom-nav-item" id="navHome">
       <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
       <span>Beranda</span>
     </a>
-    <a href="shop.html" class="bottom-nav-item" id="navCategory">
+    <a href="shop" class="bottom-nav-item" id="navCategory">
       <div class="bottom-nav-icon-wrap"><i data-lucide="layout-grid" size="20"></i></div>
       <span>Katalog</span>
     </a>
-    <a href="account.html?tab=wishlist" class="bottom-nav-item" id="navWishlist">
+    <a href="account?tab=wishlist" class="bottom-nav-item" id="navWishlist">
       <div class="bottom-nav-icon-wrap">
         <i data-lucide="heart" size="20"></i>
         <span class="badge-count" id="mobileWishlistBadge">0</span>
       </div>
       <span>Favorit</span>
     </a>
-    <a href="checkout.html" class="bottom-nav-item" id="navCart">
+    <a href="checkout" class="bottom-nav-item" id="navCart">
       <div class="bottom-nav-icon-wrap">
         <i data-lucide="shopping-bag" size="20"></i>
         <span class="badge-count" id="mobileCartBadge">0</span>
       </div>
       <span>Keranjang</span>
     </a>
-    <a href="account.html" class="bottom-nav-item" id="navAccount">
+    <a href="account" class="bottom-nav-item" id="navAccount">
       <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
       <span>Akun</span>
     </a>
@@ -289,7 +289,7 @@
       if (otherList) {
         const others = articles.filter((_, idx) => idx !== currentArticleIndex);
         otherList.innerHTML = others.map(o => `
-          <a href="article.html?id=${o.id}" class="sidebar-article-item" title="${o.title}">
+          <a href="article?id=${o.id}" class="sidebar-article-item" title="${o.title}">
             <div class="sidebar-art-thumb">
               <img src="${o.image}" alt="${o.title}" loading="lazy">
             </div>

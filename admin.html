@@ -538,10 +538,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <div style="display:flex; align-items:center; gap:10px;">
-        <a href="index.html" class="btn-back-header" title="Kembali ke Website Utama" style="width:36px; height:36px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center;">
+        <a href="./" class="btn-back-header" title="Kembali ke Website Utama" style="width:36px; height:36px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center;">
           <i data-lucide="arrow-left" size="18"></i>
         </a>
-        <a href="index.html" class="brand-logo" title="Alat Kopi Malang">
+        <a href="./" class="brand-logo" title="Alat Kopi Malang">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal" style="height:32px;">
         </a>
         <span style="font-size:0.75rem; font-weight:800; color:var(--primary); background:rgba(79,70,229,0.1); padding:4px 10px; border-radius:999px; border:1px solid rgba(79,70,229,0.2);">
@@ -550,7 +550,7 @@
       </div>
 
       <div class="header-actions" style="gap:8px;">
-        <a href="index.html" target="_blank" class="btn-secondary" style="padding:7px 14px; font-size:0.8rem; display:inline-flex; align-items:center; gap:6px; border-radius:999px;">
+        <a href="./" target="_blank" class="btn-secondary" style="padding:7px 14px; font-size:0.8rem; display:inline-flex; align-items:center; gap:6px; border-radius:999px;">
           <i data-lucide="external-link" size="14"></i>
           <span class="hide-mobile">Lihat Website</span>
         </a>
@@ -1190,7 +1190,7 @@
             </div>
             <div class="form-group full-width">
               <label class="form-label">Link Tujuan Saat Banner Diklik (Opsional)</label>
-              <input type="text" id="banLink" class="form-input" placeholder="Contoh: shop.html atau flashsale.html">
+              <input type="text" id="banLink" class="form-input" placeholder="Contoh: shop atau flashsale">
             </div>
             <div class="form-group full-width" style="display:flex; gap:10px;">
               <button type="submit" class="btn-primary" style="padding:10px 20px;">
@@ -1442,7 +1442,7 @@
         <div class="panel-header-row">
           <div class="panel-title-group">
             <h2><i data-lucide="award" size="22" style="color:var(--primary);"></i> Kelola Brand Pilihan Resmi</h2>
-            <p>Tambah, edit, atau hapus brand yang tampil pada carousel Beranda dan halaman Semua Brand (`brands.html`).</p>
+            <p>Tambah, edit, atau hapus brand yang tampil pada carousel Beranda dan halaman Semua Brand (`brands`).</p>
           </div>
         </div>
 
@@ -1594,7 +1594,7 @@
             <h2><i data-lucide="info" size="22" style="color:var(--primary);"></i> Kelola Halaman Tentang Kami (Sejak 2017)</h2>
             <p>Ubah teks narasi utama, angka pencapaian, serta tambah/edit/hapus rekam jejak timeline sejarah Alat Kopi Malang.</p>
           </div>
-          <a href="about.html" target="_blank" class="btn-secondary" style="font-size:0.8rem; padding:8px 14px;">
+          <a href="about" target="_blank" class="btn-secondary" style="font-size:0.8rem; padding:8px 14px;">
             <i data-lucide="external-link" size="14"></i> Buka Halaman Tentang Kami
           </a>
         </div>
@@ -2718,7 +2718,7 @@
             </td>
             <td>
               <div class="table-action-group">
-                <a href="product.html?id=${p.id}" target="_blank" rel="noopener noreferrer" class="btn-tbl-view" title="Preview produk '${p.name}' di halaman website">
+                <a href="product?id=${p.id}" target="_blank" rel="noopener noreferrer" class="btn-tbl-view" title="Preview produk '${p.name}' di halaman website">
                   <i data-lucide="eye" size="14"></i>
                 </a>
                 <button type="button" class="btn-tbl-edit" onclick="window.cmsEditProduct('${p.id}')"><i data-lucide="pencil" size="13"></i> Edit</button>
@@ -2761,7 +2761,7 @@
                     </div>
                     <div>
                       <strong style="font-size:0.9rem;">${c.name}</strong><br>
-                      <a href="shop.html?category=${encodeURIComponent(c.name)}" target="_blank" style="font-size:0.72rem; color:var(--primary); text-decoration:none;">Lihat di Katalog Toko ↗</a>
+                      <a href="shop?category=${encodeURIComponent(c.name)}" target="_blank" style="font-size:0.72rem; color:var(--primary); text-decoration:none;">Lihat di Katalog Toko ↗</a>
                     </div>
                   </div>
                 </td>

@@ -188,12 +188,26 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Clean URL: /shop.html -> 301 redirect ke /shop (alamat tanpa .html)
+  if (req.method === 'GET' && /\.html$/i.test(reqUrl)) {
+    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    let cleanPath = reqUrl.replace(/\.html$/i, '');
+    if (/\/index$/i.test(cleanPath)) cleanPath = cleanPath.replace(/index$/i, '');
+    res.writeHead(301, { Location: (cleanPath || '/') + query });
+    res.end();
+    return;
+  }
+
   if (reqUrl === '/' || reqUrl === '') {
     reqUrl = '/index.html';
   } else if (reqUrl === '/admin' || reqUrl === '/admin/') {
     reqUrl = '/admin.html';
   } else if (reqUrl === '/tentang-kami' || reqUrl === '/about') {
     reqUrl = '/about.html';
+  } else if (!path.extname(reqUrl)) {
+    // /shop -> shop.html, /product -> product.html, dst.
+    const candidate = reqUrl.replace(/\/$/, '') + '.html';
+    if (fs.existsSync(path.join(__dirname, candidate))) reqUrl = candidate;
   }
 
   const filePath = path.join(__dirname, reqUrl);

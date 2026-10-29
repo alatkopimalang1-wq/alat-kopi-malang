@@ -149,10 +149,10 @@
     <div class="container header-inner">
       <!-- Back Button & Brand Logo -->
       <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
-        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+        <a href="./" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
         <div style="line-height:1.2;">
@@ -162,7 +162,7 @@
 
       <!-- Header Search Input -->
       <div class="header-search">
-        <form class="search-form" action="shop.html" method="GET">
+        <form class="search-form" action="shop" method="GET">
           <div class="search-input-wrapper">
             <i data-lucide="search" size="18" class="search-icon"></i>
             <input type="search" name="q" class="search-input" placeholder="Cari alat kopi atau promo..." autocomplete="off">
@@ -178,7 +178,7 @@
         </button>
 
         <!-- Wishlist Button -->
-        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+        <a href="account?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
           <i data-lucide="heart" size="20"></i>
           <span class="badge-count" id="wishlistBadge">0</span>
         </a>
@@ -190,7 +190,7 @@
         </button>
 
         <!-- Akun Saya Button -->
-        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+        <a href="account" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
           <i data-lucide="user" size="20"></i>
         </a>
       </div>
@@ -243,8 +243,8 @@
     <div class="products-grid" id="flashPromoGrid">
       
       <!-- Product 1: Otten - Vietnam Drip XL -->
-      <article class="product-card" data-id="prod-012" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-012'">
-        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-012'">
+      <article class="product-card" data-id="prod-012" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product?id=prod-012'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product?id=prod-012'">
           <span class="card-badge">Diskon 24%</span>
           <button type="button" class="btn-wishlist" 
             onclick="event.stopPropagation(); window.toggleWishlist('prod-012')" 
@@ -256,7 +256,7 @@
         </div>
         <div class="product-card-body">
           <span class="product-category-name">Manual Brew</span>
-          <a href="product.html?id=prod-012" class="product-title" title="Buka detail Otten - Vietnam Drip XL">
+          <a href="product?id=prod-012" class="product-title" title="Buka detail Otten - Vietnam Drip XL">
             Otten - Vietnam Drip XL
           </a>
           <div class="product-card-bottom-row">
@@ -269,7 +269,7 @@
               </div>
             </div>
             <button type="button" class="btn-card-select-variant" 
-              onclick="event.stopPropagation(); window.location.href='product.html?id=prod-012'" 
+              onclick="event.stopPropagation(); window.location.href='product?id=prod-012'" 
               title="Pilih Varian Otten - Vietnam Drip XL" 
               aria-label="Pilih Varian Otten - Vietnam Drip XL">
               <span>Pilih</span>
@@ -280,8 +280,8 @@
       </article>
 
       <!-- Product 2: Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan -->
-      <article class="product-card" data-id="prod-013" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-013'">
-        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-013'">
+      <article class="product-card" data-id="prod-013" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product?id=prod-013'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product?id=prod-013'">
           <span class="card-badge">Diskon 21%</span>
           <button type="button" class="btn-wishlist" 
             onclick="event.stopPropagation(); window.toggleWishlist('prod-013')" 
@@ -293,7 +293,7 @@
         </div>
         <div class="product-card-body">
           <span class="product-category-name">Manual Brew</span>
-          <a href="product.html?id=prod-013" class="product-title" title="Buka detail Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan">
+          <a href="product?id=prod-013" class="product-title" title="Buka detail Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan">
             Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan
           </a>
           <div class="product-card-bottom-row">
@@ -306,7 +306,7 @@
               </div>
             </div>
             <button type="button" class="btn-card-select-variant" 
-              onclick="event.stopPropagation(); window.location.href='product.html?id=prod-013'" 
+              onclick="event.stopPropagation(); window.location.href='product?id=prod-013'" 
               title="Pilih Varian Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan" 
               aria-label="Pilih Varian Hario - Alat Seduh Saringan Kopi V60 Ceramic Cyan">
               <span>Pilih</span>
@@ -317,8 +317,8 @@
       </article>
 
       <!-- Product 3: Fellow - Rocky Lowball Tumblers (Matte White / Black) -->
-      <article class="product-card" data-id="prod-014" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-014'">
-        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-014'">
+      <article class="product-card" data-id="prod-014" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product?id=prod-014'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product?id=prod-014'">
           <span class="card-badge">Diskon 20%</span>
           <button type="button" class="btn-wishlist" 
             onclick="event.stopPropagation(); window.toggleWishlist('prod-014')" 
@@ -330,7 +330,7 @@
         </div>
         <div class="product-card-body">
           <span class="product-category-name">Lifestyle & Rumah</span>
-          <a href="product.html?id=prod-014" class="product-title" title="Buka detail Fellow - Rocky Lowball Tumblers (Matte White / Black)">
+          <a href="product?id=prod-014" class="product-title" title="Buka detail Fellow - Rocky Lowball Tumblers (Matte White / Black)">
             Fellow - Rocky Lowball Tumblers (Matte White / Black)
           </a>
           <div class="product-card-bottom-row">
@@ -343,7 +343,7 @@
               </div>
             </div>
             <button type="button" class="btn-card-select-variant" 
-              onclick="event.stopPropagation(); window.location.href='product.html?id=prod-014'" 
+              onclick="event.stopPropagation(); window.location.href='product?id=prod-014'" 
               title="Pilih Varian Fellow - Rocky Lowball Tumblers" 
               aria-label="Pilih Varian Fellow - Rocky Lowball Tumblers">
               <span>Pilih</span>
@@ -354,8 +354,8 @@
       </article>
 
       <!-- Product 4: Hario V60 Station VSS-1-OV Olive Wood Drip Stand -->
-      <article class="product-card" data-id="prod-015" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product.html?id=prod-015'">
-        <div class="product-card-img-wrap" onclick="window.location.href='product.html?id=prod-015'">
+      <article class="product-card" data-id="prod-015" onclick="if (!event.target.closest('button') && !event.target.closest('a')) window.location.href='product?id=prod-015'">
+        <div class="product-card-img-wrap" onclick="window.location.href='product?id=prod-015'">
           <span class="card-badge">Diskon 20%</span>
           <button type="button" class="btn-wishlist" 
             onclick="event.stopPropagation(); window.toggleWishlist('prod-015')" 
@@ -367,7 +367,7 @@
         </div>
         <div class="product-card-body">
           <span class="product-category-name">Manual Brew</span>
-          <a href="product.html?id=prod-015" class="product-title" title="Buka detail Hario V60 Station VSS-1-OV Olive Wood Drip Stand">
+          <a href="product?id=prod-015" class="product-title" title="Buka detail Hario V60 Station VSS-1-OV Olive Wood Drip Stand">
             Hario V60 Station VSS-1-OV Olive Wood Drip Stand
           </a>
           <div class="product-card-bottom-row">
@@ -397,23 +397,23 @@
 
   <!-- Mobile Bottom Navigation -->
   <nav class="bottom-nav">
-    <a href="index.html" class="bottom-nav-item" id="navHome" title="Beranda Toko">
+    <a href="./" class="bottom-nav-item" id="navHome" title="Beranda Toko">
       <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
       <span>Beranda</span>
     </a>
-    <a href="brands.html" class="bottom-nav-item" id="navBrands" title="Koleksi Brand">
+    <a href="brands" class="bottom-nav-item" id="navBrands" title="Koleksi Brand">
       <div class="bottom-nav-icon-wrap"><i data-lucide="award" size="20"></i></div>
       <span>Brand</span>
     </a>
-    <a href="flashsale.html" class="bottom-nav-item active" id="navFlash" title="Promo Flash Sale">
+    <a href="flashsale" class="bottom-nav-item active" id="navFlash" title="Promo Flash Sale">
       <div class="bottom-nav-icon-wrap"><i data-lucide="zap" size="20"></i></div>
       <span>Flash Sale</span>
     </a>
-    <a href="shop.html" class="bottom-nav-item" id="navShop" title="Katalog Belanja">
+    <a href="shop" class="bottom-nav-item" id="navShop" title="Katalog Belanja">
       <div class="bottom-nav-icon-wrap"><i data-lucide="shopping-bag" size="20"></i></div>
       <span>Belanja</span>
     </a>
-    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+    <a href="account" class="bottom-nav-item" id="navAccount" title="Akun Saya">
       <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
       <span>Akun</span>
     </a>

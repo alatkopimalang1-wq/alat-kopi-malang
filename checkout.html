@@ -92,23 +92,23 @@
   <header class="site-header">
     <div class="container header-inner">
       <div style="display:flex; align-items:center; gap:8px;">
-        <a href="index.html" class="btn-back-header" id="btnCheckoutHeaderBack" title="Kembali ke Beranda">
+        <a href="./" class="btn-back-header" id="btnCheckoutHeaderBack" title="Kembali ke Beranda">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
       </div>
 
       <div class="header-actions">
-        <a href="index.html" class="btn-secondary" style="padding:8px 12px; font-size:0.82rem; color:var(--text-primary); border-color:var(--border-subtle);">
+        <a href="./" class="btn-secondary" style="padding:8px 12px; font-size:0.82rem; color:var(--text-primary); border-color:var(--border-subtle);">
           <i data-lucide="shopping-bag" size="16"></i>
           <span class="hide-mobile">Lanjut Belanja</span>
         </a>
         <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
           <i data-lucide="moon" id="themeIcon" size="20"></i>
         </button>
-        <a href="account.html" class="btn-icon hide-mobile" title="Akun Saya">
+        <a href="account" class="btn-icon hide-mobile" title="Akun Saya">
           <i data-lucide="user" size="20"></i>
         </a>
       </div>
@@ -413,7 +413,7 @@
           <i data-lucide="printer" size="16"></i>
           <span>Cetak Struk / PDF</span>
         </button>
-        <a href="index.html" class="btn-primary" style="display:inline-flex; align-items:center; gap:6px;">
+        <a href="./" class="btn-primary" style="display:inline-flex; align-items:center; gap:6px;">
           <span>Selesai & Lanjut Belanja</span>
           <i data-lucide="check" size="16"></i>
         </a>
@@ -1039,7 +1039,7 @@
             list.innerHTML = `
               <div class="empty-state" style="padding:24px 10px; text-align:center;">
                 <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:12px;">Keranjang pesanan Anda kosong.</p>
-                <a href="index.html" class="btn-primary" style="display:inline-flex; font-size:0.82rem; padding:8px 16px;">
+                <a href="./" class="btn-primary" style="display:inline-flex; font-size:0.82rem; padding:8px 16px;">
                   <span>Belanja Sekarang</span>
                   <i data-lucide="arrow-right" size="14"></i>
                 </a>
@@ -1316,7 +1316,7 @@ Mohon instruksi dan verifikasi pembayarannya ya min. Terima kasih! 🙏`;
         }
 
         // Redirect to Checkout Finish page
-        window.location.href = `checkout-finish.html?orderId=${orderId}`;
+        window.location.href = `checkout-finish?orderId=${orderId}`;
       };
 
       // Button listeners

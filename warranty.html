@@ -384,10 +384,10 @@
     <div class="container header-inner">
       <!-- Back Button & Brand Logo -->
       <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
-        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
+        <a href="./" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda" style="width:38px; height:38px; border-radius:50%; background:var(--bg-secondary); border:1px solid var(--border-subtle); display:flex; align-items:center; justify-content:center; color:var(--text-primary); transition:all 0.2s;">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
       </div>
@@ -411,19 +411,19 @@
         </button>
 
         <!-- Wishlist Button -->
-        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+        <a href="account?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
           <i data-lucide="heart" size="20"></i>
           <span class="badge-count" id="wishlistBadge">0</span>
         </a>
 
         <!-- Cart Button -->
-        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+        <a href="checkout" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
           <i data-lucide="shopping-bag" size="20"></i>
           <span class="badge-count" id="cartBadge">0</span>
         </a>
 
         <!-- Akun Saya Button -->
-        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+        <a href="account" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
           <i data-lucide="user" size="20"></i>
         </a>
       </div>
@@ -683,7 +683,7 @@
           <i data-lucide="message-circle" size="18"></i>
           <span>Hubungi via WhatsApp</span>
         </a>
-        <a href="article.html?id=art-002" class="btn-showroom-loc" title="Kunjungi Showroom Malang">
+        <a href="article?id=art-002" class="btn-showroom-loc" title="Kunjungi Showroom Malang">
           <i data-lucide="map-pin" size="18"></i>
           <span>Kunjungi Showroom Malang</span>
         </a>
@@ -702,7 +702,7 @@
           <h4 class="footer-col-title">Lokasi & Jam Operasional</h4>
           <ul class="footer-contact-list">
             <li>
-              <a href="article.html?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
+              <a href="article?id=art-002" class="footer-contact-link" title="Lokasi Showroom Alat Kopi Malang">
                 <i data-lucide="map-pin" class="footer-contact-icon"></i>
                 <span>Ruko Tlogomas Square Kav.34, Kec. Lowokwaru Kota Malang</span>
               </a>
@@ -762,10 +762,10 @@
         <div class="footer-col">
           <h4 class="footer-col-title">Alat Kopi Malang</h4>
           <ul class="footer-links-list">
-            <li><a href="about.html">Tentang Kami</a></li>
-            <li><a href="brands.html">Brands</a></li>
-            <li><a href="partnership.html">Kemitraan</a></li>
-            <li><a href="articles.html">Artikel AKM</a></li>
+            <li><a href="about">Tentang Kami</a></li>
+            <li><a href="brands">Brands</a></li>
+            <li><a href="partnership">Kemitraan</a></li>
+            <li><a href="articles">Artikel AKM</a></li>
           </ul>
         </div>
 
@@ -773,11 +773,11 @@
         <div class="footer-col">
           <h4 class="footer-col-title">Bantuan</h4>
           <ul class="footer-links-list">
-            <li><a href="account.html">Lacak Pengiriman</a></li>
-            <li><a href="return-policy.html">Pengembalian Produk</a></li>
-            <li><a href="warranty.html">Ketentuan Garansi</a></li>
-            <li><a href="terms.html">Syarat dan Ketentuan</a></li>
-            <li><a href="privacy-policy.html">Kebijakan Privasi</a></li>
+            <li><a href="account">Lacak Pengiriman</a></li>
+            <li><a href="return-policy">Pengembalian Produk</a></li>
+            <li><a href="warranty">Ketentuan Garansi</a></li>
+            <li><a href="terms">Syarat dan Ketentuan</a></li>
+            <li><a href="privacy-policy">Kebijakan Privasi</a></li>
           </ul>
         </div>
 
@@ -786,8 +786,8 @@
           <h4 class="footer-col-title">Customer Care</h4>
           <ul class="footer-links-list">
             <li><a href="https://wa.me/6282132095241" target="_blank" rel="noopener noreferrer">Hubungi Kami</a></li>
-            <li><a href="checkout.html">Konfirmasi Pembayaran</a></li>
-            <li><a href="faq.html">FAQ / Bantuan</a></li>
+            <li><a href="checkout">Konfirmasi Pembayaran</a></li>
+            <li><a href="faq">FAQ / Bantuan</a></li>
           </ul>
         </div>
       </div>
@@ -814,7 +814,7 @@
       if (searchInput) {
         searchInput.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' && searchInput.value.trim()) {
-            window.location.href = `shop.html?search=${encodeURIComponent(searchInput.value.trim())}`;
+            window.location.href = `shop?search=${encodeURIComponent(searchInput.value.trim())}`;
           }
         });
       }

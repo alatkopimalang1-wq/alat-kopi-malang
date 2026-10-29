@@ -651,23 +651,23 @@
   <header class="site-header">
     <div class="container header-inner">
       <div style="display:flex; align-items:center; gap:8px;">
-        <a href="index.html" class="btn-back-header" title="Kembali ke Beranda">
+        <a href="./" class="btn-back-header" title="Kembali ke Beranda">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
       </div>
 
       <div class="header-actions">
-        <a href="shop.html" class="btn-secondary" style="padding:8px 12px; font-size:0.82rem; color:var(--text-primary); border-color:var(--border-subtle);">
+        <a href="shop" class="btn-secondary" style="padding:8px 12px; font-size:0.82rem; color:var(--text-primary); border-color:var(--border-subtle);">
           <i data-lucide="shopping-bag" size="16"></i>
           <span class="hide-mobile">Lanjut Belanja</span>
         </a>
         <button class="btn-icon" id="btnToggleTheme" title="Ganti Tema">
           <i data-lucide="moon" id="themeIcon" size="20"></i>
         </button>
-        <a href="account.html" class="btn-icon hide-mobile" title="Akun &amp; Riwayat Pesanan">
+        <a href="account" class="btn-icon hide-mobile" title="Akun &amp; Riwayat Pesanan">
           <i data-lucide="user" size="20"></i>
         </a>
       </div>
@@ -889,8 +889,8 @@
                 Silakan pilih alat kopi atau biji kopi specialty favorit Anda di etalase toko untuk membuat pesanan baru.
               </p>
               <div style="display:flex; justify-content:center; gap:12px;">
-                <a href="shop.html" class="btn-primary" style="padding:10px 24px; text-decoration:none; font-weight:700;">Mulai Belanja</a>
-                <a href="index.html" class="btn-secondary" style="padding:10px 20px; text-decoration:none; font-weight:600;">Beranda</a>
+                <a href="shop" class="btn-primary" style="padding:10px 24px; text-decoration:none; font-weight:700;">Mulai Belanja</a>
+                <a href="./" class="btn-secondary" style="padding:10px 20px; text-decoration:none; font-weight:600;">Beranda</a>
               </div>
             </div>
           `;
@@ -1077,11 +1077,11 @@ Mohon dicek dan diverifikasi pembayarannya ya min. Terima kasih! 🙏`;
                         Pesanan <strong>#${currentOrder.id}</strong> telah dibatalkan secara resmi. Anda tidak perlu mentransfer pembayaran ke rekening atau QRIS toko. Jika Anda ingin melakukan pemesanan ulang atau memilih produk lain, silakan kunjungi katalog kami.
                       </p>
                       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <a href="shop.html" class="btn-primary" style="padding:10px 18px; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                        <a href="shop" class="btn-primary" style="padding:10px 18px; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                           <i data-lucide="shopping-bag" size="16"></i>
                           <span>Belanja Produk Lain</span>
                         </a>
-                        <a href="account.html" class="btn-secondary" style="padding:10px 18px; font-size:0.84rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                        <a href="account" class="btn-secondary" style="padding:10px 18px; font-size:0.84rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                           <i data-lucide="package" size="16"></i>
                           <span>Lihat Riwayat Pesanan</span>
                         </a>
@@ -1119,11 +1119,11 @@ Mohon dicek dan diverifikasi pembayarannya ya min. Terima kasih! 🙏`;
                         Terima kasih! Pesanan <strong>#${currentOrder.id}</strong> telah diverifikasi dan saat ini berstatus <strong>${currentOrder.status}</strong>. Anda dapat mengunduh invoice resmi pada panel di samping atau melihat daftar pesanan di halaman akun.
                       </p>
                       <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                        <a href="account.html" class="btn-primary" style="padding:10px 18px; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                        <a href="account" class="btn-primary" style="padding:10px 18px; font-size:0.84rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                           <i data-lucide="package" size="16"></i>
                           <span>Kembali ke Riwayat Pesanan</span>
                         </a>
-                        <a href="shop.html" class="btn-secondary" style="padding:10px 18px; font-size:0.84rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                        <a href="shop" class="btn-secondary" style="padding:10px 18px; font-size:0.84rem; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                           <i data-lucide="shopping-bag" size="16"></i>
                           <span>Belanja Lagi</span>
                         </a>
@@ -1313,7 +1313,7 @@ Mohon dicek dan diverifikasi pembayarannya ya min. Terima kasih! 🙏`;
               <!-- Action Buttons Card -->
               <div class="finish-card" style="padding:16px;">
                 <!-- Download Invoice Direct Button -->
-                <a href="invoice.html?orderId=${currentOrder.id}&download=true" target="_blank" class="btn-primary" style="padding:12px 14px; font-size:0.88rem; font-weight:700; width:100%; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; box-sizing:border-box; background:#4f46e5; color:#ffffff; border-radius:10px; box-shadow:0 4px 12px rgba(79,70,229,0.22); margin-bottom:8px;">
+                <a href="invoice?orderId=${currentOrder.id}&download=true" target="_blank" class="btn-primary" style="padding:12px 14px; font-size:0.88rem; font-weight:700; width:100%; display:flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; box-sizing:border-box; background:#4f46e5; color:#ffffff; border-radius:10px; box-shadow:0 4px 12px rgba(79,70,229,0.22); margin-bottom:8px;">
                   <i data-lucide="download" size="17"></i>
                   <span class="wa-btn-full">Download Invoice (PDF)</span>
                   <span class="wa-btn-short">Download Invoice (PDF)</span>
@@ -1328,10 +1328,10 @@ Mohon dicek dan diverifikasi pembayarannya ya min. Terima kasih! 🙏`;
                 ` : ''}
 
                 <div style="display:flex; gap:8px;">
-                  <a href="account.html" class="btn-secondary" style="flex:1; padding:10px 12px; font-size:0.82rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; text-align:center; font-weight:600;">
+                  <a href="account" class="btn-secondary" style="flex:1; padding:10px 12px; font-size:0.82rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; text-align:center; font-weight:600;">
                     Riwayat Pesanan
                   </a>
-                  <a href="shop.html" class="btn-secondary" style="flex:1; padding:10px 12px; font-size:0.82rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; text-align:center; font-weight:600;">
+                  <a href="shop" class="btn-secondary" style="flex:1; padding:10px 12px; font-size:0.82rem; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; text-align:center; font-weight:600;">
                     Belanja Lagi
                   </a>
                 </div>

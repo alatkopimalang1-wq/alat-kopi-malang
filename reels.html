@@ -114,10 +114,10 @@
     <div class="container header-inner">
       <!-- Back Button & Brand Logo -->
       <div class="header-left-group" style="display:flex; align-items:center; gap:10px;">
-        <a href="index.html" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda">
+        <a href="./" class="btn-back-header" id="btnBackHome" title="Kembali ke Beranda">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
         <div style="line-height:1.2;">
@@ -133,19 +133,19 @@
         </button>
 
         <!-- Wishlist Button -->
-        <a href="account.html?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
+        <a href="account?tab=wishlist" class="btn-icon hide-mobile" id="btnOpenWishlist" title="Favorit Saya">
           <i data-lucide="heart" size="20"></i>
           <span class="badge-count" id="wishlistBadge">0</span>
         </a>
 
         <!-- Cart Button -->
-        <a href="checkout.html" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
+        <a href="checkout" class="btn-icon" id="btnOpenCart" title="Keranjang Belanja">
           <i data-lucide="shopping-bag" size="20"></i>
           <span class="badge-count" id="cartBadge">0</span>
         </a>
 
         <!-- Akun Saya Button -->
-        <a href="account.html" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
+        <a href="account" class="btn-icon hide-mobile" id="btnOpenAccount" title="Akun Saya">
           <i data-lucide="user" size="20"></i>
         </a>
       </div>
@@ -170,26 +170,26 @@
 
   <!-- Mobile Bottom Navigation (PWA-Like Navigation) -->
   <nav class="bottom-nav">
-    <a href="index.html" class="bottom-nav-item" id="navHome">
+    <a href="./" class="bottom-nav-item" id="navHome">
       <div class="bottom-nav-icon-wrap"><i data-lucide="home" size="20"></i></div>
       <span>Beranda</span>
     </a>
-    <a href="shop.html" class="bottom-nav-item" id="navCategory" title="Pilihan Kategori Produk">
+    <a href="shop" class="bottom-nav-item" id="navCategory" title="Pilihan Kategori Produk">
       <div class="bottom-nav-icon-wrap"><i data-lucide="layout-grid" size="20"></i></div>
       <span>Kategori</span>
     </a>
-    <a href="reels.html" class="bottom-nav-item active" id="navReels" title="Koleksi Video Reels">
+    <a href="reels" class="bottom-nav-item active" id="navReels" title="Koleksi Video Reels">
       <div class="bottom-nav-icon-wrap"><i data-lucide="film" size="20"></i></div>
       <span>Video</span>
     </a>
-    <a href="checkout.html" class="bottom-nav-item" id="navCart" title="Keranjang Belanja">
+    <a href="checkout" class="bottom-nav-item" id="navCart" title="Keranjang Belanja">
       <div class="bottom-nav-icon-wrap">
         <i data-lucide="shopping-bag" size="20"></i>
         <span class="badge-count" id="mobileCartBadge">0</span>
       </div>
       <span>Keranjang</span>
     </a>
-    <a href="account.html" class="bottom-nav-item" id="navAccount" title="Akun Saya">
+    <a href="account" class="bottom-nav-item" id="navAccount" title="Akun Saya">
       <div class="bottom-nav-icon-wrap"><i data-lucide="user" size="20"></i></div>
       <span>Akun</span>
     </a>
@@ -473,7 +473,7 @@
                   <p class="reel-product-name">${p.name}</p>
                   <p class="reel-product-price">${formatRupiah(p.price)}</p>
                 </div>
-                <button type="button" class="reel-product-btn" onclick="window.location.href='product.html?id=${p.id}'">
+                <button type="button" class="reel-product-btn" onclick="window.location.href='product?id=${p.id}'">
                   Beli <i data-lucide="chevron-right" size="13"></i>
                 </button>
               `;

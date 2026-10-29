@@ -233,10 +233,10 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="header-left-group" style="display:flex; align-items:center; gap:8px;">
-        <a href="index.html" class="btn-back-header" id="btnProductHeaderBack" title="Kembali ke Beranda">
+        <a href="./" class="btn-back-header" id="btnProductHeaderBack" title="Kembali ke Beranda">
           <i data-lucide="arrow-left" size="20"></i>
         </a>
-        <a href="index.html" class="brand-logo" title="Alat Kopi Malang - Beranda">
+        <a href="./" class="brand-logo" title="Alat Kopi Malang - Beranda">
           <img src="images/logo.png?v=9" alt="Logo Alat Kopi Malang" class="store-logo-horizontal">
         </a>
 
@@ -265,7 +265,7 @@
             </div>
 
             <!-- Item: Semua Kategori -->
-            <a href="shop.html?category=ALL" class="cat-drop-item">
+            <a href="shop?category=ALL" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="layout-grid" size="16"></i>
                 <span>Semua Kategori</span>
@@ -274,7 +274,7 @@
             </a>
 
             <!-- Item: Mesin Espresso -->
-            <a href="shop.html?category=Mesin%20Espresso" class="cat-drop-item">
+            <a href="shop?category=Mesin%20Espresso" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="coffee" size="16"></i>
                 <span>Mesin Espresso</span>
@@ -283,7 +283,7 @@
             </a>
 
             <!-- Item: Manual Grinder -->
-            <a href="shop.html?category=Manual%20Grinder" class="cat-drop-item">
+            <a href="shop?category=Manual%20Grinder" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="rotate-cw" size="16"></i>
                 <span>Manual Grinder</span>
@@ -292,7 +292,7 @@
             </a>
 
             <!-- Item: Grinder Listrik -->
-            <a href="shop.html?category=Grinder%20Listrik" class="cat-drop-item">
+            <a href="shop?category=Grinder%20Listrik" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="zap" size="16"></i>
                 <span>Grinder Listrik</span>
@@ -301,7 +301,7 @@
             </a>
 
             <!-- Item: Manual Brew -->
-            <a href="shop.html?category=Manual%20Brew" class="cat-drop-item">
+            <a href="shop?category=Manual%20Brew" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="filter" size="16"></i>
                 <span>Manual Brew</span>
@@ -310,7 +310,7 @@
             </a>
 
             <!-- Item: Gadget & Elektronik -->
-            <a href="shop.html?category=Gadget%20%26%20Elektronik" class="cat-drop-item">
+            <a href="shop?category=Gadget%20%26%20Elektronik" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="smartphone" size="16"></i>
                 <span>Gadget & Elektronik</span>
@@ -319,7 +319,7 @@
             </a>
 
             <!-- Item: Fashion & Sepatu -->
-            <a href="shop.html?category=Fashion%20%26%20Sepatu" class="cat-drop-item">
+            <a href="shop?category=Fashion%20%26%20Sepatu" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="shirt" size="16"></i>
                 <span>Fashion & Sepatu</span>
@@ -328,7 +328,7 @@
             </a>
 
             <!-- Item: Aksesoris & Tas -->
-            <a href="shop.html?category=Aksesoris%20%26%20Tas" class="cat-drop-item">
+            <a href="shop?category=Aksesoris%20%26%20Tas" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="briefcase" size="16"></i>
                 <span>Aksesoris & Tas</span>
@@ -337,7 +337,7 @@
             </a>
 
             <!-- Item: Lifestyle & Rumah -->
-            <a href="shop.html?category=Lifestyle%20%26%20Rumah" class="cat-drop-item">
+            <a href="shop?category=Lifestyle%20%26%20Rumah" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="sparkles" size="16"></i>
                 <span>Lifestyle & Rumah</span>
@@ -346,7 +346,7 @@
             </a>
 
             <!-- Item: Produk Terlaris -->
-            <a href="shop.html?filter=featured" class="cat-drop-item">
+            <a href="shop?filter=featured" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="flame" size="16" style="color:#ef4444;"></i>
                 <span>Produk Terlaris & Trending</span>
@@ -355,7 +355,7 @@
             </a>
 
             <!-- Item: Promo & Diskon Spesial -->
-            <a href="flashsale.html" class="cat-drop-item">
+            <a href="flashsale" class="cat-drop-item">
               <span class="cat-drop-left">
                 <i data-lucide="badge-percent" size="16" style="color:#f59e0b;"></i>
                 <span>Promo & Diskon Spesial</span>
@@ -366,9 +366,9 @@
         </div>
       </div>
 
-      <!-- Search Input (Links to catalog search on shop.html) -->
+      <!-- Search Input (Links to catalog search on shop) -->
       <div class="header-search">
-        <form action="shop.html" method="GET" class="search-input-wrapper">
+        <form action="shop" method="GET" class="search-input-wrapper">
           <span class="search-icon-left"><i data-lucide="search" size="18"></i></span>
           <input type="text" name="search" id="desktopSearchInput" placeholder="Cari Produk Alat Kopi...">
           <button type="button" class="search-clear-btn" id="desktopSearchClear" title="Hapus pencarian">
@@ -384,13 +384,13 @@
         </button>
 
         <!-- Cart Button -->
-        <a href="checkout.html" class="btn-icon" title="Keranjang Belanja">
+        <a href="checkout" class="btn-icon" title="Keranjang Belanja">
           <i data-lucide="shopping-bag" size="20"></i>
           <span class="badge-count" id="cartBadge">0</span>
         </a>
 
         <!-- Akun Saya Button (Desktop only) -->
-        <a href="account.html" class="btn-icon hide-mobile" title="Akun Saya">
+        <a href="account" class="btn-icon hide-mobile" title="Akun Saya">
           <i data-lucide="user" size="20"></i>
         </a>
       </div>
@@ -693,7 +693,7 @@
           <div class="empty-state">
             <h3>Produk Tidak Ditemukan</h3>
             <p>Produk yang Anda cari tidak tersedia atau telah dihapus.</p>
-            <a href="index.html" class="btn-primary" style="display:inline-flex; margin-top:12px;">Kembali ke Beranda</a>
+            <a href="./" class="btn-primary" style="display:inline-flex; margin-top:12px;">Kembali ke Beranda</a>
           </div>
         `;
         refreshIcons();
@@ -1192,7 +1192,7 @@
       // Buy Now -> navigates to checkout in same window
       const handleBuyNow = () => {
         if (handleAddToCart()) {
-          window.location.href = 'checkout.html';
+          window.location.href = 'checkout';
         }
       };
 
@@ -1268,7 +1268,7 @@ Apakah stok masih tersedia dan bisa langsung dikirim? Mohon infonya min. Terima 
           }
           const isRelSoldOut = !isRelPreOrder && relStock <= 0;
           return `
-          <div class="product-card ${isRelSoldOut ? 'is-sold-out' : ''}" onclick="window.location.href='product.html?id=${p.id}'" title="Lihat ${p.name}">
+          <div class="product-card ${isRelSoldOut ? 'is-sold-out' : ''}" onclick="window.location.href='product?id=${p.id}'" title="Lihat ${p.name}">
             <div class="product-card-img-wrap" style="${isRelSoldOut ? 'background:#0f172a;' : ''}">
               ${isRelSoldOut
                 ? `<span class="card-badge badge-sold-out" style="background:linear-gradient(135deg, #111827, #334155); color:#fff; border:1px solid rgba(255,255,255,0.28); font-weight:800; letter-spacing:0.06em; z-index:4;">SOLD OUT</span>`
@@ -1293,14 +1293,14 @@ Apakah stok masih tersedia dan bisa langsung dikirim? Mohon infonya min. Terima 
                 </div>
                 ${isRelSoldOut ? `
                   <button type="button" class="btn-card-select-variant" 
-                    onclick="event.stopPropagation(); window.location.href='product.html?id=${p.id}'" 
+                    onclick="event.stopPropagation(); window.location.href='product?id=${p.id}'" 
                     style="background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); box-shadow:none;"
                     title="Stok Habis - ${p.name}">
                     <span>Habis</span>
                   </button>
                 ` : (hasVariants ? `
                   <button type="button" class="btn-card-select-variant" 
-                    onclick="event.stopPropagation(); window.location.href='product.html?id=${p.id}'" 
+                    onclick="event.stopPropagation(); window.location.href='product?id=${p.id}'" 
                     title="Pilih Varian ${p.name}" 
                     aria-label="Pilih Varian ${p.name}">
                     <span>Pilih</span>
