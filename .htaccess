@@ -41,3 +41,4 @@ Options -MultiViews
     AddType image/webp .webp
     AddType video/mp4 .mp4
 </IfModule>
+
