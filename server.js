@@ -188,26 +188,32 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // Clean URL: /shop.html -> 301 redirect ke /shop (alamat tanpa .html)
-  if (req.method === 'GET' && /\.html$/i.test(reqUrl)) {
-    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
-    let cleanPath = reqUrl.replace(/\.html$/i, '');
-    if (/\/index$/i.test(cleanPath)) cleanPath = cleanPath.replace(/index$/i, '');
-    res.writeHead(301, { Location: (cleanPath || '/') + query });
+  // Clean URLs & 301 Redirects:
+  // 1. Redirect /index.html ke /
+  if (reqUrl === '/index.html') {
+    const qs = req.url.includes('?') ? '?' + req.url.split('?')[1] : '';
+    res.writeHead(301, { 'Location': '/' + qs });
     res.end();
     return;
   }
 
+  // 2. Redirect /file.html ke /file (Clean URL tanpa .html)
+  if (reqUrl.endsWith('.html')) {
+    const cleanPath = reqUrl.slice(0, -5);
+    const qs = req.url.includes('?') ? '?' + req.url.split('?')[1] : '';
+    res.writeHead(301, { 'Location': cleanPath + qs });
+    res.end();
+    return;
+  }
+
+  // 3. Map clean URL ke file fisik di server
   if (reqUrl === '/' || reqUrl === '') {
     reqUrl = '/index.html';
-  } else if (reqUrl === '/admin' || reqUrl === '/admin/') {
-    reqUrl = '/admin.html';
-  } else if (reqUrl === '/tentang-kami' || reqUrl === '/about') {
-    reqUrl = '/about.html';
   } else if (!path.extname(reqUrl)) {
-    // /shop -> shop.html, /product -> product.html, dst.
-    const candidate = reqUrl.replace(/\/$/, '') + '.html';
-    if (fs.existsSync(path.join(__dirname, candidate))) reqUrl = candidate;
+    const potentialHtml = path.join(__dirname, reqUrl + '.html');
+    if (fs.existsSync(potentialHtml) && fs.statSync(potentialHtml).isFile()) {
+      reqUrl = reqUrl + '.html';
+    }
   }
 
   const filePath = path.join(__dirname, reqUrl);

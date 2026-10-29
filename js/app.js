@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hanya tampilkan footer di Home Page (index.html atau root /)
     const path = window.location.pathname;
     const page = path.split('/').pop().toLowerCase();
-    const isHome = page === '' || page === 'index' || page === 'index' + '.html';
+    const isHome = page === '' || page === 'index.html' || page === 'index';
 
     if (!isHome) {
       const existing = document.querySelector('.site-footer');
@@ -1921,9 +1921,11 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
   // ==========================================
   // SHOP PAGE & CATEGORY ROUTING
   // ==========================================
+  const pathNameLower = typeof window !== 'undefined' ? window.location.pathname.toLowerCase() : '';
   const isShopPage = typeof window !== 'undefined' && (
-    window.location.pathname.toLowerCase().includes('shop') || 
-    window.location.pathname.toLowerCase().endsWith('/shop')
+    pathNameLower.endsWith('/shop') || 
+    pathNameLower.includes('shop.html') ||
+    pathNameLower.endsWith('shop')
   );
 
   const CATEGORY_META = {
@@ -2011,7 +2013,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
   // CATEGORY NAVIGATION & SELECTION CONTROLLER
   // ==========================================
   window.selectCategory = (categoryName) => {
-    // If not currently on shop.html, redirect directly to shop page with query parameter
+    // If not currently on shop page, redirect directly to shop page with query parameter
     if (!isShopPage) {
       const targetParam = (categoryName && categoryName !== 'ALL')
         ? `?category=${encodeURIComponent(categoryName)}`
@@ -2020,7 +2022,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
       return;
     }
 
-    // On shop.html: filter in-place and push state
+    // On shop page: filter in-place and push state
     State.currentCategory = categoryName;
     State.filterBrand = null;
     State.filterPromoOnly = false;
@@ -2074,7 +2076,7 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
       const targetCat = (categoryName || '').trim().toLowerCase();
       if (linkCat === targetCat) {
         link.classList.add('active');
-      } else if (categoryName === 'ALL' && link.getAttribute('href') === './') {
+      } else if (categoryName === 'ALL' && link.getAttribute('href') === 'index.html') {
         link.classList.add('active');
       } else {
         link.classList.remove('active');

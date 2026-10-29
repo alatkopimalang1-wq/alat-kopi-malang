@@ -1,15 +1,40 @@
-# Clean URL untuk hosting Apache (cPanel / Hostinger / Niagahoster)
-Options -MultiViews
-RewriteEngine On
+# ==============================================================================
+# ALAT KOPI MALANG - CLEAN URL CONFIGURATION (.htaccess)
+# Menghilangkan ekstensi .html dari URL browser (Pretty URLs)
+# ==============================================================================
 
-# 1) Redirect permanen: /shop.html -> /shop
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L,NE]
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
 
-# /index -> /
-RewriteRule ^index/?$ / [R=301,L]
+    # 1. Redirect /index.html atau /index ke root / (301 Permanent)
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index(\.html)?[\s?] [NC]
+    RewriteRule ^index(\.html)?$ / [R=301,L]
 
-# 2) Tampilkan file .html saat diakses tanpa ekstensi: /shop -> shop.html
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.+?)/?$ $1.html [L]
+    # 2. Redirect otomatis jika pengunjung / link membuka URL berakhiran .html
+    #    Contoh: /shop.html -> diarahkan ke /shop
+    #            /product.html?id=prod-012 -> diarahkan ke /product?id=prod-012
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+?)\.html[\s?] [NC]
+    RewriteRule ^(.+?)\.html$ /$1 [R=301,L,NE]
+
+    # 3. Rewrite internal: sajikan file .html di server tanpa mengubah URL di browser
+    #    Jika pengunjung membuka /shop, server otomatis memuat shop.html
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f [OR]
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    RewriteRule ^(.+?)/?$ $1.html [L,QSA]
+</IfModule>
+
+# Optional: MIME Types & Security
+<IfModule mod_mime.c>
+    AddType text/html .html
+    AddType text/css .css
+    AddType text/javascript .js
+    AddType image/svg+xml .svg
+    AddType image/webp .webp
+    AddType video/mp4 .mp4
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
