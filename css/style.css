@@ -4496,8 +4496,9 @@ body {
   }
 
   .price-original {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     font-weight: 400;
+    white-space: nowrap;
   }
 
   .stock-indicator {
@@ -4532,9 +4533,10 @@ body {
   }
 
   .product-price-col .price-original {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     font-weight: 400;
     line-height: 1.25;
+    white-space: nowrap;
     opacity: 0.9;
   }
 
