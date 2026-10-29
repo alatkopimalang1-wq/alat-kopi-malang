@@ -648,12 +648,6 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="product-price-col">
                 <span class="price-current">${formatRupiah(product.price)}</span>
                 ${product.originalPrice ? `<span class="price-original">${formatRupiah(product.originalPrice)}</span>` : ''}
-                ${!isPreOrder ? `
-                  <div class="stock-indicator ${effectiveStock <= 5 ? 'low' : ''}">
-                    <i data-lucide="${isSoldOut ? 'x-circle' : (effectiveStock <= 5 ? 'alert-triangle' : 'check')}" size="11"></i>
-                    <span>${isSoldOut ? 'Sold Out' : (effectiveStock <= 5 ? `Sisa ${effectiveStock} unit` : `Tersedia`)}</span>
-                  </div>
-                ` : ''}
               </div>
               ${isSoldOut ? `
                 <button type="button" class="btn-card-select-variant" 
@@ -3515,12 +3509,6 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
                 <div class="product-price-col">
                   <span class="price-current">${formatRupiah(product.price)}</span>
                   ${product.originalPrice ? `<span class="price-original">${formatRupiah(product.originalPrice)}</span>` : ''}
-                  ${!isPreOrder ? `
-                    <div class="stock-indicator ${effectiveStock <= 5 ? 'low' : ''}">
-                      <i data-lucide="${isSoldOut ? 'x-circle' : (effectiveStock <= 5 ? 'alert-triangle' : 'check')}" size="11"></i>
-                      <span>${isSoldOut ? 'Sold Out' : (effectiveStock <= 5 ? `Sisa ${effectiveStock} unit` : `Tersedia`)}</span>
-                    </div>
-                  ` : ''}
                 </div>
                 ${isSoldOut ? `
                   <button type="button" class="btn-card-select-variant" 

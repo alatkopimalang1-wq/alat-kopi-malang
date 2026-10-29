@@ -1132,10 +1132,6 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="product-price-col">
                 <span class="price-current">${formatRp(item.price)}</span>
                 ${item.originalPrice ? `<span class="price-original">${formatRp(item.originalPrice)}</span>` : ''}
-                <div class="stock-indicator ${item.stock <= 5 ? 'low' : ''}">
-                  <i data-lucide="${isSoldOut ? 'x-circle' : (item.stock <= 5 ? 'alert-triangle' : 'check')}" size="11"></i>
-                  <span>${isSoldOut ? 'Sold Out' : (item.stock <= 5 ? `Sisa ${item.stock} unit` : 'Tersedia')}</span>
-                </div>
               </div>
               <button type="button" class="btn-card-select-variant" onclick="event.stopPropagation(); window.location.href='product.html?id=${item.id}'" style="${isSoldOut ? 'background:var(--bg-secondary); color:var(--text-muted); border:1px solid var(--border-subtle); box-shadow:none;' : ''}">
                 <span>${isSoldOut ? 'Habis' : 'Pilih'}</span>
