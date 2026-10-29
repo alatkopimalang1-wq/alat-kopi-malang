@@ -14,6 +14,24 @@
   } catch (_) {}
 })();
 
+
+// Dukungan navigasi jika file dibuka secara lokal (file:///) di browser
+(function fixLocalFileLinks() {
+  if (typeof window === 'undefined' || window.location.protocol !== 'file:') return;
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:') && !href.includes('.html')) {
+        const [path, query] = href.split('?');
+        const [p, hash] = path.split('#');
+        if (p && p !== './' && p !== '/') {
+          link.setAttribute('href', p + '.html' + (query ? '?' + query : '') + (hash ? '#' + hash : ''));
+        }
+      }
+    });
+  });
+})();
+
 const DEFAULT_PRODUCTS = [
   {
     id: 'prod-001',

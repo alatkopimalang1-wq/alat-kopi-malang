@@ -207,12 +207,13 @@ const server = http.createServer((req, res) => {
   }
 
   // 3. Map clean URL ke file fisik di server
-  if (reqUrl === '/' || reqUrl === '') {
+  const normalizedReq = reqUrl.replace(/\/+$/, '');
+  if (normalizedReq === '/' || normalizedReq === '') {
     reqUrl = '/index.html';
-  } else if (!path.extname(reqUrl)) {
-    const potentialHtml = path.join(__dirname, reqUrl + '.html');
+  } else if (!path.extname(normalizedReq)) {
+    const potentialHtml = path.join(__dirname, normalizedReq + '.html');
     if (fs.existsSync(potentialHtml) && fs.statSync(potentialHtml).isFile()) {
-      reqUrl = reqUrl + '.html';
+      reqUrl = normalizedReq + '.html';
     }
   }
 
