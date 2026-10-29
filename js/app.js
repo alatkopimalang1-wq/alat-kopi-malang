@@ -661,8 +661,8 @@ document.addEventListener('DOMContentLoaded', () => {
                   onclick="event.stopPropagation(); window.location.href='product.html?id=${product.id}'" 
                   title="Pilih Varian ${product.name}" 
                   aria-label="Pilih Varian ${product.name}">
-                  <span>Pilih</span>
-                  <i data-lucide="chevron-right" size="14"></i>
+                  <i data-lucide="plus" size="14"></i>
+                  <span>Keranjang</span>
                 </button>
               ` : `
                 <button type="button" class="btn-card-cart-icon" 
@@ -3522,8 +3522,8 @@ Mohon instruksi dan konfirmasi ketersediaan barangnya ya min. Terima kasih! 🙏
                     onclick="event.stopPropagation(); window.location.href='product.html?id=${product.id}'" 
                     title="Pilih Varian ${product.name}" 
                     aria-label="Pilih Varian ${product.name}">
-                    <span>Pilih</span>
-                    <i data-lucide="chevron-right" size="14"></i>
+                    <i data-lucide="plus" size="14"></i>
+                    <span>Keranjang</span>
                   </button>
                 ` : `
                   <button type="button" class="btn-card-cart-icon" 
