@@ -1,0 +1,4 @@
+# GitHub Linguist language overrides
+# Mengubah deteksi bahasa utama repositori menjadi TypeScript di GitHub
+*.html linguist-language=TypeScript
+*.js linguist-language=TypeScript
